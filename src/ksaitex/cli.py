@@ -56,5 +56,18 @@ def convert(
         typer.echo(log)
         raise typer.Exit(code=1)
 
+@app.command()
+def serve(
+    host: str = typer.Option("127.0.0.1", help="Host to bind to"),
+    port: int = typer.Option(8000, help="Port to bind to"),
+    reload: bool = typer.Option(True, help="Enable auto-reload")
+):
+    """
+    Start the web server and UI.
+    """
+    import uvicorn
+    typer.echo(f"Starting server at http://{host}:{port}")
+    uvicorn.run("ksaitex.api.main:app", host=host, port=port, reload=reload)
+
 if __name__ == "__main__":
     app()

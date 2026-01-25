@@ -1,17 +1,17 @@
-\documentclass{ {{ document_class }} }
+\documentclass{\VAR{document_class}}
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
-{% if script == 'DEVANAGARI' %}
-\setmainfont[Script=Devanagari]{ {{ font_file }} }
-{% else %}
-\setmainfont{ {{ font_file }} }
-{% endif %}
+\BLOCK{ if script == 'DEVANAGARI' }
+\setmainfont[Script=Devanagari]{\VAR{font_file}}
+\BLOCK{ else }
+\setmainfont{\VAR{font_file}}
+\BLOCK{ endif }
 
-{{ extra_preamble }}
+\VAR{ extra_preamble }
 
 \begin{document}
 
-{{ content }}
+\VAR{ content }
 
 \end{document}

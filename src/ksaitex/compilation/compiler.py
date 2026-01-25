@@ -30,10 +30,19 @@ class LatexCompiler:
             # -interaction=nonstopmode prevents hanging on errors
             cmd = ["lualatex", "-interaction=nonstopmode", "-output-directory", str(temp_dir), str(tex_file)]
             
+            # Prepare environment with local fonts directory
+            env = shutil.os.environ.copy()
+            fonts_dir = Path("fonts").resolve()
+            # Append local fonts dir to OSFONTDIR (used by lualatex)
+            current_osfontdir = env.get("OSFONTDIR", "")
+            # Different OS separators, but colon usually works on Linux/Mac
+            env["OSFONTDIR"] = f"{fonts_dir}:{current_osfontdir}" if current_osfontdir else str(fonts_dir)
+
             process = await asyncio.create_subprocess_exec(
                 *cmd,
                 stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE
+                stderr=asyncio.subprocess.PIPE,
+                env=env
             )
             stdout, stderr = await process.communicate()
             log_output = stdout.decode("utf-8", errors="replace") + "\n" + stderr.decode("utf-8", errors="replace")
