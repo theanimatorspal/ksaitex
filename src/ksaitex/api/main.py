@@ -25,10 +25,8 @@ async def list_templates():
     if TEMPLATE_DIR.exists():
         for f in TEMPLATE_DIR.glob("*.tex"):
              name = f.stem
-             # Parse variables for this template
-             # We append .tex because get_variables expects filename
-             vars = engine.get_variables(f.name)
-             templates_data[name] = vars
+             metadata = engine.get_metadata(f.name)
+             templates_data[name] = metadata
              
     # Return as list for easier frontend consumption, or dict? 
     # Let's return dict { "template_name": { "var1": "default" } }

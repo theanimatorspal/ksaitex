@@ -126,6 +126,23 @@ button:active {
     box-shadow: 0 0 12px rgba(254, 128, 25, 0.3);
 }
 
+.magic-btn {
+    background-color: transparent;
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-size: 11px;
+    padding: 6px 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+}
+
+.magic-btn:hover {
+    background-color: var(--yellow);
+    color: var(--bg0);
+}
+
 /* Layout Panes */
 .main-content {
     flex: 1;

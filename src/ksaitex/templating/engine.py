@@ -22,27 +22,29 @@ class TemplateEngine:
         template = self.env.get_template(template_name)
         return template.render(**context)
     
-    def get_variables(self, template_name: str) -> Dict[str, Any]:
+    def get_metadata(self, template_name: str) -> Dict[str, Any]:
         """
-        Parses the template file for \\VAR{ name, meta... } patterns.
-        Returns a dictionary of { variable_name: { default, tab, label, type, options } }.
+        Parses the template file for \\VAR{...} and \\MAGIC{...} patterns.
+        Returns a dictionary with 'variables' and 'magic_commands'.
+        Only considers lines starting with '%' (LaTeX comments).
         """
         template_path = TEMPLATE_DIR / template_name
         if not template_path.exists():
-            return {}
+            return {"variables": {}, "magic_commands": []}
             
         with open(template_path, "r", encoding="utf-8") as f:
-            content = f.read()
+            full_content = f.read()
 
-        # Regex to capture kwargs inside \VAR{...}
-        # Matches: \VAR{ name, key1='val1', key2='val2' ... }
-        # Strategy: Find \VAR{...} blocks, then manual parse the inside content
-        block_pattern = re.compile(r"\\VAR\{\s*([^{}]+)\s*\}")
-        
+        # Extract only comment lines for metadata parsing
+        metadata_lines = [l.strip() for l in full_content.splitlines() if l.strip().startswith("%")]
+        metadata_content = "\n".join(metadata_lines)
+
+        # Parse \VAR{...} - Use .+? (non-greedy) to stay within the block
+        var_block_pattern = re.compile(r"\\VAR\{\s*(.+?)\s*\}")
         variables = {}
         known_vars = {"content", "extra_preamble"}
         
-        for match in block_pattern.finditer(content):
+        for match in var_block_pattern.finditer(metadata_content):
             inner = match.group(1)
             parts = [p.strip() for p in inner.split(',')]
             var_name = parts[0]
@@ -50,7 +52,6 @@ class TemplateEngine:
             if var_name in known_vars:
                 continue
                 
-            # Initialize metadata structure
             if var_name not in variables:
                 variables[var_name] = {
                     "name": var_name,
@@ -61,25 +62,41 @@ class TemplateEngine:
                     "options": []
                 }
             
-            # Parse kwargs: default='val', tab='Layout'
-            # Limitation: simple string extraction, doesn't handle escaped quotes perfectly
             kwarg_pattern = re.compile(r"([a-zA-Z0-9_]+)\s*=\s*(['\"])(.*?)\2")
-            
-            # Python's ast.literal_eval is safer but might fail on partial strings.
-            # Let's simple scan the string for key='val' patterns
             for kp in kwarg_pattern.finditer(inner):
                 key = kp.group(1)
-                val = kp.group(2) # quote type
                 value = kp.group(3)
                 
                 if key == "options":
-                    # Simple pipe-delimited parsing: "A|B" -> ["A", "B"]
                     variables[var_name]["options"] = [o.strip() for o in value.split("|") if o.strip()]
-                    variables[var_name]["type"] = "select" # Auto-infer select type if options present
+                    variables[var_name]["type"] = "select"
                 else:
                     variables[var_name][key] = value
+
+        # Parse \MAGIC{...} - Non-greedy to allow braces inside command=''
+        magic_block_pattern = re.compile(r"\\MAGIC\{\s*(.+?)\s*\}")
+        magic_commands = []
+        
+        for match in magic_block_pattern.finditer(metadata_content):
+            inner = match.group(1)
+            parts = [p.strip() for p in inner.split(',')]
+            name = parts[0]
+            
+            cmd_info = {"name": name, "label": name.replace("_", " ").title(), "command": ""}
+            
+            kwarg_pattern = re.compile(r"([a-zA-Z0-9_]+)\s*=\s*(['\"])(.*?)\2")
+            for kp in kwarg_pattern.finditer(inner):
+                key = kp.group(1)
+                value = kp.group(3)
+                cmd_info[key] = value
+            
+            magic_commands.append(cmd_info)
                     
-        return variables
+        return {"variables": variables, "magic_commands": magic_commands}
+
+    def get_variables(self, template_name: str) -> Dict[str, Any]:
+        """Legacy support for variables only."""
+        return self.get_metadata(template_name)["variables"]
 
 def render_latex(content: str, config: Dict[str, Any], template_name: str = "base.tex") -> str:
     engine = TemplateEngine()
@@ -101,27 +118,34 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
     # Apply user config over defaults
     context.update(config)
     
+    # Process Magic Commands replacement on content
+    metadata = engine.get_metadata(template_name)
+    magic_commands = metadata.get("magic_commands", [])
+    
+    for cmd in magic_commands:
+        magic_string = f"[{cmd['label']}]"
+        actual_command = cmd['command']
+        # Escape any special characters in magic_string just in case, though [] are usually safe in simple replace
+        context["content"] = context["content"].replace(magic_string, actual_command)
+
     # Read template content
     template_path = TEMPLATE_DIR / template_name
     if not template_path.exists():
         return ""
         
     with open(template_path, "r", encoding="utf-8") as f:
-        content = f.read()
+        template_text = f.read()
         
     # Preprocess: Strip metadata from \VAR{...} tags to make them valid Jinja
-    # \VAR{ var, meta... } -> \VAR{ var }
-    # Regex: match \VAR{ followed by capture group until }
+    # Also strip \MAGIC{...} since they are processed already
     def strip_meta(match):
         inner = match.group(1)
-        # Split by comma via regex to handle quotes safely-ish, 
-        # or just take the first token? 
-        # "var, default='...'" -> "var"
         parts = inner.split(',', 1)
         var_name = parts[0].strip()
         return f"\\VAR{{{var_name}}}"
     
-    clean_content = re.sub(r"\\VAR\{\s*([^{}]+)\s*\}", strip_meta, content)
+    clean_content = re.sub(r"\\VAR\{\s*(.+?)\s*\}", strip_meta, template_text)
+    clean_content = re.sub(r"\\MAGIC\{\s*?(.+?)\s*?\}", "", clean_content) # Remove MAGIC lines
     
     # Render from string
     template = engine.env.from_string(clean_content)

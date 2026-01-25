@@ -52,11 +52,12 @@ templateSelect.addEventListener('change', (e) => {
 });
 
 function renderTabs(templateName) {
-    const vars = availableTemplates[templateName] || {};
+    const metadata = availableTemplates[templateName] || { variables: {}, magic_commands: [] };
+    const vars = metadata.variables || {};
+    const magicCommands = metadata.magic_commands || [];
 
     // Group variables by tab
     const tabs = {};
-    // Default tab if none specified
     const DEFAULT_TAB = 'General';
 
     Object.values(vars).forEach(meta => {
@@ -71,7 +72,6 @@ function renderTabs(templateName) {
 
     // Create Tabs
     const tabNames = Object.keys(tabs).sort((a, b) => {
-        // Force General to first, Advanced to last
         if (a === 'General') return -1;
         if (b === 'General') return 1;
         if (a === 'Advanced') return 1;
@@ -79,60 +79,87 @@ function renderTabs(templateName) {
         return a.localeCompare(b);
     });
 
+    // Add "Magic" tab if commands exist
+    if (magicCommands.length > 0) {
+        tabNames.push('Magic');
+    }
+
     if (tabNames.length === 0) {
         tabsHeader.innerHTML = '<span class="text-muted" style="padding:1rem">No Options</span>';
         return;
     }
 
     tabNames.forEach((name, index) => {
-        // Tab Button
         const btn = document.createElement('button');
         btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
         btn.textContent = name;
         btn.onclick = () => switchTab(name);
         tabsHeader.appendChild(btn);
 
-        // Tab Content Pane
         const pane = document.createElement('div');
         pane.className = `tab-pane ${index === 0 ? 'active' : ''}`;
         pane.id = `tab-${name}`;
 
-        // Render inputs for this tab
-        tabs[name].forEach(meta => {
-            const group = document.createElement('div');
-            group.className = 'form-group';
+        if (name === 'Magic') {
+            // Render magic command buttons
+            magicCommands.forEach(cmd => {
+                const cmdBtn = document.createElement('button');
+                cmdBtn.className = 'magic-btn';
+                cmdBtn.textContent = cmd.label;
+                cmdBtn.onclick = () => insertMagicCommand(cmd.label);
+                pane.appendChild(cmdBtn);
+            });
+        } else {
+            // Render inputs for this tab
+            tabs[name].forEach(meta => {
+                const group = document.createElement('div');
+                group.className = 'form-group';
 
-            const label = document.createElement('label');
-            label.textContent = meta.label || formatLabel(meta.name);
-            label.htmlFor = meta.name;
+                const label = document.createElement('label');
+                label.textContent = meta.label || formatLabel(meta.name);
+                label.htmlFor = meta.name;
 
-            let input;
-            if (meta.type === 'select' && meta.options) {
-                input = document.createElement('select');
-                input.id = meta.name;
-                input.className = 'dynamic-input';
-                meta.options.forEach(opt => {
-                    const option = document.createElement('option');
-                    option.value = opt;
-                    option.textContent = opt;
-                    input.appendChild(option);
-                });
-                input.value = meta.default; // Set default
-            } else {
-                input = document.createElement('input');
-                input.type = 'text';
-                input.id = meta.name;
-                input.value = meta.default;
-                input.className = 'dynamic-input';
-            }
+                let input;
+                if (meta.type === 'select' && meta.options) {
+                    input = document.createElement('select');
+                    input.id = meta.name;
+                    input.className = 'dynamic-input';
+                    meta.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt;
+                        option.textContent = opt;
+                        input.appendChild(option);
+                    });
+                    input.value = meta.default;
+                } else {
+                    input = document.createElement('input');
+                    input.type = 'text';
+                    input.id = meta.name;
+                    input.value = meta.default;
+                    input.className = 'dynamic-input';
+                }
 
-            group.appendChild(label);
-            group.appendChild(input);
-            pane.appendChild(group);
-        });
+                group.appendChild(label);
+                group.appendChild(input);
+                pane.appendChild(group);
+            });
+        }
 
         tabsContent.appendChild(pane);
     });
+}
+
+function insertMagicCommand(label) {
+    const magicString = `[${label}]`;
+    const start = markdownInput.selectionStart;
+    const end = markdownInput.selectionEnd;
+    const text = markdownInput.value;
+    const before = text.substring(0, start);
+    const after = text.substring(end, text.length);
+
+    markdownInput.value = before + magicString + after;
+    markdownInput.selectionStart = markdownInput.selectionEnd = start + magicString.length;
+    markdownInput.focus();
 }
 
 function switchTab(name) {

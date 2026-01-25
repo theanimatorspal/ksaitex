@@ -10,6 +10,10 @@
 % \VAR{ start_page, default=1, tab='Numbering', label='Start From' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='Typography', label='Primary Font' }
 % \VAR{ extra_preamble, default='', tab='Advanced', label='Custom Preamble' }
+% \MAGIC{ page_break, label='Page break', command='\pagebreak' }
+% \MAGIC{ devanagari_num, label='Start Devanagari Counting', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
+% \MAGIC{ devanagari_alph, label='Start Devanagari Alphabetical', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
+% \MAGIC{ horizontal_rule, label='Horizontal Rule', command='\hrule' }
 
 \documentclass{\VAR{document_class}}
 
