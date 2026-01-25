@@ -39,8 +39,8 @@ class TemplateEngine:
         metadata_lines = [l.strip() for l in full_content.splitlines() if l.strip().startswith("%")]
         metadata_content = "\n".join(metadata_lines)
 
-        # Parse \VAR{...} - Use .+? (non-greedy) to stay within the block
-        var_block_pattern = re.compile(r"\\VAR\{\s*(.+?)\s*\}")
+        # Parse \VAR{...} - Use greedy match for inner content to allow nested braces in kwargs
+        var_block_pattern = re.compile(r"\\VAR\{\s*(.*)\s*\}")
         variables = {}
         known_vars = {"content", "extra_preamble"}
         
@@ -73,8 +73,8 @@ class TemplateEngine:
                 else:
                     variables[var_name][key] = value
 
-        # Parse \MAGIC{...} - Non-greedy to allow braces inside command=''
-        magic_block_pattern = re.compile(r"\\MAGIC\{\s*(.+?)\s*\}")
+        # Parse \MAGIC{...} - Greedy inner match to handle nested LaTeX braces in command=''
+        magic_block_pattern = re.compile(r"\\MAGIC\{\s*(.*)\s*\}")
         magic_commands = []
         
         for match in magic_block_pattern.finditer(metadata_content):
@@ -115,18 +115,26 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
         "extra_preamble": ""
     })
     
-    # Apply user config over defaults
-    context.update(config)
+    # Apply user config over defaults, skipping empty values
+    clean_config = { k: v for k, v in config.items() if v is not None and str(v).strip() != "" }
+    context.update(clean_config)
     
     # Process Magic Commands replacement on content
     metadata = engine.get_metadata(template_name)
     magic_commands = metadata.get("magic_commands", [])
     
+    print(f"--- DEBUG: TEMPLATE METADATA ({template_name}) ---")
+    print(f"Magic Commands Found: {[c['label'] for c in magic_commands]}")
+    
     for cmd in magic_commands:
         magic_string = f"[{cmd['label']}]"
         actual_command = cmd['command']
-        # Escape any special characters in magic_string just in case, though [] are usually safe in simple replace
-        context["content"] = context["content"].replace(magic_string, actual_command)
+        count = context["content"].count(magic_string)
+        if count > 0:
+            print(f"Replacing {count} occurrences of '{magic_string}' with '{actual_command}'")
+            context["content"] = context["content"].replace(magic_string, actual_command)
+        else:
+            print(f"No occurrences of '{magic_string}' found in content.")
 
     # Read template content
     template_path = TEMPLATE_DIR / template_name
@@ -136,17 +144,38 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
     with open(template_path, "r", encoding="utf-8") as f:
         template_text = f.read()
         
-    # Preprocess: Strip metadata from \VAR{...} tags to make them valid Jinja
-    # Also strip \MAGIC{...} since they are processed already
+    # Preprocess: Cleanly remove metadata DEFINITION lines
+    # These are usually comments: % \VAR{ name, meta... }
+    filtered_lines = []
+    for line in template_text.splitlines():
+        s = line.strip()
+        # Skip if it's a metadata definition line
+        if s.startswith("%") and ("\\VAR{" in s or "\\MAGIC{" in s) and "," in s:
+            continue
+        filtered_lines.append(line)
+    
+    clean_text = "\n".join(filtered_lines)
+    
+    # Preprocess: Strip metadata from remaining \VAR{...} tags (usages)
+    # \VAR{ var, meta... } -> \VAR{ var }
     def strip_meta(match):
         inner = match.group(1)
+        # If it's a leftover defined variable in usage position but with metadata
         parts = inner.split(',', 1)
         var_name = parts[0].strip()
         return f"\\VAR{{{var_name}}}"
     
-    clean_content = re.sub(r"\\VAR\{\s*(.+?)\s*\}", strip_meta, template_text)
-    clean_content = re.sub(r"\\MAGIC\{\s*?(.+?)\s*?\}", "", clean_content) # Remove MAGIC lines
+    # Non-greedy match for usages
+    clean_content = re.sub(r"\\VAR\{\s*(.+?)\s*\}", strip_meta, clean_text)
+    # Ensure MAGIC tags are gone even if they weren't in comments (unlikely but safe)
+    clean_content = re.sub(r"\\MAGIC\{\s*?(.+?)\s*?\}", "", clean_content)
     
     # Render from string
     template = engine.env.from_string(clean_content)
-    return template.render(**context)
+    final_output = template.render(**context)
+    
+    print("--- DEBUG: FINAL LATEX DOCUMENT ---")
+    print(final_output)
+    print("--- END DEBUG ---")
+    
+    return final_output

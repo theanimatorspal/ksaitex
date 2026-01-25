@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Tiro+Devanagari+Sanskrit&display=swap"
         rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,9 +27,12 @@
             </div>
 
             <div class="toolbar-actions">
-                <button id="convertBtn" class="primary-btn compact-btn">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span class="btn-text">Generate (Ctrl+Enter)</span>
+                <input type="file" id="mdUploadInput" accept=".md" style="display: none;">
+                <button id="uploadBtn" title="Upload Markdown File">
+                    <i class="fa-solid fa-upload"></i> Upload
+                </button>
+                <button id="convertBtn" class="primary-btn">
+                    <i class="fa-solid fa-bolt"></i> Generate (Ctrl+Enter)
                 </button>
             </div>
         </header>
@@ -40,7 +43,8 @@
             <div class="left-pane">
                 <div class="editor-section">
                     <div class="editor-container">
-                        <textarea id="markdownInput" placeholder="# Start typing..."></textarea>
+                        <div id="markdownEditor" contenteditable="true" class="rich-editor"
+                            placeholder="Start typing strategy here..."></div>
                     </div>
                 </div>
 
@@ -91,7 +95,7 @@
             </div>
         </main>
     </div>
-    <script src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@
     --radius-sm: 4px;
     --radius-md: 6px;
 
-    --font-ui: "Inter", system-ui, -apple-system, sans-serif;
+    --font-ui: "Tiro Devanagari Sanskrit", serif;
     --font-mono: "JetBrains Mono", "Courier New", monospace;
 
     --header-height: 48px;
@@ -166,24 +166,101 @@ button:active {
     flex-direction: column;
     background-color: var(--bg1);
     border-bottom: 1px solid var(--border-color);
+    min-height: 200px;
+    /* Ensure some visibility */
 }
 
 .editor-container {
     flex: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-textarea {
-    width: 100%;
-    height: 100%;
+.rich-editor {
+    flex: 1;
     background-color: var(--bg0);
-    border: none;
     color: var(--fg1);
     padding: 24px;
     font-family: var(--font-mono);
     font-size: 15px;
     line-height: 1.7;
-    resize: none;
     outline: none;
+    overflow-y: auto;
+    /* Enable scrolling */
+    white-space: pre-wrap;
+    min-height: 0;
+    /* CRITICAL: allow overflow-y to work in flex */
+}
+
+/* Limit line height and prevent browser from rendering bold/italic in source editor */
+.rich-editor div,
+.rich-editor span,
+.rich-editor p {
+    font-weight: 400 !important;
+    font-style: normal !important;
+    line-height: inherit;
+}
+
+/* Placeholder for rich-editor */
+.rich-editor:empty:before {
+    content: attr(placeholder);
+    color: var(--fg3);
+    opacity: 0.5;
+}
+
+/* Atomic Magic Block Styling - FULL LINE VERSION */
+.magic-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg2);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    padding: 6px 12px;
+    margin: 4px 0;
+    /* Tight margins to avoid extra visual space */
+    border-radius: var(--radius-sm);
+    width: auto;
+    user-select: none;
+    font-weight: 700 !important;
+    /* Exception: Command label should be readable */
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    cursor: default;
+    position: relative;
+}
+
+.magic-block .magic-label {
+    flex: 1;
+}
+
+.magic-block .delete-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: var(--bg1);
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 12px;
+}
+
+.magic-block .delete-btn:hover {
+    background-color: var(--red);
+    color: var(--bg0);
+    border-color: var(--red);
+}
+
+textarea {
+    display: none;
+    /* Hide textarea in case it's still used somewhere */
 }
 
 /* Controls Section (The Grid) */

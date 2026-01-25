@@ -1,5 +1,10 @@
+import * as api from './modules/api.js';
+import * as ui from './modules/ui.js';
+import * as editor from './modules/editor.js';
+
+// DOM Elements
 const convertBtn = document.getElementById('convertBtn');
-const markdownInput = document.getElementById('markdownInput');
+const markdownEditor = document.getElementById('markdownEditor');
 const templateSelect = document.getElementById('templateSelect');
 const pdfPreview = document.getElementById('pdfPreview');
 const tabsHeader = document.getElementById('tabsHeader');
@@ -9,258 +14,112 @@ const errorOverlay = document.getElementById('errorOverlay');
 const errorLog = document.getElementById('errorLog');
 const closeErrorBtn = document.getElementById('closeErrorBtn');
 const emptyState = document.getElementById('emptyState');
+const uploadBtn = document.getElementById('uploadBtn');
+const mdUploadInput = document.getElementById('mdUploadInput');
 
 let availableTemplates = {};
 
-// Initial Setup
+// Bootstrap
 document.addEventListener('DOMContentLoaded', async () => {
-    await fetchTemplates();
-    setInitialMarkdown();
+    // Initial Setup
+    editor.initEditor(markdownEditor);
+    editor.setInitialMarkdown(markdownEditor);
+
+    // Load Data
+    await loadTemplates();
+
+    // Event Listeners
+    templateSelect.addEventListener('change', (e) => {
+        ui.renderTabs(e.target.value, availableTemplates, {
+            tabsHeader,
+            tabsContent,
+            onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
+        });
+    });
+
+    convertBtn.addEventListener('click', compile);
 
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 'Enter') {
             compile();
         }
     });
+
+    if (closeErrorBtn) {
+        closeErrorBtn.addEventListener('click', () => {
+            errorOverlay.classList.add('hidden');
+        });
+    }
+
+    // Upload Logic
+    if (uploadBtn && mdUploadInput) {
+        uploadBtn.addEventListener('click', () => mdUploadInput.click());
+        mdUploadInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const text = event.target.result;
+                editor.loadContent(text, markdownEditor);
+                // Reset input so the same file can be uploaded again
+                mdUploadInput.value = '';
+            };
+            reader.onerror = () => ui.showError("Failed to read file", errorLog, errorOverlay);
+            reader.readAsText(file);
+        });
+    }
 });
 
-async function fetchTemplates() {
+async function loadTemplates() {
     try {
-        const res = await fetch('/api/templates');
-        const data = await res.json();
-        availableTemplates = data.templates;
+        availableTemplates = await api.fetchTemplates();
 
         templateSelect.innerHTML = '';
         Object.keys(availableTemplates).sort().forEach(t => {
             const option = document.createElement('option');
             option.value = t;
-            option.textContent = formatTemplateName(t);
+            option.textContent = ui.formatTemplateName(t);
             templateSelect.appendChild(option);
         });
 
         if (availableTemplates['base']) templateSelect.value = 'base';
 
-        renderTabs(templateSelect.value);
-
+        ui.renderTabs(templateSelect.value, availableTemplates, {
+            tabsHeader,
+            tabsContent,
+            onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
+        });
     } catch (e) {
-        console.error("Failed to fetch templates", e);
+        ui.showError("Failed to fetch templates: " + e.message, errorLog, errorOverlay);
     }
 }
-
-templateSelect.addEventListener('change', (e) => {
-    renderTabs(e.target.value);
-});
-
-function renderTabs(templateName) {
-    const metadata = availableTemplates[templateName] || { variables: {}, magic_commands: [] };
-    const vars = metadata.variables || {};
-    const magicCommands = metadata.magic_commands || [];
-
-    // Group variables by tab
-    const tabs = {};
-    const DEFAULT_TAB = 'General';
-
-    Object.values(vars).forEach(meta => {
-        const tabName = meta.tab || DEFAULT_TAB;
-        if (!tabs[tabName]) tabs[tabName] = [];
-        tabs[tabName].push(meta);
-    });
-
-    // Clear existing
-    tabsHeader.innerHTML = '';
-    tabsContent.innerHTML = '';
-
-    // Create Tabs
-    const tabNames = Object.keys(tabs).sort((a, b) => {
-        if (a === 'General') return -1;
-        if (b === 'General') return 1;
-        if (a === 'Advanced') return 1;
-        if (b === 'Advanced') return -1;
-        return a.localeCompare(b);
-    });
-
-    // Add "Magic" tab if commands exist
-    if (magicCommands.length > 0) {
-        tabNames.push('Magic');
-    }
-
-    if (tabNames.length === 0) {
-        tabsHeader.innerHTML = '<span class="text-muted" style="padding:1rem">No Options</span>';
-        return;
-    }
-
-    tabNames.forEach((name, index) => {
-        const btn = document.createElement('button');
-        btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
-        btn.textContent = name;
-        btn.onclick = () => switchTab(name);
-        tabsHeader.appendChild(btn);
-
-        const pane = document.createElement('div');
-        pane.className = `tab-pane ${index === 0 ? 'active' : ''}`;
-        pane.id = `tab-${name}`;
-
-        if (name === 'Magic') {
-            // Render magic command buttons
-            magicCommands.forEach(cmd => {
-                const cmdBtn = document.createElement('button');
-                cmdBtn.className = 'magic-btn';
-                cmdBtn.textContent = cmd.label;
-                cmdBtn.onclick = () => insertMagicCommand(cmd.label);
-                pane.appendChild(cmdBtn);
-            });
-        } else {
-            // Render inputs for this tab
-            tabs[name].forEach(meta => {
-                const group = document.createElement('div');
-                group.className = 'form-group';
-
-                const label = document.createElement('label');
-                label.textContent = meta.label || formatLabel(meta.name);
-                label.htmlFor = meta.name;
-
-                let input;
-                if (meta.type === 'select' && meta.options) {
-                    input = document.createElement('select');
-                    input.id = meta.name;
-                    input.className = 'dynamic-input';
-                    meta.options.forEach(opt => {
-                        const option = document.createElement('option');
-                        option.value = opt;
-                        option.textContent = opt;
-                        input.appendChild(option);
-                    });
-                    input.value = meta.default;
-                } else {
-                    input = document.createElement('input');
-                    input.type = 'text';
-                    input.id = meta.name;
-                    input.value = meta.default;
-                    input.className = 'dynamic-input';
-                }
-
-                group.appendChild(label);
-                group.appendChild(input);
-                pane.appendChild(group);
-            });
-        }
-
-        tabsContent.appendChild(pane);
-    });
-}
-
-function insertMagicCommand(label) {
-    const magicString = `[${label}]`;
-    const start = markdownInput.selectionStart;
-    const end = markdownInput.selectionEnd;
-    const text = markdownInput.value;
-    const before = text.substring(0, start);
-    const after = text.substring(end, text.length);
-
-    markdownInput.value = before + magicString + after;
-    markdownInput.selectionStart = markdownInput.selectionEnd = start + magicString.length;
-    markdownInput.focus();
-}
-
-function switchTab(name) {
-    // Update Buttons
-    const buttons = tabsHeader.querySelectorAll('.tab-btn');
-    buttons.forEach(b => {
-        if (b.textContent === name) b.classList.add('active');
-        else b.classList.remove('active');
-    });
-
-    // Update Panes
-    const panes = tabsContent.querySelectorAll('.tab-pane');
-    panes.forEach(p => {
-        if (p.id === `tab-${name}`) p.classList.add('active');
-        else p.classList.remove('active');
-    });
-}
-
-function formatLabel(key) {
-    return key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-function formatTemplateName(name) {
-    return name.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
-// Convert
-convertBtn.addEventListener('click', compile);
 
 async function compile() {
-    const markdown = markdownInput.value;
+    const markdown = editor.getMarkdownContent(markdownEditor);
     if (!markdown.trim()) return;
 
-    setLoading(true);
+    ui.setLoading(true, convertBtn, loadingOverlay);
     errorOverlay.classList.add('hidden');
     emptyState.classList.add('hidden');
 
     try {
         const variables = {};
-        const inputs = document.querySelectorAll('.dynamic-input');
-        inputs.forEach(input => {
-            variables[input.id] = input.value;
+        document.querySelectorAll('.dynamic-input').forEach(input => {
+            const val = input.value.trim();
+            if (val !== "") {
+                variables[input.id] = val;
+            }
         });
 
-        const response = await fetch('/api/compile', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                markdown: markdown,
-                template: templateSelect.value,
-                variables: variables
-            })
-        });
+        const blob = await api.compileLatex(markdown, templateSelect.value, variables);
+        const url = URL.createObjectURL(blob);
 
-        if (response.ok) {
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            pdfPreview.src = url;
-            pdfPreview.classList.remove('hidden');
-        } else {
-            const errorText = await response.json();
-            showError(errorText.detail || "Unknown error occurred");
-        }
+        pdfPreview.src = url;
+        pdfPreview.classList.remove('hidden');
     } catch (error) {
-        showError("Network error: " + error.message);
+        ui.showError(error.message, errorLog, errorOverlay);
     } finally {
-        setLoading(false);
+        ui.setLoading(false, convertBtn, loadingOverlay);
     }
-}
-
-function setLoading(isLoading) {
-    if (isLoading) {
-        loadingOverlay.classList.remove('hidden');
-        convertBtn.disabled = true;
-    } else {
-        loadingOverlay.classList.add('hidden');
-        convertBtn.disabled = false;
-    }
-}
-
-function showError(msg) {
-    if (errorLog) errorLog.textContent = msg;
-    if (errorOverlay) errorOverlay.classList.remove('hidden');
-}
-
-if (closeErrorBtn) {
-    closeErrorBtn.addEventListener('click', () => {
-        errorOverlay.classList.add('hidden');
-    });
-}
-
-function setInitialMarkdown() {
-    markdownInput.value = `# Hello, Ksaitex!
-
-This is a **sophisticated** markdown editor.
-
-## Features
-- Tabbed Controls
-- Dynamic Forms
-- Instant Preview
-
-Type something to generate a PDF.
-`;
 }
