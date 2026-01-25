@@ -1,0 +1,17 @@
+\documentclass{ {{ document_class }} }
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+{% if script == 'DEVANAGARI' %}
+\setmainfont[Script=Devanagari]{ {{ font_file }} }
+{% else %}
+\setmainfont{ {{ font_file }} }
+{% endif %}
+
+{{ extra_preamble }}
+
+\begin{document}
+
+{{ content }}
+
+\end{document}
