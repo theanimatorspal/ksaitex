@@ -1,6 +1,13 @@
 % METADATA DEFINITIONS (Hidden from PDF output)
 % \VAR{ document_class, default='article', tab='Layout', label='Paper Class', type='select', options='article|report|book' }
+% \VAR{ top_margin, default='1in', tab='Layout', label='Top Margin' }
+% \VAR{ bottom_margin, default='1in', tab='Layout', label='Bottom Margin' }
+% \VAR{ left_margin, default='1in', tab='Layout', label='Left Margin' }
+% \VAR{ right_margin, default='1in', tab='Layout', label='Right Margin' }
 % \VAR{ script, default='DEVANAGARI', tab='Script & Language', label='Script System', type='select', options='DEVANAGARI|LATIN' }
+% \VAR{ page_numbering, default='arabic', tab='Numbering', label='Numbering Type', type='select', options='arabic|devanagari_num|devanagari_alph' }
+% \VAR{ page_placement, default='bottom-center', tab='Numbering', label='Alignment', type='select', options='bottom-left|bottom-center|bottom-right|top-left|top-center|top-right' }
+% \VAR{ start_page, default=1, tab='Numbering', label='Start From' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='Typography', label='Primary Font' }
 % \VAR{ extra_preamble, default='', tab='Advanced', label='Custom Preamble' }
 
@@ -8,7 +15,61 @@
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
+\usepackage{geometry}
+\usepackage{fancyhdr}
 
+\geometry{
+    top=\VAR{top_margin},
+    bottom=\VAR{bottom_margin},
+    left=\VAR{left_margin},
+    right=\VAR{right_margin}
+}
+
+% --- Devanagari Page Numbering Macros ---
+\makeatletter
+\def\devanagaridigits#1{\expandafter\@devanagaridigits\number#1@}
+\def\@devanagaridigits#1{%
+  \ifx#1@\else
+    \ifcase#1 ०\or १\or २\or ३\or ४\or ५\or ६\or ७\or ८\or ९\fi
+    \expandafter\@devanagaridigits
+  \fi
+}
+
+\def\devanagarialph#1{\expandafter\@devanagarialph\number#1}
+\def\@devanagarialph#1{%
+  \ifcase#1\or अ\or आ\or इ\or ई\or उ\or ऊ\or ऋ\or ॠ\or ऌ\or ॡ\or ए\or ऐ\or ओ\or औ\or क\or ख\or ग\or घ\or ङ\or च\or छ\or ज\or झ\or ञ\or ट\or ठ\or ड\or ढ\or ण\or त\or थ\or द\or ध\or न\or प\or फ\or ब\or भ\or म\or य\or र\or ल\or व\or श\or ष\or स\or ह\or ळ\or क्ष\or ज्ञ\else\@ctrerr\fi
+}
+\makeatother
+
+% --- Page Numbering Style Selection ---
+\BLOCK{ if page_numbering == 'devanagari_num' }
+    \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
+\BLOCK{ elif page_numbering == 'devanagari_alph' }
+    \renewcommand{\thepage}{\devanagarialph{\value{page}}}
+\BLOCK{ else }
+    \pagenumbering{arabic}
+\BLOCK{ endif }
+
+% --- Page Number Placement ---
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt} % Remove header line
+
+\BLOCK{ if page_placement == 'bottom-left' }
+    \lfoot{\thepage}
+\BLOCK{ elif page_placement == 'bottom-center' }
+    \cfoot{\thepage}
+\BLOCK{ elif page_placement == 'bottom-right' }
+    \rfoot{\thepage}
+\BLOCK{ elif page_placement == 'top-left' }
+    \lhead{\thepage}
+\BLOCK{ elif page_placement == 'top-center' }
+    \chead{\thepage}
+\BLOCK{ elif page_placement == 'top-right' }
+    \rhead{\thepage}
+\BLOCK{ endif }
+
+% --- Font Configuration ---
 \BLOCK{ if script == 'DEVANAGARI' }
     \setmainfont[Script=Devanagari, AutoFakeBold=2.5]{\VAR{font_file}}
 \BLOCK{ else }
@@ -18,6 +79,7 @@
 \VAR{ extra_preamble }
 
 \begin{document}
+\setcounter{page}{\VAR{start_page}}
 
 \VAR{ content }
 

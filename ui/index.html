@@ -26,17 +26,6 @@
                 <h1 class="brand-name">Ksaitex</h1>
             </div>
 
-            <div class="toolbar-center">
-                <div class="control-group">
-                    <label>Template</label>
-                    <div class="select-wrapper">
-                        <select id="templateSelect">
-                            <option value="base">Loading...</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
             <div class="toolbar-actions">
                 <button id="convertBtn" class="primary-btn compact-btn">
                     <i class="fa-solid fa-bolt"></i>
@@ -56,9 +45,15 @@
                 </div>
 
                 <div class="controls-section">
-                    <div class="tabs-header" id="tabsHeader">
-                        <!-- Tabs injected via JS -->
-                        <button class="tab-btn active">General</button>
+                    <div class="controls-top-bar">
+                        <div class="template-selector">
+                            <select id="templateSelect">
+                                <option value="base">Loading...</option>
+                            </select>
+                        </div>
+                        <div class="tabs-header" id="tabsHeader">
+                            <button class="tab-btn active">General</button>
+                        </div>
                     </div>
                     <div class="tabs-content" id="tabsContent">
                         <!-- Controls injected via JS -->
