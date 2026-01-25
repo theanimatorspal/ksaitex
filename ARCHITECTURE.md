@@ -12,9 +12,11 @@ This document explains the mental model of **Ksaitex** so you can stay in the fl
     ↓
 3.  **Templating**: `src/ksaitex/templating/`
     *   Wraps Fragments → Full `.tex` Document
-    *   `engine.py`: Jinja2 Configuration (uses `\VAR{}` delimiters).
-    *   `latex/base.tex`: The master LaTeX template.
-    *   *Tip:* Add packages (e.g., `\usepackage{tikz}`) in `base.tex`.
+3.  **Templating**: `src/ksaitex/templating/`
+    *   Wraps Fragments → Full `.tex` Document
+    *   `engine.py`: Jinja2 Config (`\VAR{}`). *Parses Rich Metadata (Tabs, Types, Options).*
+    *   `latex/base.tex`: Master template. Defines UI schema: `\VAR{ var, tab='Layout', type='select', options=['A','B'] }`.
+    *   *Tip:* The UI automatically renders tabs and dropdowns based on your `.tex` definitions.
     ↓
 4.  **Compilation**: `src/ksaitex/compilation/compiler.py`
     *   Runs `lualatex` on the temporary `.tex` file.

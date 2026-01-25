@@ -12,8 +12,27 @@ app = FastAPI()
 # Mount API routes
 class CompileRequest(BaseModel):
     markdown: str
-    template: str = "DEVANAGARI"
-    font: str = "Tiro Devanagari Sanskrit"
+    template: str = "base"
+    variables: dict = {}
+
+@app.get("/api/templates")
+async def list_templates():
+    """List available .tex templates and their variable defaults."""
+    from ksaitex.templating.engine import TEMPLATE_DIR, TemplateEngine
+    engine = TemplateEngine()
+    
+    templates_data = {}
+    if TEMPLATE_DIR.exists():
+        for f in TEMPLATE_DIR.glob("*.tex"):
+             name = f.stem
+             # Parse variables for this template
+             # We append .tex because get_variables expects filename
+             vars = engine.get_variables(f.name)
+             templates_data[name] = vars
+             
+    # Return as list for easier frontend consumption, or dict? 
+    # Let's return dict { "template_name": { "var1": "default" } }
+    return {"templates": templates_data}
 
 @app.post("/api/compile")
 async def compile_endpoint(request: CompileRequest):
@@ -25,12 +44,15 @@ async def compile_endpoint(request: CompileRequest):
 
     # 2. Template
     try:
-        config = {
-            "script": request.template,
-            "font_file": request.font,
-        }
-        full_latex = render_latex(latex_fragment, config)
+        template_filename = f"{request.template}.tex"
+        # Combine variables
+        config = request.variables.copy()
+        
+        full_latex = render_latex(latex_fragment, config, template_name=template_filename)
+        
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Templating error: {str(e)}")
 
     # 3. Compile

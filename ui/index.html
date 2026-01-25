@@ -1,38 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ksaitex - Markdown to PDF</title>
+    <title>Ksaitex</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Ksaitex</h1>
-            <div class="controls">
-                <select id="templateSelect">
-                    <option value="DEVANAGARI">Devanagari</option>
-                    <option value="LATIN">Latin</option>
-                </select>
-                <input type="text" id="fontInput" value="Tiro Devanagari Sanskrit" placeholder="Font Name">
-                <button id="convertBtn">Convert to PDF</button>
+    <div class="app-layout">
+        <!-- Top Toolbar (Minimal) -->
+        <header class="toolbar">
+            <div class="brand">
+                <img src="assets/logo.png" alt="Ksaitex Logo" class="brand-logo">
+                <h1 class="brand-name">Ksaitex</h1>
+            </div>
+
+            <div class="toolbar-center">
+                <div class="control-group">
+                    <label>Template</label>
+                    <div class="select-wrapper">
+                        <select id="templateSelect">
+                            <option value="base">Loading...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="toolbar-actions">
+                <button id="convertBtn" class="primary-btn compact-btn">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span class="btn-text">Generate (Ctrl+Enter)</span>
+                </button>
             </div>
         </header>
-        
-        <main>
-            <div class="editor-pane">
-                <textarea id="markdownInput" placeholder="# Type your markdown here..."></textarea>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Pane: Editor (Top) + Controls (Bottom) -->
+            <div class="left-pane">
+                <div class="editor-section">
+                    <div class="editor-container">
+                        <textarea id="markdownInput" placeholder="# Start typing..."></textarea>
+                    </div>
+                </div>
+
+                <div class="controls-section">
+                    <div class="tabs-header" id="tabsHeader">
+                        <!-- Tabs injected via JS -->
+                        <button class="tab-btn active">General</button>
+                    </div>
+                    <div class="tabs-content" id="tabsContent">
+                        <!-- Controls injected via JS -->
+                        <div class="tab-pane active">
+                            <p class="text-muted">Select a template to configure options.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="preview-pane">
-                <iframe id="pdfPreview" title="PDF Preview"></iframe>
-                <div id="loading" class="hidden">Generating PDF...</div>
-                <pre id="errorLog" class="hidden"></pre>
+
+            <!-- Right Pane: Preview -->
+            <div class="preview-section">
+                <div class="preview-container">
+                    <iframe id="pdfPreview" title="PDF Preview"></iframe>
+
+                    <div id="emptyState" class="empty-state">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        <p>Generated PDF</p>
+                    </div>
+
+                    <div id="loadingOverlay" class="loading-overlay hidden">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <div id="errorOverlay" class="error-overlay hidden">
+                        <div class="error-content">
+                            <div class="error-header">
+                                <h3>Compilation Failed</h3>
+                                <button id="closeErrorBtn"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <pre id="errorLog"></pre>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
     <script src="js/app.js"></script>
 </body>
+
 </html>

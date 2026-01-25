@@ -1,31 +1,189 @@
 const convertBtn = document.getElementById('convertBtn');
 const markdownInput = document.getElementById('markdownInput');
 const templateSelect = document.getElementById('templateSelect');
-const fontInput = document.getElementById('fontInput');
 const pdfPreview = document.getElementById('pdfPreview');
-const loading = document.getElementById('loading');
+const tabsHeader = document.getElementById('tabsHeader');
+const tabsContent = document.getElementById('tabsContent');
+const loadingOverlay = document.getElementById('loadingOverlay');
+const errorOverlay = document.getElementById('errorOverlay');
 const errorLog = document.getElementById('errorLog');
+const closeErrorBtn = document.getElementById('closeErrorBtn');
+const emptyState = document.getElementById('emptyState');
 
-convertBtn.addEventListener('click', async () => {
+let availableTemplates = {};
+
+// Initial Setup
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchTemplates();
+    setInitialMarkdown();
+
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'Enter') {
+            compile();
+        }
+    });
+});
+
+async function fetchTemplates() {
+    try {
+        const res = await fetch('/api/templates');
+        const data = await res.json();
+        availableTemplates = data.templates;
+
+        templateSelect.innerHTML = '';
+        Object.keys(availableTemplates).sort().forEach(t => {
+            const option = document.createElement('option');
+            option.value = t;
+            option.textContent = formatTemplateName(t);
+            templateSelect.appendChild(option);
+        });
+
+        if (availableTemplates['base']) templateSelect.value = 'base';
+
+        renderTabs(templateSelect.value);
+
+    } catch (e) {
+        console.error("Failed to fetch templates", e);
+    }
+}
+
+templateSelect.addEventListener('change', (e) => {
+    renderTabs(e.target.value);
+});
+
+function renderTabs(templateName) {
+    const vars = availableTemplates[templateName] || {};
+
+    // Group variables by tab
+    const tabs = {};
+    // Default tab if none specified
+    const DEFAULT_TAB = 'General';
+
+    Object.values(vars).forEach(meta => {
+        const tabName = meta.tab || DEFAULT_TAB;
+        if (!tabs[tabName]) tabs[tabName] = [];
+        tabs[tabName].push(meta);
+    });
+
+    // Clear existing
+    tabsHeader.innerHTML = '';
+    tabsContent.innerHTML = '';
+
+    // Create Tabs
+    const tabNames = Object.keys(tabs).sort((a, b) => {
+        // Force General to first, Advanced to last
+        if (a === 'General') return -1;
+        if (b === 'General') return 1;
+        if (a === 'Advanced') return 1;
+        if (b === 'Advanced') return -1;
+        return a.localeCompare(b);
+    });
+
+    if (tabNames.length === 0) {
+        tabsHeader.innerHTML = '<span class="text-muted" style="padding:1rem">No Options</span>';
+        return;
+    }
+
+    tabNames.forEach((name, index) => {
+        // Tab Button
+        const btn = document.createElement('button');
+        btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+        btn.textContent = name;
+        btn.onclick = () => switchTab(name);
+        tabsHeader.appendChild(btn);
+
+        // Tab Content Pane
+        const pane = document.createElement('div');
+        pane.className = `tab-pane ${index === 0 ? 'active' : ''}`;
+        pane.id = `tab-${name}`;
+
+        // Render inputs for this tab
+        tabs[name].forEach(meta => {
+            const group = document.createElement('div');
+            group.className = 'form-group';
+
+            const label = document.createElement('label');
+            label.textContent = meta.label || formatLabel(meta.name);
+            label.htmlFor = meta.name;
+
+            let input;
+            if (meta.type === 'select' && meta.options) {
+                input = document.createElement('select');
+                input.id = meta.name;
+                input.className = 'dynamic-input';
+                meta.options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt;
+                    option.textContent = opt;
+                    input.appendChild(option);
+                });
+                input.value = meta.default; // Set default
+            } else {
+                input = document.createElement('input');
+                input.type = 'text';
+                input.id = meta.name;
+                input.value = meta.default;
+                input.className = 'dynamic-input';
+            }
+
+            group.appendChild(label);
+            group.appendChild(input);
+            pane.appendChild(group);
+        });
+
+        tabsContent.appendChild(pane);
+    });
+}
+
+function switchTab(name) {
+    // Update Buttons
+    const buttons = tabsHeader.querySelectorAll('.tab-btn');
+    buttons.forEach(b => {
+        if (b.textContent === name) b.classList.add('active');
+        else b.classList.remove('active');
+    });
+
+    // Update Panes
+    const panes = tabsContent.querySelectorAll('.tab-pane');
+    panes.forEach(p => {
+        if (p.id === `tab-${name}`) p.classList.add('active');
+        else p.classList.remove('active');
+    });
+}
+
+function formatLabel(key) {
+    return key.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function formatTemplateName(name) {
+    return name.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// Convert
+convertBtn.addEventListener('click', compile);
+
+async function compile() {
     const markdown = markdownInput.value;
-    if (!markdown) return;
+    if (!markdown.trim()) return;
 
-    // UI Updates
-    convertBtn.disabled = true;
-    loading.classList.remove('hidden');
-    errorLog.classList.add('hidden');
-    pdfPreview.classList.add('hidden');
+    setLoading(true);
+    errorOverlay.classList.add('hidden');
+    emptyState.classList.add('hidden');
 
     try {
+        const variables = {};
+        const inputs = document.querySelectorAll('.dynamic-input');
+        inputs.forEach(input => {
+            variables[input.id] = input.value;
+        });
+
         const response = await fetch('/api/compile', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 markdown: markdown,
                 template: templateSelect.value,
-                font: fontInput.value
+                variables: variables
             })
         });
 
@@ -36,25 +194,46 @@ convertBtn.addEventListener('click', async () => {
             pdfPreview.classList.remove('hidden');
         } else {
             const errorText = await response.json();
-            errorLog.textContent = errorText.detail || "Unknown error occurred";
-            errorLog.classList.remove('hidden');
+            showError(errorText.detail || "Unknown error occurred");
         }
     } catch (error) {
-        errorLog.textContent = "Network error: " + error.message;
-        errorLog.classList.remove('hidden');
+        showError("Network error: " + error.message);
     } finally {
-        convertBtn.disabled = false;
-        loading.classList.add('hidden');
+        setLoading(false);
     }
-});
+}
 
-// Initial placeholder text
-markdownInput.value = `# My Document
+function setLoading(isLoading) {
+    if (isLoading) {
+        loadingOverlay.classList.remove('hidden');
+        convertBtn.disabled = true;
+    } else {
+        loadingOverlay.classList.add('hidden');
+        convertBtn.disabled = false;
+    }
+}
 
-This is a test document.
+function showError(msg) {
+    if (errorLog) errorLog.textContent = msg;
+    if (errorOverlay) errorOverlay.classList.remove('hidden');
+}
 
-- Item 1
-- Item 2
+if (closeErrorBtn) {
+    closeErrorBtn.addEventListener('click', () => {
+        errorOverlay.classList.add('hidden');
+    });
+}
 
-**Bold Text** and *Italic Text*
+function setInitialMarkdown() {
+    markdownInput.value = `# Hello, Ksaitex!
+
+This is a **sophisticated** markdown editor.
+
+## Features
+- Tabbed Controls
+- Dynamic Forms
+- Instant Preview
+
+Type something to generate a PDF.
 `;
+}
