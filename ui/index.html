@@ -26,6 +26,29 @@
                 <h1 class="brand-name">Ksaitex</h1>
             </div>
 
+            <div class="project-management">
+                <button id="newProjectBtn" class="icon-btn" title="New Project">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                </button>
+                <div class="project-title-container">
+                    <input type="text" id="projectTitle" placeholder="Project Title" value="Untitled Project">
+                    <div class="save-status" id="saveStatus">Saved</div>
+                </div>
+                <button id="saveProjectBtn" class="icon-btn" title="Save Now">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                </button>
+                <div class="dropdown">
+                    <button id="openProjectBtn" class="dropdown-toggle">
+                        <i class="fa-solid fa-folder-open"></i> Open <i class="fa-solid fa-chevron-down"
+                            style="font-size: 10px; margin-left: 4px;"></i>
+                    </button>
+                    <div id="projectList" class="dropdown-menu">
+                        <!-- Projects listed here -->
+                        <div class="dropdown-item">No projects saved</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="toolbar-actions">
                 <input type="file" id="mdUploadInput" accept=".md" style="display: none;">
                 <button id="uploadBtn" title="Upload Markdown File">
@@ -94,6 +117,27 @@
                 </div>
             </div>
         </main>
+
+        <!-- New Project Modal -->
+        <div id="newProjectModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create New Project</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="newProjectTitle">Project Title</label>
+                        <input type="text" id="newProjectTitle" placeholder="e.g., Quantum Physics Thesis"
+                            autocomplete="off">
+                        <small class="error-text hidden" id="titleError"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelProjectBtn" class="secondary-btn">Cancel</button>
+                    <button id="createProjectBtn" class="primary-btn">Create Project</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script type="module" src="js/app.js"></script>
 </body>

@@ -41,6 +41,10 @@ export function loadContent(text, editor) {
     editor.innerHTML = html;
 }
 
+export function clearContent(editor) {
+    editor.innerHTML = '<div><br></div>';
+}
+
 export function setInitialMarkdown(editor) {
     const raw = [
         '# Hello, Ksaitex!',
