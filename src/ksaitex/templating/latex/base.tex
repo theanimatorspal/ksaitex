@@ -5,18 +5,27 @@
 % \VAR{ left_margin, default='1in', tab='लेआउट', label='बायाँ मार्जिन' }
 % \VAR{ right_margin, default='1in', tab='लेआउट', label='दायाँ मार्जिन' }
 % \VAR{ script, default='DEVANAGARI', tab='लिपि र भाषा', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
-% \VAR{ page_numbering, default='arabic', tab='पृष्ठ संख्या', label='संख्या प्रकार', type='select', options='arabic|devanagari_num|devanagari_alph' }
-% \VAR{ page_placement, default='bottom-center', tab='पृष्ठ संख्या', label='स्थिति', type='select', options='bottom-left|bottom-center|bottom-right|top-left|top-center|top-right' }
-% \VAR{ start_page, default='1', tab='पृष्ठ संख्या', label='यहाँबाट सुरु' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='फन्ट', label='मुख्य फन्ट' }
 % \VAR{ extra_preamble, default='', tab='उन्नत', label='अतिरिक्त कोड' }
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='लेआउट', command='\pagebreak' }
-% \MAGIC{ section, label='खण्ड (Section)', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
-% \MAGIC{ subsection, label='उपखण्ड (Subsection)', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\subsection{VAR_title}' }
+% \MAGIC{ section, label='खण्ड (Sec)', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
+% \MAGIC{ subsection, label='उपखण्ड (Subssec)', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\subsection{VAR_title}' }
 % \MAGIC{ box, label='बक्स (Box)', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
+% \MAGIC{ toc, label='विषय सूची (TOC)', tab='संरचना', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} } \tableofcontents' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
 % \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
 % \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='लेआउट', command='\hrule' }
+% \MAGIC{ empty_page, label='खाली पृष्ठ (Empty Page)', tab='लेआउट', command='\thispagestyle{empty}' }
+% \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ संख्या', args='num:number:1', command='\setcounter{page}{VAR_num}' }
+
+% \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
+% \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
+% \VAR{ header_left, default='None', tab='हेडर-फुटर', label='हेडर बायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ header_right, default='None', tab='हेडर-फुटर', label='हेडर दायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ footer_center, default='Page', tab='हेडर-फुटर', label='फुटर मध्य', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 
 \documentclass{\VAR{document_class}}
 
@@ -25,6 +34,7 @@
 \usepackage{geometry}
 \usepackage{fancyhdr}
 \usepackage{tcolorbox}
+\usepackage{ifthen}
 
 \geometry{
     top=\VAR{top_margin},
@@ -50,36 +60,61 @@
 \makeatother
 
 % --- Page Numbering Style Selection ---
-\BLOCK{ if page_numbering == 'devanagari_num' }
-    \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
-\BLOCK{ elif page_numbering == 'devanagari_alph' }
-    \renewcommand{\thepage}{\devanagarialph{\value{page}}}
-\BLOCK{ else }
-    \pagenumbering{arabic}
-\BLOCK{ endif }
+% \BLOCK{ if page_numbering == 'devanagari_num' }
+%     \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
+% \BLOCK{ elif page_numbering == 'devanagari_alph' }
+%     \renewcommand{\thepage}{\devanagarialph{\value{page}}}
+% \BLOCK{ else }
+%     \pagenumbering{arabic}
+% \BLOCK{ endif }
 
-% --- Page Number Placement ---
+% --- Page Number Placement and Customization ---
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
-\renewcommand{\headrulewidth}{0pt} % Remove header line
 
-\BLOCK{ if page_placement == 'bottom-left' }
-    \lfoot{\thepage}
-\BLOCK{ elif page_placement == 'bottom-center' }
-    \cfoot{\thepage}
-\BLOCK{ elif page_placement == 'bottom-right' }
-    \rfoot{\thepage}
-\BLOCK{ elif page_placement == 'top-left' }
+% -- Rules --
+\BLOCK{ if header_rule == 'On' }
+    \renewcommand{\headrulewidth}{0.4pt}
+\BLOCK{ else }
+    \renewcommand{\headrulewidth}{0pt}
+\BLOCK{ endif }
+
+\BLOCK{ if footer_rule == 'On' }
+    \renewcommand{\footrulewidth}{0.4pt}
+\BLOCK{ else }
+    \renewcommand{\footrulewidth}{0pt}
+\BLOCK{ endif }
+
+% -- Header Left --
+\BLOCK{ if header_left == 'Section' }
+    \lhead{\leftmark}
+\BLOCK{ elif header_left == 'Page' }
     \lhead{\thepage}
-\BLOCK{ elif page_placement == 'top-center' }
-    \chead{\thepage}
-\BLOCK{ elif page_placement == 'top-right' }
+\BLOCK{ elif header_left == 'Custom' }
+    \lhead{\VAR{header_left_text}}
+\BLOCK{ endif }
+
+% -- Header Right --
+\BLOCK{ if header_right == 'Section' }
+    \rhead{\leftmark}
+\BLOCK{ elif header_right == 'Page' }
     \rhead{\thepage}
+\BLOCK{ elif header_right == 'Custom' }
+    \rhead{\VAR{header_right_text}}
+\BLOCK{ endif }
+
+% -- Footer Center --
+\BLOCK{ if footer_center == 'Section' }
+    \cfoot{\leftmark}
+\BLOCK{ elif footer_center == 'Page' }
+    \cfoot{\thepage}
+\BLOCK{ elif footer_center == 'Custom' }
+    \cfoot{\VAR{footer_center_text}}
 \BLOCK{ endif }
 
 % --- Font Configuration ---
 \BLOCK{ if script == 'DEVANAGARI' }
-    \setmainfont[Script=Devanagari, AutoFakeBold=2.5]{\VAR{font_file}}
+    \setmainfont[Script=Devanagari, AutoFakeBold=1.8]{\VAR{font_file}}
 \BLOCK{ else }
     \setmainfont[AutoFakeBold=2.5]{\VAR{font_file}}
 \BLOCK{ endif }
@@ -87,7 +122,6 @@
 \VAR{ extra_preamble }
 
 \begin{document}
-\setcounter{page}{\VAR{start_page}}
 
 \VAR{ content }
 

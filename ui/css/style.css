@@ -501,7 +501,7 @@ textarea {
 
 .tab-pane.active {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     grid-auto-rows: min-content;
     gap: 1rem;
     /* Reduced gap */
