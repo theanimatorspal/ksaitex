@@ -71,7 +71,7 @@ export function setInitialMarkdown(editor) {
     loadContent(raw, editor);
 }
 
-export function insertMagicCommand(cmd, editor) {
+export function insertMagicCommand(cmd, editor, overrides = {}) {
     const label = cmd.label;
     const argsSchema = cmd.args || ""; // "title:text:Default Title|size:number:10"
 
@@ -87,19 +87,26 @@ export function insertMagicCommand(cmd, editor) {
         schemaItems.forEach(item => {
             const parts = item.split(':');
             const name = parts[0].trim();
-            // const type = parts[1]; // Unused for rendering button but useful for modal later
-            const defaultVal = parts[2] || "";
+            // const type = parts[1]; 
+            const schemaDefault = parts[2] || "";
+
+            // Check for override
+            const val = (overrides && overrides[name] !== undefined) ? overrides[name] : schemaDefault;
 
             // Render Button
             // Truncate long text
-            let displayVal = defaultVal;
+            let displayVal = val;
             if (displayVal.length > 15) {
-                displayVal = displayVal.substring(0, 12) + "...";
+                // Collapse newlines for display
+                displayVal = displayVal.replace(/\n/g, ' ');
+                if (displayVal.length > 15) displayVal = displayVal.substring(0, 12) + "...";
             }
 
-            argsHtml += `<button class="magic-arg-btn" data-name="${name}" data-full-value="${defaultVal}" title="Edit ${name}">${displayVal}</button>`;
+            argsHtml += `<button class="magic-arg-btn" data-name="${name}" data-full-value="${val}" title="Edit ${name}">${displayVal}</button>`;
 
-            kvPairs.push(`${name}=${defaultVal}`);
+            // Escape newlines for magic string persistence
+            const safeVal = val.replace(/\n/g, "\\n");
+            kvPairs.push(`${name}=${safeVal}`);
         });
 
         if (kvPairs.length > 0) {
@@ -108,19 +115,15 @@ export function insertMagicCommand(cmd, editor) {
     }
 
     // Minimal HTML structure
+    // We include a following div to ensure the user can click/type after
     const html = `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${argsSchema}">
         <span class="magic-label">${label}</span>
         <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div>
         <button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button>
-    </div>`;
+    </div><div><br></div>`;
 
     editor.focus();
     document.execCommand('insertHTML', false, html);
-
-    // Add trailing line
-    const br = document.createElement('div');
-    br.innerHTML = '<br>';
-    editor.appendChild(br);
 
     console.log("DEBUG: Inserted magic command:", label);
 }

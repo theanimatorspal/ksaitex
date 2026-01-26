@@ -295,6 +295,73 @@ async function init() {
             currentEditingBlock = null;
         }
 
+        // Context Menu Logic
+        const contextMenu = document.getElementById('editorContextMenu');
+
+        // Hide context menu on any click
+        document.addEventListener('click', () => {
+            if (contextMenu) contextMenu.classList.add('hidden');
+        });
+
+        if (markdownEditor && contextMenu) {
+            markdownEditor.addEventListener('contextmenu', (e) => {
+                const selection = window.getSelection();
+                const selectedText = selection.toString().trim();
+
+                // Only show if text is selected
+                if (!selectedText) return;
+
+                // Capture range to restore later
+                const range = selection.getRangeAt(0).cloneRange();
+
+                e.preventDefault();
+
+                // Get commands from current template
+                const currentTemplate = templateSelect.value;
+                const metadata = availableTemplates[currentTemplate];
+
+                if (!metadata || !metadata.magic_commands) return;
+
+                // Filter for "Formatting" commands (tab='ढाँचा')
+                const commands = metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting');
+
+                if (commands.length === 0) return;
+
+                // Populate Menu
+                contextMenu.innerHTML = '';
+                commands.forEach(cmd => {
+                    const item = document.createElement('div');
+                    item.className = 'context-menu-item';
+                    item.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${cmd.label}</span>`;
+
+                    item.onclick = () => {
+                        // Restore selection so execCommand replaces text
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+
+                        // Determine first argument to pre-fill
+                        let overrides = {};
+                        if (cmd.args) {
+                            const firstArg = cmd.args.split('|')[0].split(':')[0].trim();
+                            if (firstArg) {
+                                overrides[firstArg] = selectedText;
+                            }
+                        }
+
+                        editor.insertMagicCommand(cmd, markdownEditor, overrides);
+                        contextMenu.classList.add('hidden');
+                    };
+
+                    contextMenu.appendChild(item);
+                });
+
+                // Position Menu
+                contextMenu.style.left = `${e.clientX}px`;
+                contextMenu.style.top = `${e.clientY}px`;
+                contextMenu.classList.remove('hidden');
+            });
+        }
+
         if (saveCommandBtn) {
             saveCommandBtn.onclick = () => {
                 if (!currentEditingBlock) return;
@@ -555,7 +622,7 @@ async function compile() {
             if (input.value.trim()) variables[input.id] = input.value.trim();
         });
         const title = projectTitleInput.value || "Untitled";
-        console.log("DEBUG: Compiling with title:", title); 
+        console.log("DEBUG: Compiling with title:", title);
         const blob = await api.compileLatex(markdown, templateSelect.value, variables, title);
         pdfPreview.src = URL.createObjectURL(blob);
         pdfPreview.classList.remove('hidden');
