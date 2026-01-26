@@ -7,15 +7,20 @@
 % \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
 
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
-% \VAR{ extra_preamble, default='', tab='उन्नत', label='अतिरिक्त कोड' }
 % \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
 % \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
+% \MAGIC{ subsubsection, label='संख्याहीन उप-उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}' }
+
+% \MAGIC{ section_toc, label='संख्याहीन शीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}\addcontentsline{toc}{section}{VAR_title}' }
+% \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
+% \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
+
 % \MAGIC{ box, label='बक्स (Box)', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
-% \MAGIC{ toc, label='विषय सूची (TOC)', tab='संरचना', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} } \tableofcontents' }
+% \MAGIC{ toc, label='विषय सूची (TOC)', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
-% \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
-% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
+% \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
+% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
 % \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='पृष्ठ', command='\hrule' }
 % \MAGIC{ empty_page, label='पृष्ठ संख्या नदेखाउनुहोस्', tab='पृष्ठ', command='\thispagestyle{empty}' }
 % \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ', args='num:number:1', command='\setcounter{page}{VAR_num}' }
@@ -81,6 +86,13 @@
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
 
+% -- Global Script-based Numbering --
+\BLOCK{ if script == 'DEVANAGARI' }
+    \renewcommand{\thesection}{\devanagaridigits{\value{section}}}
+    \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}}
+    \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}}
+\BLOCK{ endif }
+
 % -- Rules --
 \BLOCK{ if header_rule == 'On' }
     \renewcommand{\headrulewidth}{0.4pt}
@@ -127,8 +139,6 @@
 \BLOCK{ else }
     \setmainfont[AutoFakeBold=2.5]{\VAR{font_file}}
 \BLOCK{ endif }
-
-\VAR{ extra_preamble }
 
 \begin{document}
 

@@ -33,35 +33,55 @@ export function initEditor(editor) {
         if (e.key !== 'Backspace' && e.key !== 'Delete') return;
 
         const selection = window.getSelection();
-        if (!selection.rangeCount) return;
+        if (!selection.rangeCount || !selection.isCollapsed) return; // Don't interfere with range selections
         const range = selection.getRangeAt(0);
 
-        // If we are at the edge of a magic block, delete the whole thing
         let targetNode = null;
 
         if (e.key === 'Backspace') {
-            // Check if node immediately BEFORE caret is a magic block
+            // Only trigger if we are at the literal start of a text node or container
             if (range.startOffset === 0) {
-                // At start of a container, check previous sibling
-                targetNode = range.startContainer.previousElementSibling;
-            } else if (range.startContainer.nodeType === Node.TEXT_NODE) {
-                // inside text, but offset might be start? 
-                // Actually Browser behavior usually puts caret at offset 0 of next node
+                // Check previous sibling
+                let prev = range.startContainer.previousSibling;
+
+                // If container is text node, check parent's previous sibling
+                if (!prev && range.startContainer.nodeType === Node.TEXT_NODE) {
+                    prev = range.startContainer.parentNode.previousSibling;
+                }
+
+                if (prev && prev.classList && prev.classList.contains('magic-block')) {
+                    targetNode = prev;
+                }
             }
-
-            // Fallback: check if previous sibling is a magic-block
-            const prev = range.startContainer.previousSibling || range.startContainer.parentNode.previousSibling;
-            if (prev && prev.classList && prev.classList.contains('magic-block')) targetNode = prev;
-
         } else if (e.key === 'Delete') {
-            // Check if node immediately AFTER caret is a magic block
-            const next = range.startContainer.nextSibling || range.startContainer.parentNode.nextSibling;
-            if (next && next.classList && next.classList.contains('magic-block')) targetNode = next;
+            // Check if we are at the end of the node
+            const atEnd = (range.startContainer.nodeType === Node.TEXT_NODE)
+                ? (range.startOffset === range.startContainer.textContent.length)
+                : (range.startOffset === range.startContainer.childNodes.length);
+
+            if (atEnd) {
+                let next = range.startContainer.nextSibling;
+                if (!next && range.startContainer.nodeType === Node.TEXT_NODE) {
+                    next = range.startContainer.parentNode.nextSibling;
+                }
+
+                if (next && next.classList && next.classList.contains('magic-block')) {
+                    targetNode = next;
+                }
+            }
         }
 
-        if (targetNode && targetNode.classList.contains('magic-block')) {
+        if (targetNode) {
             e.preventDefault();
-            targetNode.remove();
+
+            // SELECT the node and use execCommand to preserve undo history
+            const deleteRange = document.createRange();
+            deleteRange.selectNode(targetNode);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(deleteRange);
+
+            document.execCommand('delete', false, null);
         }
     });
 }
@@ -87,11 +107,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
         ? `${MARKER_START}[[MAGIC:${label}|${serializedArgs}]]${MARKER_END}`
         : `${MARKER_START}[[MAGIC:${label}]]${MARKER_END}`;
 
-    return `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}">
-        <span class="magic-label">${label}</span>
-        <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div>
-        <button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button>
-    </div>`;
+    return `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}"> <span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button> </div>`;
 }
 
 export function updateArgButton(btn, newValue) {
