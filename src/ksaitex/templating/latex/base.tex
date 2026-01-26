@@ -4,26 +4,35 @@
 % \VAR{ bottom_margin, default='1in', tab='लेआउट', label='तल्लो मार्जिन' }
 % \VAR{ left_margin, default='1in', tab='लेआउट', label='बायाँ मार्जिन' }
 % \VAR{ right_margin, default='1in', tab='लेआउट', label='दायाँ मार्जिन' }
-% \VAR{ script, default='DEVANAGARI', tab='लिपि र भाषा', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
-% \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='फन्ट', label='मुख्य फन्ट' }
+% \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
+
+% \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
 % \VAR{ extra_preamble, default='', tab='उन्नत', label='अतिरिक्त कोड' }
-% \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='लेआउट', command='\pagebreak' }
-% \MAGIC{ section, label='खण्ड (Sec)', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
-% \MAGIC{ subsection, label='उपखण्ड (Subssec)', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\subsection{VAR_title}' }
+% \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
+% \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
 % \MAGIC{ box, label='बक्स (Box)', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची (TOC)', tab='संरचना', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} } \tableofcontents' }
-% \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
-% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
-% \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='लेआउट', command='\hrule' }
-% \MAGIC{ empty_page, label='खाली पृष्ठ (Empty Page)', tab='लेआउट', command='\thispagestyle{empty}' }
-% \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ संख्या', args='num:number:1', command='\setcounter{page}{VAR_num}' }
+
+% \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
+% \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
+% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
+% \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='पृष्ठ', command='\hrule' }
+% \MAGIC{ empty_page, label='पृष्ठ संख्या नदेखाउनुहोस्', tab='पृष्ठ', command='\thispagestyle{empty}' }
+% \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ', args='num:number:1', command='\setcounter{page}{VAR_num}' }
 
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
+
 % \VAR{ header_left, default='None', tab='हेडर-फुटर', label='हेडर बायाँ', type='select', options='None|Section|Page|Custom' }
 % \VAR{ header_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 % \VAR{ header_right, default='None', tab='हेडर-फुटर', label='हेडर दायाँ', type='select', options='None|Section|Page|Custom' }
 % \VAR{ header_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ header_center, default='None', tab='हेडर-फुटर', label='हेडर मध्य', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ footer_left, default='None', tab='हेडर-फुटर', label='फुटर बायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ footer_right, default='None', tab='हेडर-फुटर', label='फुटर दायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 % \VAR{ footer_center, default='Page', tab='हेडर-फुटर', label='फुटर मध्य', type='select', options='None|Section|Page|Custom' }
 % \VAR{ footer_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 

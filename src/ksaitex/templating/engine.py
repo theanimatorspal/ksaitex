@@ -131,9 +131,9 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
         # Escape label for regex in case it has special chars
         escaped_label = re.escape(label)
         
-        # Regex to match [Label] or [Label|arg=val;arg2=val2]
-        # We capture the optional arguments part
-        pattern = re.compile(rf"\[{escaped_label}(?:\|(.*?))?\]")
+        # Robust Marker Regex: accounts for possible escaping of '#' by the markdown renderer
+        # Matches both ####### and \#\#\#\#\#\#\#
+        pattern = re.compile(rf"--\[\[--\[\[--\[\[(?:#|\\#){{7}}-\[\[MAGIC:{escaped_label}(?:\|(.*?))?\]\]-(?:#|\\#){{7}}\]\]--\]\]--\]\]--")
         
         def replacer(match):
             args_str = match.group(1) or ""

@@ -9,6 +9,22 @@ from ksaitex.compilation.compiler import compile_latex
 
 app = FastAPI()
 
+from fastapi import Request
+@app.middleware("http")
+async def disable_cache(request: Request, call_next):
+    # Deeply strip conditional headers from the ASGI scope to force 200 OK
+    new_headers = []
+    for name, value in request.scope.get("headers", []):
+        if name.lower() not in (b"if-none-match", b"if-modified-since"):
+            new_headers.append((name, value))
+    request.scope["headers"] = new_headers
+    
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
 # Mount API routes
 class CompileRequest(BaseModel):
     markdown: str
