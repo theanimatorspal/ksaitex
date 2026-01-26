@@ -31,8 +31,9 @@
                     <i class="fa-solid fa-file-circle-plus"></i>
                 </button>
                 <div class="project-title-container">
-                    <input type="text" id="projectTitle" placeholder="Project Title" value="Untitled Project">
-                    <div class="save-status" id="saveStatus">Saved</div>
+                    <input type="text" id="projectTitle" placeholder="Project Title" value="Untitled Project" readonly
+                        style="cursor: pointer;" title="Click to Rename">
+                    <div class="save-status" id="saveStatus">Select Project</div>
                 </div>
                 <button id="saveProjectBtn" class="icon-btn" title="Save Now">
                     <i class="fa-solid fa-floppy-disk"></i>
@@ -136,6 +137,47 @@
                     <button id="cancelProjectBtn" class="secondary-btn">Cancel</button>
                     <button id="createProjectBtn" class="primary-btn">Create Project</button>
                 </div>
+            </div>
+        </div>
+        <!-- Rename Project Modal -->
+        <div id="renameProjectModal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Rename Project</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="renameProjectTitle">New Project Title</label>
+                        <input type="text" id="renameProjectTitle" placeholder="New Title" autocomplete="off">
+                        <small class="error-text hidden" id="renameTitleError"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelRenameBtn" class="secondary-btn">Cancel</button>
+                    <button id="confirmRenameBtn" class="primary-btn">Rename</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welcome / Startup Screen -->
+        <div id="welcomeScreen" class="modal-overlay">
+            <div class="modal-content" style="max-width: 500px; text-align: center; padding: 40px;">
+                <div style="margin-bottom: 24px;">
+                    <img src="assets/logo.png" alt="Ksaitex"
+                        style="width: 64px; opacity: 0.8; filter: sepia(1) saturate(5) hue-rotate(-20deg);">
+                    <h1 style="color: var(--orange); margin: 10px 0 0;">Ksaitex</h1>
+                    <p style="color: var(--fg3);">Select a project to begin</p>
+                </div>
+
+                <div id="welcomeProjectList"
+                    style="text-align: left; background: var(--bg0); border: 1px solid var(--border-color); border-radius: var(--radius-sm); max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+                    <!-- Injected via JS -->
+                    <div style="padding: 10px; color: var(--fg3);">Loading projects...</div>
+                </div>
+
+                <button id="welcomeNewBtn" class="primary-btn" style="width: 100%; justify-content: center;">
+                    <i class="fa-solid fa-plus-circle"></i> Create New Project
+                </button>
             </div>
         </div>
     </div>

@@ -18,8 +18,13 @@ class CompileRequest(BaseModel):
 class SaveRequest(BaseModel):
     title: str
     markdown: str
+    html: str = ""  # New field for persistence
     template: str = "base"
     variables: dict = {}
+
+class RenameRequest(BaseModel):
+    old_id: str
+    new_title: str
 
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
@@ -37,8 +42,6 @@ async def list_templates():
              metadata = engine.get_metadata(f.name)
              templates_data[name] = metadata
              
-    # Return as list for easier frontend consumption, or dict? 
-    # Let's return dict { "template_name": { "var1": "default" } }
     return {"templates": templates_data}
 
 @app.post("/api/compile")
@@ -90,12 +93,60 @@ async def save_project(request: SaveRequest):
         json.dump({
             "title": request.title,
             "markdown": request.markdown,
+            "html": request.html, # Persist HTML
             "template": request.template,
             "variables": request.variables
         }, f, indent=4)
     
     print(f"DEBUG: Saved project '{request.title}' to {project_file}")
     return {"status": "success", "path": str(project_file)}
+
+@app.post("/api/rename")
+async def rename_project(request: RenameRequest):
+    """Rename a project by moving its directory."""
+    import re
+    import shutil
+    import json
+
+    old_path = DATA_DIR / request.old_id
+    if not old_path.exists():
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    safe_new_title = re.sub(r'[^\w\s-]', '', request.new_title).strip().replace(' ', '_')
+    if not safe_new_title:
+        raise HTTPException(status_code=400, detail="Invalid title")
+        
+    new_path = DATA_DIR / safe_new_title
+    
+    if new_path.exists() and new_path != old_path:
+         raise HTTPException(status_code=400, detail="Project with this name already exists")
+
+    if new_path != old_path:
+        shutil.move(str(old_path), str(new_path))
+
+    # Update the internal JSON with new title
+    project_file = new_path / "project.json"
+    if project_file.exists():
+        with open(project_file, "r") as f:
+            data = json.load(f)
+        
+        data["title"] = request.new_title
+        
+        with open(project_file, "w") as f:
+            json.dump(data, f, indent=4)
+
+    return {"status": "success", "new_id": safe_new_title}
+
+@app.delete("/api/projects/{project_id}")
+async def delete_project(project_id: str):
+    """Delete a project directory."""
+    import shutil
+    project_dir = DATA_DIR / project_id
+    if not project_dir.exists():
+        raise HTTPException(status_code=404, detail="Project not found")
+        
+    shutil.rmtree(project_dir)
+    return {"status": "success"}
 
 @app.get("/api/projects")
 async def list_projects():

@@ -32,12 +32,33 @@ export async function compileLatex(markdown, template, variables) {
     return await response.blob();
 }
 
-export async function saveProject(title, markdown, template, variables) {
+export async function saveProject(title, markdown, template, variables, html = "") {
     const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, markdown, template, variables })
+        body: JSON.stringify({ title, markdown, template, variables, html })
     });
+    return await res.json();
+}
+
+export async function renameProject(old_id, new_title) {
+    const res = await fetch('/api/rename', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ old_id, new_title })
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || "Rename failed");
+    }
+    return await res.json();
+}
+
+export async function deleteProject(id) {
+    const res = await fetch(`/api/projects/${id}`, {
+        method: 'DELETE'
+    });
+    if (!res.ok) throw new Error("Delete failed");
     return await res.json();
 }
 

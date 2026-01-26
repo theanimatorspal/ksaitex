@@ -135,3 +135,11 @@ export function getMarkdownContent(editor) {
         .join('\n')
         .trim();
 }
+
+export function getHTMLContent(editor) {
+    return editor.innerHTML;
+}
+
+export function setHTMLContent(html, editor) {
+    editor.innerHTML = html;
+}

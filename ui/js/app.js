@@ -34,8 +34,21 @@ const titleError = document.getElementById('titleError');
 const cancelProjectBtn = document.getElementById('cancelProjectBtn');
 const createProjectBtn = document.getElementById('createProjectBtn');
 
+// Rename Modal Elements
+const renameProjectModal = document.getElementById('renameProjectModal');
+const renameProjectTitleInput = document.getElementById('renameProjectTitle');
+const renameTitleError = document.getElementById('renameTitleError');
+const cancelRenameBtn = document.getElementById('cancelRenameBtn');
+const confirmRenameBtn = document.getElementById('confirmRenameBtn');
+
+// Welcome Screen Elements
+const welcomeScreen = document.getElementById('welcomeScreen');
+const welcomeProjectList = document.getElementById('welcomeProjectList');
+const welcomeNewBtn = document.getElementById('welcomeNewBtn');
+
 let availableTemplates = {};
 let projectsListCache = []; // Cache for validation
+let currentProjectId = null; // Track active project ID
 
 // Bootstrap
 async function init() {
@@ -46,16 +59,21 @@ async function init() {
         }
 
         editor.initEditor(markdownEditor);
-        editor.setInitialMarkdown(markdownEditor);
+        // Do NOT set initial markdown here. Wait for project selection.
 
         // Timer
         setInterval(() => {
-            autoSave().catch(e => console.error("Interval autoSave failed:", e));
+            if (currentProjectId) {
+                autoSave().catch(e => console.error("Interval autoSave failed:", e));
+            }
         }, 5000);
 
         // Load Data
-        refreshProjects().catch(e => console.error("Initial refreshProjects failed:", e));
+        await refreshProjects(); // Load projects first for welcome screen
         loadTemplates().catch(e => console.error("Initial loadTemplates failed:", e));
+
+        // Show Welcome Screen
+        showWelcomeScreen();
 
         // Listeners
         templateSelect.addEventListener('change', (e) => {
@@ -73,9 +91,17 @@ async function init() {
             });
         }
 
+        // Welcome Screen specifics
+        if (welcomeNewBtn) {
+            welcomeNewBtn.onclick = () => {
+                hideWelcomeScreen();
+                showNewProjectModal();
+            };
+        }
+
         if (saveProjectBtn) {
             saveProjectBtn.addEventListener('click', () => {
-                autoSave();
+                if (currentProjectId) autoSave();
             });
         }
 
@@ -87,32 +113,48 @@ async function init() {
                 if (e.key === 'Enter') handleCreateProject();
                 if (e.key === 'Escape') hideNewProjectModal();
             });
-            // Clear error on type
-            newProjectTitleInput.addEventListener('input', () => {
-                titleError.classList.add('hidden');
+            newProjectTitleInput.addEventListener('input', () => titleError.classList.add('hidden'));
+        }
+
+        // Rename Listeners
+        if (projectTitleInput) {
+            projectTitleInput.onclick = () => {
+                if (currentProjectId) showRenameModal();
+            };
+        }
+        if (cancelRenameBtn) cancelRenameBtn.onclick = hideRenameModal;
+        if (confirmRenameBtn) confirmRenameBtn.onclick = handleRenameProject;
+        if (renameProjectTitleInput) {
+            renameProjectTitleInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') handleRenameProject();
+                if (e.key === 'Escape') hideRenameModal();
             });
+            renameProjectTitleInput.addEventListener('input', () => renameTitleError.classList.add('hidden'));
         }
 
         if (openProjectBtn) openProjectBtn.onclick = (e) => {
             e.stopPropagation();
             projectList.classList.toggle('show');
+            // refreshProjects already ran, but we can re-run
             refreshProjects();
         };
 
         window.onclick = (e) => {
             projectList.classList.remove('show');
-            // Close modal if clicked outside
             if (e.target === newProjectModal) hideNewProjectModal();
+            if (e.target === renameProjectModal) hideRenameModal();
         };
 
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'Enter') compile();
-            if (e.ctrlKey && e.key === 's') { e.preventDefault(); autoSave(); }
-            if (e.key === 'Escape' && !newProjectModal.classList.contains('hidden')) hideNewProjectModal();
+            if (e.ctrlKey && e.key === 's') { e.preventDefault(); if (currentProjectId) autoSave(); }
+            if (e.key === 'Escape') {
+                if (!newProjectModal.classList.contains('hidden')) hideNewProjectModal();
+                if (!renameProjectModal.classList.contains('hidden')) hideRenameModal();
+            }
         });
 
         console.error("DIAGNOSTIC: init() success");
-        saveStatus.textContent = "Editor Ready";
     } catch (err) {
         console.error("DIAGNOSTIC: init() CRASH:", err);
         if (saveStatus) saveStatus.textContent = "INIT ERROR: " + err.message;
@@ -126,6 +168,60 @@ if (document.readyState === 'loading') {
     init();
 }
 
+function showWelcomeScreen() {
+    welcomeScreen.classList.remove('hidden');
+    refreshWelcomeList();
+}
+
+function hideWelcomeScreen() {
+    welcomeScreen.classList.add('hidden');
+}
+
+function refreshWelcomeList() {
+    welcomeProjectList.innerHTML = '';
+    if (projectsListCache.length === 0) {
+        welcomeProjectList.innerHTML = '<div style="padding:10px; color:var(--fg3); font-style:italic;">No projects yet. Create one!</div>';
+        return;
+    }
+
+    projectsListCache.forEach(p => {
+        const row = document.createElement('div');
+        row.style.cssText = "padding: 10px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; cursor: pointer;";
+
+        const titleSpan = document.createElement('span');
+        titleSpan.textContent = p.title;
+        titleSpan.style.fontWeight = "600";
+
+        const delBtn = document.createElement('button');
+        delBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        delBtn.className = "icon-btn";
+        delBtn.title = "Delete Project";
+        delBtn.style.color = "var(--red)";
+        delBtn.onclick = async (e) => {
+            e.stopPropagation();
+            if (confirm(`Delete project "${p.title}" permanently?`)) {
+                await api.deleteProject(p.id);
+                await refreshProjects();
+                refreshWelcomeList();
+            }
+        };
+
+        row.appendChild(titleSpan);
+        row.appendChild(delBtn);
+
+        row.onclick = () => {
+            loadProject(p.id);
+            hideWelcomeScreen();
+        };
+
+        row.onmouseover = () => row.style.backgroundColor = "var(--bg1)";
+        row.onmouseout = () => row.style.backgroundColor = "transparent";
+
+        welcomeProjectList.appendChild(row);
+    });
+}
+
+
 function showNewProjectModal() {
     newProjectTitleInput.value = '';
     titleError.classList.add('hidden');
@@ -135,59 +231,123 @@ function showNewProjectModal() {
 
 function hideNewProjectModal() {
     newProjectModal.classList.add('hidden');
+    // If we are canceling and no project is loaded, go back to welcome screen
+    if (!currentProjectId) {
+        showWelcomeScreen();
+    }
 }
 
 function handleCreateProject() {
     const title = newProjectTitleInput.value.trim();
-
-    // Validation
     if (!title) {
         titleError.textContent = "Title cannot be empty";
         titleError.classList.remove('hidden');
         return;
     }
-
     const exists = projectsListCache.some(p => p.title.toLowerCase() === title.toLowerCase());
     if (exists) {
         titleError.textContent = "A project with this name already exists";
         titleError.classList.remove('hidden');
         return;
     }
-
-    // Valid - Create Logic
+    // Create new
     resetProject(title);
     hideNewProjectModal();
+    hideWelcomeScreen();
+}
+
+// Rename Logic
+function showRenameModal() {
+    renameProjectTitleInput.value = projectTitleInput.value;
+    renameTitleError.classList.add('hidden');
+    renameProjectModal.classList.remove('hidden');
+    renameProjectTitleInput.focus();
+}
+
+function hideRenameModal() {
+    renameProjectModal.classList.add('hidden');
+}
+
+async function handleRenameProject() {
+    const newTitle = renameProjectTitleInput.value.trim();
+    if (!newTitle) {
+        renameTitleError.textContent = "Title cannot be empty";
+        renameTitleError.classList.remove('hidden');
+        return;
+    }
+    // Check if changed
+    if (newTitle === projectTitleInput.value) {
+        hideRenameModal();
+        return;
+    }
+
+    // Check uniqueness
+    const exists = projectsListCache.some(p => p.title.toLowerCase() === newTitle.toLowerCase());
+    if (exists) {
+        renameTitleError.textContent = "Project name already exists";
+        renameTitleError.classList.remove('hidden');
+        return;
+    }
+
+    try {
+        const res = await api.renameProject(currentProjectId, newTitle);
+        // Success
+        currentProjectId = res.new_id;
+        projectTitleInput.value = newTitle;
+        await refreshProjects();
+        hideRenameModal();
+        saveStatus.textContent = "Project Renamed";
+    } catch (e) {
+        renameTitleError.textContent = e.message;
+        renameTitleError.classList.remove('hidden');
+    }
 }
 
 function resetProject(newTitle = "Untitled Project") {
     console.error("DIAGNOSTIC: Resetting project to", newTitle);
     projectTitleInput.value = newTitle;
 
-    // Clear editor to blank slate
-    console.error("DIAGNOSTIC: Clearing editor content now");
-    markdownEditor.innerHTML = '<div><br></div>';
-    console.error("DIAGNOSTIC: Editor content cleared");
+    // Fake ID for now until saved, OR we allow saving immediately?
+    // User wants it to essentially be a new project. 
+    // We will let autoSave create the folder structure shortly.
+    // BUT we need an ID for rename to work. 
+    // Best practice: Save immediately?
+    // Let's clear editor first.
 
-    // Reset status
+    editor.clearContent(markdownEditor);
     saveStatus.textContent = "New Project";
 
-    // Reset template selection
+    // Use the sanitized default ID logic locally just for UI state?
+    // Actually, let's just trigger a Save immediately to establish the project on disk.
+    // This aligns with user request "I have to press ok to trigger it".
+
+    // We need to set currentProjectId temporarily to facilitate the first save,
+    // or we can just call saveProject directly.
+    currentProjectId = null; // It's new.
+
+    // Reset Template
     if (availableTemplates['base']) {
         templateSelect.value = 'base';
-        // Re-render tabs for base template
         ui.renderTabs('base', availableTemplates, {
             tabsHeader, tabsContent,
             onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
         });
     }
-
-    // Clear any dynamic inputs
+    // Clear Inputs
     document.querySelectorAll('.dynamic-input').forEach(input => {
-        if (input.tagName === 'SELECT') {
-            input.selectedIndex = 0;
-        } else {
-            input.value = '';
-        }
+        if (input.tagName === 'SELECT') input.selectedIndex = 0;
+        else input.value = '';
+    });
+
+    // FORCE SAVE NOW to create the project on disk
+    api.saveProject(newTitle, "", "base", {}).then(res => {
+        // extract ID from path ?? Path is "data/Title/project.json"
+        // We can infer it from the title for now or wait for refresh.
+        refreshProjects().then(() => {
+            // Find the project we just made
+            const p = projectsListCache.find(x => x.title === newTitle);
+            if (p) currentProjectId = p.id;
+        });
     });
 }
 
@@ -233,8 +393,11 @@ async function compile() {
 
 async function autoSave() {
     console.error("DIAGNOSTIC: autoSave() tick");
-    const title = projectTitleInput.value.trim() || "Untitled Project";
+    const title = projectTitleInput.value.trim();
+    if (!title) return; // Should not happen with validation but safety first
+
     const markdown = editor.getMarkdownContent(markdownEditor);
+    const html = editor.getHTMLContent(markdownEditor);
     const template = templateSelect.value;
     const variables = {};
     document.querySelectorAll('.dynamic-input').forEach(input => {
@@ -242,13 +405,15 @@ async function autoSave() {
     });
 
     saveStatus.textContent = "Saving...";
+    saveStatus.classList.add('saving');
     try {
-        const res = await api.saveProject(title, markdown, template, variables);
-        console.error("DIAGNOSTIC: Save response:", res);
+        // We always pass HTML now for persistence
+        const res = await api.saveProject(title, markdown, template, variables, html);
         saveStatus.textContent = "Saved at " + new Date().toLocaleTimeString();
+        saveStatus.classList.remove('saving');
     } catch (e) {
         console.error("DIAGNOSTIC: Save FAILED:", e);
-        saveStatus.textContent = "Save Failed: " + e.message;
+        saveStatus.textContent = "Save Failed";
     }
 }
 
@@ -256,6 +421,8 @@ async function refreshProjects() {
     try {
         const projects = await api.fetchProjects();
         projectsListCache = projects; // Update cache
+
+        // Also update the dropdown list just in case
         projectList.innerHTML = '';
         if (projects.length === 0) {
             projectList.innerHTML = '<div class="dropdown-item">No projects</div>';
@@ -264,6 +431,28 @@ async function refreshProjects() {
                 const item = document.createElement('div');
                 item.className = 'dropdown-item';
                 item.textContent = p.title;
+                item.style.display = "flex";
+                item.style.justifyContent = "space-between";
+
+                // Add Delete Btn to dropdown too
+                const trash = document.createElement('i');
+                trash.className = "fa-solid fa-trash";
+                trash.style.color = "var(--red)";
+                trash.style.marginLeft = "10px";
+                trash.onclick = async (e) => {
+                    e.stopPropagation();
+                    if (confirm(`Delete project "${p.title}" permanently?`)) {
+                        await api.deleteProject(p.id);
+                        await refreshProjects();
+                        refreshWelcomeList();
+                        if (currentProjectId === p.id) {
+                            showWelcomeScreen(); // Kick user out if they delete active project
+                        }
+                    }
+                };
+
+                item.appendChild(trash);
+
                 item.onclick = (e) => {
                     e.stopPropagation();
                     loadProject(p.id);
@@ -280,8 +469,16 @@ async function refreshProjects() {
 async function loadProject(id) {
     try {
         const data = await api.fetchProject(id);
+        currentProjectId = id; // Set active ID
         projectTitleInput.value = data.title;
-        editor.loadContent(data.markdown, markdownEditor);
+
+        // Prefer HTML if available (preserves magic blocks), else Markdown (legacy)
+        if (data.html) {
+            editor.setHTMLContent(data.html, markdownEditor);
+        } else {
+            editor.loadContent(data.markdown, markdownEditor);
+        }
+
         if (data.template) {
             templateSelect.value = data.template;
             await ui.renderTabs(data.template, availableTemplates, {
