@@ -21,33 +21,21 @@
     <div class="app-layout">
         <!-- Top Toolbar (Minimal) -->
         <header class="toolbar">
-            <div class="brand">
-                <img src="assets/logo.png" alt="Ksaitex Logo" class="brand-logo">
+            <div class="brand" id="brandBtn" title="Select Project" style="cursor: pointer;">
+                <img src="assets/logo.png" alt="Ksaitex" class="brand-logo">
                 <h1 class="brand-name">Ksaitex</h1>
             </div>
 
             <div class="project-management">
-                <button id="newProjectBtn" class="icon-btn" title="New Project">
-                    <i class="fa-solid fa-file-circle-plus"></i>
-                </button>
                 <div class="project-title-container">
                     <input type="text" id="projectTitle" placeholder="Project Title" value="Untitled Project" readonly
                         style="cursor: pointer;" title="Click to Rename">
                     <div class="save-status" id="saveStatus">Select Project</div>
                 </div>
+
                 <button id="saveProjectBtn" class="icon-btn" title="Save Now">
                     <i class="fa-solid fa-floppy-disk"></i>
                 </button>
-                <div class="dropdown">
-                    <button id="openProjectBtn" class="dropdown-toggle">
-                        <i class="fa-solid fa-folder-open"></i> Open <i class="fa-solid fa-chevron-down"
-                            style="font-size: 10px; margin-left: 4px;"></i>
-                    </button>
-                    <div id="projectList" class="dropdown-menu">
-                        <!-- Projects listed here -->
-                        <div class="dropdown-item">No projects saved</div>
-                    </div>
-                </div>
             </div>
 
             <div class="toolbar-actions">
@@ -170,7 +158,7 @@
                 </div>
 
                 <div id="welcomeProjectList"
-                    style="text-align: left; background: var(--bg0); border: 1px solid var(--border-color); border-radius: var(--radius-sm); max-height: 200px; overflow-y: auto; margin-bottom: 20px;">
+                    style="text-align: left; background: var(--bg0); border: 1px solid var(--border-color); border-radius: var(--radius-sm); max-height: 400px; overflow-y: auto; margin-bottom: 20px;">
                     <!-- Injected via JS -->
                     <div style="padding: 10px; color: var(--fg3);">Loading projects...</div>
                 </div>

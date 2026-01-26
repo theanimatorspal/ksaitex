@@ -99,6 +99,13 @@ async function init() {
             };
         }
 
+        const brandBtn = document.getElementById('brandBtn');
+        if (brandBtn) {
+            brandBtn.onclick = () => {
+                showWelcomeScreen();
+            };
+        }
+
         if (saveProjectBtn) {
             saveProjectBtn.addEventListener('click', () => {
                 if (currentProjectId) autoSave();
@@ -132,19 +139,6 @@ async function init() {
             renameProjectTitleInput.addEventListener('input', () => renameTitleError.classList.add('hidden'));
         }
 
-        if (openProjectBtn) openProjectBtn.onclick = (e) => {
-            e.stopPropagation();
-            projectList.classList.toggle('show');
-            // refreshProjects already ran, but we can re-run
-            refreshProjects();
-        };
-
-        window.onclick = (e) => {
-            projectList.classList.remove('show');
-            if (e.target === newProjectModal) hideNewProjectModal();
-            if (e.target === renameProjectModal) hideRenameModal();
-        };
-
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'Enter') compile();
             if (e.ctrlKey && e.key === 's') { e.preventDefault(); if (currentProjectId) autoSave(); }
@@ -168,8 +162,9 @@ if (document.readyState === 'loading') {
     init();
 }
 
-function showWelcomeScreen() {
+async function showWelcomeScreen() {
     welcomeScreen.classList.remove('hidden');
+    await refreshProjects();
     refreshWelcomeList();
 }
 

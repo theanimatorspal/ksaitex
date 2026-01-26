@@ -45,6 +45,8 @@ body {
     color: var(--fg1);
     height: 100vh;
     overflow: hidden;
+    font-weight: 400;
+    /* Force normal weight globally */
 }
 
 /* App Layout */
@@ -62,27 +64,30 @@ body {
     /* Iconic orange accent line */
     display: flex;
     align-items: center;
-    padding: 0 1rem;
-    gap: 1.5rem;
+    padding: 0 0.75rem;
+    /* Reduced padding */
+    gap: 1rem;
     z-index: 10;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .brand-logo {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    /* Slightly smaller */
+    height: 24px;
     filter: sepia(1) saturate(5) hue-rotate(-20deg);
     /* Taint logo orange */
 }
 
 .brand-name {
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 400;
+    /* Removed bold */
     margin: 0;
     color: var(--orange);
     letter-spacing: -0.02em;
@@ -91,14 +96,14 @@ body {
 .toolbar-actions {
     margin-left: auto;
     display: flex;
-    gap: 0.75rem;
+    gap: 0.5rem;
 }
 
 .project-management {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-left: 2rem;
+    gap: 0.75rem;
+    margin-left: 1.5rem;
     flex: 1;
 }
 
@@ -114,9 +119,10 @@ body {
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--border-color);
-    padding: 4px 0;
+    padding: 2px 0;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 400;
+    /* Removed bold */
     color: var(--fg0);
     border-radius: 0;
     width: 100%;
@@ -131,7 +137,8 @@ body {
 
 .save-status {
     font-size: 10px;
-    font-weight: 700;
+    font-weight: 400;
+    /* Removed bold */
     text-transform: uppercase;
     color: var(--fg3);
     letter-spacing: 0.05em;
@@ -150,7 +157,8 @@ body {
 .dropdown-toggle {
     background: var(--bg2);
     border: 1px solid var(--border-color);
-    padding: 6px 12px;
+    padding: 4px 10px;
+    /* Reduced padding */
     font-size: 13px;
     display: flex;
     align-items: center;
@@ -177,7 +185,8 @@ body {
 }
 
 .dropdown-item {
-    padding: 10px 16px;
+    padding: 8px 12px;
+    /* Reduced padding */
     font-size: 13px;
     color: var(--fg2);
     cursor: pointer;
@@ -194,10 +203,12 @@ button {
     background-color: var(--bg2);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
-    padding: 8px 16px;
+    padding: 6px 12px;
+    /* Reduced padding */
     font-family: var(--font-ui);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
+    /* Removed bold */
     color: var(--fg1);
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -226,7 +237,8 @@ button:active {
 .icon-btn {
     background: transparent;
     border: none;
-    padding: 8px;
+    padding: 6px;
+    /* Reduced padding */
     color: var(--fg3);
     cursor: pointer;
     font-size: 1.1rem;
@@ -250,9 +262,11 @@ button:active {
     border: 1px solid var(--yellow);
     color: var(--yellow);
     font-size: 11px;
-    padding: 6px 12px;
+    padding: 4px 8px;
+    /* Reduced padding */
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 400;
+    /* Removed bold */
     letter-spacing: 0.05em;
     transition: all 0.2s;
 }
@@ -303,7 +317,8 @@ button:active {
     color: #3c3836;
     padding: 24px;
     font-family: var(--font-ui);
-    font-size: 15px;
+    font-size: 16px;
+    /* Slightly increased for readability as requested implicitly */
     line-height: 1.7;
     outline: none;
     overflow-y: auto;
@@ -343,7 +358,8 @@ button:active {
     border-radius: var(--radius-sm);
     width: auto;
     user-select: none;
-    font-weight: 800 !important;
+    font-weight: 400 !important;
+    /* Removed bold */
     /* Exception: Command label should be readable */
     font-size: 13px;
     letter-spacing: 0.05em;
@@ -388,7 +404,8 @@ textarea {
     display: flex;
     flex-direction: column;
     background-color: var(--bg1);
-    padding: 1.25rem;
+    padding: 1rem;
+    /* Reduced padding */
     overflow: hidden;
 }
 
@@ -419,7 +436,8 @@ textarea {
     border-bottom: 3px solid transparent !important;
     padding: 6px 12px;
     color: var(--fg2);
-    font-weight: 700;
+    font-weight: 400;
+    /* Removed bold */
     border-radius: 0;
     box-shadow: none !important;
     position: relative;
@@ -454,7 +472,8 @@ textarea {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     grid-auto-rows: min-content;
-    gap: 1.5rem;
+    gap: 1rem;
+    /* Reduced gap */
     padding: 0;
     width: 100%;
 }
@@ -463,12 +482,14 @@ textarea {
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
+    /* Reduced gap */
 }
 
 .form-group label {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 400;
+    /* Removed bold */
     color: var(--orange);
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -479,7 +500,8 @@ select {
     background-color: var(--bg0);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
-    padding: 10px 12px;
+    padding: 8px 10px;
+    /* Reduced padding */
     font-size: 14px;
     color: var(--fg1);
     font-family: var(--font-ui);
@@ -576,7 +598,8 @@ iframe {
 
 .error-header {
     background-color: rgba(251, 73, 52, 0.1);
-    padding: 16px 20px;
+    padding: 12px 16px;
+    /* Reduced padding */
     border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
@@ -587,6 +610,8 @@ iframe {
     margin: 0;
     color: var(--red);
     font-size: 16px;
+    font-weight: 400;
+    /* Removed bold */
 }
 
 pre#errorLog {
@@ -635,12 +660,17 @@ pre#errorLog {
     animation: fadeIn 0.2s ease-out;
 }
 
+.brand:hover .brand-name {
+    color: var(--fg0);
+}
+
 .modal-content {
     background-color: var(--bg1);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    /* Increased from 400px */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -648,7 +678,8 @@ pre#errorLog {
 }
 
 .modal-header {
-    padding: 16px 20px;
+    padding: 12px 16px;
+    /* Reduced padding */
     border-bottom: 1px solid var(--border-color);
     background-color: var(--bg2);
     border-radius: var(--radius-md) var(--radius-md) 0 0;
@@ -658,15 +689,18 @@ pre#errorLog {
     margin: 0;
     color: var(--fg0);
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
+    /* Removed bold */
 }
 
 .modal-body {
-    padding: 24px 20px;
+    padding: 16px;
+    /* Reduced padding */
 }
 
 .modal-footer {
-    padding: 16px 20px;
+    padding: 12px 16px;
+    /* Reduced padding */
     border-top: 1px solid var(--border-color);
     display: flex;
     justify-content: flex-end;
@@ -678,7 +712,8 @@ pre#errorLog {
 .error-text {
     color: var(--red);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
+    /* Removed bold */
     margin-top: 6px;
     display: block;
 }

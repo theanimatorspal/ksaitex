@@ -10,10 +10,10 @@
 % \VAR{ start_page, default='1', tab='पृष्ठ संख्या', label='यहाँबाट सुरु' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='फन्ट', label='मुख्य फन्ट' }
 % \VAR{ extra_preamble, default='', tab='उन्नत', label='अतिरिक्त कोड' }
-% \MAGIC{ page_break, label='नयाँ पृष्ठ', command='\pagebreak' }
-% \MAGIC{ devanagari_num, label='देवनागरी अंक', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
-% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
-% \MAGIC{ horizontal_rule, label='तेर्सो रेखा', command='\hrule' }
+% \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='लेआउट', command='\pagebreak' }
+% \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
+% \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
+% \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='लेआउट', command='\hrule' }
 
 \documentclass{\VAR{document_class}}
 
