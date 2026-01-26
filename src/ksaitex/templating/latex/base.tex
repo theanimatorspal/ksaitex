@@ -11,6 +11,9 @@
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='फन्ट', label='मुख्य फन्ट' }
 % \VAR{ extra_preamble, default='', tab='उन्नत', label='अतिरिक्त कोड' }
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='लेआउट', command='\pagebreak' }
+% \MAGIC{ section, label='खण्ड (Section)', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
+% \MAGIC{ subsection, label='उपखण्ड (Subsection)', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\subsection{VAR_title}' }
+% \MAGIC{ box, label='बक्स (Box)', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
 % \MAGIC{ devanagari_alph, label='देवनागरी अक्षर', tab='पृष्ठ संख्या', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
 % \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='लेआउट', command='\hrule' }
@@ -21,6 +24,7 @@
 \usepackage{polyglossia}
 \usepackage{geometry}
 \usepackage{fancyhdr}
+\usepackage{tcolorbox}
 
 \geometry{
     top=\VAR{top_margin},

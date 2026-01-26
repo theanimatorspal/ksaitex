@@ -22,8 +22,6 @@ const uploadBtn = document.getElementById('uploadBtn');
 const mdUploadInput = document.getElementById('mdUploadInput');
 const projectTitleInput = document.getElementById('projectTitle');
 const saveStatus = document.getElementById('saveStatus');
-const openProjectBtn = document.getElementById('openProjectBtn');
-const projectList = document.getElementById('projectList');
 const newProjectBtn = document.getElementById('newProjectBtn');
 const saveProjectBtn = document.getElementById('saveProjectBtn');
 
@@ -79,7 +77,7 @@ async function init() {
         templateSelect.addEventListener('change', (e) => {
             ui.renderTabs(e.target.value, availableTemplates, {
                 tabsHeader, tabsContent,
-                onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
+                onMagicClick: (cmd) => editor.insertMagicCommand(cmd, markdownEditor)
             });
         });
 
@@ -139,12 +137,193 @@ async function init() {
             renameProjectTitleInput.addEventListener('input', () => renameTitleError.classList.add('hidden'));
         }
 
+        // Global Magic Command Interaction
+        // We use a global listener to guarantee we catch clicks even inside contenteditable
+        document.body.addEventListener('mousedown', (e) => {
+            const btn = e.target.closest('.magic-arg-btn');
+            if (btn) {
+                // Prevent editor from stealing focus or moving caret weirdly
+                e.preventDefault();
+                e.stopPropagation();
+
+                const block = btn.closest('.magic-block');
+                if (block) {
+                    const argName = btn.dataset.name;
+                    openCommandModalWithTab(block, argName);
+                }
+            }
+        }, true); // Capture phase
+
+        // Unified Command Edit Modal
+        const editCommandModal = document.getElementById('editCommandModal');
+        const editCommandLabel = document.getElementById('editCommandLabel');
+        const commandFields = document.getElementById('commandFields');
+        const saveCommandBtn = document.getElementById('saveCommandBtn');
+        const cancelCommandBtn = document.getElementById('cancelCommandBtn');
+
+        let currentEditingBlock = null;
+
+        function openCommandModal(block) {
+            currentEditingBlock = block;
+            const label = block.dataset.label;
+            const schema = block.dataset.argsSchema || "";
+
+            editCommandLabel.textContent = `Edit ${label}`;
+            commandFields.innerHTML = '';
+            editCommandModal.classList.remove('hidden');
+
+            // Determine which arg was clicked to auto-select it
+            // We can find this by checking which button triggered the event? 
+            // Actually, the global mousedown handler passed 'block', but we can check the event target if we had it but we don't here.
+            // Wait, we need to know the 'active arg'.
+            // Let's modify openCommandModal to accept 'activeArgName'
+        }
+
+        // Helper to switch tabs
+        function activateArgTab(name) {
+            const tabs = commandFields.querySelectorAll('.arg-tab');
+            const panels = commandFields.querySelectorAll('.arg-panel');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+
+            const activeTab = commandFields.querySelector(`.arg-tab[data-target="${name}"]`);
+            const activePanel = document.getElementById(`panel-${name}`);
+
+            if (activeTab) activeTab.classList.add('active');
+            if (activePanel) {
+                activePanel.classList.add('active');
+                // Focus input
+                const input = activePanel.querySelector('.dynamic-arg-input');
+                if (input) setTimeout(() => input.focus(), 50);
+            }
+        }
+
+        function openCommandModalWithTab(block, targetArgName) {
+            console.log("Opening Modal for:", block.dataset.label, "Target:", targetArgName);
+            openCommandModal(block); // Reset
+
+            // Build Tab Layout
+            const container = document.createElement('div');
+            container.className = 'arg-tabs-container';
+
+            const sidebar = document.createElement('div');
+            sidebar.className = 'arg-tabs-sidebar';
+
+            const content = document.createElement('div');
+            content.className = 'arg-tabs-content';
+
+            container.appendChild(sidebar);
+            container.appendChild(content);
+            commandFields.appendChild(container);
+
+            const schema = block.dataset.argsSchema || "";
+            if (!schema) return;
+
+            const schemaItems = schema.split('|');
+            let firstArg = null;
+
+            schemaItems.forEach(item => {
+                const parts = item.split(':');
+                const name = parts[0].trim();
+                const typeDef = (parts[1] || 'text').trim();
+
+                if (!firstArg) firstArg = name;
+                console.log("Processing Arg:", name, "Type:", typeDef);
+
+                // 1. Sidebar Tab
+                const tab = document.createElement('button');
+                tab.className = 'arg-tab';
+                tab.textContent = ui.formatLabel(name);
+                tab.dataset.target = name;
+                tab.onclick = () => activateArgTab(name);
+                sidebar.appendChild(tab);
+
+                // 2. Content Panel
+                const panel = document.createElement('div');
+                panel.className = 'arg-panel';
+                panel.id = `panel-${name}`;
+
+                // Current Value
+                const existingBtn = block.querySelector(`.magic-arg-btn[data-name="${name}"]`);
+                const currentVal = existingBtn ? existingBtn.dataset.fullValue : (parts[2] || "");
+
+                // Input Field
+                let input;
+                if (typeDef.startsWith('select')) {
+                    input = document.createElement('select');
+                    input.className = 'dynamic-arg-input';
+                    const opts = typeDef.split(',');
+                    // opts[0] is 'select'
+                    for (let i = 1; i < opts.length; i++) {
+                        const opt = document.createElement('option');
+                        opt.value = opts[i].trim();
+                        opt.textContent = opts[i].trim();
+                        input.appendChild(opt);
+                    }
+                    input.value = currentVal;
+                } else if (typeDef === 'textarea') {
+                    console.log("Creating Textarea for", name);
+                    input = document.createElement('textarea');
+                    input.className = 'dynamic-arg-input';
+                    // Force inline styles for safety
+                    input.style.width = "100%";
+                    input.style.height = "100%";
+                    input.style.display = "block";
+                    input.style.minHeight = "200px"; // Guarantee visible height
+                    input.value = currentVal;
+                } else {
+                    input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'dynamic-arg-input';
+                    input.value = currentVal;
+                }
+
+                input.dataset.fieldName = name;
+                panel.appendChild(input);
+                content.appendChild(panel);
+            });
+
+            // Activate initial tab
+            const finalTarget = targetArgName || firstArg;
+            console.log("Activating Tab:", finalTarget);
+            activateArgTab(finalTarget);
+        }
+
+        function closeCommandModal() {
+            editCommandModal.classList.add('hidden');
+            currentEditingBlock = null;
+        }
+
+        if (saveCommandBtn) {
+            saveCommandBtn.onclick = () => {
+                if (!currentEditingBlock) return;
+
+                // Update DOM elements based on inputs
+                const inputs = commandFields.querySelectorAll('.dynamic-arg-input');
+                inputs.forEach(input => {
+                    const name = input.dataset.fieldName;
+                    const val = input.value;
+
+                    const btn = currentEditingBlock.querySelector(`.magic-arg-btn[data-name="${name}"]`);
+                    if (btn) {
+                        editor.updateArgButton(btn, val);
+                    }
+                });
+
+                closeCommandModal();
+            };
+        }
+
+        if (cancelCommandBtn) cancelCommandBtn.onclick = closeCommandModal;
+
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey && e.key === 'Enter') compile();
             if (e.ctrlKey && e.key === 's') { e.preventDefault(); if (currentProjectId) autoSave(); }
             if (e.key === 'Escape') {
                 if (!newProjectModal.classList.contains('hidden')) hideNewProjectModal();
                 if (!renameProjectModal.classList.contains('hidden')) hideRenameModal();
+                if (editCommandModal && !editCommandModal.classList.contains('hidden')) closeCommandModal();
             }
         });
 
@@ -416,46 +595,6 @@ async function refreshProjects() {
     try {
         const projects = await api.fetchProjects();
         projectsListCache = projects; // Update cache
-
-        // Also update the dropdown list just in case
-        projectList.innerHTML = '';
-        if (projects.length === 0) {
-            projectList.innerHTML = '<div class="dropdown-item">No projects</div>';
-        } else {
-            projects.forEach(p => {
-                const item = document.createElement('div');
-                item.className = 'dropdown-item';
-                item.textContent = p.title;
-                item.style.display = "flex";
-                item.style.justifyContent = "space-between";
-
-                // Add Delete Btn to dropdown too
-                const trash = document.createElement('i');
-                trash.className = "fa-solid fa-trash";
-                trash.style.color = "var(--red)";
-                trash.style.marginLeft = "10px";
-                trash.onclick = async (e) => {
-                    e.stopPropagation();
-                    if (confirm(`Delete project "${p.title}" permanently?`)) {
-                        await api.deleteProject(p.id);
-                        await refreshProjects();
-                        refreshWelcomeList();
-                        if (currentProjectId === p.id) {
-                            showWelcomeScreen(); // Kick user out if they delete active project
-                        }
-                    }
-                };
-
-                item.appendChild(trash);
-
-                item.onclick = (e) => {
-                    e.stopPropagation();
-                    loadProject(p.id);
-                    projectList.classList.remove('show');
-                };
-                projectList.appendChild(item);
-            });
-        }
     } catch (e) {
         console.error("refreshProjects failed:", e);
     }

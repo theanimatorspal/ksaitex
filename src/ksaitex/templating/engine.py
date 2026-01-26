@@ -127,14 +127,59 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
     print(f"Magic Commands Found: {[c['label'] for c in magic_commands]}")
     
     for cmd in magic_commands:
-        magic_string = f"[{cmd['label']}]"
-        actual_command = cmd['command']
-        count = context["content"].count(magic_string)
-        if count > 0:
-            print(f"Replacing {count} occurrences of '{magic_string}' with '{actual_command}'")
-            context["content"] = context["content"].replace(magic_string, actual_command)
-        else:
-            print(f"No occurrences of '{magic_string}' found in content.")
+        label = cmd['label']
+        # Escape label for regex in case it has special chars
+        escaped_label = re.escape(label)
+        
+        # Regex to match [Label] or [Label|arg=val;arg2=val2]
+        # We capture the optional arguments part
+        pattern = re.compile(rf"\[{escaped_label}(?:\|(.*?))?\]")
+        
+        def replacer(match):
+            args_str = match.group(1) or ""
+            
+            # Parse provided arguments: title=Foo; author=Bar
+            provided_args = {}
+            if args_str:
+                for pair in args_str.split(';'):
+                    if '=' in pair:
+                        k, v = pair.split('=', 1)
+                        # Unescape \\n back to \n
+                        provided_args[k.strip()] = v.strip().replace(r'\n', '\n')
+            
+            # Parse default arguments from metadata definition
+            # Metadata args format: 'name:type:default'
+            # We assume single arg for now or multiple separated by |? 
+            # Actually, let's keep it simple: Metadata 'args' is a string describing the schema.
+            # We just need to map variable names to values.
+            
+            # Get the raw command string template (e.g. "\section{VAR_title}")
+            final_cmd = cmd['command']
+            
+            # 1. Apply defaults from metadata if defined
+            if 'args' in cmd:
+                # schema format: "title:text:Default Title|size:number:10"
+                schema_items = cmd['args'].split('|')
+                for item in schema_items:
+                    parts = item.split(':')
+                    if len(parts) >= 1:
+                        var_name = parts[0].strip()
+                        default_val = parts[2].strip() if len(parts) >= 3 else ""
+                        
+                        # Use provided value or default
+                        val_to_use = provided_args.get(var_name, default_val)
+                        
+                        # Replace VAR_varname in the command string
+                        # We use a simple replace here. 
+                        # Note: This limits variable names to not be substrings of others ideally.
+                        final_cmd = final_cmd.replace(f"VAR_{var_name}", val_to_use)
+            
+            return final_cmd
+        
+        # Perform substitution
+        if pattern.search(context["content"]):
+            print(f"Processing magic command: {label}")
+            context["content"] = pattern.sub(replacer, context["content"])
 
     # Read template content
     template_path = TEMPLATE_DIR / template_name

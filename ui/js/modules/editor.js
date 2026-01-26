@@ -26,6 +26,16 @@ export function initEditor(editor) {
     });
 }
 
+export function updateArgButton(btn, newValue) {
+    btn.dataset.fullValue = newValue;
+    // Display: collapses newlines to space for single-line pill
+    let display = newValue.replace(/\n/g, ' ');
+    if (display.length > 15) {
+        display = display.substring(0, 12) + "...";
+    }
+    btn.textContent = display;
+}
+
 export function loadContent(text, editor) {
     if (!text) {
         editor.innerHTML = '<div><br></div>';
@@ -61,17 +71,53 @@ export function setInitialMarkdown(editor) {
     loadContent(raw, editor);
 }
 
-export function insertMagicCommand(label, editor) {
-    const magicString = `[${label}]`;
+export function insertMagicCommand(cmd, editor) {
+    const label = cmd.label;
+    const argsSchema = cmd.args || ""; // "title:text:Default Title|size:number:10"
 
-    // Minimal HTML structure to avoid browser confusion
-    // Note: No extra spaces or newlines inside the string!
-    const html = `<div class="magic-block" contenteditable="false" data-command="${magicString}"><span class="magic-label">${label}</span><button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button></div>`;
+    // Construct initial magic string for data attribute
+    let magicString = `[${label}]`;
+    let argsHtml = "";
+
+    if (argsSchema) {
+        // Parse schema and build buttons
+        const schemaItems = argsSchema.split('|');
+        const kvPairs = [];
+
+        schemaItems.forEach(item => {
+            const parts = item.split(':');
+            const name = parts[0].trim();
+            // const type = parts[1]; // Unused for rendering button but useful for modal later
+            const defaultVal = parts[2] || "";
+
+            // Render Button
+            // Truncate long text
+            let displayVal = defaultVal;
+            if (displayVal.length > 15) {
+                displayVal = displayVal.substring(0, 12) + "...";
+            }
+
+            argsHtml += `<button class="magic-arg-btn" data-name="${name}" data-full-value="${defaultVal}" title="Edit ${name}">${displayVal}</button>`;
+
+            kvPairs.push(`${name}=${defaultVal}`);
+        });
+
+        if (kvPairs.length > 0) {
+            magicString = `[${label}|${kvPairs.join(';')}]`;
+        }
+    }
+
+    // Minimal HTML structure
+    const html = `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${argsSchema}">
+        <span class="magic-label">${label}</span>
+        <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div>
+        <button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button>
+    </div>`;
 
     editor.focus();
     document.execCommand('insertHTML', false, html);
 
-    // Add a trailing line to ensure the user can keep typing below it
+    // Add trailing line
     const br = document.createElement('div');
     br.innerHTML = '<br>';
     editor.appendChild(br);
@@ -88,12 +134,28 @@ export function getMarkdownContent(editor) {
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             const tagName = node.tagName.toUpperCase();
 
-            // 1. Magic Blocks are atomic - grab command and STOP
+            // 1. Magic Blocks - Reconstruct command string from current state
             if (node.classList.contains('magic-block')) {
-                const cmd = node.dataset.command || "";
-                // Force command onto its own line with gaps for MD paragraphing
-                if (result !== "" && !result.endsWith('\n')) result += '\n';
-                result += "\n" + cmd + "\n\n";
+                const label = node.dataset.label || "Command";
+
+                // Re-serialize arguments from the buttons
+                const argBtns = node.querySelectorAll('.magic-arg-btn');
+                if (argBtns.length > 0) {
+                    const pairs = [];
+                    argBtns.forEach(btn => {
+                        const k = btn.dataset.name;
+                        let v = btn.dataset.fullValue || "";
+                        // Escape newlines for single-line persistence
+                        v = v.replace(/\n/g, "\\n");
+                        pairs.push(`${k}=${v}`);
+                    });
+                    result += `\n[${label}|${pairs.join(';')}]\n\n`;
+                } else {
+                    // Fallback to simple label or original command string if no buttons found (legacy blocks)
+                    const cmd = node.dataset.command || `[${label}]`;
+                    if (result !== "" && !result.endsWith('\n')) result += '\n';
+                    result += "\n" + cmd + "\n\n";
+                }
                 return;
             }
 
@@ -121,15 +183,12 @@ export function getMarkdownContent(editor) {
 
     walk(editor);
 
-    // Normalization: 
-    // Convert to lines, trim, and rebuild to ensure exact double-newline separation for paragraphs
     return result
         .replace(/\u00a0/g, ' ')
         .split('\n')
         .map(l => l.trim())
         .filter((l, i, arr) => {
             if (l !== "") return true;
-            // Allow max 1 empty line (standard MD paragraph gap)
             return i > 0 && arr[i - 1] !== "";
         })
         .join('\n')

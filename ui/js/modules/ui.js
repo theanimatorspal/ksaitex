@@ -97,7 +97,7 @@ export function renderTabs(templateName, availableTemplates, { tabsHeader, tabsC
                 const cmdBtn = document.createElement('button');
                 cmdBtn.className = 'magic-btn';
                 cmdBtn.textContent = item.label;
-                cmdBtn.onclick = () => onMagicClick(item.label);
+                cmdBtn.onclick = () => onMagicClick(item);
                 cmdBtn.style.width = '100%'; // Full width in grid cell
                 pane.appendChild(cmdBtn);
             } else {
