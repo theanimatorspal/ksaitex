@@ -14,6 +14,7 @@ class CompileRequest(BaseModel):
     markdown: str
     template: str = "base"
     variables: dict = {}
+    title: str = "Untitled Project" # Added title
 
 class SaveRequest(BaseModel):
     title: str
@@ -46,13 +47,22 @@ async def list_templates():
 
 @app.post("/api/compile")
 async def compile_endpoint(request: CompileRequest):
-    # 1. Parse
+    import re
+    print(f"DEBUG: Endpoint received title: '{request.title}'") # Log received title
+    # 1. Determine Project Directory
+    safe_title = re.sub(r'[^\w\s-]', '', request.title).strip().replace(' ', '_')
+    if not safe_title: safe_title = "unnamed_project"
+    
+    project_dir = DATA_DIR / safe_title
+    project_dir.mkdir(parents=True, exist_ok=True) # Ensure dir exists
+
+    # 2. Parse
     try:
         latex_fragment = parse(request.markdown)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Parsing error: {str(e)}")
 
-    # 2. Template
+    # 3. Template
     try:
         template_filename = f"{request.template}.tex"
         # Combine variables
@@ -65,8 +75,8 @@ async def compile_endpoint(request: CompileRequest):
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Templating error: {str(e)}")
 
-    # 3. Compile
-    pdf_bytes, log = await compile_latex(full_latex)
+    # 4. Compile in Project Directory
+    pdf_bytes, log = await compile_latex(full_latex, working_dir=project_dir)
 
     if not pdf_bytes:
         # Return log as error detail

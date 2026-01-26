@@ -554,7 +554,9 @@ async function compile() {
         document.querySelectorAll('.dynamic-input').forEach(input => {
             if (input.value.trim()) variables[input.id] = input.value.trim();
         });
-        const blob = await api.compileLatex(markdown, templateSelect.value, variables);
+        const title = projectTitleInput.value || "Untitled";
+        console.log("DEBUG: Compiling with title:", title); 
+        const blob = await api.compileLatex(markdown, templateSelect.value, variables, title);
         pdfPreview.src = URL.createObjectURL(blob);
         pdfPreview.classList.remove('hidden');
         emptyState.classList.add('hidden');

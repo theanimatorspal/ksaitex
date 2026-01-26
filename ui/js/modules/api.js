@@ -13,14 +13,15 @@ export async function fetchTemplates() {
     }
 }
 
-export async function compileLatex(markdown, template, variables) {
+export async function compileLatex(markdown, template, variables, title) {
     const response = await fetch('/api/compile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             markdown,
             template,
-            variables
+            variables,
+            title
         })
     });
 
