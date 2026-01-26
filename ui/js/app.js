@@ -307,25 +307,30 @@ async function init() {
             markdownEditor.addEventListener('contextmenu', (e) => {
                 const selection = window.getSelection();
                 const selectedText = selection.toString().trim();
+                const targetBlock = e.target.closest('.magic-block');
 
-                // Only show if text is selected
-                if (!selectedText) return;
-
-                // Capture range to restore later
-                const range = selection.getRangeAt(0).cloneRange();
+                // Case 1: Swapping an existing block
+                // Case 2: Standard text selection insertion
+                if (!selectedText && !targetBlock) return;
 
                 e.preventDefault();
 
                 // Get commands from current template
                 const currentTemplate = templateSelect.value;
                 const metadata = availableTemplates[currentTemplate];
-
                 if (!metadata || !metadata.magic_commands) return;
 
-                // Filter for "Formatting" commands (tab='ढाँचा')
+                // Filter for "Formatting" commands (tab='ढाँचा' or 'Formatting')
                 const commands = metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting');
-
                 if (commands.length === 0) return;
+
+                // Capture Swap State
+                let swapValue = null;
+                if (targetBlock) {
+                    // Extract first arg value from the target block's first button
+                    const firstBtn = targetBlock.querySelector('.magic-arg-btn');
+                    if (firstBtn) swapValue = firstBtn.dataset.fullValue;
+                }
 
                 // Populate Menu
                 contextMenu.innerHTML = '';
@@ -335,20 +340,28 @@ async function init() {
                     item.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${cmd.label}</span>`;
 
                     item.onclick = () => {
-                        // Restore selection so execCommand replaces text
-                        selection.removeAllRanges();
-                        selection.addRange(range);
+                        let finalOverrides = {};
+                        const valToInject = targetBlock ? swapValue : selectedText;
 
-                        // Determine first argument to pre-fill
-                        let overrides = {};
-                        if (cmd.args) {
-                            const firstArg = cmd.args.split('|')[0].split(':')[0].trim();
-                            if (firstArg) {
-                                overrides[firstArg] = selectedText;
-                            }
+                        if (cmd.args && valToInject !== null) {
+                            const firstArgName = cmd.args.split('|')[0].split(':')[0].trim();
+                            if (firstArgName) finalOverrides[firstArgName] = valToInject;
                         }
 
-                        editor.insertMagicCommand(cmd, markdownEditor, overrides);
+                        // Execute Replacement
+                        if (targetBlock) {
+                            // Select the block to ensure insertHTML replaces it
+                            const range = document.createRange();
+                            range.selectNode(targetBlock);
+                            selection.removeAllRanges();
+                            selection.addRange(range);
+                        } else {
+                            // Restore text selection
+                            // range variable from outer scope needed? 
+                            // Actually we can just proceed if selection is still there.
+                        }
+
+                        editor.insertMagicCommand(cmd, markdownEditor, finalOverrides);
                         contextMenu.classList.add('hidden');
                     };
 
