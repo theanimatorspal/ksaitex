@@ -24,6 +24,7 @@ const projectTitleInput = document.getElementById('projectTitle');
 const saveStatus = document.getElementById('saveStatus');
 const newProjectBtn = document.getElementById('newProjectBtn');
 const saveProjectBtn = document.getElementById('saveProjectBtn');
+const syncStatus = document.getElementById('syncStatus'); // New
 
 // Modal Elements
 const newProjectModal = document.getElementById('newProjectModal');
@@ -82,6 +83,59 @@ async function init() {
         });
 
         convertBtn.addEventListener('click', compile);
+
+        // Sync Logic
+        let syncDebounceTimer = null;
+        function triggerSync() {
+            // Only sync if editor is focused or selection is inside it
+            const sel = window.getSelection();
+            if (!sel.anchorNode) return;
+
+            let node = sel.anchorNode;
+            let inside = false;
+            while (node) {
+                if (node === markdownEditor) { inside = true; break; }
+                node = node.parentNode;
+            }
+            if (!inside) return;
+
+            if (syncDebounceTimer) clearTimeout(syncDebounceTimer);
+            syncDebounceTimer = setTimeout(async () => {
+                if (!currentProjectId) return;
+
+                const lineIndex = editor.getCursorLine(markdownEditor);
+                // Convert to 1-based
+                const line = lineIndex + 1;
+
+                try {
+                    const res = await api.syncPosition(currentProjectId, line);
+                    if (res.status === 'success') {
+                        syncStatus.textContent = `Page: ${res.page}`;
+                        syncStatus.dataset.page = res.page;
+                        syncStatus.classList.remove('hidden'); // Use class
+                    }
+                } catch (e) {
+                    console.error("Sync error", e);
+                }
+            }, 500); // 500ms debounce
+        }
+
+        document.addEventListener('selectionchange', triggerSync);
+        // Also trigger on keyup to be responsive
+        markdownEditor.addEventListener('keyup', triggerSync);
+        markdownEditor.addEventListener('click', triggerSync);
+
+        if (syncStatus) {
+            syncStatus.addEventListener('click', () => {
+                const p = syncStatus.dataset.page;
+                if (p && pdfPreview.src) {
+                    // Reload iframe with #page param
+                    // Note: Replacing src completely might flicker.
+                    const cleanSrc = pdfPreview.src.split('#')[0];
+                    pdfPreview.src = cleanSrc + "#page=" + p;
+                }
+            });
+        }
 
         if (newProjectBtn) {
             newProjectBtn.addEventListener('click', () => {
@@ -637,7 +691,28 @@ async function compile() {
         const title = projectTitleInput.value || "Untitled";
         console.log("DEBUG: Compiling with title:", title);
         const blob = await api.compileLatex(markdown, templateSelect.value, variables, title);
-        pdfPreview.src = URL.createObjectURL(blob);
+
+        const blobUrl = URL.createObjectURL(blob);
+        let finalSrc = blobUrl;
+
+        // Auto-sync to current cursor position
+        if (currentProjectId) {
+            const lineIndex = editor.getCursorLine(markdownEditor);
+            try {
+                // We utilize the just-updated mapping on the server
+                const res = await api.syncPosition(currentProjectId, lineIndex + 1);
+                if (res.status === 'success') {
+                    finalSrc += "#page=" + res.page;
+                    if (syncStatus) {
+                        syncStatus.textContent = `Page: ${res.page}`;
+                        syncStatus.dataset.page = res.page;
+                        syncStatus.classList.remove('hidden');
+                    }
+                }
+            } catch (ignore) { }
+        }
+
+        pdfPreview.src = finalSrc;
         pdfPreview.classList.remove('hidden');
         emptyState.classList.add('hidden');
     } catch (error) {

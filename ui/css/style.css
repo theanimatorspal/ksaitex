@@ -68,6 +68,32 @@ body {
     /* Reduced padding */
     gap: 1rem;
     z-index: 10;
+    position: relative;
+    /* For absolute centering of sync status */
+}
+
+.sync-status {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg2);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--fg2);
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    z-index: 20;
+}
+
+.sync-status:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+    background-color: var(--bg1);
 }
 
 .brand {

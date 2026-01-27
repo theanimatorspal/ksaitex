@@ -74,3 +74,12 @@ export async function fetchProject(id) {
     if (!res.ok) throw new Error("Project not found");
     return await res.json();
 }
+
+export async function syncPosition(project_id, line) {
+    const res = await fetch('/api/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id, line })
+    });
+    return await res.json();
+}

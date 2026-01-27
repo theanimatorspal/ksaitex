@@ -27,8 +27,9 @@ class LatexCompiler:
 
             # Run lualatex
             # -interaction=nonstopmode prevents hanging on errors
+            # -synctex=1 enables synchronization
             # We don't use -output-directory if running in-place to ensure aux files stay there as requested
-            cmd = ["lualatex", "-interaction=nonstopmode", str(tex_filename)]
+            cmd = ["lualatex", "-interaction=nonstopmode", "-synctex=1", str(tex_filename)]
             
             # Prepare environment with local fonts directory
             env = shutil.os.environ.copy()

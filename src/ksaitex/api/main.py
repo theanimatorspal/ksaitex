@@ -61,9 +61,16 @@ async def list_templates():
              
     return {"templates": templates_data}
 
+class SyncRequest(BaseModel):
+    project_id: str
+    line: int
+    column: int = 1
+
 @app.post("/api/compile")
 async def compile_endpoint(request: CompileRequest):
     import re
+    import json
+    
     print(f"DEBUG: Endpoint received title: '{request.title}'") # Log received title
     # 1. Determine Project Directory
     safe_title = re.sub(r'[^\w\s-]', '', request.title).strip().replace(' ', '_')
@@ -72,26 +79,56 @@ async def compile_endpoint(request: CompileRequest):
     project_dir = DATA_DIR / safe_title
     project_dir.mkdir(parents=True, exist_ok=True) # Ensure dir exists
 
-    # 2. Parse
+    # 2. Parse (Now returns tuple)
     try:
-        latex_fragment = parse(request.markdown)
+        latex_fragment, source_map = parse(request.markdown)
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Parsing error: {str(e)}")
 
-    # 3. Template
+    # 3. Template (Now returns tuple)
     try:
         template_filename = f"{request.template}.tex"
         # Combine variables
         config = request.variables.copy()
         
-        full_latex = render_latex(latex_fragment, config, template_name=template_filename)
+        full_latex, offset = render_latex(latex_fragment, config, template_name=template_filename)
         
+        # Adjust mapping
+        final_map = {}
+        for md_line, tex_line in source_map.items():
+             final_map[str(md_line)] = tex_line + offset
+        
+        # Save mapping
+        with open(project_dir / "source_map.json", "w") as f:
+            json.dump(final_map, f)
+            
     except Exception as e:
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Templating error: {str(e)}")
 
     # 4. Compile in Project Directory
+    # Ensure source file name is consistent 'main.tex' so synctex works predictably
+    
+    # We need to ensure compile_latex writes to 'main.tex'
+    # The default output_filename passed to compile is "main.pdf"
+    # Inside compile_latex -> LatexCompiler.compile -> writes to tex_filename derived from output_filename?
+    # No, compile takes (latex_content, output_filename).
+    # Inside compile: pdf_name = output_filename.
+    # tex_name = pdf_name.with_suffix('.tex').
+    
+    # We pass filename="main.pdf" by default in compile_latex if output_path is None?
+    # No, await compiler.compile(..., filename, ...)
+    # Let's check compiler.py logic again.
+    # compile() takes `output_filename` as 2nd arg.
+    # It writes to `tex_filename`? No internal logic: `pdf_name = Path(tex_filename).with_suffix('.pdf').name`
+    # Wait, compiled function signature: `async def compile(self, latex_content: str, output_filename: str = "main.pdf", working_dir: Optional[Path] = None)`
+    # Inside: `tex_filename = Path(output_filename).with_suffix(".tex").name` NO, checking compiler.py content:
+    # `async def run_compilation(cwd: Path, tex_filename: str):`
+    # It calls run_compilation with "main.tex" if working_dir is set?
+    # Line 71: `return await run_compilation(working_dir, "main.tex")`
+    # So it ALWAYS uses main.tex if working_dir is provided. Good.
+
     pdf_bytes, log = await compile_latex(full_latex, working_dir=project_dir)
 
     if not pdf_bytes:
@@ -99,6 +136,101 @@ async def compile_endpoint(request: CompileRequest):
         raise HTTPException(status_code=500, detail=f"Compilation failed:\n{log}")
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+@app.post("/api/sync")
+async def sync_position(request: SyncRequest):
+    """
+    Given a markdown line number, return the corresponding PDF page and line (approx).
+    Uses synctex.
+    """
+    import json
+    import subprocess
+    import shutil
+    
+    project_dir = DATA_DIR / request.project_id
+    if not project_dir.exists():
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    map_file = project_dir / "source_map.json"
+    if not map_file.exists():
+        return {"status": "no_map"} # No mapping available yet
+
+    try:
+        with open(map_file, "r") as f:
+            mapping = json.load(f)
+    except:
+        return {"status": "error", "detail": "Invalid map file"}
+
+    # Find closest known line
+    # Mapping keys are strings "10", "15" etc.
+    # Find key <= request.line
+    
+    target_tex_line = None
+    
+    # Convert keys to int
+    int_map = {int(k): v for k, v in mapping.items()}
+    sorted_keys = sorted(int_map.keys())
+    
+    # Simple binary search or scan for closest preceding line
+    closest_md = -1
+    for k in sorted_keys:
+        if k <= request.line:
+            closest_md = k
+        else:
+            break
+            
+    if closest_md != -1:
+        target_tex_line = int_map[closest_md]
+    else:
+        # If before first mapped line, try first
+        if sorted_keys:
+            target_tex_line = int_map[sorted_keys[0]]
+    
+    if target_tex_line is None:
+        return {"status": "no_match"}
+
+    # Run synctex view
+    # synctex view -i <line>:<col>:<file> -o <pdf>
+    # file should be relative or absolute? synctex is picky.
+    # Because we compile in project_dir, 'main.tex' is the file.
+    # PDF is 'main.pdf'.
+    
+    # Check if synctex tool exists
+    if not shutil.which("synctex"):
+        return {"status": "error", "detail": "synctex tool not found"}
+
+    try:
+        cmd = ["synctex", "view", "-i", f"{target_tex_line}:1:main.tex", "-o", "main.pdf"]
+        # Exec in project dir
+        result = subprocess.run(cmd, cwd=str(project_dir), capture_output=True, text=True)
+        
+        # Parse output
+        # Output format:
+        # This is SyncTeX command line utility, version 1.5
+        # Page:1
+        # x:172.936081
+        # y:679.167847
+        # h:100.957016
+        # v:679.167847
+        # W:364.195312
+        # H:10.909912
+        # ...
+        
+        output = result.stdout
+        page = None
+        
+        for line in output.splitlines():
+            if line.startswith("Page:"):
+                page = int(line.split(":")[1])
+                break
+        
+        if page:
+             return {"status": "success", "page": page, "tex_line": target_tex_line}
+        else:
+             return {"status": "no_synctex_match", "detail": output}
+
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
 
 @app.post("/api/save")
 async def save_project(request: SaveRequest):

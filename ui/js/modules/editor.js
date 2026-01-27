@@ -203,10 +203,17 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
     document.execCommand('insertHTML', false, withBreak);
 }
 
-export function getMarkdownContent(editor) {
+export function getMarkdownContent(editor, stopBeforeNode = null) {
     let result = "";
+    let stopped = false;
 
     function walk(node) {
+        if (stopped) return;
+        if (stopBeforeNode && node === stopBeforeNode) {
+            stopped = true;
+            return;
+        }
+
         if (node.nodeType === Node.TEXT_NODE) {
             result += node.textContent;
         } else if (node.nodeType === Node.ELEMENT_NODE) {
@@ -245,6 +252,7 @@ export function getMarkdownContent(editor) {
             } else {
                 for (let child of node.childNodes) {
                     walk(child);
+                    if (stopped) return;
                 }
             }
 
@@ -266,6 +274,31 @@ export function getMarkdownContent(editor) {
         })
         .join('\n')
         .trim();
+}
+
+export function getCursorLine(editor) {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return 0;
+
+    let node = sel.anchorNode;
+    // Walk up to find direct child of editor
+    while (node && node.parentNode !== editor) {
+        node = node.parentNode;
+    }
+
+    if (!node) return 0; // Should not happen if inside editor
+
+    // Get content BEFORE this block
+    const textBefore = getMarkdownContent(editor, node);
+
+    // If textBefore is empty, line is 0.
+    if (!textBefore) return 0;
+
+    // Count lines. split('\n') gives lines.
+    // If textBefore is "A", 1 line. Next is line 1 (0-based).
+    // If textBefore is "A\nB", 2 lines. Next is line 2.
+    // Correct.
+    return textBefore.split('\n').length;
 }
 
 export function getHTMLContent(editor) {
