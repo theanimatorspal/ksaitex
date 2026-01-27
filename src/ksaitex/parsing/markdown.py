@@ -9,11 +9,15 @@ class LatexRenderer:
         self.parser = parser
         self.current_tex_line = 1 # 1-based indexing for LaTeX
         self.source_map = {}      # dict mapping md_line -> tex_line
+        
+        # Smart Quote State
+        self.in_double_quote = False
 
     def render(self, tokens: List[Token], options: Dict[str, Any], env: Dict[str, Any]) -> Tuple[str, Dict[int, int]]:
         result = ""
         self.current_tex_line = 1
         self.source_map = {}
+        self.in_double_quote = False # Reset per document
 
         for i, token in enumerate(tokens):
             term = ""
@@ -71,9 +75,36 @@ class LatexRenderer:
         result = ""
         for token in tokens:
             if token.type == "text":
-                # Escape latex special chars
-                text = token.content.replace("_", "\\_").replace("%", "\\%").replace("$", "\\$").replace("#", "\\#") # Incomplete escaping, good enough for now
-                result += text
+                content = token.content
+                output_segment = ""
+                for i, char in enumerate(content):
+                    if char == '"':
+                        if not self.in_double_quote:
+                            output_segment += "``"
+                            self.in_double_quote = True
+                        else:
+                            output_segment += "''"
+                            self.in_double_quote = False
+                    elif char == "'":
+                        is_start = (i == 0)
+                        prev_char = content[i-1] if i > 0 else " "
+                        
+                        # Heuristic for opening single quote
+                        if is_start or prev_char.isspace() or prev_char in ['(', '[', '{', '-', '"', '`']:
+                            output_segment += "`"
+                        else:
+                            output_segment += "'"
+                    elif char in ["_", "%", "$", "#"]:
+                        output_segment += "\\" + char
+                    else:
+                        output_segment += char
+                        
+                result += output_segment
+
+            elif token.type == "softbreak":
+                result += "\n"
+            elif token.type == "hardbreak":
+                result += "\\\\\n"
             elif token.type == "strong_open":
                 result += "\\textbf{"
             elif token.type == "strong_close":
@@ -92,8 +123,15 @@ class LatexRenderer:
             
         return result
 
+    def old_render_inline(self, tokens: List[Token]) -> str:
+        # Kept for reference or removed
+        pass
+    
 def parse(text: str) -> Tuple[str, Dict[int, int]]:
-    md = MarkdownIt()
+    # Configuration: Disable indented code blocks.
+    # This is crucial for users who use tabs/spaces for visual indentation of paragraphs.
+    # Also enable 'strikethrough' or other common features if needed, but 'code' is the main conflict.
+    md = MarkdownIt().disable("code")
     tokens = md.parse(text)
     renderer = LatexRenderer(md)
     return renderer.render(tokens, {}, {})
