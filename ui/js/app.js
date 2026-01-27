@@ -160,6 +160,24 @@ async function init() {
             });
         }
 
+        // Undo/Redo
+        const undoBtn = document.getElementById('undoBtn');
+        const redoBtn = document.getElementById('redoBtn');
+
+        if (undoBtn) {
+            undoBtn.addEventListener('click', () => {
+                document.execCommand('undo');
+                editor.focus(); // Refocus editor
+            });
+        }
+
+        if (redoBtn) {
+            redoBtn.addEventListener('click', () => {
+                document.execCommand('redo');
+                editor.focus();
+            });
+        }
+
         // Upload Logic
         const uploadChoiceModal = document.getElementById('uploadChoiceModal');
         const uploadReplaceBtn = document.getElementById('uploadReplaceBtn');
