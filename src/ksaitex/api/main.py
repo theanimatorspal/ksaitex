@@ -232,6 +232,109 @@ async def sync_position(request: SyncRequest):
     except Exception as e:
         return {"status": "error", "detail": str(e)}
 
+class ReverseSyncRequest(BaseModel):
+    project_id: str
+    page: int
+
+@app.post("/api/sync/reverse")
+async def reverse_sync_position(request: ReverseSyncRequest):
+    """
+    Given a PDF page number, return the corresponding Markdown line number (approx).
+    Uses synctex edit.
+    """
+    import json
+    import subprocess
+    import shutil
+    
+    project_dir = DATA_DIR / request.project_id
+    if not project_dir.exists():
+        raise HTTPException(status_code=404, detail="Project not found")
+
+    map_file = project_dir / "source_map.json"
+    if not map_file.exists():
+        return {"status": "no_map"}
+
+    try:
+        with open(map_file, "r") as f:
+            mapping = json.load(f)
+    except:
+        return {"status": "error", "detail": "Invalid map file"}
+
+    # Run synctex edit
+    # synctex edit -o <page>:50:50:main.pdf
+    # This asks "where in the source is the content at (50,50) on this page?"
+    # We use (50,50) generic offset to catch something near the top.
+    
+    if not shutil.which("synctex"):
+        return {"status": "error", "detail": "synctex tool not found"}
+
+    try:
+        # synctex edit -o page:x:y:file
+        # Note: synctex edit output is different from view.
+        # It usually outputs:
+        # Line:42
+        # Column:0
+        # Input:/path/to/main.tex
+        
+        cmd = ["synctex", "edit", "-o", f"{request.page}:100:100:main.pdf"]
+        result = subprocess.run(cmd, cwd=str(project_dir), capture_output=True, text=True)
+        
+        output = result.stdout
+        tex_line = None
+        
+        for line in output.splitlines():
+            if line.startswith("Line:"):
+                tex_line = int(line.split(":")[1])
+                break
+        
+        if tex_line is None:
+             return {"status": "no_synctex_match", "detail": output}
+             
+        # Map TeX Line -> MD Line
+        # Mapping is MD -> TeX. We need to invert it or search it.
+        # Inversion might be ambiguous (multiple MD lines map to same TeX block), 
+        # but we want the *first* MD line that maps to/near this TeX line.
+        
+        # Create inverted map: TeX -> MD (keep minimum MD for each TeX)
+        tex_to_md = {}
+        for md_line_str, tex_line_val in mapping.items():
+            md_line = int(md_line_str)
+            current = tex_to_md.get(tex_line_val, float('inf'))
+            if md_line < current:
+                tex_to_md[tex_line_val] = md_line
+                
+        # Find closest MD line
+        # We look for a TeX line <= our target
+        sorted_tex = sorted(tex_to_md.keys())
+        found_md = None
+        
+        # If exact match
+        if tex_line in tex_to_md:
+            found_md = tex_to_md[tex_line]
+        else:
+            # Find closest preceding
+            closest_tex = -1
+            for t in sorted_tex:
+                if t <= tex_line:
+                    closest_tex = t
+                else:
+                    break
+            
+            if closest_tex != -1:
+                found_md = tex_to_md[closest_tex]
+            else:
+                 # If target is before any mapped line, return first mapped
+                 if sorted_tex:
+                     found_md = tex_to_md[sorted_tex[0]]
+
+        if found_md is not None:
+            return {"status": "success", "line": found_md, "tex_line": tex_line}
+        else:
+            return {"status": "no_map_match", "tex_line": tex_line}
+
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
+
 @app.post("/api/save")
 async def save_project(request: SaveRequest):
     """Save project data to data/{title}/project.json"""

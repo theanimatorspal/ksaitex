@@ -341,17 +341,17 @@ button:active {
     flex: 1;
     background-color: #ffffff;
     color: #3c3836;
-    padding: 24px;
+    padding: 24px 24px 24px 50px;
+    /* Increased left padding for gutter */
     font-family: var(--font-ui);
     font-size: 16px;
-    /* Slightly increased for readability as requested implicitly */
     line-height: 1.7;
     outline: none;
     overflow-y: auto;
-    /* Enable scrolling */
     white-space: pre-wrap;
     min-height: 0;
-    /* CRITICAL: allow overflow-y to work in flex */
+    counter-reset: line;
+    /* Initialize counter */
 }
 
 /* Limit line height and prevent browser from rendering bold/italic in source editor */
@@ -361,6 +361,67 @@ button:active {
     font-weight: 400 !important;
     font-style: normal !important;
     line-height: inherit;
+}
+
+
+/* Only increments for direct children (the lines) */
+.rich-editor>div {
+    position: relative;
+    counter-increment: line;
+}
+
+.rich-editor>div::before {
+    content: counter(line);
+    position: absolute;
+    left: -40px;
+    width: 30px;
+    text-align: right;
+    color: var(--fg3);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    opacity: 0.5;
+    user-select: none;
+    pointer-events: none;
+    top: 2px;
+}
+
+/* Ensure nested divs (if any) or magic blocks don't get numbers */
+.rich-editor>div div::before {
+    content: none !important;
+}
+
+.rich-editor>div div {
+    counter-increment: none !important;
+}
+
+/* Status Container for Toolbar */
+.status-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
+
+.status-item {
+    background-color: var(--bg2);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--fg2);
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.status-item:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+    background-color: var(--bg1);
 }
 
 /* Placeholder for rich-editor */

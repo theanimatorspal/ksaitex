@@ -28,6 +28,15 @@ export function initEditor(editor) {
         document.execCommand('insertText', false, text);
     });
 
+    // Enforce DIV wrapping for the first line (text node fix)
+    editor.addEventListener('input', () => {
+        const first = editor.firstChild;
+        if (first && first.nodeType === Node.TEXT_NODE && first.textContent.trim() !== '') {
+            // Wrap orphaned text node in a div using execCommand to preserve history/cursor
+            document.execCommand('formatBlock', false, 'div');
+        }
+    });
+
     // ATOMIC DELETION LOGIC
     editor.addEventListener('keydown', (e) => {
         if (e.key !== 'Backspace' && e.key !== 'Delete') return;
@@ -199,9 +208,28 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
     }
 
     const html = createMagicHtml(label, argsPairs, argsSchema);
-    const withBreak = html + '<div><br></div>';
+    const withBreak = html; // Removed forced break to prevent extra line
 
     editor.focus();
+
+    // SMART INSERTION: If we are in an empty line, replace the whole line to avoid nesting/extra lines
+    const sel = window.getSelection();
+    if (sel.rangeCount) {
+        let node = sel.anchorNode;
+        // Walk up to find direct child of editor
+        while (node && node.parentNode !== editor) {
+            node = node.parentNode;
+        }
+
+        // If it's a direct child DIV and looks empty (just <br> or empty text)
+        if (node && node.tagName === 'DIV' && (node.innerHTML === '<br>' || node.textContent.trim() === '')) {
+            const range = document.createRange();
+            range.selectNode(node);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+    }
+
     document.execCommand('insertHTML', false, withBreak);
 }
 
@@ -309,4 +337,52 @@ export function getHTMLContent(editor) {
 
 export function setHTMLContent(html, editor) {
     editor.innerHTML = html;
+}
+
+export function scrollToLine(line, editor) {
+    // line is 1-based
+    if (line < 1) return;
+
+    const lines = editor.childNodes;
+    let currentLine = 0;
+    let targetNode = null;
+
+    for (const node of lines) {
+        // We count every child as a line roughly, or use similar logic to getCursorLine?
+        // getCursorLine uses getMarkdownContent logic which is robust.
+        // However, for scrolling we assume visual lines (divs).
+        // Let's assume 1 child = 1 line for simplicity as we force divs.
+
+        // Actually, getMarkdownContent collapses text nodes.
+        // If the editor structure is strictly <div>line</div>, then childNodes index matches line-1.
+        // Let's try direct index access first as it matches the CSS counter logic.
+
+        // Skip non-element nodes?
+        // editor.innerHTML usually contains text nodes if empty? No, we force <div><br></div>.
+        // But let's be safe.
+        // CSS counters increment on 'div'.
+        if (node.nodeName === 'DIV') {
+            currentLine++;
+            if (currentLine === line) {
+                targetNode = node;
+                break;
+            }
+        }
+    }
+
+    if (targetNode) {
+        targetNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Set Cursor
+        const range = document.createRange();
+        range.selectNodeContents(targetNode);
+        range.collapse(true); // Start of line
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        // Highlight briefly?
+        targetNode.style.backgroundColor = 'var(--bg2)';
+        setTimeout(() => targetNode.style.backgroundColor = '', 1000);
+    }
 }

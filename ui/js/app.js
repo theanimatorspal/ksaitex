@@ -86,18 +86,16 @@ async function init() {
 
         // Sync Logic
         let syncDebounceTimer = null;
+        const lineStatus = document.getElementById('lineStatus'); // Get Element
+
         function triggerSync() {
             // Only sync if editor is focused or selection is inside it
-            const sel = window.getSelection();
-            if (!sel.anchorNode) return;
+            // We want to update Line/Page status.
 
-            let node = sel.anchorNode;
-            let inside = false;
-            while (node) {
-                if (node === markdownEditor) { inside = true; break; }
-                node = node.parentNode;
-            }
-            if (!inside) return;
+            const sel = window.getSelection();
+            if (!sel.anchorNode && !window.pendingSync) return; // Allow manual trigger
+
+            // For now, let's just proceed.
 
             if (syncDebounceTimer) clearTimeout(syncDebounceTimer);
             syncDebounceTimer = setTimeout(async () => {
@@ -112,7 +110,17 @@ async function init() {
                     if (res.status === 'success') {
                         syncStatus.textContent = `Page: ${res.page}`;
                         syncStatus.dataset.page = res.page;
-                        syncStatus.classList.remove('hidden'); // Use class
+                        syncStatus.classList.remove('hidden');
+
+                        // Use the page to reverse sync and get the "start line" of the page
+                        try {
+                            const revRes = await api.reverseSync(currentProjectId, res.page);
+                            if (revRes.status === 'success') {
+                                lineStatus.textContent = `Line: ${revRes.line}`;
+                                lineStatus.dataset.line = revRes.line;
+                                lineStatus.classList.remove('hidden');
+                            }
+                        } catch (e) { console.error("Reverse sync failed", e); }
                     }
                 } catch (e) {
                     console.error("Sync error", e);
@@ -133,6 +141,15 @@ async function init() {
                     // Note: Replacing src completely might flicker.
                     const cleanSrc = pdfPreview.src.split('#')[0];
                     pdfPreview.src = cleanSrc + "#page=" + p;
+                }
+            });
+        }
+
+        if (lineStatus) {
+            lineStatus.addEventListener('click', () => {
+                const l = parseInt(lineStatus.dataset.line);
+                if (l) {
+                    editor.scrollToLine(l, markdownEditor);
                 }
             });
         }

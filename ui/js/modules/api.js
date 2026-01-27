@@ -83,3 +83,11 @@ export async function syncPosition(project_id, line) {
     });
     return await res.json();
 }
+export async function reverseSync(project_id, page) {
+    const res = await fetch('/api/sync/reverse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ project_id, page })
+    });
+    return await res.json();
+}
