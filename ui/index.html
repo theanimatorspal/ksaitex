@@ -148,6 +148,31 @@
                 </div>
             </div>
         </div>
+
+        <!-- Upload Choice Modal -->
+        <div id="uploadChoiceModal" class="modal-overlay hidden">
+            <div class="modal-content" style="max-width: 500px;">
+                <div class="modal-header">
+                    <h3>Upload Markdown</h3>
+                </div>
+                <div class="modal-body">
+                    <p style="color: var(--fg1); margin-bottom: 20px;">What would you like to do with the
+                        uploaded file?</p>
+                    <div style="display: flex; gap: 10px; flex-direction: column;">
+                        <button id="uploadReplaceBtn" class="primary-btn" style="justify-content: center;">
+                            <i class="fa-solid fa-rotate"></i> Replace Current Project Content
+                        </button>
+                        <button id="uploadNewBtn" class="primary-btn"
+                            style="justify-content: center; background-color: var(--bg2); border-color: var(--fg3);">
+                            <i class="fa-solid fa-plus"></i> Create New Project from File
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="uploadCancelBtn" class="secondary-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
         <!-- Edit Command Modal (Unified) -->
         <div id="editCommandModal" class="modal-overlay hidden">
             <div class="modal-content">

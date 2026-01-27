@@ -143,6 +143,75 @@ async function init() {
             });
         }
 
+        // Upload Logic
+        const uploadChoiceModal = document.getElementById('uploadChoiceModal');
+        const uploadReplaceBtn = document.getElementById('uploadReplaceBtn');
+        const uploadNewBtn = document.getElementById('uploadNewBtn');
+        const uploadCancelBtn = document.getElementById('uploadCancelBtn');
+        let pendingUploadContent = "";
+        let pendingUploadFilename = "";
+
+        if (uploadBtn && mdUploadInput) {
+            uploadBtn.addEventListener('click', () => {
+                mdUploadInput.value = ''; // Reset
+                mdUploadInput.click();
+            });
+
+            mdUploadInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    pendingUploadContent = ev.target.result;
+                    pendingUploadFilename = file.name.replace(/\.[^/.]+$/, ""); // Remove extension
+
+                    // Show choice modal
+                    uploadChoiceModal.classList.remove('hidden');
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        if (uploadReplaceBtn) {
+            uploadReplaceBtn.addEventListener('click', () => {
+                if (!currentProjectId) {
+                    alert("No active project to replace. Please create a new project.");
+                    return;
+                }
+
+                if (confirm("This will overwrite your current editor content. Are you sure?")) {
+                    editor.loadContent(pendingUploadContent, markdownEditor);
+                    autoSave(); // Save immediately
+                    uploadChoiceModal.classList.add('hidden');
+                }
+            });
+        }
+
+        if (uploadNewBtn) {
+            uploadNewBtn.addEventListener('click', () => {
+                uploadChoiceModal.classList.add('hidden');
+
+                // Pre-fill new project modal
+                newProjectTitleInput.value = pendingUploadFilename;
+                showNewProjectModal();
+
+                // We need to inject content after project creation.
+                // Hack: store it in a global or pass it?
+                // Let's modify handleCreateProject to check for pending content.
+                // Or better: We can set a flag.
+                window.pendingNewProjectContent = pendingUploadContent;
+            });
+        }
+
+        if (uploadCancelBtn) {
+            uploadCancelBtn.addEventListener('click', () => {
+                uploadChoiceModal.classList.add('hidden');
+                pendingUploadContent = "";
+                window.pendingNewProjectContent = null;
+            });
+        }
+
         // Welcome Screen specifics
         if (welcomeNewBtn) {
             welcomeNewBtn.onclick = () => {
@@ -327,9 +396,14 @@ async function init() {
                     input.style.minHeight = "200px"; // Guarantee visible height
                     input.value = currentVal;
                 } else {
-                    input = document.createElement('input');
-                    input.type = 'text';
+                    // Default to Textarea for everything else as requested
+                    input = document.createElement('textarea');
                     input.className = 'dynamic-arg-input';
+                    input.style.width = "100%";
+                    input.style.height = "100%";
+                    input.style.display = "block";
+                    input.style.minHeight = "150px";
+                    input.style.resize = "vertical";
                     input.value = currentVal;
                 }
 
@@ -362,6 +436,12 @@ async function init() {
                 const selection = window.getSelection();
                 const selectedText = selection.toString().trim();
                 const targetBlock = e.target.closest('.magic-block');
+
+                // Save range immediately
+                let savedRange = null;
+                if (selection.rangeCount > 0) {
+                    savedRange = selection.getRangeAt(0).cloneRange();
+                }
 
                 // Case 1: Swapping an existing block
                 // Case 2: Standard text selection insertion
@@ -409,10 +489,10 @@ async function init() {
                             range.selectNode(targetBlock);
                             selection.removeAllRanges();
                             selection.addRange(range);
-                        } else {
-                            // Restore text selection
-                            // range variable from outer scope needed? 
-                            // Actually we can just proceed if selection is still there.
+                        } else if (savedRange) {
+                            // Restore original text selection
+                            selection.removeAllRanges();
+                            selection.addRange(savedRange);
                         }
 
                         editor.insertMagicCommand(cmd, markdownEditor, finalOverrides);
@@ -559,7 +639,8 @@ function handleCreateProject() {
         return;
     }
     // Create new
-    resetProject(title);
+    resetProject(title, window.pendingNewProjectContent || "");
+    window.pendingNewProjectContent = null; // Consume
     hideNewProjectModal();
     hideWelcomeScreen();
 }
@@ -611,7 +692,7 @@ async function handleRenameProject() {
     }
 }
 
-function resetProject(newTitle = "Untitled Project") {
+function resetProject(newTitle = "Untitled Project", initialContent = "") {
     console.error("DIAGNOSTIC: Resetting project to", newTitle);
     projectTitleInput.value = newTitle;
 
@@ -622,7 +703,7 @@ function resetProject(newTitle = "Untitled Project") {
     // Best practice: Save immediately?
     // Let's clear editor first.
 
-    editor.clearContent(markdownEditor);
+    editor.loadContent(initialContent, markdownEditor); // Load provided content or empty
     saveStatus.textContent = "New Project";
 
     // Use the sanitized default ID logic locally just for UI state?
@@ -648,7 +729,7 @@ function resetProject(newTitle = "Untitled Project") {
     });
 
     // FORCE SAVE NOW to create the project on disk
-    api.saveProject(newTitle, "", "base", {}).then(res => {
+    api.saveProject(newTitle, initialContent, "base", {}).then(res => {
         // extract ID from path ?? Path is "data/Title/project.json"
         // We can infer it from the title for now or wait for refresh.
         refreshProjects().then(() => {

@@ -95,7 +95,9 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
             displayVal = displayVal.replace(/\n/g, ' ');
             if (displayVal.length > 15) displayVal = displayVal.substring(0, 12) + "...";
         }
-        argsHtml += `<button class="magic-arg-btn" data-name="${pair.key}" data-full-value="${pair.value}" title="Edit ${pair.key}">${displayVal}</button>`;
+        // Escape quotes for HTML attribute
+        const safeValue = pair.value.replace(/"/g, '&quot;');
+        argsHtml += `<button class="magic-arg-btn" data-name="${pair.key}" data-full-value="${safeValue}" title="Edit ${pair.key}">${displayVal}</button>`;
     });
 
     const serializedArgs = argsPairs.map(p => {
