@@ -322,6 +322,7 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
     focusAndRestore(editor);
 
     // SMART INSERTION: If we are in an empty line, replace the whole line to avoid nesting/extra lines
+    // BUT: Don't do this if there's a magic block adjacent (would cause replacement)
     const sel = window.getSelection();
     if (sel.rangeCount && sel.isCollapsed) {
         let node = sel.anchorNode;
@@ -331,9 +332,13 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
         }
 
         // Only replace if it's a PLAIN empty div (not a magic block, and no text content)
+        // AND there's no magic block as next sibling
         if (node && node.tagName === 'DIV' && !node.classList.contains('magic-block')) {
             const isPlainEmpty = (node.innerHTML === '<br>' || node.textContent.trim() === '');
-            if (isPlainEmpty) {
+            const nextSibling = node.nextSibling;
+            const hasAdjacentMagicBlock = nextSibling && nextSibling.classList && nextSibling.classList.contains('magic-block');
+
+            if (isPlainEmpty && !hasAdjacentMagicBlock) {
                 const range = document.createRange();
                 range.selectNode(node);
                 sel.removeAllRanges();
