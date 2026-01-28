@@ -1,9 +1,14 @@
 % METADATA DEFINITIONS (Hidden from PDF output)
+% \VAR{ page_size, default='a4paper', tab='लेआउट', label='कागजको आकार', type='select', options='a4paper|a5paper|b5paper|letterpaper|legalpaper' }
+% \VAR{ font_size, default='12pt', tab='लेआउट', label='अक्षरको आकार', type='select', options='10pt|11pt|12pt' }
 % \VAR{ document_class, default='article', tab='लेआउट', label='कागजको ढाँचा', type='select', options='article|report|book' }
 % \VAR{ top_margin, default='1in', tab='लेआउट', label='माथिल्लो मार्जिन' }
 % \VAR{ bottom_margin, default='1in', tab='लेआउट', label='तल्लो मार्जिन' }
 % \VAR{ left_margin, default='1in', tab='लेआउट', label='बायाँ मार्जिन' }
 % \VAR{ right_margin, default='1in', tab='लेआउट', label='दायाँ मार्जिन' }
+% \VAR{ line_spacing, default='1.3', tab='लेआउट', label='पङ्क्ति बिचको दुरी', type='select', options='1.0|1.2|1.3|1.5|2.0' }
+% \VAR{ paragraph_spacing, default='6pt', tab='लेआउट', label='अनुच्छेद बिचको दुरी', type='select', options='0pt|4pt|6pt|10pt|12pt' }
+% \VAR{ paragraph_indent, default='0pt', tab='लेआउट', label='अनुच्छेदको सुरुको खाली ठाउँ', type='select', options='0pt|10pt|20pt|30pt' }
 % \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
 % \VAR{ theme_color, default='orange', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
@@ -24,8 +29,8 @@
 % \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
 % \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
 
-% \MAGIC{ box, label='बक्स (Box)', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
-% \MAGIC{ toc, label='विषय सूची (TOC)', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
+% \MAGIC{ box, label='बक्स', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
+% \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
@@ -34,23 +39,29 @@
 % \MAGIC{ empty_page, label='पृष्ठ संख्या नदेखाउनुहोस्', tab='पृष्ठ', command='\thispagestyle{empty}' }
 % \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ', args='num:number:1', command='\setcounter{page}{VAR_num}' }
 
+% \MAGIC{ center, label='बिचमा', tab='ढाँचा', args='text:textarea:सामग्री', command='\centertxt{VAR_text}' }
+% \MAGIC{ flush_right, label='दायाँ', tab='ढाँचा', args='text:textarea:सामग्री', command='\righttxt{VAR_text}' }
+% \MAGIC{ flush_left, label='बायाँ', tab='ढाँचा', args='text:textarea:सामग्री', command='\lefttxt{VAR_text}' }
+% \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
+% \MAGIC{ fancy_quote, label='भनाइ', tab='ढाँचा', args='text:textarea:भनाइ यहाँ लेख्नुहोस्...', command='\fancyquote{VAR_text}' }
+
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
 
-% \VAR{ header_left, default='None', tab='हेडर-फुटर', label='हेडर बायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_left, default='None', tab='हेडर-फुटर', label='हेडर बायाँ', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ header_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
-% \VAR{ header_right, default='None', tab='हेडर-फुटर', label='हेडर दायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_right, default='None', tab='हेडर-फुटर', label='हेडर दायाँ', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ header_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
-% \VAR{ header_center, default='None', tab='हेडर-फुटर', label='हेडर मध्य', type='select', options='None|Section|Page|Custom' }
+% \VAR{ header_center, default='None', tab='हेडर-फुटर', label='हेडर मध्य', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ header_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
-% \VAR{ footer_left, default='None', tab='हेडर-फुटर', label='फुटर बायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_left, default='None', tab='हेडर-फुटर', label='फुटर बायाँ', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ footer_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
-% \VAR{ footer_right, default='None', tab='हेडर-फुटर', label='फुटर दायाँ', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_right, default='None', tab='हेडर-फुटर', label='फुटर दायाँ', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ footer_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
-% \VAR{ footer_center, default='Page', tab='हेडर-फुटर', label='फुटर मध्य', type='select', options='None|Section|Page|Custom' }
+% \VAR{ footer_center, default='Page', tab='हेडर-फुटर', label='फुटर मध्य', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ footer_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 
-\documentclass{\VAR{document_class}}
+\documentclass[\VAR{font_size}, \VAR{page_size}]{\VAR{document_class}}
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
@@ -68,6 +79,11 @@
     left=\VAR{left_margin},
     right=\VAR{right_margin}
 }
+
+% --- spacing configuration ---
+\linespread{\VAR{line_spacing}}
+\setlength{\parskip}{\VAR{paragraph_spacing}}
+\setlength{\parindent}{\VAR{paragraph_indent}}
 
 % --- Devanagari Page Numbering Macros ---
 \makeatletter
@@ -108,7 +124,7 @@
 \BLOCK{ endif }
 
 % -- Header Left --
-\BLOCK{ if header_left == 'Section' }
+\BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }
     \lhead{\leftmark}
 \BLOCK{ elif header_left == 'Page' }
     \lhead{\thepage}
@@ -117,7 +133,7 @@
 \BLOCK{ endif }
 
 % -- Header Right --
-\BLOCK{ if header_right == 'Section' }
+\BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }
     \rhead{\leftmark}
 \BLOCK{ elif header_right == 'Page' }
     \rhead{\thepage}
@@ -125,8 +141,35 @@
     \rhead{\VAR{header_right_text}}
 \BLOCK{ endif }
 
+% -- Header Center --
+\BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }
+    \chead{\leftmark}
+\BLOCK{ elif header_center == 'Page' }
+    \chead{\thepage}
+\BLOCK{ elif header_center == 'Custom' }
+    \chead{\VAR{header_center_text}}
+\BLOCK{ endif }
+
+% -- Footer Left --
+\BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }
+    \lfoot{\leftmark}
+\BLOCK{ elif footer_left == 'Page' }
+    \lfoot{\thepage}
+\BLOCK{ elif footer_left == 'Custom' }
+    \lfoot{\VAR{footer_left_text}}
+\BLOCK{ endif }
+
+% -- Footer Right --
+\BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }
+    \rfoot{\leftmark}
+\BLOCK{ elif footer_right == 'Page' }
+    \rfoot{\thepage}
+\BLOCK{ elif footer_right == 'Custom' }
+    \rfoot{\VAR{footer_right_text}}
+\BLOCK{ endif }
+
 % -- Footer Center --
-\BLOCK{ if footer_center == 'Section' }
+\BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }
     \cfoot{\leftmark}
 \BLOCK{ elif footer_center == 'Page' }
     \cfoot{\thepage}
@@ -139,6 +182,7 @@
 
 % --- Custom Segments (Khanda) ---
 \newcommand{\khanda}[1]{
+    \markboth{#1}{}
     \vspace{0.8cm}
     \noindent \hfill \textbf{\Huge \color{theme} #1} \par
     \addcontentsline{toc}{section}{#1}
@@ -159,8 +203,22 @@
     \vspace{0.2cm}
 }
 
+% --- Alignment and Spacing Macros ---
+\newcommand{\centertxt}[1]{{\centering #1 \par}}
+\newcommand{\righttxt}[1]{{\raggedleft #1 \par}}
+\newcommand{\lefttxt}[1]{{\raggedright #1 \par}}
+\newcommand{\vspacer}[1]{\vspace{#1 cm}}
+\newcommand{\fancyquote}[1]{
+    \vspace{0.5cm}
+    \begin{quote}
+        #1
+    \end{quote}
+    \vspace{0.5cm}
+}
+
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
+    \markboth{#1}{}
     \vspace{1.2cm}
     \noindent \textbf{\Huge \color{theme} #1} \hfill \par
     \addcontentsline{toc}{section}{#1}

@@ -345,13 +345,28 @@ button:active {
     /* Increased left padding for gutter */
     font-family: var(--font-ui);
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 2.2;
+    /* Taller, sexier cursor */
     outline: none;
     overflow-y: auto;
     white-space: pre-wrap;
     min-height: 0;
     counter-reset: line;
     /* Initialize counter */
+    caret-color: var(--orange);
+    animation: caretPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes caretPulse {
+
+    0%,
+    100% {
+        caret-color: var(--orange);
+    }
+
+    50% {
+        caret-color: var(--yellow);
+    }
 }
 
 /* Limit line height and prevent browser from rendering bold/italic in source editor */
@@ -451,9 +466,17 @@ button:active {
     font-size: 13px;
     letter-spacing: 0.05em;
     cursor: default;
+    /* Arrow cursor */
     position: relative;
     gap: 8px;
     /* Consistent spacing */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magic-block:hover {
+    background-color: rgba(214, 93, 14, 0.2);
+    border-color: var(--yellow);
+    box-shadow: 0 0 10px rgba(254, 128, 25, 0.2);
 }
 
 .magic-block .magic-label {
@@ -792,9 +815,33 @@ pre#errorLog {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     z-index: 9999;
     min-width: 180px;
+    max-height: 400px;
+    overflow-y: auto;
     padding: 6px 0;
     display: flex;
     flex-direction: column;
+}
+
+.context-menu-item {
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--fg2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.context-menu-item:hover {
+    background-color: var(--bg2);
+    color: var(--orange);
+}
+
+.context-menu-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 4px 0;
 }
 
 .modal-content {

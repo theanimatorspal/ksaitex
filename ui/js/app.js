@@ -166,14 +166,14 @@ async function init() {
 
         if (undoBtn) {
             undoBtn.addEventListener('click', () => {
-                markdownEditor.focus();
+                editor.focusAndRestore(markdownEditor);
                 document.execCommand('undo');
             });
         }
 
         if (redoBtn) {
             redoBtn.addEventListener('click', () => {
-                markdownEditor.focus();
+                editor.focusAndRestore(markdownEditor);
                 document.execCommand('redo');
             });
         }
@@ -480,52 +480,97 @@ async function init() {
 
                 // Case 1: Swapping an existing block
                 // Case 2: Standard text selection insertion
-                if (!selectedText && !targetBlock) return;
+                // Case 3: Empty space (allow menu always)
 
                 e.preventDefault();
 
                 // Get commands from current template
                 const currentTemplate = templateSelect.value;
                 const metadata = availableTemplates[currentTemplate];
-                if (!metadata || !metadata.magic_commands) return;
-
-                // Filter for "Formatting" commands (tab='ढाँचा' or 'Formatting')
-                const commands = metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting');
-                if (commands.length === 0) return;
+                const commands = (metadata && metadata.magic_commands)
+                    ? metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting')
+                    : [];
 
                 // Capture Swap State
                 let swapValue = null;
                 if (targetBlock) {
-                    // Extract first arg value from the target block's first button
                     const firstBtn = targetBlock.querySelector('.magic-arg-btn');
                     if (firstBtn) swapValue = firstBtn.dataset.fullValue;
                 }
 
                 // Populate Menu
                 contextMenu.innerHTML = '';
+
+                // -- Standard Actions --
+                const createItem = (label, icon, onClick) => {
+                    const item = document.createElement('div');
+                    item.className = 'context-menu-item';
+                    item.innerHTML = `<i class="${icon}"></i> <span>${label}</span>`;
+                    item.onclick = (ev) => {
+                        ev.stopPropagation();
+                        onClick();
+                        contextMenu.classList.add('hidden');
+                    };
+                    return item;
+                };
+
+                // कपी (Copy) - Mock Ctrl+C
+                if (selectedText) {
+                    contextMenu.appendChild(createItem('कपी', 'fa-solid fa-copy', () => {
+                        editor.focusAndRestore(markdownEditor);
+                        document.execCommand('copy');
+                    }));
+                }
+
+                // पेस्ट (Paste) - Mock Ctrl+V
+                contextMenu.appendChild(createItem('पेस्ट', 'fa-solid fa-paste', async () => {
+                    // 1. Force stable focus and scroll position
+                    editor.focusAndRestore(markdownEditor);
+
+                    // 2. Wait for focus to settle before inserting
+                    // This is CRITICAL to prevent the browser from jumping to top
+                    setTimeout(async () => {
+                        try {
+                            const text = await navigator.clipboard.readText();
+                            if (text) {
+                                document.execCommand('insertText', false, text);
+                            }
+                        } catch (err) {
+                            // Fallback
+                            document.execCommand('paste');
+                        }
+                    }, 50);
+                }));
+
+                if (commands.length > 0) {
+                    const divider = document.createElement('div');
+                    divider.className = 'context-menu-divider';
+                    contextMenu.appendChild(divider);
+                }
+
+                // MAGIC COMMANDS
                 commands.forEach(cmd => {
                     const item = document.createElement('div');
                     item.className = 'context-menu-item';
                     item.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${cmd.label}</span>`;
 
-                    item.onclick = () => {
+                    item.onclick = (ev) => {
+                        ev.stopPropagation();
                         let finalOverrides = {};
                         const valToInject = targetBlock ? swapValue : selectedText;
 
-                        if (cmd.args && valToInject !== null) {
+                        if (cmd.args && valToInject !== null && valToInject !== "") {
                             const firstArgName = cmd.args.split('|')[0].split(':')[0].trim();
                             if (firstArgName) finalOverrides[firstArgName] = valToInject;
                         }
 
                         // Execute Replacement
                         if (targetBlock) {
-                            // Select the block to ensure insertHTML replaces it
                             const range = document.createRange();
                             range.selectNode(targetBlock);
                             selection.removeAllRanges();
                             selection.addRange(range);
                         } else if (savedRange) {
-                            // Restore original text selection
                             selection.removeAllRanges();
                             selection.addRange(savedRange);
                         }
@@ -541,6 +586,15 @@ async function init() {
                 contextMenu.style.left = `${e.clientX}px`;
                 contextMenu.style.top = `${e.clientY}px`;
                 contextMenu.classList.remove('hidden');
+
+                // Adjust position if it overflows height
+                const menuRect = contextMenu.getBoundingClientRect();
+                if (menuRect.bottom > window.innerHeight) {
+                    contextMenu.style.top = `${window.innerHeight - menuRect.height - 10}px`;
+                }
+                if (menuRect.right > window.innerWidth) {
+                    contextMenu.style.left = `${window.innerWidth - menuRect.width - 10}px`;
+                }
             });
         }
 

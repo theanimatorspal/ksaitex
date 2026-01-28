@@ -5,8 +5,87 @@
 const MARKER_START = '--[[--[[--[[#######-';
 const MARKER_END = '-#######]]--]]--]]--';
 
+// SELECTION MEMORY (SHARED WITHIN MODULE)
+let lastSavedRange = null;
+let isRestoring = false;
+
+function saveSelection(editor) {
+    if (isRestoring) return; // Mutex: Don't save if we are currently forcing a restore
+    const sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        // Only save if the selection is actually inside the editor
+        if (editor.contains(range.commonAncestorContainer)) {
+            lastSavedRange = range.cloneRange();
+        }
+    }
+}
+
+function restoreSelection(editor) {
+    const sel = window.getSelection();
+    if (!lastSavedRange) {
+        // Default: End of editor text content if no history exists
+        const range = document.createRange();
+        range.selectNodeContents(editor);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        return;
+    }
+    sel.removeAllRanges();
+    sel.addRange(lastSavedRange);
+}
+
+/**
+ * Public API for other modules.
+ * Strictly enforces focus and cursor continuity.
+ */
+export function focusAndRestore(editor) {
+    if (!editor) return;
+
+    // 1. Lock selection tracking
+    isRestoring = true;
+
+    // 2. Save scroll position (browsers often reset this on focus)
+    const top = editor.scrollTop;
+
+    // 3. Force Focus
+    editor.focus();
+
+    // 4. Force Cursor Restore
+    restoreSelection(editor);
+
+    // 5. Restore scroll
+    editor.scrollTop = top;
+
+    // 6. Release Lock (Increased delay to handle async clipboard/input stability)
+    setTimeout(() => { isRestoring = false; }, 150);
+}
+
 export function initEditor(editor) {
-    // Ensure all new lines are wrapped in DIVs for consistency
+    // 1. Selection Tracking (Hardened)
+    const track = () => saveSelection(editor);
+
+    // Track on interaction
+    editor.addEventListener('mouseup', track);
+    editor.addEventListener('keyup', track);
+
+    // Global tracking ensures we catch range changes even during complex DOM updates
+    document.addEventListener('selectionchange', () => {
+        if (document.activeElement === editor) track();
+    });
+
+    // 2. REFOCUS JUMP PREVENTION (Mousedown Guard)
+    // browsers often jump the cursor to the click location *before* letting JS intervene.
+    // We catch this at the very beginning and force our memory back.
+    editor.addEventListener('mousedown', (e) => {
+        if (document.activeElement !== editor) {
+            // Prevent standard click-to-focus behavior from moving the caret
+            setTimeout(() => focusAndRestore(editor), 0);
+        }
+    });
+
+    // Maintain "default" paragraph DIV wrapping
     document.execCommand('defaultParagraphSeparator', false, 'div');
 
     // Ensure the editor has at least one DIV so typing starts correctly
@@ -240,7 +319,7 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
     // Wrap with padding lines to prevent collision (2 before, 2 after)
     const withBreak = `<div><br></div><div><br></div>${html}<div><br></div><div><br></div>`;
 
-    editor.focus();
+    focusAndRestore(editor);
 
     // SMART INSERTION: If we are in an empty line, replace the whole line to avoid nesting/extra lines
     const sel = window.getSelection();
