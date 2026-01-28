@@ -58,7 +58,7 @@ def convert(
 
 @app.command()
 def serve(
-    host: str = typer.Option("127.0.0.1", help="Host to bind to"),
+    host: str = typer.Option("0.0.0.0", help="Host to bind to"),
     port: int = typer.Option(8000, help="Port to bind to"),
     reload: bool = typer.Option(True, help="Enable auto-reload")
 ):

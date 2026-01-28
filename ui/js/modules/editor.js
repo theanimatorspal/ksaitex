@@ -104,21 +104,24 @@ window.deleteMagicBlock = function (event, btn) {
     const block = btn.closest('.magic-block');
     if (!block) return;
 
-    // Find the parent editor
-    const editor = block.closest('[contenteditable="true"]');
-    if (editor) {
-        editor.focus();
-    }
+    const editorNode = block.closest('[contenteditable="true"]');
+    if (editorNode) editorNode.focus();
 
-    // Select the block so execCommand knows what to delete
+    // Explicitly set range to surround the block
     const range = document.createRange();
-    range.selectNode(block);
+    range.setStartBefore(block);
+    range.setEndAfter(block);
+
     const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // This records the action in the browser's native Undo history
+    // Use delete command. This is generally the most robust for removal.
     document.execCommand('delete', false, null);
+
+    // To prevent the line from disappearing (user's request),
+    // we check if the cursor is now in an empty parent that needs a <br>
+    // However, execCommand 'delete' often handles this.
 };
 
 // Helper to generate the HTML for a magic block
@@ -234,25 +237,29 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
     }
 
     const html = createMagicHtml(label, argsPairs, argsSchema);
-    const withBreak = html; // Removed forced break to prevent extra line
+    // Wrap with padding lines to prevent collision (2 before, 2 after)
+    const withBreak = `<div><br></div><div><br></div>${html}<div><br></div><div><br></div>`;
 
     editor.focus();
 
     // SMART INSERTION: If we are in an empty line, replace the whole line to avoid nesting/extra lines
     const sel = window.getSelection();
-    if (sel.rangeCount) {
+    if (sel.rangeCount && sel.isCollapsed) {
         let node = sel.anchorNode;
         // Walk up to find direct child of editor
-        while (node && node.parentNode !== editor) {
+        while (node && node.parentNode && node.parentNode !== editor) {
             node = node.parentNode;
         }
 
-        // If it's a direct child DIV and looks empty (just <br> or empty text)
-        if (node && node.tagName === 'DIV' && (node.innerHTML === '<br>' || node.textContent.trim() === '')) {
-            const range = document.createRange();
-            range.selectNode(node);
-            sel.removeAllRanges();
-            sel.addRange(range);
+        // Only replace if it's a PLAIN empty div (not a magic block, and no text content)
+        if (node && node.tagName === 'DIV' && !node.classList.contains('magic-block')) {
+            const isPlainEmpty = (node.innerHTML === '<br>' || node.textContent.trim() === '');
+            if (isPlainEmpty) {
+                const range = document.createRange();
+                range.selectNode(node);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
         }
     }
 
