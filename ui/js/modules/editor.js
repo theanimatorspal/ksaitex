@@ -95,6 +95,32 @@ export function initEditor(editor) {
     });
 }
 
+// Global helper for undoable deletion of magic blocks
+window.deleteMagicBlock = function (event, btn) {
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    const block = btn.closest('.magic-block');
+    if (!block) return;
+
+    // Find the parent editor
+    const editor = block.closest('[contenteditable="true"]');
+    if (editor) {
+        editor.focus();
+    }
+
+    // Select the block so execCommand knows what to delete
+    const range = document.createRange();
+    range.selectNode(block);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    // This records the action in the browser's native Undo history
+    document.execCommand('delete', false, null);
+};
+
 // Helper to generate the HTML for a magic block
 function createMagicHtml(label, argsPairs = [], schema = "") {
     let argsHtml = "";
@@ -118,7 +144,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
         ? `${MARKER_START}[[MAGIC:${label}|${serializedArgs}]]${MARKER_END}`
         : `${MARKER_START}[[MAGIC:${label}]]${MARKER_END}`;
 
-    return `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}"> <span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="this.closest('.magic-block').remove();"><i class="fa-solid fa-xmark"></i></button> </div>`;
+    return `<div class="magic-block" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}"> <span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="window.deleteMagicBlock(event, this);"><i class="fa-solid fa-xmark"></i></button> </div>`;
 }
 
 export function updateArgButton(btn, newValue) {

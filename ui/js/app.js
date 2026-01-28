@@ -166,15 +166,15 @@ async function init() {
 
         if (undoBtn) {
             undoBtn.addEventListener('click', () => {
+                markdownEditor.focus();
                 document.execCommand('undo');
-                editor.focus(); // Refocus editor
             });
         }
 
         if (redoBtn) {
             redoBtn.addEventListener('click', () => {
+                markdownEditor.focus();
                 document.execCommand('redo');
-                editor.focus();
             });
         }
 

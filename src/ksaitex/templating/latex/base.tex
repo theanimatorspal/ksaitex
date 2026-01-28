@@ -5,8 +5,17 @@
 % \VAR{ left_margin, default='1in', tab='लेआउट', label='बायाँ मार्जिन' }
 % \VAR{ right_margin, default='1in', tab='लेआउट', label='दायाँ मार्जिन' }
 % \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
-
+% \VAR{ theme_color, default='orange', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
+
+% \MAGIC{ khanda, label='खण्ड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\khanda{VAR_title}' }
+% \MAGIC{ upakhanda, label='उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\upakhanda{VAR_title}' }
+% \MAGIC{ upaupakhanda, label='उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उप-उपखण्ड', command='\upaupakhanda{VAR_title}' }
+
+% \MAGIC{ special_khanda, label='विशेष खण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष खण्ड', command='\specialkhanda{VAR_title}' }
+% \MAGIC{ special_upakhanda, label='विशेष उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उपखण्ड', command='\specialupakhanda{VAR_title}' }
+% \MAGIC{ special_upaupakhanda, label='विशेष उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उप-उपखण्ड', command='\specialupaupakhanda{VAR_title}' }
+
 % \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
 % \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
 % \MAGIC{ subsubsection, label='संख्याहीन उप-उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}' }
@@ -49,6 +58,9 @@
 \usepackage{fancyhdr}
 \usepackage{tcolorbox}
 \usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[object = vectorian]{pgfornament}
 
 \geometry{
     top=\VAR{top_margin},
@@ -73,20 +85,9 @@
 }
 \makeatother
 
-% --- Page Numbering Style Selection ---
-% \BLOCK{ if page_numbering == 'devanagari_num' }
-%     \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
-% \BLOCK{ elif page_numbering == 'devanagari_alph' }
-%     \renewcommand{\thepage}{\devanagarialph{\value{page}}}
-% \BLOCK{ else }
-%     \pagenumbering{arabic}
-% \BLOCK{ endif }
-
-% --- Page Number Placement and Customization ---
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{} 
 
-% -- Global Script-based Numbering --
 \BLOCK{ if script == 'DEVANAGARI' }
     \renewcommand{\thesection}{\devanagaridigits{\value{section}}}
     \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}}
@@ -132,6 +133,62 @@
 \BLOCK{ elif footer_center == 'Custom' }
     \cfoot{\VAR{footer_center_text}}
 \BLOCK{ endif }
+
+% --- Theme Color Definition ---
+\definecolor{theme}{named}{\VAR{theme_color}}
+
+% --- Custom Segments (Khanda) ---
+\newcommand{\khanda}[1]{
+    \vspace{0.8cm}
+    \noindent \hfill \textbf{\Huge \color{theme} #1} \par
+    \addcontentsline{toc}{section}{#1}
+    \vspace{0.4cm}
+}
+
+\newcommand{\upakhanda}[1]{
+    \vspace{0.6cm}
+    \noindent \hfill \textbf{\huge \color{theme} #1} \par
+    \addcontentsline{toc}{subsection}{#1}
+    \vspace{0.3cm}
+}
+
+\newcommand{\upaupakhanda}[1]{
+    \vspace{0.4cm}
+    \noindent \hfill \textbf{\Large \color{theme} #1} \par
+    \addcontentsline{toc}{subsubsection}{#1}
+    \vspace{0.2cm}
+}
+
+% --- Special segments with TikZ gradient ---
+\newcommand{\specialkhanda}[1]{
+    \vspace{1.2cm}
+    \noindent \textbf{\Huge \color{theme} #1} \hfill \par
+    \addcontentsline{toc}{section}{#1}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
+    \end{tikzpicture}
+    \vspace{0.8cm}
+}
+
+\newcommand{\specialupakhanda}[1]{
+    \vspace{1cm}
+    \noindent \textbf{\huge \color{theme} #1} \hfill \par
+    \addcontentsline{toc}{subsection}{#1}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
+    \end{tikzpicture}
+    \vspace{0.6cm}
+}
+
+\newcommand{\specialupaupakhanda}[1]{
+    \vspace{0.8cm}
+    \noindent \textbf{\Large \color{theme} #1} \hfill \par
+    \addcontentsline{toc}{subsubsection}{#1}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
+    \end{tikzpicture}
+    \vspace{0.4cm}
+}
 
 % --- Font Configuration ---
 \BLOCK{ if script == 'DEVANAGARI' }

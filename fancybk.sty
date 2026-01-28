@@ -1,0 +1,251 @@
+\ProvidesPackage{fancybk}
+\usepackage{latexcolors}
+\usepackage{mathpazo}
+\usepackage[object = vectorian]{pgfornament}
+
+\usepackage{tikz}
+\usepackage{calc}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{luacode}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{fontspec}
+\usepackage{fontawesome}
+\usepackage{polyglossia}
+\usepackage{xstring}
+\setmainfont[
+ExternalLocation = Eczar/,
+Script = Devanagari,
+BoldFont=NotoSerifDevanagari-Bold.ttf,
+]{NotoSerifDevanagari-Regular.ttf}%
+
+
+\newcommand{\devanagarinumerals}[1]{
+	\directlua{
+	the_string = [[#1]]
+	the_string = the_string:gsub("0", "०")
+	the_string = the_string:gsub("1", "१")
+	the_string = the_string:gsub("2", "२")
+	the_string = the_string:gsub("3", "३")
+	the_string = the_string:gsub("4", "४")
+	the_string = the_string:gsub("5", "५")
+	the_string = the_string:gsub("6", "६")
+	the_string = the_string:gsub("7", "७")
+	the_string = the_string:gsub("8", "८")
+	the_string = the_string:gsub("9", "९")
+	tex.print(the_string)
+	}
+}
+
+
+\tcbuselibrary{breakable, skins}
+
+\newcommand{\fcolor}[1]{{\color{\theme} #1}}
+
+\newcounter{partx}
+
+\newcommand{\gridHelper}{
+	\draw[very thin] (0,0) grid (10,10); 
+	\foreach \x in {0,...,10} {
+		\foreach \y in {0,...,10}
+		\node at (\x, \y) {\tiny (\x, \y)};
+	}
+}
+
+\renewcommand{\part}[1]{\vspace{0.5cm}\stepcounter{partx}\noindent
+	\begin{tikzpicture}
+		\node[left] (part) at (0,0) { \color{\theme} \textbf{ \Huge #1 \hfill  }};
+		\shade[left color=\theme!50!white, right color = white, right of = part, xshift = 2cm, yshift = -0.5cm ] (0,0) rectangle (\textwidth, 1);	
+	\fill[fill=\theme!80!white, right of = part, xshift = 1.5cm] (0,0) circle (1cm) node {\textbf{\Huge \color{white} \devanagarinumerals{\thepartx}}};
+	\end{tikzpicture}
+}
+
+\renewcommand{\section}[1]{}
+
+\newcommand{\sction}[1]{\vspace{0.5cm}\stepcounter{section}\noindent \hfill \textbf{\Large{\color{\theme}#1}}
+	\begin{tikzpicture}
+		\fill[fill=\theme!50!white, right of = part, xshift = -1cm] (0,0) rectangle (\textwidth, 0.1);	
+	\end{tikzpicture}
+}
+
+\renewcommand{\subsection}[1]{\vspace{0.4cm}\stepcounter{subsection}\noindent \hfill \textbf{\large{\color{\theme}#1}}
+	\begin{tikzpicture}
+		\fill[fill=\theme!50!white, right of = part, xshift = -1cm] (0,0) rectangle (\textwidth, 0.05);	
+	\end{tikzpicture}
+}
+
+\newcommand{\question}[2]{
+	\begin{tcolorbox}[breakable, title=\textbf{#1}, colback=\theme!5!white, colframe=\theme!75!black]
+		#2	
+	\end{tcolorbox}
+}
+
+\newcommand{\point}[2]{
+	\begin{tcolorbox}[breakable, title=\large\textbf{#1}, colback=\theme!5!white, colframe=\theme!75!black, enhanced, attach boxed title to top left={yshift=-2mm}, colbacktitle=\theme!76!black]
+		#2	
+	\end{tcolorbox}
+}
+
+\renewcommand{\maketitle}{
+	\thispagestyle{empty}
+	\begin{center}
+	\begin{tikzpicture}
+		\node[below, yshift = -0.5cm] (author) {\Huge {\color{black}\@title}};
+		\node[below of = author, yshift = -2cm] at (0,0) {\color{\theme} \textbf{\large (समच्छन्दमा नेपाली भावानुवाद) \hfill}};
+	\end{tikzpicture}
+	\vspace{5cm}
+
+	\pgfornament[width = 10cm, color = \theme] {75}
+
+	\vfill
+	{\textbf{अनुवादक - }\\	\vspace{0.3cm} {\Large \vspace{0.3cm} \@author }\\ विराटनगर}
+
+	\end{center}
+	\pagebreak
+	\setcounter{page}{1}
+}
+
+
+\newcommand{\shloka}[1]{
+	\begin{center}
+		\begin{tikzpicture}[overlay, remember picture]
+		\node (text) at (0,0) {\centering \begin{minipage}{0.7\textwidth}
+													\centering\begin{sloppypar}#1\end{sloppypar}
+													\end{minipage}};
+		\node[left of = text, xshift = -0.33\textwidth]  {\pgfornament[width = 0.33\textwidth, color = \theme] {15}};
+		\node[right of = text, xshift = 0.33\textwidth]  {\pgfornament[width = 0.33\textwidth, color = \theme] {16}};
+	\end{tikzpicture}
+	\end{center}
+}
+
+\newcommand{\sapttitle}[1]{
+	\pagebreak
+	\begin{center}
+		\begin{tikzpicture}[overlay, remember picture]
+			\node (text) at (0,0) {\begin{minipage}{0.4\textwidth}
+					\centering \huge #1
+			\end{minipage}};
+			\node[left of = text, xshift = -0.3\textwidth]  {\pgfornament[width = 0.3\textwidth, color = \theme] {140}};
+			\node[right of = text, xshift = 0.3\textwidth]  {\pgfornament[width = 0.3\textwidth, color = \theme] {141}};
+		\end{tikzpicture}
+	\end{center}
+
+%\addtocontents{toc}{\protect\contentsline{part}{#1}{\devanagarinumerals{\thepage}\relax}
+\addtocontents{toc}{%
+	\protect\vspace{2ex} \protect\large
+	\\\textbf{#1} \protect\hspace{2cm} \protect\pgfornament[width = 1cm]{6} \hfill $\cdots$ \protect\devanagarinumerals{\thepage} \\}
+%\addcontentsline{toc}{chapter}{\protect\numberline{}#1}
+\vspace{2cm}
+}
+
+\newcommand{\shlokaexpl}[1]{
+	\vspace{0.3cm}
+	\begin{center}
+		\begin{tcolorbox}[enhanced, colback=\theme!10!white, colframe=\theme, breakable]
+		\begin{sloppypar} #1\end{sloppypar}
+		\end{tcolorbox}
+	\end{center}
+}
+
+\begin{luacode*}
+function anux(input)
+	local output = ""
+	local count = 0
+  	output = input:gsub("।", "&। \\\\")
+  	output = output:gsub(",", "&\\\\")
+  	output = output:gsub("ौँ", "ौं")
+  	 output = output:gsub("औँ","औं")
+  	output = output:gsub("॥", function(c)
+  		if(count == 0) then
+  			count = 1
+  			return " &॥ \\vspace{0.02\\textwidth}"
+  		else
+  			count = 0
+  			return " ॥\\\\ "
+  		end
+  	end
+  	)
+	tex.sprint(output)
+end
+
+function anumx(input)
+	local output = ""
+	local count = 0
+	output = input:gsub("।", "। \\\\")
+	output = output:gsub(",", "\\\\")
+	output = output:gsub("॥", function(c)
+	if(count == 0) then
+		count = 1
+		return " \\॥ \\vspace{0.02\\textwidth}"
+	else
+		count = 0
+		return " ॥\\\\ "
+	end
+end
+)
+tex.sprint(output)
+end
+
+
+
+function dou(input)
+	local output = input
+	local count = 0
+	if not string.find(input, "॥") then
+		output = "॥" .. input .. "॥"
+	end
+	output = output:gsub("॥", " ॥ ")
+	tex.sprint(output)
+end
+\end{luacode*}
+
+\newcommand{\anu}[1]{\large
+\renewcommand{\arraystretch}{0.1}
+\noindent\begin{longtable}{ll}
+\noindent\luaexec{
+	anux(\luastringN{#1})
+}
+\end{longtable}
+\vspace{-0.5cm}
+}
+
+\newcommand{\anum}[1]{
+\begin{center}
+\large\luaexec{anumx(\luastringN{#1})}
+\end{center}
+}
+
+\newcommand{\uvaacha}[1]{\begin{center}\hspace{-0.5cm}\textbf{\directlua{dou(\luastringN{#1} )}}\end{center}}
+
+\newcommand{\uvaachax}[1]{
+	\centering
+	\vspace{-0.7cm}
+	\textbf{\anu{#1}}
+	\pgfornament[width = 2cm]{80}
+}
+
+\newcommand{\samapti}[1]{\centering\vspace{0.05\textheight}{\small\textbf{\directlua{ dou( \luastringN{#1}  ) }}}}
+
+\newcommand{\shlokaE}[2]{
+	\shloka{\small #1}
+	\shlokaexpl{#2}
+}
+
+
+\newcommand{\cornerplus}[3]{%
+	\begin{tikzpicture}[remember picture, overlay]
+		\node[anchor=north west] at (current page.north west){%
+			\pgfornament[width=#3, color = \theme]{#1}};
+		\node[anchor=north east] at (current page.north east){%
+			\pgfornament[width=#3,symmetry=v, color = \theme]{#1}};
+		\node[anchor=south west] at (current page.south west){%
+			\pgfornament[width=#3,symmetry=h,  color = \theme]{#1}};
+		\node[anchor=south east] at (current page.south east){%
+			\pgfornament[width=#3,symmetry=c, color = \theme]{#1}};
+		\node[anchor=north] at (current page.north){%
+			\pgfornament[width=2*#3,symmetry=h, color = \theme]{#2}};
+		\node[anchor=south] at (current page.south){%
+			\pgfornament[width=2*#3, color = \theme]{#2}};
+	\end{tikzpicture}%
+}
