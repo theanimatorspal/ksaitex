@@ -524,22 +524,22 @@ async function init() {
 
                 // पेस्ट (Paste) - Mock Ctrl+V
                 contextMenu.appendChild(createItem('पेस्ट', 'fa-solid fa-paste', async () => {
-                    // 1. Force stable focus and scroll position
-                    editor.focusAndRestore(markdownEditor);
-
-                    // 2. Wait for focus to settle before inserting
-                    // This is CRITICAL to prevent the browser from jumping to top
-                    setTimeout(async () => {
+                    // Check if Clipboard API is available
+                    if (navigator.clipboard && navigator.clipboard.readText) {
                         try {
                             const text = await navigator.clipboard.readText();
                             if (text) {
+                                editor.focusAndRestore(markdownEditor);
                                 document.execCommand('insertText', false, text);
                             }
                         } catch (err) {
-                            // Fallback
-                            document.execCommand('paste');
+                            console.error('Clipboard read failed:', err);
+                            alert('कृपया Ctrl+V प्रयोग गर्नुहोस् (Please use Ctrl+V to paste)');
                         }
-                    }, 50);
+                    } else {
+                        // Clipboard API not available - inform user to use Ctrl+V
+                        alert('कृपया Ctrl+V प्रयोग गर्नुहोस् (Please use Ctrl+V to paste)');
+                    }
                 }));
 
                 if (commands.length > 0) {
