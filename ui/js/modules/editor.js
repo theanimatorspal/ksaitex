@@ -385,30 +385,14 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
         }
     }
 
-    // Replacement for execCommand('insertHTML')
-    const template = document.createElement('template');
-    template.innerHTML = withBreak;
-    const fragment = template.content;
+    // Use execCommand to preserve undo history and handle cursor placement natively
+    document.execCommand('insertHTML', false, withBreak);
 
-    // We need to insert this fragment at the current selection
-    if (sel.rangeCount) {
-        const range = sel.getRangeAt(0);
-        range.deleteContents();
-
-        // Insert the fragment
-        range.insertNode(fragment);
-
-        // Move selection to after the inserted content
-        const newRange = document.createRange();
-        // Since we inserted multiple divs, let's find the last one inserted
-        // Actually fragment is consumed. We should probably track the last child.
-        // For simplicity:
-        sel.removeAllRanges();
-        // focusAndRestore will handle basic sanity if we didn't screw up the range.
-    }
-
-    // Still use focusAndRestore to ensure stability
-    focusAndRestore(editor);
+    // Force update of internal selection state
+    // We clear isRestoring (if it was set by the previous focusAndRestore) 
+    // to allow the new cursor position to be saved immediately
+    isRestoring = false;
+    saveSelection(editor);
 }
 
 export function getMarkdownContent(editor, stopBeforeNode = null) {
