@@ -46,7 +46,7 @@
             </div>
 
             <div class="status-container">
-                <div class="status-item hidden" id="lineStatus" title="Click to jump to line">Line: -</div>
+
                 <div class="status-item hidden" id="syncStatus" title="Click to jump to page">Page: -</div>
             </div>
 
@@ -72,7 +72,7 @@
                     </div>
                 </div>
 
-                <div class="controls-section">
+                <div class="controls-section collapsed">
                     <div class="controls-top-bar">
                         <div class="template-selector">
                             <select id="templateSelect">
@@ -82,6 +82,10 @@
                         <div class="tabs-header" id="tabsHeader">
                             <button class="tab-btn active">General</button>
                         </div>
+                        <button id="toggleControlsBtn" class="icon-btn" title="Toggle Control Panel"
+                            style="margin-left: auto;">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
                     </div>
                     <div class="tabs-content" id="tabsContent">
                         <!-- Controls injected via JS -->

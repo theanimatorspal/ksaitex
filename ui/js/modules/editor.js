@@ -8,6 +8,7 @@ const MARKER_END = '-#######]]--]]--]]--';
 // SELECTION MEMORY (SHARED WITHIN MODULE)
 let lastSavedRange = null;
 let isRestoring = false;
+let cursorEl = null;
 
 function saveSelection(editor) {
     if (isRestoring) return; // Mutex: Don't save if we are currently forcing a restore
@@ -72,8 +73,20 @@ export function initEditor(editor) {
 
     // Global tracking ensures we catch range changes even during complex DOM updates
     document.addEventListener('selectionchange', () => {
-        if (document.activeElement === editor) track();
+        if (document.activeElement === editor) {
+            track();
+            updateCustomCursor(editor);
+        } else {
+            if (cursorEl) cursorEl.classList.remove('active');
+        }
     });
+
+    // Create custom cursor element if it doesn't exist
+    if (!cursorEl) {
+        cursorEl = document.createElement('div');
+        cursorEl.className = 'custom-cursor';
+        document.body.appendChild(cursorEl);
+    }
 
     // 2. REFOCUS JUMP PREVENTION (Mousedown Guard)
     // browsers often jump the cursor to the click location *before* letting JS intervene.
@@ -98,7 +111,16 @@ export function initEditor(editor) {
         if (editor.innerHTML.trim() === "") {
             editor.innerHTML = '<div><br></div>';
         }
+        updateCustomCursor(editor);
     });
+
+    editor.addEventListener('blur', () => {
+        if (cursorEl) cursorEl.classList.remove('active');
+    });
+
+    editor.addEventListener('scroll', () => updateCustomCursor(editor));
+    window.addEventListener('resize', () => updateCustomCursor(editor));
+
 
     // Prevent bold/italic formatting if the user pastes rich text
     editor.addEventListener('paste', (e) => {
@@ -462,6 +484,8 @@ export function getMarkdownContent(editor, stopBeforeNode = null) {
         .trim();
 }
 
+
+
 export function getCursorLine(editor) {
     const sel = window.getSelection();
     if (!sel.rangeCount) return 0;
@@ -497,50 +521,89 @@ export function setHTMLContent(html, editor) {
     editor.innerHTML = html;
 }
 
-export function scrollToLine(line, editor) {
-    // line is 1-based
-    if (line < 1) return;
 
-    const lines = editor.childNodes;
-    let currentLine = 0;
-    let targetNode = null;
+function updateCustomCursor(editor) {
+    if (!cursorEl) return;
 
-    for (const node of lines) {
-        // We count every child as a line roughly, or use similar logic to getCursorLine?
-        // getCursorLine uses getMarkdownContent logic which is robust.
-        // However, for scrolling we assume visual lines (divs).
-        // Let's assume 1 child = 1 line for simplicity as we force divs.
+    if (document.activeElement !== editor) {
+        cursorEl.classList.remove('active');
+        return;
+    }
 
-        // Actually, getMarkdownContent collapses text nodes.
-        // If the editor structure is strictly <div>line</div>, then childNodes index matches line-1.
-        // Let's try direct index access first as it matches the CSS counter logic.
+    const sel = window.getSelection();
+    if (!sel.rangeCount) {
+        cursorEl.classList.remove('active');
+        return;
+    }
 
-        // Skip non-element nodes?
-        // editor.innerHTML usually contains text nodes if empty? No, we force <div><br></div>.
-        // But let's be safe.
-        // CSS counters increment on 'div'.
-        if (node.nodeName === 'DIV') {
-            currentLine++;
-            if (currentLine === line) {
-                targetNode = node;
-                break;
-            }
+    const range = sel.getRangeAt(0);
+
+    // Only show if selection is within editor
+    if (!editor.contains(range.commonAncestorContainer)) {
+        cursorEl.classList.remove('active');
+        return;
+    }
+
+    const rects = range.getClientRects();
+    let rect = null;
+
+    if (rects.length > 0) {
+        // Use the first rect for the caret position
+        rect = rects[0];
+    } else {
+        // Fallback for empty lines (e.g. <div><br></div>)
+        let node = range.startContainer;
+
+        // Walk up to find the block (div) or the parent if it's a br
+        while (node && node !== editor && node.nodeType !== Node.ELEMENT_NODE) {
+            node = node.parentNode;
+        }
+
+        if (node) {
+            const nodeRect = node.getBoundingClientRect();
+            const style = window.getComputedStyle(node);
+            const paddingLeft = parseFloat(style.paddingLeft);
+
+            const height = parseFloat(style.lineHeight) || 24;
+            rect = {
+                left: nodeRect.left + (isNaN(paddingLeft) ? 0 : paddingLeft),
+                top: nodeRect.top,
+                height: height,
+                bottom: nodeRect.top + height,
+                width: 0
+            };
         }
     }
 
-    if (targetNode) {
-        targetNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (rect) {
+        // Adjust left if selection is collapsed
+        const left = sel.isCollapsed ? rect.left : rect.right;
 
-        // Set Cursor
-        const range = document.createRange();
-        range.selectNodeContents(targetNode);
-        range.collapse(true); // Start of line
-        const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
+        // Clipping: check if it's within the editor's visible rect
+        const editorRect = editor.getBoundingClientRect();
+        const isVisible = (
+            rect.top >= editorRect.top &&
+            rect.bottom <= editorRect.bottom &&
+            left >= editorRect.left &&
+            left <= editorRect.right
+        );
 
-        // Highlight briefly?
-        targetNode.style.backgroundColor = 'var(--bg2)';
-        setTimeout(() => targetNode.style.backgroundColor = '', 1000);
+        if (isVisible) {
+            // Taller cursor: add 4px total (2px top, 2px bottom)
+            const tallerHeight = rect.height + 4;
+            const centeredTop = rect.top - 2;
+
+            cursorEl.style.left = `${left}px`;
+            cursorEl.style.top = `${centeredTop}px`;
+            cursorEl.style.height = `${tallerHeight}px`;
+            cursorEl.classList.add('active');
+
+            // Restart animation
+            cursorEl.style.animation = 'none';
+            void cursorEl.offsetWidth; // Trigger reflow
+            cursorEl.style.animation = null;
+        } else {
+            cursorEl.classList.remove('active');
+        }
     }
 }

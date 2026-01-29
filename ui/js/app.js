@@ -86,7 +86,6 @@ async function init() {
 
         // Sync Logic
         let syncDebounceTimer = null;
-        const lineStatus = document.getElementById('lineStatus'); // Get Element
 
         function triggerSync() {
             // Only sync if editor is focused or selection is inside it
@@ -102,7 +101,6 @@ async function init() {
                 if (!currentProjectId) return;
 
                 const lineIndex = editor.getCursorLine(markdownEditor);
-                // Convert to 1-based
                 const line = lineIndex + 1;
 
                 try {
@@ -115,11 +113,8 @@ async function init() {
                         // Use the page to reverse sync and get the "start line" of the page
                         try {
                             const revRes = await api.reverseSync(currentProjectId, res.page);
-                            if (revRes.status === 'success') {
-                                lineStatus.textContent = `Line: ${revRes.line}`;
-                                lineStatus.dataset.line = revRes.line;
-                                lineStatus.classList.remove('hidden');
-                            }
+                            // We don't display line status anymore, but keep the API call if it does other things
+                            // If it only returned line, we can remove it eventually.
                         } catch (e) { console.error("Reverse sync failed", e); }
                     }
                 } catch (e) {
@@ -145,18 +140,20 @@ async function init() {
             });
         }
 
-        if (lineStatus) {
-            lineStatus.addEventListener('click', () => {
-                const l = parseInt(lineStatus.dataset.line);
-                if (l) {
-                    editor.scrollToLine(l, markdownEditor);
-                }
-            });
-        }
+
 
         if (newProjectBtn) {
             newProjectBtn.addEventListener('click', () => {
                 showNewProjectModal();
+            });
+        }
+
+        // Control Panel Toggle
+        const toggleControlsBtn = document.getElementById('toggleControlsBtn');
+        const controlsSection = document.querySelector('.controls-section');
+        if (toggleControlsBtn && controlsSection) {
+            toggleControlsBtn.addEventListener('click', () => {
+                controlsSection.classList.toggle('collapsed');
             });
         }
 

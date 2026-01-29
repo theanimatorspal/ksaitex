@@ -341,8 +341,7 @@ button:active {
     flex: 1;
     background-color: #ffffff;
     color: #3c3836;
-    padding: 24px 24px 24px 50px;
-    /* Increased left padding for gutter */
+    padding: 24px;
     font-family: var(--font-ui);
     font-size: 16px;
     line-height: 2.2;
@@ -351,10 +350,57 @@ button:active {
     overflow-y: auto;
     white-space: pre-wrap;
     min-height: 0;
-    counter-reset: line;
-    /* Initialize counter */
-    caret-color: var(--orange);
-    animation: caretPulse 1.5s ease-in-out infinite;
+    caret-color: transparent;
+}
+
+.custom-cursor {
+    position: fixed;
+    background-color: var(--orange);
+    width: 2px;
+    height: 1.4em;
+    pointer-events: none;
+    z-index: 100;
+    display: none;
+    transition: opacity 0.1s;
+}
+
+.custom-cursor::before,
+.custom-cursor::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-left: 3.5px solid transparent;
+    border-right: 3.5px solid transparent;
+    transform: translateX(-50%);
+}
+
+.custom-cursor::before {
+    top: -3px;
+    border-top: 4px solid var(--orange);
+}
+
+.custom-cursor::after {
+    bottom: -3px;
+    border-bottom: 4px solid var(--orange);
+}
+
+.custom-cursor.active {
+    display: block;
+    animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
 
 @keyframes caretPulse {
@@ -379,35 +425,7 @@ button:active {
 }
 
 
-/* Only increments for direct children (the lines) */
-.rich-editor>div {
-    position: relative;
-    counter-increment: line;
-}
 
-.rich-editor>div::before {
-    content: counter(line);
-    position: absolute;
-    left: -40px;
-    width: 30px;
-    text-align: right;
-    color: var(--fg3);
-    font-family: var(--font-mono);
-    font-size: 0.8em;
-    opacity: 0.5;
-    user-select: none;
-    pointer-events: none;
-    top: 2px;
-}
-
-/* Ensure nested divs (if any) or magic blocks don't get numbers */
-.rich-editor>div div::before {
-    content: none !important;
-}
-
-.rich-editor>div div {
-    counter-increment: none !important;
-}
 
 /* Status Container for Toolbar */
 .status-container {
@@ -548,6 +566,32 @@ textarea {
     padding: 1rem;
     /* Reduced padding */
     overflow: hidden;
+    transition: flex 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s;
+    min-height: 0;
+}
+
+.controls-section.collapsed {
+    flex: 0 0 46px;
+    /* Fixed height for top bar including padding */
+    padding-top: 8px;
+    padding-bottom: 0;
+}
+
+.controls-section.collapsed .tabs-content {
+    display: none;
+}
+
+.controls-section.collapsed .controls-top-bar {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+#toggleControlsBtn i {
+    transition: transform 0.3s;
+}
+
+.controls-section.collapsed #toggleControlsBtn i {
+    transform: rotate(180deg);
 }
 
 .controls-top-bar {
