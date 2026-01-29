@@ -513,6 +513,30 @@ export function getCursorLine(editor) {
     return Math.max(0, lineCount - 1);
 }
 
+export function findUnmatchedBegin(editor, targetGroup) {
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return false;
+
+    // Get Markdown from start of editor to cursor
+    let node = sel.anchorNode;
+    while (node && node.parentNode && node.parentNode !== editor) {
+        node = node.parentNode;
+    }
+
+    // getMarkdownContent(editor, stopAtNode) implementation:
+    const textBefore = getMarkdownContent(editor, node);
+
+    // Basic scanner for MAGIC patterns
+    // --[[--[[--[[#######-[[MAGIC:Label|args]]-#######]]--]]--]]--
+    const magicRegex = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
+
+    // We need to know which label maps to which group/pairing
+    // Since this info is in availableTemplates (app.js), we might need to pass a map
+    // OR: Just look for labels that start with "बक्स सुरु" (Begin) and "बक्स अन्त्य" (End)
+    // Actually, better to pass the metadata from app.js.
+    return textBefore; // Just return text for now, app.js will handle the logic
+}
+
 export function getHTMLContent(editor) {
     return editor.innerHTML;
 }

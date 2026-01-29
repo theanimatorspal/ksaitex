@@ -90,6 +90,10 @@ class TemplateEngine:
                 value = kp.group(3)
                 cmd_info[key] = value
             
+            # Ensure pairing and group are present if defined
+            if 'pairing' not in cmd_info: cmd_info['pairing'] = None
+            if 'group' not in cmd_info: cmd_info['group'] = None
+            
             magic_commands.append(cmd_info)
                     
         return {"variables": variables, "magic_commands": magic_commands}
@@ -122,7 +126,42 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
     # Process Magic Commands replacement on content
     metadata = engine.get_metadata(template_name)
     magic_commands = metadata.get("magic_commands", [])
-    
+
+    # --- VALIDATION PASS (NEW) ---
+    # We scan the original content for paired markers before any substitutions
+    paired_groups = {} # group -> {begin_label, end_label}
+    for m_cmd in magic_commands:
+        if m_cmd.get('pairing') and m_cmd.get('group'):
+            g = m_cmd['group']
+            if g not in paired_groups: paired_groups[g] = {}
+            paired_groups[g][m_cmd['pairing']] = m_cmd['label']
+
+    for group, pair in paired_groups.items():
+        begin_label = pair.get('begin')
+        end_label = pair.get('end')
+        
+        if begin_label and end_label:
+            # Robust Marker Regex for scanning
+            begin_pattern = re.compile(rf"--\[\[--\[\[--\[\[(?:#|\\#){{7}}-\[\[MAGIC:{re.escape(begin_label)}(?:\|(.*?))?\]\]-(?:#|\\#){{7}}\]\]--\]\]--\]\]--")
+            end_pattern = re.compile(rf"--\[\[--\[\[--\[\[(?:#|\\#){{7}}-\[\[MAGIC:{re.escape(end_label)}(?:\|(.*?))?\]\]-(?:#|\\#){{7}}\]\]--\]\]--\]\]--")
+            
+            # Find all occurrences with positions
+            lines = content.splitlines()
+            stack = [] # Store (line_number)
+            
+            for line_no, line_text in enumerate(lines, 1):
+                if begin_pattern.search(line_text):
+                    stack.append(line_no)
+                elif end_pattern.search(line_text):
+                    if not stack:
+                        raise ValueError(f"Error: Found '{end_label}' without a preceding '{begin_label}' at Line {line_no}.")
+                    stack.pop()
+            
+            if stack:
+                first_unclosed = stack[0]
+                raise ValueError(f"Error: Found '{begin_label}' without a closing '{end_label}' starting at Line {first_unclosed}.")
+    # --- END VALIDATION ---
+
     print(f"--- DEBUG: TEMPLATE METADATA ({template_name}) ---")
     print(f"Magic Commands Found: {[c['label'] for c in magic_commands]}")
     
@@ -134,6 +173,11 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
         # Robust Marker Regex: accounts for possible escaping of '#' by the markdown renderer
         # Matches both ####### and \#\#\#\#\#\#\#
         pattern = re.compile(rf"--\[\[--\[\[--\[\[(?:#|\\#){{7}}-\[\[MAGIC:{escaped_label}(?:\|(.*?))?\]\]-(?:#|\\#){{7}}\]\]--\]\]--\]\]--")
+        
+        # Validation Pass (NEW)
+        # If this is a paired command, we should ideally check order before actual replacement.
+        # But for simpler implementation, let's just count them globally for now.
+        # For a truly robust system, we would scan the content and track a stack.
         
         def replacer(match):
             args_str = match.group(1) or ""
@@ -148,12 +192,6 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
                         provided_args[k.strip()] = v.strip().replace(r'\n', '\n')
             
             # Parse default arguments from metadata definition
-            # Metadata args format: 'name:type:default'
-            # We assume single arg for now or multiple separated by |? 
-            # Actually, let's keep it simple: Metadata 'args' is a string describing the schema.
-            # We just need to map variable names to values.
-            
-            # Get the raw command string template (e.g. "\section{VAR_title}")
             final_cmd = cmd['command']
             
             # 1. Apply defaults from metadata if defined
@@ -170,8 +208,6 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
                         val_to_use = provided_args.get(var_name, default_val)
                         
                         # Replace VAR_varname in the command string
-                        # We use a simple replace here. 
-                        # Note: This limits variable names to not be substrings of others ideally.
                         final_cmd = final_cmd.replace(f"VAR_{var_name}", val_to_use)
             
             return final_cmd
@@ -180,6 +216,34 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
         if pattern.search(context["content"]):
             print(f"Processing magic command: {label}")
             context["content"] = pattern.sub(replacer, context["content"])
+
+    # --- VALIDATION PASS (NEW) ---
+    # Now check for any leftover markers that might indicate unclosed environments
+    # or general syntax errors that were not matched by the labels in metadata.
+    # Also, we can specifically check for Begin/End balance here.
+    
+    # Simple stack-based validation for all paired commands defined in metadata
+    paired_groups = {} # group -> {begin_label, end_label}
+    for cmd in magic_commands:
+        if 'pairing' in cmd and 'group' in cmd:
+            g = cmd['group']
+            if g not in paired_groups: paired_groups[g] = {}
+            paired_groups[g][cmd['pairing']] = cmd['label']
+
+    for group, labels in paired_groups.items():
+        begin_label = labels.get('begin')
+        end_label = labels.get('end')
+        if begin_label and end_label:
+            # Re-scan content (which might have had substitutions already, 
+            # but substitutions remove markers, so we should have scanned BEFORE)
+            # WAIT: If we scan AFTER, we only see UNMATCHED labels if we didn't replace them?
+            # No, we replaced BOTH. 
+            
+            # Let's re-think: We should scan the ORIGINAL content before substitution
+            pass
+
+    # Actually, let's do the validation pass at the VERY START of render_latex
+    # using the original content.
 
     # Read template content
     template_path = TEMPLATE_DIR / template_name

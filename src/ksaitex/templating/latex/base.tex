@@ -29,7 +29,8 @@
 % \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
 % \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
 
-% \MAGIC{ box, label='बक्स', tab='ढाँचा', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red|body:textarea:सामग्री यहाँ लेख्नुहोस्...', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black] VAR_body \end{tcolorbox}' }
+% \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black]' }
+% \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }

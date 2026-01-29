@@ -78,11 +78,56 @@ async function init() {
         templateSelect.addEventListener('change', (e) => {
             ui.renderTabs(e.target.value, availableTemplates, {
                 tabsHeader, tabsContent,
-                onMagicClick: (cmd) => editor.insertMagicCommand(cmd, markdownEditor)
+                onMagicClick: (cmd) => {
+                    const templateName = templateSelect.value;
+                    const metadata = availableTemplates[templateName];
+                    const magicCommands = metadata ? metadata.magic_commands : [];
+
+                    // Context Awareness: Check if 'end' command is allowed
+                    if (cmd.pairing === 'end' && cmd.group) {
+                        const textBefore = editor.findUnmatchedBegin(markdownEditor, cmd.group);
+                        const group = cmd.group;
+
+                        // Find labels for 'begin' and 'end' in this group
+                        const beginLabels = magicCommands
+                            .filter(c => c.group === group && c.pairing === 'begin')
+                            .map(c => c.label);
+                        const endLabels = magicCommands
+                            .filter(c => c.group === group && c.pairing === 'end')
+                            .map(c => c.label);
+
+                        // Simple stack-based check on textBefore
+                        const lines = textBefore.split('\n');
+                        let stackCount = 0;
+
+                        // Robust Marker Regex - need to match what's in textBefore
+                        const markerPattern = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
+
+                        let match;
+                        while ((match = markerPattern.exec(textBefore)) !== null) {
+                            const label = match[1];
+                            if (beginLabels.includes(label)) stackCount++;
+                            if (endLabels.includes(label)) stackCount--;
+                        }
+
+                        if (stackCount <= 0) {
+                            alert(`Error: You cannot insert '${cmd.label}' without a corresponding 'Begin' command before it.`);
+                            return;
+                        }
+                    }
+
+                    editor.insertMagicCommand(cmd, markdownEditor);
+                }
             });
         });
 
         convertBtn.addEventListener('click', compile);
+
+        if (closeErrorBtn) {
+            closeErrorBtn.addEventListener('click', () => {
+                errorOverlay.classList.add('hidden');
+            });
+        }
 
         // Sync Logic
         let syncDebounceTimer = null;
