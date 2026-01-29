@@ -514,11 +514,17 @@ async function init() {
                     return item;
                 };
 
-                // कपी (Copy) - Mock Ctrl+C
+                // कपी (Copy) - Modern Clipboard API
                 if (selectedText) {
-                    contextMenu.appendChild(createItem('कपी', 'fa-solid fa-copy', () => {
-                        editor.focusAndRestore(markdownEditor);
-                        document.execCommand('copy');
+                    contextMenu.appendChild(createItem('कपी', 'fa-solid fa-copy', async () => {
+                        try {
+                            await navigator.clipboard.writeText(selectedText);
+                            saveStatus.textContent = "Copied to clipboard";
+                        } catch (err) {
+                            console.error('Clipboard copy failed:', err);
+                            // Fallback to legacy if necessary, but try to avoid it
+                            document.execCommand('copy');
+                        }
                     }));
                 }
 

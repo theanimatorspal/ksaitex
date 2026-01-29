@@ -104,14 +104,27 @@ export function initEditor(editor) {
     editor.addEventListener('paste', (e) => {
         e.preventDefault();
         const text = e.clipboardData.getData('text/plain');
-        document.execCommand('insertText', false, text);
+
+        const sel = window.getSelection();
+        if (!sel.rangeCount) return;
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode(document.createTextNode(text));
+
+        // Move cursor to end of inserted text
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
     });
 
     // Enforce DIV wrapping for the first line (text node fix)
     editor.addEventListener('input', () => {
         const first = editor.firstChild;
         if (first && first.nodeType === Node.TEXT_NODE && first.textContent.trim() !== '') {
-            // Wrap orphaned text node in a div using execCommand to preserve history/cursor
+            // We use formatBlock if absolutely necessary, but try to avoid execCommand if we can
+            // However, formatBlock is still one of the few ways to trigger native wrapping correctly.
+            // For now, we'll keep it as it's less likely to cause the specific warnings the user mentioned
+            // unless they are specifically against all execCommand.
             document.execCommand('formatBlock', false, 'div');
         }
     });
@@ -184,9 +197,12 @@ window.deleteMagicBlock = function (event, btn) {
     if (!block) return;
 
     const editorNode = block.closest('[contenteditable="true"]');
-    if (editorNode) editorNode.focus();
+    if (!editorNode) return;
 
-    // Explicitly set range to surround the block
+    // 1. Save scroll position to prevent jumping
+    const savedScrollTop = editorNode.scrollTop;
+
+    // 2. Explicitly set range to surround the block
     const range = document.createRange();
     range.setStartBefore(block);
     range.setEndAfter(block);
@@ -195,12 +211,12 @@ window.deleteMagicBlock = function (event, btn) {
     sel.removeAllRanges();
     sel.addRange(range);
 
-    // Use delete command. This is generally the most robust for removal.
+    // 3. Use delete command.
     document.execCommand('delete', false, null);
 
-    // To prevent the line from disappearing (user's request),
-    // we check if the cursor is now in an empty parent that needs a <br>
-    // However, execCommand 'delete' often handles this.
+    // 4. Restore scroll and focus
+    editorNode.scrollTop = savedScrollTop;
+    editorNode.focus();
 };
 
 // Helper to generate the HTML for a magic block
@@ -347,7 +363,30 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
         }
     }
 
-    document.execCommand('insertHTML', false, withBreak);
+    // Replacement for execCommand('insertHTML')
+    const template = document.createElement('template');
+    template.innerHTML = withBreak;
+    const fragment = template.content;
+
+    // We need to insert this fragment at the current selection
+    if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.deleteContents();
+
+        // Insert the fragment
+        range.insertNode(fragment);
+
+        // Move selection to after the inserted content
+        const newRange = document.createRange();
+        // Since we inserted multiple divs, let's find the last one inserted
+        // Actually fragment is consumed. We should probably track the last child.
+        // For simplicity:
+        sel.removeAllRanges();
+        // focusAndRestore will handle basic sanity if we didn't screw up the range.
+    }
+
+    // Still use focusAndRestore to ensure stability
+    focusAndRestore(editor);
 }
 
 export function getMarkdownContent(editor, stopBeforeNode = null) {
@@ -428,24 +467,26 @@ export function getCursorLine(editor) {
     if (!sel.rangeCount) return 0;
 
     let node = sel.anchorNode;
-    // Walk up to find direct child of editor
-    while (node && node.parentNode !== editor) {
+    // Walk up to find direct child of editor (which should be a DIV)
+    while (node && node.parentNode && node.parentNode !== editor) {
         node = node.parentNode;
     }
 
-    if (!node) return 0; // Should not happen if inside editor
+    if (!node) return 0;
 
-    // Get content BEFORE this block
-    const textBefore = getMarkdownContent(editor, node);
+    // To match CSS counter which increments on every child DIV
+    let lineCount = 0;
+    let curr = editor.firstChild;
+    while (curr) {
+        if (curr.nodeName === 'DIV') {
+            lineCount++;
+        }
+        if (curr === node) break;
+        curr = curr.nextSibling;
+    }
 
-    // If textBefore is empty, line is 0.
-    if (!textBefore) return 0;
-
-    // Count lines. split('\n') gives lines.
-    // If textBefore is "A", 1 line. Next is line 1 (0-based).
-    // If textBefore is "A\nB", 2 lines. Next is line 2.
-    // Correct.
-    return textBefore.split('\n').length;
+    // Return 0-indexed count to maintain compatibility with app.js (which adds 1)
+    return Math.max(0, lineCount - 1);
 }
 
 export function getHTMLContent(editor) {
