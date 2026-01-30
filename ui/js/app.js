@@ -478,30 +478,60 @@ async function init() {
                 function renderContent(tabId) {
                     contentContainer.innerHTML = '';
                     if (tabId === 'general') {
-                        if (selectedText) {
-                            contentContainer.appendChild(createItem('कपी (Copy)', 'fa-solid fa-copy', async () => {
-                                try {
-                                    await navigator.clipboard.writeText(selectedText);
-                                    saveStatus.textContent = "Copied";
-                                } catch (err) { document.execCommand('copy'); }
-                            }));
-                        }
-                        contentContainer.appendChild(createItem('पेस्ट (Paste)', 'fa-solid fa-paste', async () => {
-                            if (navigator.clipboard) {
-                                try {
-                                    const text = await navigator.clipboard.readText();
-                                    if (text) {
-                                        editor.focusAndRestore(markdownEditor);
-                                        document.execCommand('insertText', false, text);
-                                    }
-                                } catch (err) { alert('Use Ctrl+V'); }
-                            } else { alert('Use Ctrl+V'); }
+                        // Standard Edit Actions
+                        contentContainer.appendChild(createItem('कट (Cut)', 'fa-solid fa-scissors', () => {
+                            editor.focusAndRestore(markdownEditor);
+                            document.execCommand('cut');
                         }));
+
+                        contentContainer.appendChild(createItem('कपी (Copy)', 'fa-solid fa-copy', () => {
+                            editor.focusAndRestore(markdownEditor);
+                            document.execCommand('copy');
+                        }));
+
+                        contentContainer.appendChild(createItem('पेस्ट (Paste)', 'fa-solid fa-paste', async () => {
+                            editor.focusAndRestore(markdownEditor);
+
+                            try {
+                                // 1. Try to check permissions first (not all browsers support 'clipboard-read' query)
+                                let state = 'prompt';
+                                try {
+                                    const permissionStatus = await navigator.permissions.query({ name: 'clipboard-read' });
+                                    state = permissionStatus.state;
+                                } catch (e) { /* Permissions API might not support clipboard-read */ }
+
+                                if (state === 'denied') {
+                                    alert("Clipboard पहुँच पन्छाउनुभएको छ। कृपया आफ्नो ब्राउजरको सेटिङ्मा गएर यो साइटको लागि Clipboard अनुमति दिनुहोस्। (Clipboard access denied. Please enable it in site settings.)");
+                                    return;
+                                }
+
+                                // 2. Attempt to read text. This usually triggers the browser's permission popup if state is 'prompt'.
+                                const text = await navigator.clipboard.readText();
+                                if (text) {
+                                    // Use execCommand to insert text as if the user typed it (enables undo etc)
+                                    document.execCommand('insertText', false, text);
+                                }
+                            } catch (err) {
+                                console.error("Clipboard paste error:", err);
+                                if (err.name === 'NotAllowedError') {
+                                    alert("प्रणाली सुरक्षाका कारण पेस्ट गर्न अनुमति आवश्यक छ। (Permission required to paste).");
+                                } else {
+                                    alert("प्रणाली सुरक्षाका कारण पेस्ट गर्न 'Ctrl+V' थिच्नुहोस्। (Security blocked paste, use Ctrl+V)");
+                                }
+                            }
+                        }));
+
+                        contentContainer.appendChild(createItem('सबै छान्नुहोस् (Select All)', 'fa-solid fa-check-double', () => {
+                            editor.focusAndRestore(markdownEditor);
+                            document.execCommand('selectAll');
+                        }));
+
                         const divider = document.createElement('div');
                         divider.style.height = "1px";
                         divider.style.background = "var(--border-color)";
                         divider.style.margin = "4px 0";
                         contentContainer.appendChild(divider);
+
                         generalCommands.forEach(cmd => {
                             contentContainer.appendChild(createMagicItem(cmd));
                         });
