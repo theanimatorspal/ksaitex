@@ -1111,3 +1111,86 @@ select.dynamic-arg-input {
     outline: none;
     border-color: var(--orange);
 }
+
+/* Context Menu Tabs */
+.context-menu-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.context-menu-tabs {
+    display: flex;
+    flex-direction: column;
+    width: 32px;
+    background-color: var(--bg1);
+    border-right: 1px solid var(--border-color);
+}
+
+.context-menu-tab {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 12px 6px;
+    color: var(--fg3);
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+    /* Indicator on left */
+    transform: rotate(180deg);
+    /* Text reads bottom-to-top */
+    text-align: center;
+}
+
+.context-menu-tab:hover {
+    color: var(--fg1);
+    background-color: var(--bg2);
+}
+
+.context-menu-tab.active {
+    color: var(--orange);
+    border-left-color: var(--orange);
+    background-color: var(--bg2);
+    font-weight: 600;
+}
+
+.context-menu-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0;
+    max-height: 400px;
+    /* Limit height */
+}
+
+/* Items inside content */
+.context-menu-item {
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--fg2);
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.context-menu-item:hover {
+    background-color: var(--bg2);
+    color: var(--orange);
+}
+
+.context-menu {
+    position: fixed;
+    background-color: var(--bg1);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    width: 280px;
+    /* Wider to accommodate tabs */
+    border-radius: var(--radius-sm);
+    /* padding: 4px 0; Removed padding from container */
+    overflow: hidden;
+    /* For rounded corners */
+}

@@ -532,99 +532,105 @@ async function init() {
                     savedRange = selection.getRangeAt(0).cloneRange();
                 }
 
-                // Case 1: Swapping an existing block
-                // Case 2: Standard text selection insertion
-                // Case 3: Empty space (allow menu always)
-
                 e.preventDefault();
 
-                // Get commands from current template
+                // Get commands
                 const currentTemplate = templateSelect.value;
                 const metadata = availableTemplates[currentTemplate];
-                const commands = (metadata && metadata.magic_commands)
+                const allCommands = (metadata && metadata.magic_commands)
                     ? metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting')
                     : [];
 
-                // Capture Swap State
-                let swapValue = null;
-                if (targetBlock) {
-                    const firstBtn = targetBlock.querySelector('.magic-arg-btn');
-                    if (firstBtn) swapValue = firstBtn.dataset.fullValue;
-                }
+                // categorize
+                // General: Non-paired commands + Copy/Paste
+                // Begin/End: Paired commands (show only Begin for simplicity as requested, or both?)
+                // User said: "only begin commands are needed" for paired ones.
 
-                // Populate Menu
+                const generalCommands = allCommands.filter(c => !c.pairing);
+                const pairedCommands = allCommands.filter(c => c.pairing === 'begin'); // Filter out 'end'
+
+                // Build UI Structure
                 contextMenu.innerHTML = '';
 
-                // -- Standard Actions --
-                const createItem = (label, icon, onClick) => {
-                    const item = document.createElement('div');
-                    item.className = 'context-menu-item';
-                    item.innerHTML = `<i class="${icon}"></i> <span>${label}</span>`;
-                    item.onclick = (ev) => {
-                        ev.stopPropagation();
-                        onClick();
-                        contextMenu.classList.add('hidden');
-                    };
-                    return item;
-                };
+                const layout = document.createElement('div');
+                layout.className = 'context-menu-layout';
 
-                // कपी (Copy) - Modern Clipboard API
-                if (selectedText) {
-                    contextMenu.appendChild(createItem('कपी', 'fa-solid fa-copy', async () => {
-                        try {
-                            await navigator.clipboard.writeText(selectedText);
-                            saveStatus.textContent = "Copied to clipboard";
-                        } catch (err) {
-                            console.error('Clipboard copy failed:', err);
-                            // Fallback to legacy if necessary, but try to avoid it
-                            document.execCommand('copy');
-                        }
-                    }));
-                }
+                const tabsContainer = document.createElement('div');
+                tabsContainer.className = 'context-menu-tabs';
 
-                // पेस्ट (Paste) - Mock Ctrl+V
-                contextMenu.appendChild(createItem('पेस्ट', 'fa-solid fa-paste', async () => {
-                    // Check if Clipboard API is available
-                    if (navigator.clipboard && navigator.clipboard.readText) {
-                        try {
-                            const text = await navigator.clipboard.readText();
-                            if (text) {
-                                editor.focusAndRestore(markdownEditor);
-                                document.execCommand('insertText', false, text);
-                            }
-                        } catch (err) {
-                            console.error('Clipboard read failed:', err);
-                            alert('कृपया Ctrl+V प्रयोग गर्नुहोस् (Please use Ctrl+V to paste)');
+                const contentContainer = document.createElement('div');
+                contentContainer.className = 'context-menu-content';
+
+                // TABS
+                const tabs = [
+                    { id: 'general', label: 'General' },
+                    { id: 'beginend', label: 'Begin/End' }
+                ];
+
+                let activeTabId = 'general';
+
+                function renderContent(tabId) {
+                    contentContainer.innerHTML = '';
+
+                    if (tabId === 'general') {
+                        // Copy/Paste
+                        if (selectedText) {
+                            contentContainer.appendChild(createItem('कपी (Copy)', 'fa-solid fa-copy', async () => {
+                                try {
+                                    await navigator.clipboard.writeText(selectedText);
+                                    saveStatus.textContent = "Copied";
+                                } catch (err) { document.execCommand('copy'); }
+                            }));
                         }
-                    } else {
-                        // Clipboard API not available - inform user to use Ctrl+V
-                        alert('कृपया Ctrl+V प्रयोग गर्नुहोस् (Please use Ctrl+V to paste)');
+
+                        contentContainer.appendChild(createItem('पेस्ट (Paste)', 'fa-solid fa-paste', async () => {
+                            if (navigator.clipboard) {
+                                try {
+                                    const text = await navigator.clipboard.readText();
+                                    if (text) {
+                                        editor.focusAndRestore(markdownEditor);
+                                        document.execCommand('insertText', false, text);
+                                    }
+                                } catch (err) { alert('Use Ctrl+V'); }
+                            } else { alert('Use Ctrl+V'); }
+                        }));
+
+                        const divider = document.createElement('div');
+                        divider.style.height = "1px";
+                        divider.style.background = "var(--border-color)";
+                        divider.style.margin = "4px 0";
+                        contentContainer.appendChild(divider);
+
+                        // General Magic Commands
+                        generalCommands.forEach(cmd => {
+                            contentContainer.appendChild(createMagicItem(cmd));
+                        });
+                    } else if (tabId === 'beginend') {
+                        pairedCommands.forEach(cmd => {
+                            contentContainer.appendChild(createMagicItem(cmd));
+                        });
                     }
-                }));
-
-                if (commands.length > 0) {
-                    const divider = document.createElement('div');
-                    divider.className = 'context-menu-divider';
-                    contextMenu.appendChild(divider);
                 }
 
-                // MAGIC COMMANDS
-                commands.forEach(cmd => {
+                function createMagicItem(cmd) {
                     const item = document.createElement('div');
                     item.className = 'context-menu-item';
                     item.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${cmd.label}</span>`;
-
                     item.onclick = (ev) => {
                         ev.stopPropagation();
                         let finalOverrides = {};
-                        const valToInject = targetBlock ? swapValue : selectedText;
+                        // Handle swap logic if targeting block (omitted for brevity on tab switch, can re-add if needed)
+                        // Actually, swap logic is important.
+                        const valToInject = targetBlock ?
+                            (targetBlock.querySelector('.magic-arg-btn') ? targetBlock.querySelector('.magic-arg-btn').dataset.fullValue : null)
+                            : selectedText;
 
-                        if (cmd.args && valToInject !== null && valToInject !== "") {
+                        if (cmd.args && valToInject) {
                             const firstArgName = cmd.args.split('|')[0].split(':')[0].trim();
                             if (firstArgName) finalOverrides[firstArgName] = valToInject;
                         }
 
-                        // Execute Replacement
+                        // Restore range
                         if (targetBlock) {
                             const range = document.createRange();
                             range.selectNode(targetBlock);
@@ -638,16 +644,51 @@ async function init() {
                         editor.insertMagicCommand(cmd, markdownEditor, finalOverrides);
                         contextMenu.classList.add('hidden');
                     };
+                    return item;
+                }
 
-                    contextMenu.appendChild(item);
+                function createItem(label, icon, onClick) {
+                    const item = document.createElement('div');
+                    item.className = 'context-menu-item';
+                    item.innerHTML = `<i class="${icon}"></i> <span>${label}</span>`;
+                    item.onclick = (ev) => {
+                        ev.stopPropagation();
+                        onClick();
+                        contextMenu.classList.add('hidden');
+                    };
+                    return item;
+                }
+
+                // Render Tabs
+                tabs.forEach(t => {
+                    const tab = document.createElement('div');
+                    tab.className = 'context-menu-tab';
+                    if (t.id === activeTabId) tab.classList.add('active');
+                    tab.textContent = t.label;
+                    tab.onclick = (ev) => {
+                        ev.stopPropagation(); // prevent menu close
+                        activeTabId = t.id;
+                        // Update UI
+                        tabsContainer.querySelectorAll('.context-menu-tab').forEach(el => el.classList.remove('active'));
+                        tab.classList.add('active');
+                        renderContent(t.id);
+                    };
+                    tabsContainer.appendChild(tab);
                 });
+
+                layout.appendChild(tabsContainer);
+                layout.appendChild(contentContainer);
+                contextMenu.appendChild(layout);
+
+                // Initial Render
+                renderContent(activeTabId);
 
                 // Position Menu
                 contextMenu.style.left = `${e.clientX}px`;
                 contextMenu.style.top = `${e.clientY}px`;
                 contextMenu.classList.remove('hidden');
 
-                // Adjust position if it overflows height
+                // Adjust position limits
                 const menuRect = contextMenu.getBoundingClientRect();
                 if (menuRect.bottom > window.innerHeight) {
                     contextMenu.style.top = `${window.innerHeight - menuRect.height - 10}px`;
