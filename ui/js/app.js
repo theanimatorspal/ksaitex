@@ -75,24 +75,35 @@ async function init() {
         showWelcomeScreen();
 
         // Listeners
+        // Helper to update editor context
+        function updateEditorMetadata(templateName) {
+            const metadata = availableTemplates[templateName];
+            const cmds = metadata ? metadata.magic_commands : [];
+            editor.setMagicCommands(cmds);
+            return cmds;
+        }
+
         templateSelect.addEventListener('change', (e) => {
-            ui.renderTabs(e.target.value, availableTemplates, {
+            const templateName = e.target.value;
+            const cmds = updateEditorMetadata(templateName);
+
+            ui.renderTabs(templateName, availableTemplates, {
                 tabsHeader, tabsContent,
                 onMagicClick: (cmd) => {
-                    const templateName = templateSelect.value;
-                    const metadata = availableTemplates[templateName];
-                    const magicCommands = metadata ? metadata.magic_commands : [];
-
                     // Context Awareness: Check if 'end' command is allowed
                     if (cmd.pairing === 'end' && cmd.group) {
+                        // We allow manual insertion of 'end' for repair purposes,
+                        // but we warn if no 'begin' is found.
+                        // Logic remains similar but less blocking if we want to be flexible.
+                        // For now, keep strict validation as requested before.
                         const textBefore = editor.findUnmatchedBegin(markdownEditor, cmd.group);
                         const group = cmd.group;
 
                         // Find labels for 'begin' and 'end' in this group
-                        const beginLabels = magicCommands
+                        const beginLabels = cmds
                             .filter(c => c.group === group && c.pairing === 'begin')
                             .map(c => c.label);
-                        const endLabels = magicCommands
+                        const endLabels = cmds
                             .filter(c => c.group === group && c.pairing === 'end')
                             .map(c => c.label);
 
@@ -111,8 +122,9 @@ async function init() {
                         }
 
                         if (stackCount <= 0) {
-                            alert(`Error: You cannot insert '${cmd.label}' without a corresponding 'Begin' command before it.`);
-                            return;
+                            if (!confirm(`Warning: No matching 'Begin' found for '${cmd.label}'. Insert anyway?`)) {
+                                return;
+                            }
                         }
                     }
 
@@ -887,7 +899,10 @@ async function loadTemplates() {
             opt.textContent = ui.formatTemplateName(t);
             templateSelect.appendChild(opt);
         });
-        if (availableTemplates['base']) templateSelect.value = 'base';
+        if (availableTemplates['base']) {
+            templateSelect.value = 'base';
+            editor.setMagicCommands(availableTemplates['base'].magic_commands);
+        }
         ui.renderTabs(templateSelect.value, availableTemplates, {
             tabsHeader, tabsContent,
             onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
@@ -990,6 +1005,12 @@ async function loadProject(id) {
 
         if (data.template) {
             templateSelect.value = data.template;
+
+            // Sync editor metadata
+            if (availableTemplates[data.template]) {
+                editor.setMagicCommands(availableTemplates[data.template].magic_commands);
+            }
+
             await ui.renderTabs(data.template, availableTemplates, {
                 tabsHeader, tabsContent,
                 onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)

@@ -497,6 +497,25 @@ button:active {
     box-shadow: 0 0 10px rgba(254, 128, 25, 0.2);
 }
 
+/* Paired Command Styling */
+.magic-block.magic-begin {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 1px dashed var(--orange);
+    opacity: 0.9;
+}
+
+.magic-block.magic-end {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: 1px dashed var(--orange);
+    opacity: 0.9;
+}
+
+.magic-block.magic-begin::after {
+    /* Visual trail hint */
+}
+
 .magic-block .magic-label {
     /* flex: 1; REMOVED so it doesn't push others */
     white-space: nowrap;
