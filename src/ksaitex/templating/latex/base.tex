@@ -36,6 +36,7 @@
 % \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=theme!5!white, colframe=theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
+% \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
@@ -85,6 +86,8 @@
 \usetikzlibrary{shadows}
 \usepackage{xcolor}
 \usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage[object = vectorian]{pgfornament}
 \emergencystretch=3cm
 
@@ -283,6 +286,16 @@ luatexbase.add_to_callback("pre_linebreak_filter", prevent_purnaviram_start_line
 
 % --- Alignment and Spacing Macros ---
 \newcommand{\vspacer}[1]{\vspace{#1 cm}}
+
+% --- Image Macros ---
+\newcommand{\customimage}[3]{
+    \begin{figure}[H]
+        \ifthenelse{\equal{#2}{Center}}{\centering}{}
+        \ifthenelse{\equal{#2}{Left}}{\raggedright}{}
+        \ifthenelse{\equal{#2}{Right}}{\raggedleft}{}
+        \includegraphics[width=#3\textwidth]{#1}
+    \end{figure}
+}
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{

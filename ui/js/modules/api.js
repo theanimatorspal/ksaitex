@@ -74,8 +74,28 @@ export async function syncPosition(project_id, line) {
 export async function reverseSync(project_id, page) {
     const res = await fetch('/api/sync/reverse', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ project_id, page })
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            project_id,
+            page
+        })
     });
+    return await res.json();
+}
+
+export async function uploadImage(project_id, file) {
+    const formData = new FormData();
+    formData.append('project_id', project_id);
+    formData.append('file', file);
+    const res = await fetch('/api/upload_image', {
+        method: 'POST',
+        body: formData
+    });
+    if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || "Upload failed");
+    }
     return await res.json();
 }

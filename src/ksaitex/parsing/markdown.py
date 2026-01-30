@@ -60,20 +60,27 @@ class LatexRenderer:
     def render_inline(self, tokens: List[Token]) -> str:
         import re
         result = ""
+        magic_pattern = r'(--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:[^|\]]+(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--)'
         for token in tokens:
             if token.type == "text":
                 content = token.content
-                # Fix: Manually catch **'...'** patterns that markdown-it missed
-                parts = re.split(r'(\*\*\'.*?\'\*\*)', content)
-                
-                for part in parts:
-                    is_bold_patch = part.startswith("**'") and part.endswith("'**")
-                    if is_bold_patch:
-                        segment_content = part[2:-2] # Strip **
-                        processed_segment = self._process_text_chars(segment_content)
-                        result += f"\\textbf{{{processed_segment}}}"
-                    else:
-                        result += self._process_text_chars(part)
+                # Split by MAGIC markers FIRST to keep them raw
+                magic_parts = re.split(magic_pattern, content)
+                for m_part in magic_parts:
+                    if re.match(magic_pattern, m_part):
+                        result += m_part
+                        continue
+                    
+                    # Process non-magic text for bold patches
+                    parts = re.split(r'(\*\*\'.*?\'\*\*)', m_part)
+                    for part in parts:
+                        is_bold_patch = part.startswith("**'") and part.endswith("'**")
+                        if is_bold_patch:
+                            segment_content = part[2:-2] # Strip **
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\textbf{{{processed_segment}}}"
+                        else:
+                            result += self._process_text_chars(part)
             elif token.type == "softbreak":
                 result += "\n"
             elif token.type == "hardbreak":

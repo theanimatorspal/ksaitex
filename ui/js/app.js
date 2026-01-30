@@ -336,6 +336,71 @@ async function init() {
                         input.appendChild(opt);
                     }
                     input.value = currentVal;
+                } else if (typeDef === 'image') {
+                    const container = document.createElement('div');
+                    container.className = 'image-upload-wrapper';
+
+                    const fileInput = document.createElement('input');
+                    fileInput.type = 'file';
+                    fileInput.accept = 'image/*';
+                    fileInput.style.marginBottom = '10px';
+
+                    const hiddenInput = document.createElement('input');
+                    hiddenInput.className = 'dynamic-arg-input'; // Ensure this class is present for value retrieval
+                    hiddenInput.type = 'text';
+                    hiddenInput.readOnly = true;
+                    hiddenInput.style.width = '100%';
+                    hiddenInput.style.marginBottom = '10px';
+                    hiddenInput.style.backgroundColor = '#333';
+                    hiddenInput.style.border = '1px solid #555';
+                    hiddenInput.style.color = '#fff';
+                    hiddenInput.style.padding = '5px';
+                    hiddenInput.value = currentVal;
+                    hiddenInput.dataset.fieldName = name;
+
+                    const preview = document.createElement('div');
+                    preview.style.border = '1px dashed #555';
+                    preview.style.padding = '10px';
+                    preview.style.minHeight = '100px';
+                    preview.style.display = 'flex';
+                    preview.style.alignItems = 'center';
+                    preview.style.justifyContent = 'center';
+
+                    const defaultVal = parts[2] || "";
+                    if (currentVal && currentVal !== defaultVal) {
+                        const imgUrl = `/project_files/${currentProjectId}/${currentVal}`;
+                        preview.innerHTML = `<img src="${imgUrl}" style="max-width:100%; max-height:200px;">`;
+                    } else {
+                        preview.textContent = "No image selected";
+                    }
+
+                    fileInput.onchange = async (e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                            preview.textContent = "Uploading...";
+                            try {
+                                const result = await api.uploadImage(currentProjectId, file);
+                                hiddenInput.value = result.path;
+                                const imgUrl = `/project_files/${currentProjectId}/${result.path}`;
+                                preview.innerHTML = `<img src="${imgUrl}" style="max-width:100%; max-height:200px;">`;
+
+                                // Also update the block immediately for better UX
+                                const btn = currentEditingBlock.querySelector(`.magic-arg-btn[data-name="${name}"]`);
+                                if (btn) {
+                                    editor.updateArgButton(btn, result.path);
+                                }
+                            } catch (err) {
+                                console.error(err);
+                                preview.textContent = "Upload failed: " + err.message;
+                            }
+                        }
+                    };
+
+                    container.appendChild(fileInput);
+                    container.appendChild(hiddenInput);
+                    container.appendChild(preview);
+                    input = container;
+
                 } else if (typeDef === 'textarea') {
                     console.log("Creating Textarea for", name);
                     input = document.createElement('textarea');
@@ -355,7 +420,7 @@ async function init() {
                     input.style.resize = "vertical";
                     input.value = currentVal;
                 }
-                input.dataset.fieldName = name;
+                if (input.dataset) input.dataset.fieldName = name;
                 panel.appendChild(input);
                 content.appendChild(panel);
             });

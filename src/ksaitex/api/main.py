@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Form, UploadFile, File
 from fastapi.responses import Response, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -280,8 +280,25 @@ async def get_project(project_id: str):
         raise HTTPException(status_code=404, detail="Project not found")
     with open(project_file, "r") as f:
         return json.load(f)
+@app.post("/api/upload_image")
+async def upload_image(project_id: str = Form(...), file: UploadFile = File(...)):
+    import shutil
+    project_dir = DATA_DIR / project_id
+    if not project_dir.exists():
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    images_dir = project_dir / "images"
+    images_dir.mkdir(exist_ok=True)
+    
+    file_path = images_dir / file.filename
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+        
+    return {"path": f"images/{file.filename}"}
+
 UI_DIR = Path("ui")
 if UI_DIR.exists():
+    app.mount("/project_files", StaticFiles(directory=DATA_DIR), name="project_files")
     app.mount("/", StaticFiles(directory=UI_DIR, html=True), name="ui")
 else:
     print("Warning: 'ui' directory not found. Frontend will not be served.")
