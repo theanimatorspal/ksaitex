@@ -4,13 +4,13 @@
 % \VAR{ document_class, default='article', tab='लेआउट', label='कागजको ढाँचा', type='select', options='article|report|book' }
 % \VAR{ top_margin, default='1in', tab='लेआउट', label='माथिल्लो मार्जिन' }
 % \VAR{ bottom_margin, default='1in', tab='लेआउट', label='तल्लो मार्जिन' }
-% \VAR{ left_margin, default='1in', tab='लेआउट', label='बायाँ मार्जिन' }
-% \VAR{ right_margin, default='1in', tab='लेआउट', label='दायाँ मार्जिन' }
+% \VAR{ left_margin, default='0.5in', tab='लेआउट', label='बायाँ मार्जिन' }
+% \VAR{ right_margin, default='0.5in', tab='लेआउट', label='दायाँ मार्जिन' }
 % \VAR{ line_spacing, default='1.3', tab='लेआउट', label='पङ्क्ति बिचको दुरी', type='select', options='1.0|1.2|1.3|1.5|2.0' }
-% \VAR{ paragraph_spacing, default='6pt', tab='लेआउट', label='अनुच्छेद बिचको दुरी', type='select', options='0pt|4pt|6pt|10pt|12pt' }
-% \VAR{ paragraph_indent, default='0pt', tab='लेआउट', label='अनुच्छेदको सुरुको खाली ठाउँ', type='select', options='0pt|10pt|20pt|30pt' }
+% \VAR{ paragraph_spacing, default='10pt', tab='लेआउट', label='अनुच्छेद बिचको दुरी', type='select', options='0pt|4pt|6pt|10pt|12pt' }
+% \VAR{ paragraph_indent, default='10pt', tab='लेआउट', label='अनुच्छेदको सुरुको खाली ठाउँ', type='select', options='0pt|10pt|20pt|30pt' }
 % \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
-% \VAR{ theme_color, default='orange', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
+% \VAR{ theme_color, default='black', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
 
 % \MAGIC{ khanda, label='खण्ड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\khanda{VAR_title}' }
@@ -29,7 +29,7 @@
 % \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
 % \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
 
-% \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=\theme!5!white, colframe=\theme!75!black]' }
+% \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=theme!5!white, colframe=theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
