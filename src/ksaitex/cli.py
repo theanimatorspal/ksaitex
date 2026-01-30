@@ -22,26 +22,26 @@ def convert(
         typer.echo(f"Error: File {input_file} not found.", err=True)
         raise typer.Exit(code=1)
 
-    # 1. Read Markdown
+
     with open(input_file, "r", encoding="utf-8") as f:
         md_content = f.read()
 
-    # 2. Parse Markdown to LaTeX fragments
+
     typer.echo("Parsing Markdown...")
     latex_fragment = parse(md_content)
 
-    # 3. Generate Full LaTeX Document
+
     typer.echo("Generating LaTeX...")
     config = {
         "script": template,
         "font_file": font,
-        # Detect document class or allow override? For now, default.
+
     }
     full_latex = render_latex(latex_fragment, config)
 
-    # 4. Compile to PDF
+
     typer.echo("Compiling to PDF (this may take a moment)...")
-    
+
     async def run_compile():
         pdf_bytes, log = await compile_latex(full_latex, output_file)
         return pdf_bytes, log

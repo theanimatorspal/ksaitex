@@ -1,22 +1,20 @@
-/**
- * Core editor logic and DOM-to-Markdown serialization.
- */
+
 
 const MARKER_START = '--[[--[[--[[#######-';
 const MARKER_END = '-#######]]--]]--]]--';
-let currentMagicCommands = []; // Metadata cache
+let currentMagicCommands = []; 
 
-// SELECTION MEMORY (SHARED WITHIN MODULE)
+
 let lastSavedRange = null;
 let isRestoring = false;
 let cursorEl = null;
 
 function saveSelection(editor) {
-    if (isRestoring) return; // Mutex: Don't save if we are currently forcing a restore
+    if (isRestoring) return; 
     const sel = window.getSelection();
     if (sel.rangeCount > 0) {
         const range = sel.getRangeAt(0);
-        // Only save if the selection is actually inside the editor
+        
         if (editor.contains(range.commonAncestorContainer)) {
             lastSavedRange = range.cloneRange();
         }
@@ -26,7 +24,7 @@ function saveSelection(editor) {
 function restoreSelection(editor) {
     const sel = window.getSelection();
     if (!lastSavedRange) {
-        // Default: End of editor text content if no history exists
+        
         const range = document.createRange();
         range.selectNodeContents(editor);
         range.collapse(false);
@@ -38,29 +36,26 @@ function restoreSelection(editor) {
     sel.addRange(lastSavedRange);
 }
 
-/**
- * Public API for other modules.
- * Strictly enforces focus and cursor continuity.
- */
+
 export function focusAndRestore(editor) {
     if (!editor) return;
 
-    // 1. Lock selection tracking
+    
     isRestoring = true;
 
-    // 2. Save scroll position (browsers often reset this on focus)
+    
     const top = editor.scrollTop;
 
-    // 3. Force Focus
+    
     editor.focus();
 
-    // 4. Force Cursor Restore
+    
     restoreSelection(editor);
 
-    // 5. Restore scroll
+    
     editor.scrollTop = top;
 
-    // 6. Release Lock (Increased delay to handle async clipboard/input stability)
+    
     setTimeout(() => { isRestoring = false; }, 150);
 }
 
@@ -69,14 +64,14 @@ export function setMagicCommands(cmds) {
 }
 
 export function initEditor(editor) {
-    // 1. Selection Tracking (Hardened)
+    
     const track = () => saveSelection(editor);
 
-    // Track on interaction
+    
     editor.addEventListener('mouseup', track);
     editor.addEventListener('keyup', track);
 
-    // Global tracking ensures we catch range changes even during complex DOM updates
+    
     document.addEventListener('selectionchange', () => {
         if (document.activeElement === editor) {
             track();
@@ -86,32 +81,32 @@ export function initEditor(editor) {
         }
     });
 
-    // Create custom cursor element if it doesn't exist
+    
     if (!cursorEl) {
         cursorEl = document.createElement('div');
         cursorEl.className = 'custom-cursor';
         document.body.appendChild(cursorEl);
     }
 
-    // 2. REFOCUS JUMP PREVENTION (Mousedown Guard)
-    // browsers often jump the cursor to the click location *before* letting JS intervene.
-    // We catch this at the very beginning and force our memory back.
+    
+    
+    
     editor.addEventListener('mousedown', (e) => {
         if (document.activeElement !== editor) {
-            // Prevent standard click-to-focus behavior from moving the caret
+            
             setTimeout(() => focusAndRestore(editor), 0);
         }
     });
 
-    // Maintain "default" paragraph DIV wrapping
+    
     document.execCommand('defaultParagraphSeparator', false, 'div');
 
-    // Ensure the editor has at least one DIV so typing starts correctly
+    
     if (editor.innerHTML.trim() === "") {
         editor.innerHTML = '<div><br></div>';
     }
 
-    // Ensure the editor is never empty so typing starts in a DIV
+    
     editor.addEventListener('focus', () => {
         if (editor.innerHTML.trim() === "") {
             editor.innerHTML = '<div><br></div>';
@@ -127,7 +122,7 @@ export function initEditor(editor) {
     window.addEventListener('resize', () => updateCustomCursor(editor));
 
 
-    // Prevent bold/italic formatting if the user pastes rich text
+    
     editor.addEventListener('paste', (e) => {
         e.preventDefault();
         const text = e.clipboardData.getData('text/plain');
@@ -138,41 +133,41 @@ export function initEditor(editor) {
         range.deleteContents();
         range.insertNode(document.createTextNode(text));
 
-        // Move cursor to end of inserted text
+        
         range.collapse(false);
         sel.removeAllRanges();
         sel.addRange(range);
     });
 
-    // Enforce DIV wrapping for the first line (text node fix)
+    
     editor.addEventListener('input', () => {
         const first = editor.firstChild;
         if (first && first.nodeType === Node.TEXT_NODE && first.textContent.trim() !== '') {
-            // We use formatBlock if absolutely necessary, but try to avoid execCommand if we can
-            // However, formatBlock is still one of the few ways to trigger native wrapping correctly.
-            // For now, we'll keep it as it's less likely to cause the specific warnings the user mentioned
-            // unless they are specifically against all execCommand.
+            
+            
+            
+            
             document.execCommand('formatBlock', false, 'div');
         }
     });
 
-    // ATOMIC DELETION LOGIC
+    
     editor.addEventListener('keydown', (e) => {
         if (e.key !== 'Backspace' && e.key !== 'Delete') return;
 
         const selection = window.getSelection();
-        if (!selection.rangeCount || !selection.isCollapsed) return; // Don't interfere with range selections
+        if (!selection.rangeCount || !selection.isCollapsed) return; 
         const range = selection.getRangeAt(0);
 
         let targetNode = null;
 
         if (e.key === 'Backspace') {
-            // Only trigger if we are at the literal start of a text node or container
+            
             if (range.startOffset === 0) {
-                // Check previous sibling
+                
                 let prev = range.startContainer.previousSibling;
 
-                // If container is text node, check parent's previous sibling
+                
                 if (!prev && range.startContainer.nodeType === Node.TEXT_NODE) {
                     prev = range.startContainer.parentNode.previousSibling;
                 }
@@ -182,7 +177,7 @@ export function initEditor(editor) {
                 }
             }
         } else if (e.key === 'Delete') {
-            // Check if we are at the end of the node
+            
             const atEnd = (range.startContainer.nodeType === Node.TEXT_NODE)
                 ? (range.startOffset === range.startContainer.textContent.length)
                 : (range.startOffset === range.startContainer.childNodes.length);
@@ -201,7 +196,7 @@ export function initEditor(editor) {
 
         if (targetNode) {
             e.preventDefault();
-            // Delegate to robust deletion logic
+            
             deletePairedBlock(targetNode, editor);
         }
     });
@@ -214,7 +209,7 @@ function deletePairedBlock(block, editor) {
 
     if (pairing && group) {
         if (pairing === 'begin') {
-            // Search Forward
+            
             let curr = block.nextElementSibling;
             let depth = 0;
             while (curr) {
@@ -228,7 +223,7 @@ function deletePairedBlock(block, editor) {
                 curr = curr.nextElementSibling;
             }
         } else if (pairing === 'end') {
-            // Search Backward
+            
             let curr = block.previousElementSibling;
             let depth = 0;
             while (curr) {
@@ -244,10 +239,10 @@ function deletePairedBlock(block, editor) {
         }
     }
 
-    // Capture Undo Selection
+    
     const savedRange = window.getSelection().rangeCount > 0 ? window.getSelection().getRangeAt(0).cloneRange() : null;
 
-    // Use execCommand for single block to allow undo
+    
     const range = document.createRange();
     range.selectNode(block);
     const sel = window.getSelection();
@@ -255,10 +250,10 @@ function deletePairedBlock(block, editor) {
     sel.addRange(range);
     document.execCommand('delete', false, null);
 
-    // If partner found, delete it too (Note: this makes it two separate undo steps unfortunately,
-    // but ensures consistency. Grouping undo is hard in execCommand)
-    // Actually, simply removing the node via DOM breaks Undo. 
-    // We should try to use execCommand again if possible.
+    
+    
+    
+    
     if (partner) {
         const range2 = document.createRange();
         range2.selectNode(partner);
@@ -268,8 +263,7 @@ function deletePairedBlock(block, editor) {
     }
 }
 
-// Global helper for undoable deletion of magic blocks
-// Global helper for undoable deletion of magic blocks
+
 window.deleteMagicBlock = function (event, btn) {
     if (event) {
         event.preventDefault();
@@ -283,18 +277,17 @@ window.deleteMagicBlock = function (event, btn) {
 
     const savedScrollTop = editorNode.scrollTop;
 
-    // Use shared logic
+    
     deletePairedBlock(block, editorNode);
 
-    // Restore scroll/focus
+    
     editorNode.scrollTop = savedScrollTop;
     editorNode.focus();
 };
 
-// Helper to generate the HTML for a magic block
-// Helper to generate the HTML for a magic block
+
 function createMagicHtml(label, argsPairs = [], schema = "") {
-    // 1. Lookup metadata for visuals
+    
     const cmd = currentMagicCommands.find(c => c.label === label);
 
     let extraClass = "";
@@ -322,7 +315,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
             displayVal = displayVal.replace(/\n/g, ' ');
             if (displayVal.length > 15) displayVal = displayVal.substring(0, 12) + "...";
         }
-        // Escape quotes for HTML attribute
+        
         const safeValue = pair.value.replace(/"/g, '&quot;');
         argsHtml += `<button class="magic-arg-btn" data-name="${pair.key}" data-full-value="${safeValue}" title="Edit ${pair.key}">${displayVal}</button>`;
     });
@@ -331,7 +324,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
         return `${p.key}=${p.value.replace(/\n/g, "\\n")}`;
     }).join(';');
 
-    // Final robust marker
+    
     const magicString = argsPairs.length > 0
         ? `${MARKER_START}[[MAGIC:${label}|${serializedArgs}]]${MARKER_END}`
         : `${MARKER_START}[[MAGIC:${label}]]${MARKER_END}`;
@@ -341,7 +334,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
 
 export function updateArgButton(btn, newValue) {
     btn.dataset.fullValue = newValue;
-    // Display: collapses newlines to space for single-line pill
+    
     let display = newValue.replace(/\n/g, ' ');
     if (display.length > 15) {
         display = display.substring(0, 12) + "...";
@@ -358,7 +351,7 @@ export function loadContent(text, editor) {
     const lines = text.split('\n');
     let html = "";
 
-    // Robust Regex: --[[--[[--[[#######-[[MAGIC:Label|args]]-#######]]--]]--]]--
+    
     const magicRegex = /^--\[\[--\[\[--\[\[#######-\[\[MAGIC:([^|\]]+)(?:\|(.*?))?\]\]-#######\]\]--\]\]--\]\]--$/;
 
     html = lines.map(line => {
@@ -425,34 +418,34 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
         });
     }
 
-    // Generate HTML for THIS command
+    
     const html = createMagicHtml(label, argsPairs, argsSchema);
 
-    // START AUTO-INSERTION LOGIC
+    
     let finalHtml = html;
     let autoPairing = false;
 
     if (cmd.pairing === 'begin' && cmd.group) {
-        // Find partner
+        
         const partner = currentMagicCommands.find(c => c.group === cmd.group && c.pairing === 'end');
         if (partner) {
             autoPairing = true;
             const endHtml = createMagicHtml(partner.label, [], partner.args || "");
-            const content = '<div><br></div>'; // Empty line between
-            // Structure: Begin -> Break -> Content -> Break -> End -> Break (to prevent trapping)
+            const content = '<div><br></div>'; 
+            
             finalHtml = `<div><br></div>${html}${content}${endHtml}<div><br></div>`;
         }
     }
 
     if (!autoPairing) {
-        // Normal padded wrap
+        
         finalHtml = `<div><br></div><div><br></div>${html}<div><br></div><div><br></div>`;
     }
 
     focusAndRestore(editor);
 
-    // SMART INSERTION (Simplified for auto-pairing mostly)
-    // We retain the logic to replace empty lines for cleaner look
+    
+    
     const sel = window.getSelection();
     if (sel.rangeCount && sel.isCollapsed) {
         let node = sel.anchorNode;
@@ -474,26 +467,26 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
         }
     }
 
-    // Use execCommand to preserve undo history
+    
     document.execCommand('insertHTML', false, finalHtml);
 
-    // If auto-paired, we want to place cursor IN BETWEEN
+    
     if (autoPairing) {
-        // We need to find where we just inserted.
-        // Since we used execCommand, the cursor is at the END of insertion usually.
-        // We need to move it up.
-        // Since we can't easily get the reference to inserted nodes from execCommand,
-        // we might rely on the user to click or we can try to walk back.
-        // 
-        // Heuristic: The selection is now after the 'end' block (and the break).
-        // Let's try to move it up 2 lines (over break, over end block).
-        // Actually, just leaving it at end is safe. 
-        // User asked for "intuitive". Being inside is better.
-        // Scan back from current position to find the group?
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-        // Let's try to set cursor in the middle div if possible.
-        // Too risky to guess DOM state after execCommand without reliable handles.
-        // Keeping it at end for now to "not break anything".
+        
+        
+        
     }
 
     isRestoring = false;
@@ -516,7 +509,7 @@ export function getMarkdownContent(editor, stopBeforeNode = null) {
         } else if (node.nodeType === Node.ELEMENT_NODE) {
             const tagName = node.tagName.toUpperCase();
 
-            // 1. Magic Blocks
+            
             if (node.classList.contains('magic-block')) {
                 const label = node.dataset.label || "Command";
                 const argBtns = node.querySelectorAll('.magic-arg-btn');
@@ -535,10 +528,10 @@ export function getMarkdownContent(editor, stopBeforeNode = null) {
                     if (result !== "" && !result.endsWith('\n')) result += '\n';
                     result += "\n" + cmd + "\n\n";
                 }
-                return; // Atomic
+                return; 
             }
 
-            // 2. Block-level elements
+            
             const isBlock = ['DIV', 'P', 'LI', 'H1', 'H2', 'H3', 'BLOCKQUOTE'].includes(tagName);
             if (isBlock && result !== "" && !result.endsWith('\n')) {
                 result += '\n';
@@ -574,12 +567,11 @@ export function getMarkdownContent(editor, stopBeforeNode = null) {
 }
 
 
-
 export function getCursorLine(editor) {
     let range = null;
     const sel = window.getSelection();
 
-    // 1. Try Live Selection
+    
     if (sel.rangeCount > 0) {
         const r = sel.getRangeAt(0);
         if (editor.contains(r.commonAncestorContainer)) {
@@ -587,7 +579,7 @@ export function getCursorLine(editor) {
         }
     }
 
-    // 2. Fallback to Last Saved
+    
     if (!range && lastSavedRange) {
         range = lastSavedRange;
     }
@@ -595,33 +587,33 @@ export function getCursorLine(editor) {
     if (!range) return 0;
 
     let node = range.startContainer;
-    // Walk up to find direct child of editor (which should be a DIV)
+    
     while (node && node.parentNode && node.parentNode !== editor) {
         node = node.parentNode;
     }
 
     if (!node) return 0;
 
-    // Correct Logic:
-    // The previous logic merely counted DIVs. But getMarkdownContent filters out empty lines 
-    // and processes Magic Blocks into multi-line strings.
-    // To match the backend (which sees the output of getMarkdownContent),
-    // we must simulate getMarkdownContent UP TO the cursor.
+    
+    
+    
+    
+    
 
-    // We get content up to the current block (exclusive)
+    
     const textBefore = getMarkdownContent(editor, node);
 
-    // Count lines in textBefore
+    
     const linesBefore = textBefore === "" ? 0 : textBefore.split('\n').length;
 
-    // Now we need to consider if the current node itself contributes lines *before* the cursor?
-    // Since 'node' is a block-level element (child of editor), and our cursor is INSIDE it,
-    // usually we are at the beginning of that block relative to the document flow *if we just counted everything before it*.
+    
+    
+    
 
-    // However, getMarkdownContent joins blocks with newlines.
-    // If textBefore is not empty, there is a newline after it in the final file.
-    // So we are fundamentally on line `linesBefore`.
-    // (If linesBefore is 5, it means we have lines 0,1,2,3,4. Next is 5.)
+    
+    
+    
+    
 
     return linesBefore;
 }
@@ -630,7 +622,7 @@ export function findUnmatchedBegin(editor, targetGroup) {
     let range = null;
     const sel = window.getSelection();
 
-    // 1. Try Live Selection
+    
     if (sel.rangeCount > 0) {
         const r = sel.getRangeAt(0);
         if (editor.contains(r.commonAncestorContainer)) {
@@ -638,14 +630,14 @@ export function findUnmatchedBegin(editor, targetGroup) {
         }
     }
 
-    // 2. Fallback to Last Saved
+    
     if (!range && lastSavedRange) {
         range = lastSavedRange;
     }
 
     if (!range) return "";
 
-    // Get Markdown from start of editor to cursor
+    
     let node = range.startContainer;
     while (node && node.parentNode && node.parentNode !== editor) {
         node = node.parentNode;
@@ -653,14 +645,14 @@ export function findUnmatchedBegin(editor, targetGroup) {
 
     if (!node) return "";
 
-    // getMarkdownContent(editor, stopAtNode) implementation:
+    
     const textBefore = getMarkdownContent(editor, node);
 
-    // Basic scanner for MAGIC patterns
-    // --[[--[[--[[#######-[[MAGIC:Label|args]]-#######]]--]]--]]--
-    // const magicRegex = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
+    
+    
+    
 
-    return textBefore; // Just return text for now, app.js will handle the logic
+    return textBefore; 
 }
 
 export function getHTMLContent(editor) {
@@ -688,7 +680,7 @@ function updateCustomCursor(editor) {
 
     const range = sel.getRangeAt(0);
 
-    // Only show if selection is within editor
+    
     if (!editor.contains(range.commonAncestorContainer)) {
         cursorEl.classList.remove('active');
         return;
@@ -698,13 +690,13 @@ function updateCustomCursor(editor) {
     let rect = null;
 
     if (rects.length > 0) {
-        // Use the first rect for the caret position
+        
         rect = rects[0];
     } else {
-        // Fallback for empty lines (e.g. <div><br></div>)
+        
         let node = range.startContainer;
 
-        // Walk up to find the block (div) or the parent if it's a br
+        
         while (node && node !== editor && node.nodeType !== Node.ELEMENT_NODE) {
             node = node.parentNode;
         }
@@ -726,10 +718,10 @@ function updateCustomCursor(editor) {
     }
 
     if (rect) {
-        // Adjust left if selection is collapsed
+        
         const left = sel.isCollapsed ? rect.left : rect.right;
 
-        // Clipping: check if it's within the editor's visible rect
+        
         const editorRect = editor.getBoundingClientRect();
         const isVisible = (
             rect.top >= editorRect.top &&
@@ -739,7 +731,7 @@ function updateCustomCursor(editor) {
         );
 
         if (isVisible) {
-            // Taller cursor: add 4px total (2px top, 2px bottom)
+            
             const tallerHeight = rect.height + 4;
             const centeredTop = rect.top - 2;
 
@@ -748,9 +740,9 @@ function updateCustomCursor(editor) {
             cursorEl.style.height = `${tallerHeight}px`;
             cursorEl.classList.add('active');
 
-            // Restart animation
+            
             cursorEl.style.animation = 'none';
-            void cursorEl.offsetWidth; // Trigger reflow
+            void cursorEl.offsetWidth; 
             cursorEl.style.animation = null;
         } else {
             cursorEl.classList.remove('active');

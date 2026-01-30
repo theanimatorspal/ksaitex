@@ -1,6 +1,4 @@
-/**
- * Handles UI components, tabs, buttons, and state displays.
- */
+
 
 export function setLoading(isLoading, convertBtn, loadingOverlay) {
     if (isLoading) {
@@ -33,18 +31,18 @@ export function renderTabs(templateName, availableTemplates, { tabsHeader, tabsC
     const tabs = {};
     const DEFAULT_TAB = 'General';
 
-    // Group Variables
+    
     Object.values(vars).forEach(meta => {
         const tabName = meta.tab || DEFAULT_TAB;
         if (!tabs[tabName]) tabs[tabName] = [];
-        // Add type marker
+        
         meta._type = 'var';
         tabs[tabName].push(meta);
     });
 
-    // Group Magic Commands
+    
     magicCommands.forEach(cmd => {
-        const tabName = cmd.tab || 'Magic'; // Default if not specified
+        const tabName = cmd.tab || 'Magic'; 
         if (!tabs[tabName]) tabs[tabName] = [];
         cmd._type = 'magic';
         tabs[tabName].push(cmd);
@@ -54,9 +52,9 @@ export function renderTabs(templateName, availableTemplates, { tabsHeader, tabsC
     tabsContent.innerHTML = '';
 
     const tabNames = Object.keys(tabs).sort((a, b) => {
-        // Force order preferences
+        
         const order = ['General', 'Layout', 'Script and Language', 'Page Numbering', 'Font', 'Advanced'];
-        // Mapping for localized names if needed
+        
         const localizedMapping = {
             'लेआउट': 'Layout',
             'लिपि र भाषा': 'Script and Language',
@@ -65,7 +63,7 @@ export function renderTabs(templateName, availableTemplates, { tabsHeader, tabsC
             'उन्नत': 'Advanced'
         };
 
-        // This is a rough sort heuristic
+        
         const idxA = order.indexOf(localizedMapping[a] || a);
         const idxB = order.indexOf(localizedMapping[b] || b);
 
@@ -98,10 +96,10 @@ export function renderTabs(templateName, availableTemplates, { tabsHeader, tabsC
                 cmdBtn.className = 'magic-btn';
                 cmdBtn.textContent = item.label;
                 cmdBtn.onclick = () => onMagicClick(item);
-                cmdBtn.style.width = '100%'; // Full width in grid cell
+                cmdBtn.style.width = '100%'; 
                 pane.appendChild(cmdBtn);
             } else {
-                // Variable Input
+                
                 const group = document.createElement('div');
                 group.className = 'form-group';
 

@@ -1,6 +1,4 @@
-/**
- * Handles all backend communication.
- */
+
 
 export async function fetchTemplates() {
     try {

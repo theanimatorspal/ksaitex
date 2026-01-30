@@ -6,7 +6,7 @@ import * as editor from './modules/editor.js';
 
 console.error("DIAGNOSTIC: Modules imported");
 
-// DOM Elements
+
 const convertBtn = document.getElementById('convertBtn');
 const markdownEditor = document.getElementById('markdownEditor');
 const templateSelect = document.getElementById('templateSelect');
@@ -24,32 +24,32 @@ const projectTitleInput = document.getElementById('projectTitle');
 const saveStatus = document.getElementById('saveStatus');
 const newProjectBtn = document.getElementById('newProjectBtn');
 const saveProjectBtn = document.getElementById('saveProjectBtn');
-const syncStatus = document.getElementById('syncStatus'); // New
+const syncStatus = document.getElementById('syncStatus'); 
 
-// Modal Elements
+
 const newProjectModal = document.getElementById('newProjectModal');
 const newProjectTitleInput = document.getElementById('newProjectTitle');
 const titleError = document.getElementById('titleError');
 const cancelProjectBtn = document.getElementById('cancelProjectBtn');
 const createProjectBtn = document.getElementById('createProjectBtn');
 
-// Rename Modal Elements
+
 const renameProjectModal = document.getElementById('renameProjectModal');
 const renameProjectTitleInput = document.getElementById('renameProjectTitle');
 const renameTitleError = document.getElementById('renameTitleError');
 const cancelRenameBtn = document.getElementById('cancelRenameBtn');
 const confirmRenameBtn = document.getElementById('confirmRenameBtn');
 
-// Welcome Screen Elements
+
 const welcomeScreen = document.getElementById('welcomeScreen');
 const welcomeProjectList = document.getElementById('welcomeProjectList');
 const welcomeNewBtn = document.getElementById('welcomeNewBtn');
 
 let availableTemplates = {};
-let projectsListCache = []; // Cache for validation
-let currentProjectId = null; // Track active project ID
+let projectsListCache = []; 
+let currentProjectId = null; 
 
-// Bootstrap
+
 async function init() {
     console.error("DIAGNOSTIC: init() started");
     try {
@@ -58,24 +58,24 @@ async function init() {
         }
 
         editor.initEditor(markdownEditor);
-        // Do NOT set initial markdown here. Wait for project selection.
+        
 
-        // Timer
+        
         setInterval(() => {
             if (currentProjectId) {
                 autoSave().catch(e => console.error("Interval autoSave failed:", e));
             }
         }, 5000);
 
-        // Load Data
-        await refreshProjects(); // Load projects first for welcome screen
+        
+        await refreshProjects(); 
         loadTemplates().catch(e => console.error("Initial loadTemplates failed:", e));
 
-        // Show Welcome Screen
+        
         showWelcomeScreen();
 
-        // Listeners
-        // Helper to update editor context
+        
+        
         function updateEditorMetadata(templateName) {
             const metadata = availableTemplates[templateName];
             const cmds = metadata ? metadata.magic_commands : [];
@@ -90,16 +90,16 @@ async function init() {
             ui.renderTabs(templateName, availableTemplates, {
                 tabsHeader, tabsContent,
                 onMagicClick: (cmd) => {
-                    // Context Awareness: Check if 'end' command is allowed
+                    
                     if (cmd.pairing === 'end' && cmd.group) {
-                        // We allow manual insertion of 'end' for repair purposes,
-                        // but we warn if no 'begin' is found.
-                        // Logic remains similar but less blocking if we want to be flexible.
-                        // For now, keep strict validation as requested before.
+                        
+                        
+                        
+                        
                         const textBefore = editor.findUnmatchedBegin(markdownEditor, cmd.group);
                         const group = cmd.group;
 
-                        // Find labels for 'begin' and 'end' in this group
+                        
                         const beginLabels = cmds
                             .filter(c => c.group === group && c.pairing === 'begin')
                             .map(c => c.label);
@@ -107,11 +107,11 @@ async function init() {
                             .filter(c => c.group === group && c.pairing === 'end')
                             .map(c => c.label);
 
-                        // Simple stack-based check on textBefore
+                        
                         const lines = textBefore.split('\n');
                         let stackCount = 0;
 
-                        // Robust Marker Regex - need to match what's in textBefore
+                        
                         const markerPattern = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
 
                         let match;
@@ -141,17 +141,17 @@ async function init() {
             });
         }
 
-        // Sync Logic
+        
         let syncDebounceTimer = null;
 
         function triggerSync() {
-            // Only sync if editor is focused or selection is inside it
-            // We want to update Line/Page status.
+            
+            
 
             const sel = window.getSelection();
-            if (!sel.anchorNode && !window.pendingSync) return; // Allow manual trigger
+            if (!sel.anchorNode && !window.pendingSync) return; 
 
-            // For now, let's just proceed.
+            
 
             if (syncDebounceTimer) clearTimeout(syncDebounceTimer);
             syncDebounceTimer = setTimeout(async () => {
@@ -167,21 +167,21 @@ async function init() {
                         syncStatus.dataset.page = res.page;
                         syncStatus.classList.remove('hidden');
 
-                        // Use the page to reverse sync and get the "start line" of the page
+                        
                         try {
                             const revRes = await api.reverseSync(currentProjectId, res.page);
-                            // We don't display line status anymore, but keep the API call if it does other things
-                            // If it only returned line, we can remove it eventually.
+                            
+                            
                         } catch (e) { console.error("Reverse sync failed", e); }
                     }
                 } catch (e) {
                     console.error("Sync error", e);
                 }
-            }, 500); // 500ms debounce
+            }, 500); 
         }
 
         document.addEventListener('selectionchange', triggerSync);
-        // Also trigger on keyup to be responsive
+        
         markdownEditor.addEventListener('keyup', triggerSync);
         markdownEditor.addEventListener('click', triggerSync);
 
@@ -189,14 +189,13 @@ async function init() {
             syncStatus.addEventListener('click', () => {
                 const p = syncStatus.dataset.page;
                 if (p && pdfPreview.src) {
-                    // Reload iframe with #page param
-                    // Note: Replacing src completely might flicker.
+                    
+                    
                     const cleanSrc = pdfPreview.src.split('#')[0];
                     pdfPreview.src = cleanSrc + "#page=" + p;
                 }
             });
         }
-
 
 
         if (newProjectBtn) {
@@ -205,7 +204,7 @@ async function init() {
             });
         }
 
-        // Control Panel Toggle
+        
         const toggleControlsBtn = document.getElementById('toggleControlsBtn');
         const controlsSection = document.querySelector('.controls-section');
         if (toggleControlsBtn && controlsSection) {
@@ -214,7 +213,7 @@ async function init() {
             });
         }
 
-        // Undo/Redo
+        
         const undoBtn = document.getElementById('undoBtn');
         const redoBtn = document.getElementById('redoBtn');
 
@@ -232,7 +231,7 @@ async function init() {
             });
         }
 
-        // Upload Logic
+        
         const uploadChoiceModal = document.getElementById('uploadChoiceModal');
         const uploadReplaceBtn = document.getElementById('uploadReplaceBtn');
         const uploadNewBtn = document.getElementById('uploadNewBtn');
@@ -242,7 +241,7 @@ async function init() {
 
         if (uploadBtn && mdUploadInput) {
             uploadBtn.addEventListener('click', () => {
-                mdUploadInput.value = ''; // Reset
+                mdUploadInput.value = ''; 
                 mdUploadInput.click();
             });
 
@@ -253,9 +252,9 @@ async function init() {
                 const reader = new FileReader();
                 reader.onload = (ev) => {
                     pendingUploadContent = ev.target.result;
-                    pendingUploadFilename = file.name.replace(/\.[^/.]+$/, ""); // Remove extension
+                    pendingUploadFilename = file.name.replace(/\.[^/.]+$/, ""); 
 
-                    // Show choice modal
+                    
                     uploadChoiceModal.classList.remove('hidden');
                 };
                 reader.readAsText(file);
@@ -271,7 +270,7 @@ async function init() {
 
                 if (confirm("This will overwrite your current editor content. Are you sure?")) {
                     editor.loadContent(pendingUploadContent, markdownEditor);
-                    autoSave(); // Save immediately
+                    autoSave(); 
                     uploadChoiceModal.classList.add('hidden');
                 }
             });
@@ -281,14 +280,14 @@ async function init() {
             uploadNewBtn.addEventListener('click', () => {
                 uploadChoiceModal.classList.add('hidden');
 
-                // Pre-fill new project modal
+                
                 newProjectTitleInput.value = pendingUploadFilename;
                 showNewProjectModal();
 
-                // We need to inject content after project creation.
-                // Hack: store it in a global or pass it?
-                // Let's modify handleCreateProject to check for pending content.
-                // Or better: We can set a flag.
+                
+                
+                
+                
                 window.pendingNewProjectContent = pendingUploadContent;
             });
         }
@@ -301,7 +300,7 @@ async function init() {
             });
         }
 
-        // Welcome Screen specifics
+        
         if (welcomeNewBtn) {
             welcomeNewBtn.onclick = () => {
                 hideWelcomeScreen();
@@ -322,7 +321,7 @@ async function init() {
             });
         }
 
-        // Modal Listeners
+        
         if (cancelProjectBtn) cancelProjectBtn.onclick = hideNewProjectModal;
         if (createProjectBtn) createProjectBtn.onclick = handleCreateProject;
         if (newProjectTitleInput) {
@@ -333,7 +332,7 @@ async function init() {
             newProjectTitleInput.addEventListener('input', () => titleError.classList.add('hidden'));
         }
 
-        // Rename Listeners
+        
         if (projectTitleInput) {
             projectTitleInput.onclick = () => {
                 if (currentProjectId) showRenameModal();
@@ -349,12 +348,12 @@ async function init() {
             renameProjectTitleInput.addEventListener('input', () => renameTitleError.classList.add('hidden'));
         }
 
-        // Global Magic Command Interaction
-        // We use a global listener to guarantee we catch clicks even inside contenteditable
+        
+        
         document.body.addEventListener('mousedown', (e) => {
             const btn = e.target.closest('.magic-arg-btn');
             if (btn) {
-                // Prevent editor from stealing focus or moving caret weirdly
+                
                 e.preventDefault();
                 e.stopPropagation();
 
@@ -364,9 +363,9 @@ async function init() {
                     openCommandModalWithTab(block, argName);
                 }
             }
-        }, true); // Capture phase
+        }, true); 
 
-        // Unified Command Edit Modal
+        
         const editCommandModal = document.getElementById('editCommandModal');
         const editCommandLabel = document.getElementById('editCommandLabel');
         const commandFields = document.getElementById('commandFields');
@@ -384,14 +383,14 @@ async function init() {
             commandFields.innerHTML = '';
             editCommandModal.classList.remove('hidden');
 
-            // Determine which arg was clicked to auto-select it
-            // We can find this by checking which button triggered the event? 
-            // Actually, the global mousedown handler passed 'block', but we can check the event target if we had it but we don't here.
-            // Wait, we need to know the 'active arg'.
-            // Let's modify openCommandModal to accept 'activeArgName'
+            
+            
+            
+            
+            
         }
 
-        // Helper to switch tabs
+        
         function activateArgTab(name) {
             const tabs = commandFields.querySelectorAll('.arg-tab');
             const panels = commandFields.querySelectorAll('.arg-panel');
@@ -405,7 +404,7 @@ async function init() {
             if (activeTab) activeTab.classList.add('active');
             if (activePanel) {
                 activePanel.classList.add('active');
-                // Focus input
+                
                 const input = activePanel.querySelector('.dynamic-arg-input');
                 if (input) setTimeout(() => input.focus(), 50);
             }
@@ -413,9 +412,9 @@ async function init() {
 
         function openCommandModalWithTab(block, targetArgName) {
             console.log("Opening Modal for:", block.dataset.label, "Target:", targetArgName);
-            openCommandModal(block); // Reset
+            openCommandModal(block); 
 
-            // Build Tab Layout
+            
             const container = document.createElement('div');
             container.className = 'arg-tabs-container';
 
@@ -443,7 +442,7 @@ async function init() {
                 if (!firstArg) firstArg = name;
                 console.log("Processing Arg:", name, "Type:", typeDef);
 
-                // 1. Sidebar Tab
+                
                 const tab = document.createElement('button');
                 tab.className = 'arg-tab';
                 tab.textContent = ui.formatLabel(name);
@@ -451,22 +450,22 @@ async function init() {
                 tab.onclick = () => activateArgTab(name);
                 sidebar.appendChild(tab);
 
-                // 2. Content Panel
+                
                 const panel = document.createElement('div');
                 panel.className = 'arg-panel';
                 panel.id = `panel-${name}`;
 
-                // Current Value
+                
                 const existingBtn = block.querySelector(`.magic-arg-btn[data-name="${name}"]`);
                 const currentVal = existingBtn ? existingBtn.dataset.fullValue : (parts[2] || "");
 
-                // Input Field
+                
                 let input;
                 if (typeDef.startsWith('select')) {
                     input = document.createElement('select');
                     input.className = 'dynamic-arg-input';
                     const opts = typeDef.split(',');
-                    // opts[0] is 'select'
+                    
                     for (let i = 1; i < opts.length; i++) {
                         const opt = document.createElement('option');
                         opt.value = opts[i].trim();
@@ -478,14 +477,14 @@ async function init() {
                     console.log("Creating Textarea for", name);
                     input = document.createElement('textarea');
                     input.className = 'dynamic-arg-input';
-                    // Force inline styles for safety
+                    
                     input.style.width = "100%";
                     input.style.height = "100%";
                     input.style.display = "block";
-                    input.style.minHeight = "200px"; // Guarantee visible height
+                    input.style.minHeight = "200px"; 
                     input.value = currentVal;
                 } else {
-                    // Default to Textarea for everything else as requested
+                    
                     input = document.createElement('textarea');
                     input.className = 'dynamic-arg-input';
                     input.style.width = "100%";
@@ -501,7 +500,7 @@ async function init() {
                 content.appendChild(panel);
             });
 
-            // Activate initial tab
+            
             const finalTarget = targetArgName || firstArg;
             console.log("Activating Tab:", finalTarget);
             activateArgTab(finalTarget);
@@ -512,10 +511,10 @@ async function init() {
             currentEditingBlock = null;
         }
 
-        // Context Menu Logic
+        
         const contextMenu = document.getElementById('editorContextMenu');
 
-        // Hide context menu on any click
+        
         document.addEventListener('click', () => {
             if (contextMenu) contextMenu.classList.add('hidden');
         });
@@ -526,7 +525,7 @@ async function init() {
                 const selectedText = selection.toString().trim();
                 const targetBlock = e.target.closest('.magic-block');
 
-                // Save range immediately
+                
                 let savedRange = null;
                 if (selection.rangeCount > 0) {
                     savedRange = selection.getRangeAt(0).cloneRange();
@@ -534,22 +533,22 @@ async function init() {
 
                 e.preventDefault();
 
-                // Get commands
+                
                 const currentTemplate = templateSelect.value;
                 const metadata = availableTemplates[currentTemplate];
                 const allCommands = (metadata && metadata.magic_commands)
                     ? metadata.magic_commands.filter(cmd => cmd.tab === 'ढाँचा' || cmd.tab === 'Formatting')
                     : [];
 
-                // categorize
-                // General: Non-paired commands + Copy/Paste
-                // Begin/End: Paired commands (show only Begin for simplicity as requested, or both?)
-                // User said: "only begin commands are needed" for paired ones.
+                
+                
+                
+                
 
                 const generalCommands = allCommands.filter(c => !c.pairing);
-                const pairedCommands = allCommands.filter(c => c.pairing === 'begin'); // Filter out 'end'
+                const pairedCommands = allCommands.filter(c => c.pairing === 'begin'); 
 
-                // Build UI Structure
+                
                 contextMenu.innerHTML = '';
 
                 const layout = document.createElement('div');
@@ -561,7 +560,7 @@ async function init() {
                 const contentContainer = document.createElement('div');
                 contentContainer.className = 'context-menu-content';
 
-                // TABS
+                
                 const tabs = [
                     { id: 'general', label: 'General' },
                     { id: 'beginend', label: 'Begin/End' }
@@ -573,7 +572,7 @@ async function init() {
                     contentContainer.innerHTML = '';
 
                     if (tabId === 'general') {
-                        // Copy/Paste
+                        
                         if (selectedText) {
                             contentContainer.appendChild(createItem('कपी (Copy)', 'fa-solid fa-copy', async () => {
                                 try {
@@ -601,7 +600,7 @@ async function init() {
                         divider.style.margin = "4px 0";
                         contentContainer.appendChild(divider);
 
-                        // General Magic Commands
+                        
                         generalCommands.forEach(cmd => {
                             contentContainer.appendChild(createMagicItem(cmd));
                         });
@@ -619,8 +618,8 @@ async function init() {
                     item.onclick = (ev) => {
                         ev.stopPropagation();
                         let finalOverrides = {};
-                        // Handle swap logic if targeting block (omitted for brevity on tab switch, can re-add if needed)
-                        // Actually, swap logic is important.
+                        
+                        
                         const valToInject = targetBlock ?
                             (targetBlock.querySelector('.magic-arg-btn') ? targetBlock.querySelector('.magic-arg-btn').dataset.fullValue : null)
                             : selectedText;
@@ -630,7 +629,7 @@ async function init() {
                             if (firstArgName) finalOverrides[firstArgName] = valToInject;
                         }
 
-                        // Restore range
+                        
                         if (targetBlock) {
                             const range = document.createRange();
                             range.selectNode(targetBlock);
@@ -659,16 +658,16 @@ async function init() {
                     return item;
                 }
 
-                // Render Tabs
+                
                 tabs.forEach(t => {
                     const tab = document.createElement('div');
                     tab.className = 'context-menu-tab';
                     if (t.id === activeTabId) tab.classList.add('active');
                     tab.textContent = t.label;
                     tab.onclick = (ev) => {
-                        ev.stopPropagation(); // prevent menu close
+                        ev.stopPropagation(); 
                         activeTabId = t.id;
-                        // Update UI
+                        
                         tabsContainer.querySelectorAll('.context-menu-tab').forEach(el => el.classList.remove('active'));
                         tab.classList.add('active');
                         renderContent(t.id);
@@ -680,15 +679,15 @@ async function init() {
                 layout.appendChild(contentContainer);
                 contextMenu.appendChild(layout);
 
-                // Initial Render
+                
                 renderContent(activeTabId);
 
-                // Position Menu
+                
                 contextMenu.style.left = `${e.clientX}px`;
                 contextMenu.style.top = `${e.clientY}px`;
                 contextMenu.classList.remove('hidden');
 
-                // Adjust position limits
+                
                 const menuRect = contextMenu.getBoundingClientRect();
                 if (menuRect.bottom > window.innerHeight) {
                     contextMenu.style.top = `${window.innerHeight - menuRect.height - 10}px`;
@@ -703,7 +702,7 @@ async function init() {
             saveCommandBtn.onclick = () => {
                 if (!currentEditingBlock) return;
 
-                // Update DOM elements based on inputs
+                
                 const inputs = commandFields.querySelectorAll('.dynamic-arg-input');
                 inputs.forEach(input => {
                     const name = input.dataset.fieldName;
@@ -738,7 +737,7 @@ async function init() {
     }
 }
 
-// Start
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
 } else {
@@ -809,7 +808,7 @@ function showNewProjectModal() {
 
 function hideNewProjectModal() {
     newProjectModal.classList.add('hidden');
-    // If we are canceling and no project is loaded, go back to welcome screen
+    
     if (!currentProjectId) {
         showWelcomeScreen();
     }
@@ -828,14 +827,14 @@ function handleCreateProject() {
         titleError.classList.remove('hidden');
         return;
     }
-    // Create new
+    
     resetProject(title, window.pendingNewProjectContent || "");
-    window.pendingNewProjectContent = null; // Consume
+    window.pendingNewProjectContent = null; 
     hideNewProjectModal();
     hideWelcomeScreen();
 }
 
-// Rename Logic
+
 function showRenameModal() {
     renameProjectTitleInput.value = projectTitleInput.value;
     renameTitleError.classList.add('hidden');
@@ -854,13 +853,13 @@ async function handleRenameProject() {
         renameTitleError.classList.remove('hidden');
         return;
     }
-    // Check if changed
+    
     if (newTitle === projectTitleInput.value) {
         hideRenameModal();
         return;
     }
 
-    // Check uniqueness
+    
     const exists = projectsListCache.some(p => p.title.toLowerCase() === newTitle.toLowerCase());
     if (exists) {
         renameTitleError.textContent = "Project name already exists";
@@ -870,7 +869,7 @@ async function handleRenameProject() {
 
     try {
         const res = await api.renameProject(currentProjectId, newTitle);
-        // Success
+        
         currentProjectId = res.new_id;
         projectTitleInput.value = newTitle;
         await refreshProjects();
@@ -886,25 +885,25 @@ function resetProject(newTitle = "Untitled Project", initialContent = "") {
     console.error("DIAGNOSTIC: Resetting project to", newTitle);
     projectTitleInput.value = newTitle;
 
-    // Fake ID for now until saved, OR we allow saving immediately?
-    // User wants it to essentially be a new project. 
-    // We will let autoSave create the folder structure shortly.
-    // BUT we need an ID for rename to work. 
-    // Best practice: Save immediately?
-    // Let's clear editor first.
+    
+    
+    
+    
+    
+    
 
-    editor.loadContent(initialContent, markdownEditor); // Load provided content or empty
+    editor.loadContent(initialContent, markdownEditor); 
     saveStatus.textContent = "New Project";
 
-    // Use the sanitized default ID logic locally just for UI state?
-    // Actually, let's just trigger a Save immediately to establish the project on disk.
-    // This aligns with user request "I have to press ok to trigger it".
+    
+    
+    
 
-    // We need to set currentProjectId temporarily to facilitate the first save,
-    // or we can just call saveProject directly.
-    currentProjectId = null; // It's new.
+    
+    
+    currentProjectId = null; 
 
-    // Reset Template
+    
     if (availableTemplates['base']) {
         templateSelect.value = 'base';
         ui.renderTabs('base', availableTemplates, {
@@ -912,18 +911,18 @@ function resetProject(newTitle = "Untitled Project", initialContent = "") {
             onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
         });
     }
-    // Clear Inputs
+    
     document.querySelectorAll('.dynamic-input').forEach(input => {
         if (input.tagName === 'SELECT') input.selectedIndex = 0;
         else input.value = '';
     });
 
-    // FORCE SAVE NOW to create the project on disk
+    
     api.saveProject(newTitle, initialContent, "base", {}).then(res => {
-        // extract ID from path ?? Path is "data/Title/project.json"
-        // We can infer it from the title for now or wait for refresh.
+        
+        
         refreshProjects().then(() => {
-            // Find the project we just made
+            
             const p = projectsListCache.find(x => x.title === newTitle);
             if (p) currentProjectId = p.id;
         });
@@ -969,11 +968,11 @@ async function compile() {
         const blobUrl = URL.createObjectURL(blob);
         let finalSrc = blobUrl;
 
-        // Auto-sync to current cursor position
+        
         if (currentProjectId) {
             const lineIndex = editor.getCursorLine(markdownEditor);
             try {
-                // We utilize the just-updated mapping on the server
+                
                 const res = await api.syncPosition(currentProjectId, lineIndex + 1);
                 if (res.status === 'success') {
                     finalSrc += "#page=" + res.page;
@@ -999,7 +998,7 @@ async function compile() {
 async function autoSave() {
     console.error("DIAGNOSTIC: autoSave() tick");
     const title = projectTitleInput.value.trim();
-    if (!title) return; // Should not happen with validation but safety first
+    if (!title) return; 
 
     const markdown = editor.getMarkdownContent(markdownEditor);
     const html = editor.getHTMLContent(markdownEditor);
@@ -1012,7 +1011,7 @@ async function autoSave() {
     saveStatus.textContent = "Saving...";
     saveStatus.classList.add('saving');
     try {
-        // We always pass HTML now for persistence
+        
         const res = await api.saveProject(title, markdown, template, variables, html);
         saveStatus.textContent = "Saved at " + new Date().toLocaleTimeString();
         saveStatus.classList.remove('saving');
@@ -1025,7 +1024,7 @@ async function autoSave() {
 async function refreshProjects() {
     try {
         const projects = await api.fetchProjects();
-        projectsListCache = projects; // Update cache
+        projectsListCache = projects; 
     } catch (e) {
         console.error("refreshProjects failed:", e);
     }
@@ -1034,10 +1033,10 @@ async function refreshProjects() {
 async function loadProject(id) {
     try {
         const data = await api.fetchProject(id);
-        currentProjectId = id; // Set active ID
+        currentProjectId = id; 
         projectTitleInput.value = data.title;
 
-        // Prefer HTML if available (preserves magic blocks), else Markdown (legacy)
+        
         if (data.html) {
             editor.setHTMLContent(data.html, markdownEditor);
         } else {
@@ -1047,7 +1046,7 @@ async function loadProject(id) {
         if (data.template) {
             templateSelect.value = data.template;
 
-            // Sync editor metadata
+            
             if (availableTemplates[data.template]) {
                 editor.setMagicCommands(availableTemplates[data.template].magic_commands);
             }
