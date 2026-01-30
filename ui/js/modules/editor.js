@@ -471,10 +471,25 @@ export function getMarkdownContent(editor, stopBeforeNode = null) {
 
 
 export function getCursorLine(editor) {
+    let range = null;
     const sel = window.getSelection();
-    if (!sel.rangeCount) return 0;
 
-    let node = sel.anchorNode;
+    // 1. Try Live Selection
+    if (sel.rangeCount > 0) {
+        const r = sel.getRangeAt(0);
+        if (editor.contains(r.commonAncestorContainer)) {
+            range = r;
+        }
+    }
+
+    // 2. Fallback to Last Saved
+    if (!range && lastSavedRange) {
+        range = lastSavedRange;
+    }
+
+    if (!range) return 0;
+
+    let node = range.startContainer;
     // Walk up to find direct child of editor (which should be a DIV)
     while (node && node.parentNode && node.parentNode !== editor) {
         node = node.parentNode;
@@ -498,26 +513,39 @@ export function getCursorLine(editor) {
 }
 
 export function findUnmatchedBegin(editor, targetGroup) {
+    let range = null;
     const sel = window.getSelection();
-    if (!sel.rangeCount) return false;
+
+    // 1. Try Live Selection
+    if (sel.rangeCount > 0) {
+        const r = sel.getRangeAt(0);
+        if (editor.contains(r.commonAncestorContainer)) {
+            range = r;
+        }
+    }
+
+    // 2. Fallback to Last Saved
+    if (!range && lastSavedRange) {
+        range = lastSavedRange;
+    }
+
+    if (!range) return "";
 
     // Get Markdown from start of editor to cursor
-    let node = sel.anchorNode;
+    let node = range.startContainer;
     while (node && node.parentNode && node.parentNode !== editor) {
         node = node.parentNode;
     }
+
+    if (!node) return "";
 
     // getMarkdownContent(editor, stopAtNode) implementation:
     const textBefore = getMarkdownContent(editor, node);
 
     // Basic scanner for MAGIC patterns
     // --[[--[[--[[#######-[[MAGIC:Label|args]]-#######]]--]]--]]--
-    const magicRegex = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
+    // const magicRegex = /--\[\[--\[\[--\[\[#{7}-\[\[MAGIC:([^|\]]+)(?:\|.*?)?\]\]-#{7}\]\]--\]\]--\]\]--/g;
 
-    // We need to know which label maps to which group/pairing
-    // Since this info is in availableTemplates (app.js), we might need to pass a map
-    // OR: Just look for labels that start with "बक्स सुरु" (Begin) and "बक्स अन्त्य" (End)
-    // Actually, better to pass the metadata from app.js.
     return textBefore; // Just return text for now, app.js will handle the logic
 }
 

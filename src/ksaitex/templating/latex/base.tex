@@ -29,7 +29,7 @@
 % \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
 % \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
 
-% \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक|color:select,red,blue,green,orange,black:red', command='\begin{tcolorbox}[title=VAR_title, colback=VAR_color!5!white, colframe=VAR_color!75!black]' }
+% \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=\theme!5!white, colframe=\theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
@@ -40,11 +40,16 @@
 % \MAGIC{ empty_page, label='पृष्ठ संख्या नदेखाउनुहोस्', tab='पृष्ठ', command='\thispagestyle{empty}' }
 % \MAGIC{ set_page_counter, label='पृष्ठ संख्या सेट गर्नुहोस्', tab='पृष्ठ', args='num:number:1', command='\setcounter{page}{VAR_num}' }
 
-% \MAGIC{ center, label='बिचमा', tab='ढाँचा', args='text:textarea:सामग्री', command='\centertxt{VAR_text}' }
-% \MAGIC{ flush_right, label='दायाँ', tab='ढाँचा', args='text:textarea:सामग्री', command='\righttxt{VAR_text}' }
-% \MAGIC{ flush_left, label='बायाँ', tab='ढाँचा', args='text:textarea:सामग्री', command='\lefttxt{VAR_text}' }
+% \MAGIC{ center_begin, label='बिचमा सुरु', tab='ढाँचा', pairing='begin', group='center', command='\begin{center}' }
+% \MAGIC{ center_end, label='बिचमा अन्त्य', tab='ढाँचा', pairing='end', group='center', command='\end{center}' }
+% \MAGIC{ flush_right_begin, label='दायाँ सुरु', tab='ढाँचा', pairing='begin', group='right', command='\begin{flushright}' }
+% \MAGIC{ flush_right_end, label='दायाँ अन्त्य', tab='ढाँचा', pairing='end', group='right', command='\end{flushright}' }
+% \MAGIC{ flush_left_begin, label='बायाँ सुरु', tab='ढाँचा', pairing='begin', group='left', command='\begin{flushleft}' }
+% \MAGIC{ flush_left_end, label='बायाँ अन्त्य', tab='ढाँचा', pairing='end', group='left', command='\end{flushleft}' }
+% \MAGIC{ vfill, label='ठाउँ भर्नुहोस्', tab='ढाँचा', command='\vfill' }
 % \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
-% \MAGIC{ fancy_quote, label='भनाइ', tab='ढाँचा', args='text:textarea:भनाइ यहाँ लेख्नुहोस्...', command='\fancyquote{VAR_text}' }
+% \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.5cm}\begin{quote}' }
+% \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.5cm}' }
 
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
@@ -185,43 +190,33 @@
 \newcommand{\khanda}[1]{
     \markboth{#1}{}
     \vspace{0.8cm}
-    \noindent \hfill \textbf{\Huge \color{theme} #1} \par
+    \noindent \textbf{\Huge \color{theme} #1} \hfill \par
     \addcontentsline{toc}{section}{#1}
     \vspace{0.4cm}
 }
 
 \newcommand{\upakhanda}[1]{
     \vspace{0.6cm}
-    \noindent \hfill \textbf{\huge \color{theme} #1} \par
+    \noindent \textbf{\huge \color{theme} #1} \hfill \par
     \addcontentsline{toc}{subsection}{#1}
     \vspace{0.3cm}
 }
 
 \newcommand{\upaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \hfill \textbf{\Large \color{theme} #1} \par
+    \noindent \textbf{\Large \color{theme} #1} \hfill \par
     \addcontentsline{toc}{subsubsection}{#1}
     \vspace{0.2cm}
 }
 
 % --- Alignment and Spacing Macros ---
-\newcommand{\centertxt}[1]{{\centering #1 \par}}
-\newcommand{\righttxt}[1]{{\raggedleft #1 \par}}
-\newcommand{\lefttxt}[1]{{\raggedright #1 \par}}
 \newcommand{\vspacer}[1]{\vspace{#1 cm}}
-\newcommand{\fancyquote}[1]{
-    \vspace{0.5cm}
-    \begin{quote}
-        #1
-    \end{quote}
-    \vspace{0.5cm}
-}
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
     \markboth{#1}{}
     \vspace{1.2cm}
-    \noindent \textbf{\Huge \color{theme} #1} \hfill \par
+    \noindent \textbf{\Huge \color{theme} #1} \hfill \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
@@ -231,7 +226,7 @@
 
 \newcommand{\specialupakhanda}[1]{
     \vspace{0.8cm}
-    \noindent \textbf{\huge \color{theme} #1} \hfill \par
+    \noindent \textbf{\huge \color{theme} #1} \hfill \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
@@ -241,12 +236,12 @@
 
 \newcommand{\specialupaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \textbf{\Large \color{theme} #1} \hfill \par
-    \addcontentsline{toc}{subsubsection}{#1}
+    \noindent \textbf{\Large \color{theme} #1} \hfill \par \nointerlineskip
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
     \end{tikzpicture}
     \vspace{0.4cm}
+    \addcontentsline{toc}{subsubsection}{#1}
 }
 
 % --- Font Configuration ---
