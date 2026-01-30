@@ -37,6 +37,7 @@ const welcomeNewBtn = document.getElementById('welcomeNewBtn');
 let availableTemplates = {};
 let projectsListCache = [];
 let currentProjectId = null;
+let isDirty = false;
 async function init() {
     console.error("DIAGNOSTIC: init() started");
     try {
@@ -45,10 +46,17 @@ async function init() {
         }
         editor.initEditor(markdownEditor);
         setInterval(() => {
-            if (currentProjectId) {
+            if (currentProjectId && isDirty) {
                 autoSave().catch(e => console.error("Interval autoSave failed:", e));
             }
         }, 5000);
+        markdownEditor.addEventListener('input', () => { isDirty = true; });
+        tabsContent.addEventListener('input', (e) => {
+            if (e.target.classList.contains('dynamic-input')) isDirty = true;
+        });
+        tabsContent.addEventListener('change', (e) => {
+            if (e.target.classList.contains('dynamic-input')) isDirty = true;
+        });
         await refreshProjects();
         loadTemplates().catch(e => console.error("Initial loadTemplates failed:", e));
         showWelcomeScreen();
@@ -61,6 +69,7 @@ async function init() {
         templateSelect.addEventListener('change', (e) => {
             const templateName = e.target.value;
             const cmds = updateEditorMetadata(templateName);
+            isDirty = true;
             ui.renderTabs(templateName, availableTemplates, {
                 tabsHeader, tabsContent,
                 onMagicClick: (cmd) => {
@@ -89,6 +98,7 @@ async function init() {
                         }
                     }
                     editor.insertMagicCommand(cmd, markdownEditor);
+                    isDirty = true;
                 }
             });
         });
@@ -580,6 +590,7 @@ async function init() {
                     const btn = currentEditingBlock.querySelector(`.magic-arg-btn[data-name="${name}"]`);
                     if (btn) {
                         editor.updateArgButton(btn, val);
+                        isDirty = true;
                     }
                 });
                 closeCommandModal();
@@ -707,12 +718,13 @@ async function handleRenameProject() {
         return;
     }
     try {
-        const res = await api.renameProject(currentProjectId, newTitle);
-        currentProjectId = res.new_id;
+        const renamed = await api.renameProject(currentProjectId, newTitle);
+        currentProjectId = renamed.new_id;
         projectTitleInput.value = newTitle;
         await refreshProjects();
+        saveStatus.textContent = "Renamed and Saved";
         hideRenameModal();
-        saveStatus.textContent = "Project Renamed";
+        isDirty = false;
     } catch (e) {
         renameTitleError.textContent = e.message;
         renameTitleError.classList.remove('hidden');
@@ -739,6 +751,7 @@ function resetProject(newTitle = "Untitled Project", initialContent = "") {
         refreshProjects().then(() => {
             const p = projectsListCache.find(x => x.title === newTitle);
             if (p) currentProjectId = p.id;
+            isDirty = false;
         });
     });
 }
@@ -802,6 +815,7 @@ async function compile() {
     }
 }
 async function autoSave() {
+    if (!isDirty) return;
     console.error("DIAGNOSTIC: autoSave() tick");
     const title = projectTitleInput.value.trim();
     if (!title) return;
@@ -818,6 +832,7 @@ async function autoSave() {
         const res = await api.saveProject(title, markdown, template, variables, html);
         saveStatus.textContent = "Saved at " + new Date().toLocaleTimeString();
         saveStatus.classList.remove('saving');
+        isDirty = false;
     } catch (e) {
         console.error("DIAGNOSTIC: Save FAILED:", e);
         saveStatus.textContent = "Save Failed";
@@ -860,6 +875,7 @@ async function loadProject(id) {
             }, 100);
         }
         saveStatus.textContent = "Project Loaded";
+        isDirty = false;
     } catch (e) {
         ui.showError("Load Failed: " + e.message, errorLog, errorOverlay);
     }

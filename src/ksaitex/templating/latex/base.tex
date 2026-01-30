@@ -89,33 +89,58 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[object = vectorian]{pgfornament}
-\emergencystretch=3cm
 
 
+% --- Robust Purnaviram Line Break Control (LuaTeX) ---
 \usepackage{luacode}
-
-% Lua function to insert a penalty after purnaviram
 \begin{luacode*}
-function prevent_purnaviram_start_line(head)
-  local current = head
-  while current do
-    if current.id == node.id("glyph") then
-      if unicode.utf8.char(current.char) == "।" then
-        -- check previous node
-        if current.prev and current.prev.id == node.id("glue") then
-          local penalty = node.new("penalty")
-          penalty.penalty = 10000
-          head = node.insert_before(head, current.prev, penalty)
+function fix_devanagari_punctuation_breaks(head)
+  local GLYPH = node.id("glyph")
+  local GLUE  = node.id("glue")
+  local KERN  = node.id("kern")
+  local PENALTY = node.id("penalty")
+
+  for n in node.traverse_id(GLYPH, head) do
+    -- 0x0964 = । (Purnaviram), 0x0965 = ॥ (Deerghapurnaviram)
+    if n.char == 0x0964 or n.char == 0x0965 then
+      
+      -- 1. Prohibit break BEFORE punctuation
+      local curr = n.prev
+      while curr and (curr.id == GLUE or curr.id == KERN or curr.id == PENALTY) do
+        if curr.id == GLUE or curr.id == KERN then
+            local p = node.new(PENALTY)
+            p.penalty = 10000 -- Block break
+            head = node.insert_before(head, curr, p)
+        elseif curr.id == PENALTY then
+            curr.penalty = 10000 -- Override existing penalty
         end
+        curr = curr.prev
+      end
+      
+      -- 2. Encourage break AFTER punctuation
+      local nxt = n.next
+      if nxt and nxt.id == GLUE then
+         local p = node.new(PENALTY)
+         p.penalty = -500 -- Preferred break point
+         head = node.insert_before(head, nxt, p)
       end
     end
-    current = current.next
   end
   return head
 end
-
-luatexbase.add_to_callback("pre_linebreak_filter", prevent_purnaviram_start_line, "Prevent purnaviram line break")
+luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_breaks, "Fix Devanagari Breaks")
 \end{luacode*}
+
+% Support settings for the above
+\sloppy
+\emergencystretch=5cm
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\linepenalty=1000
+
+% Layout settings for better line breaking
+\sloppy
+\emergencystretch=5cm
 
 
 \geometry{
