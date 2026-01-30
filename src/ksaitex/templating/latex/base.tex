@@ -13,6 +13,7 @@
 % \VAR{ theme_color, default='black', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
 
+% \MAGIC{ paragraph, label='अनुच्छेद शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन अनुच्छेद शीर्षक', command='\customparagraph{VAR_title}' }
 % \MAGIC{ khanda, label='खण्ड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\khanda{VAR_title}' }
 % \MAGIC{ upakhanda, label='उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\upakhanda{VAR_title}' }
 % \MAGIC{ upaupakhanda, label='उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उप-उपखण्ड', command='\upaupakhanda{VAR_title}' }
@@ -20,6 +21,9 @@
 % \MAGIC{ special_khanda, label='विशेष खण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष खण्ड', command='\specialkhanda{VAR_title}' }
 % \MAGIC{ special_upakhanda, label='विशेष उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उपखण्ड', command='\specialupakhanda{VAR_title}' }
 % \MAGIC{ special_upaupakhanda, label='विशेष उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उप-उपखण्ड', command='\specialupaupakhanda{VAR_title}' }
+
+% \MAGIC{ mahakhanda, label='महाखण्ड (अध्याय)', tab='ढाँचा', args='title:text:नयाँ महाखण्ड', command='\mahakhanda{VAR_title}' }
+% \MAGIC{ special_mahakhanda, label='विशेष महाखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड', command='\specialmahakhanda{VAR_title}' }
 
 % \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
 % \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
@@ -31,7 +35,7 @@
 
 % \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=theme!5!white, colframe=theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
-% \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
+% \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
@@ -50,6 +54,8 @@
 % \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
 % \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.5cm}\begin{quote}' }
 % \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.5cm}' }
+% \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
+% \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
@@ -76,8 +82,38 @@
 \usepackage{tcolorbox}
 \usepackage{ifthen}
 \usepackage{tikz}
+\usetikzlibrary{shadows}
 \usepackage{xcolor}
+\usepackage{microtype}
 \usepackage[object = vectorian]{pgfornament}
+\emergencystretch=3cm
+
+
+\usepackage{luacode}
+
+% Lua function to insert a penalty after purnaviram
+\begin{luacode*}
+function prevent_purnaviram_start_line(head)
+  local current = head
+  while current do
+    if current.id == node.id("glyph") then
+      if unicode.utf8.char(current.char) == "।" then
+        -- check previous node
+        if current.prev and current.prev.id == node.id("glue") then
+          local penalty = node.new("penalty")
+          penalty.penalty = 10000
+          head = node.insert_before(head, current.prev, penalty)
+        end
+      end
+    end
+    current = current.next
+  end
+  return head
+end
+
+luatexbase.add_to_callback("pre_linebreak_filter", prevent_purnaviram_start_line, "Prevent purnaviram line break")
+\end{luacode*}
+
 
 \geometry{
     top=\VAR{top_margin},
@@ -187,6 +223,35 @@
 \definecolor{theme}{named}{\VAR{theme_color}}
 
 % --- Custom Segments (Khanda) ---
+\newcommand{\mahakhanda}[1]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \textbf{\Huge \color{theme} #1}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
+
+\newcommand{\specialmahakhanda}[1]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+    \begin{tikzpicture}
+        \node[inner sep=20pt, fill=theme!10, rounded corners=10pt, drop shadow] (title) {
+            \parbox{0.8\textwidth}{\centering \textbf{\Huge \color{theme} #1}}
+        };
+    \end{tikzpicture}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
 \newcommand{\khanda}[1]{
     \markboth{#1}{}
     \vspace{0.8cm}
@@ -207,6 +272,13 @@
     \noindent \textbf{\Large \color{theme} #1} \hfill \par
     \addcontentsline{toc}{subsubsection}{#1}
     \vspace{0.2cm}
+}
+
+% --- Custom Paragraph ---
+\newcommand{\customparagraph}[1]{
+    \vspace{0.2cm}
+    \noindent \textbf{#1} \par
+    \vspace{0.1cm}
 }
 
 % --- Alignment and Spacing Macros ---

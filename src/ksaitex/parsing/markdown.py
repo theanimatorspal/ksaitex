@@ -58,31 +58,22 @@ class LatexRenderer:
             self.current_tex_line += term.count('\n')
         return result, self.source_map
     def render_inline(self, tokens: List[Token]) -> str:
+        import re
         result = ""
         for token in tokens:
             if token.type == "text":
                 content = token.content
-                output_segment = ""
-                for i, char in enumerate(content):
-                    if char == '"':
-                        if not self.in_double_quote:
-                            output_segment += "``"
-                            self.in_double_quote = True
-                        else:
-                            output_segment += "''"
-                            self.in_double_quote = False
-                    elif char == "'":
-                        is_start = (i == 0)
-                        prev_char = content[i-1] if i > 0 else " "
-                        if is_start or prev_char.isspace() or prev_char in ['(', '[', '{', '-', '"', '`']:
-                            output_segment += "`"
-                        else:
-                            output_segment += "'"
-                    elif char in ["_", "%", "$", "#"]:
-                        output_segment += "\\" + char
+                # Fix: Manually catch **'...'** patterns that markdown-it missed
+                parts = re.split(r'(\*\*\'.*?\'\*\*)', content)
+                
+                for part in parts:
+                    is_bold_patch = part.startswith("**'") and part.endswith("'**")
+                    if is_bold_patch:
+                        segment_content = part[2:-2] # Strip **
+                        processed_segment = self._process_text_chars(segment_content)
+                        result += f"\\textbf{{{processed_segment}}}"
                     else:
-                        output_segment += char
-                result += output_segment
+                        result += self._process_text_chars(part)
             elif token.type == "softbreak":
                 result += "\n"
             elif token.type == "hardbreak":
@@ -103,6 +94,34 @@ class LatexRenderer:
             elif token.type == "link_close":
                 result += "}"
         return result
+
+    def _process_text_chars(self, content: str) -> str:
+        """Helper to process chars for escaping and smart quotes."""
+        output_segment = ""
+        for i, char in enumerate(content):
+            if char == '"':
+                if not self.in_double_quote:
+                    output_segment += "``"
+                    self.in_double_quote = True
+                else:
+                    output_segment += "''"
+                    self.in_double_quote = False
+            elif char == "'":
+                is_start = (i == 0)
+                # Check prev char in original content context? 
+                # Ideally yes, but local context suffices for most cases.
+                prev_char = content[i-1] if i > 0 else " "
+                if is_start or prev_char.isspace() or prev_char in ['(', '[', '{', '-', '"', '`']:
+                    output_segment += "`"
+                else:
+                    output_segment += "'"
+            elif char in ["_", "%", "$", "#"]:
+                output_segment += "\\" + char
+            elif char in ["&", "{", "}"]: # Also escape these common latex chars if they appear in text
+                output_segment += "\\" + char
+            else:
+                output_segment += char
+        return output_segment
     def old_render_inline(self, tokens: List[Token]) -> str:
         pass
 def parse(text: str) -> Tuple[str, Dict[int, int]]:
