@@ -602,19 +602,28 @@ export function getCursorLine(editor) {
 
     if (!node) return 0;
 
-    // To match CSS counter which increments on every child DIV
-    let lineCount = 0;
-    let curr = editor.firstChild;
-    while (curr) {
-        if (curr.nodeName === 'DIV') {
-            lineCount++;
-        }
-        if (curr === node) break;
-        curr = curr.nextSibling;
-    }
+    // Correct Logic:
+    // The previous logic merely counted DIVs. But getMarkdownContent filters out empty lines 
+    // and processes Magic Blocks into multi-line strings.
+    // To match the backend (which sees the output of getMarkdownContent),
+    // we must simulate getMarkdownContent UP TO the cursor.
 
-    // Return 0-indexed count to maintain compatibility with app.js (which adds 1)
-    return Math.max(0, lineCount - 1);
+    // We get content up to the current block (exclusive)
+    const textBefore = getMarkdownContent(editor, node);
+
+    // Count lines in textBefore
+    const linesBefore = textBefore === "" ? 0 : textBefore.split('\n').length;
+
+    // Now we need to consider if the current node itself contributes lines *before* the cursor?
+    // Since 'node' is a block-level element (child of editor), and our cursor is INSIDE it,
+    // usually we are at the beginning of that block relative to the document flow *if we just counted everything before it*.
+
+    // However, getMarkdownContent joins blocks with newlines.
+    // If textBefore is not empty, there is a newline after it in the final file.
+    // So we are fundamentally on line `linesBefore`.
+    // (If linesBefore is 5, it means we have lines 0,1,2,3,4. Next is 5.)
+
+    return linesBefore;
 }
 
 export function findUnmatchedBegin(editor, targetGroup) {
