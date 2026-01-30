@@ -1,5 +1,4 @@
 
-
 export async function fetchTemplates() {
     try {
         const res = await fetch('/api/templates');
@@ -10,7 +9,6 @@ export async function fetchTemplates() {
         throw e;
     }
 }
-
 export async function compileLatex(markdown, template, variables, title) {
     const response = await fetch('/api/compile', {
         method: 'POST',
@@ -22,15 +20,12 @@ export async function compileLatex(markdown, template, variables, title) {
             title
         })
     });
-
     if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.detail || "Compilation failed");
     }
-
     return await response.blob();
 }
-
 export async function saveProject(title, markdown, template, variables, html = "") {
     const res = await fetch('/api/save', {
         method: 'POST',
@@ -39,7 +34,6 @@ export async function saveProject(title, markdown, template, variables, html = "
     });
     return await res.json();
 }
-
 export async function renameProject(old_id, new_title) {
     const res = await fetch('/api/rename', {
         method: 'POST',
@@ -52,7 +46,6 @@ export async function renameProject(old_id, new_title) {
     }
     return await res.json();
 }
-
 export async function deleteProject(id) {
     const res = await fetch(`/api/projects/${id}`, {
         method: 'DELETE'
@@ -60,19 +53,16 @@ export async function deleteProject(id) {
     if (!res.ok) throw new Error("Delete failed");
     return await res.json();
 }
-
 export async function fetchProjects() {
     const res = await fetch('/api/projects');
     const data = await res.json();
     return data.projects;
 }
-
 export async function fetchProject(id) {
     const res = await fetch(`/api/projects/${id}`);
     if (!res.ok) throw new Error("Project not found");
     return await res.json();
 }
-
 export async function syncPosition(project_id, line) {
     const res = await fetch('/api/sync', {
         method: 'POST',

@@ -54,11 +54,13 @@ def strip_js_comments(content):
     return re.sub(pattern, replace, content)
 
 def collapse_lines(content):
-    # Max two line gaps == max two consecutive newlines? 
-    # Or max two empty lines between code (3 newlines)?
-    # "No line gaps more than two" -> max 2 empty lines.
-    # We'll use a regex for 3 or more newlines.
-    return re.sub(r'\n{4,}', '\n\n\n', content)
+    # 1. Trim trailing whitespace from every line
+    lines = [line.rstrip() for line in content.splitlines()]
+    
+    # 2. Join and collapse multiple empty lines
+    # Max 2 line gaps = max 2 empty lines = max 3 newlines.
+    new_content = "\n".join(lines)
+    return re.sub(r'\n{2,}', '\n', new_content)
 
 def process_file(path):
     print(f"Processing {path}...")

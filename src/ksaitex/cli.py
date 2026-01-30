@@ -5,9 +5,7 @@ from typing import Optional
 from ksaitex.parsing.markdown import parse
 from ksaitex.templating.engine import render_latex
 from ksaitex.compilation.compiler import compile_latex
-
 app = typer.Typer(help="Ksaitex Markdown to PDF Converter")
-
 @app.command()
 def convert(
     input_file: Path = typer.Argument(..., help="Path to input Markdown file"),
@@ -21,33 +19,21 @@ def convert(
     if not input_file.exists():
         typer.echo(f"Error: File {input_file} not found.", err=True)
         raise typer.Exit(code=1)
-
-
     with open(input_file, "r", encoding="utf-8") as f:
         md_content = f.read()
-
-
     typer.echo("Parsing Markdown...")
     latex_fragment = parse(md_content)
-
-
     typer.echo("Generating LaTeX...")
     config = {
         "script": template,
         "font_file": font,
-
     }
     full_latex = render_latex(latex_fragment, config)
-
-
     typer.echo("Compiling to PDF (this may take a moment)...")
-
     async def run_compile():
         pdf_bytes, log = await compile_latex(full_latex, output_file)
         return pdf_bytes, log
-
     pdf_bytes, log = asyncio.run(run_compile())
-
     if pdf_bytes:
         typer.echo(f"Success! PDF saved to {output_file}")
     else:
@@ -55,7 +41,6 @@ def convert(
         typer.echo("--- Log Output ---")
         typer.echo(log)
         raise typer.Exit(code=1)
-
 @app.command()
 def serve(
     host: str = typer.Option("0.0.0.0", help="Host to bind to"),
@@ -68,6 +53,5 @@ def serve(
     import uvicorn
     typer.echo(f"Starting server at http://{host}:{port}")
     uvicorn.run("ksaitex.api.main:app", host=host, port=port, reload=reload)
-
 if __name__ == "__main__":
     app()
