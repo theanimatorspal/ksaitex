@@ -184,6 +184,6 @@ def render_latex(content: str, config: Dict[str, Any], template_name: str = "bas
     final_output = template.render(**context)
     print(f"--- DEBUG: TEMPLATE_OFFSET = {offset_lines}")
     print("--- DEBUG: FINAL LATEX DOCUMENT ---")
-    print(final_output)
+    # print(final_output)
     print("--- END DEBUG ---")
     return final_output, offset_lines

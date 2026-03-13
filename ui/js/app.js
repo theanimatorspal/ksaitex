@@ -548,13 +548,21 @@ async function init() {
                     item.onclick = (ev) => {
                         ev.stopPropagation();
                         let finalOverrides = {};
+                        let bodyContent = null;
+
                         const valToInject = targetBlock ?
                             (targetBlock.querySelector('.magic-arg-btn') ? targetBlock.querySelector('.magic-arg-btn').dataset.fullValue : null)
                             : selectedText;
-                        if (cmd.args && valToInject) {
-                            const firstArgName = cmd.args.split('|')[0].split(':')[0].trim();
-                            if (firstArgName) finalOverrides[firstArgName] = valToInject;
+
+                        if (valToInject) {
+                            if (cmd.pairing === 'begin') {
+                                bodyContent = valToInject;
+                            } else if (cmd.args) {
+                                const firstArgName = cmd.args.split('|')[0].split(':')[0].trim();
+                                if (firstArgName) finalOverrides[firstArgName] = valToInject;
+                            }
                         }
+
                         if (targetBlock) {
                             const range = document.createRange();
                             range.selectNode(targetBlock);
@@ -564,7 +572,7 @@ async function init() {
                             selection.removeAllRanges();
                             selection.addRange(savedRange);
                         }
-                        editor.insertMagicCommand(cmd, markdownEditor, finalOverrides);
+                        editor.insertMagicCommand(cmd, markdownEditor, finalOverrides, bodyContent);
                         contextMenu.classList.add('hidden');
                     };
                     return item;

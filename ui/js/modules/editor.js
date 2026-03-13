@@ -284,7 +284,7 @@ export function setInitialMarkdown(editor) {
     ].join('\n');
     loadContent(raw, editor);
 }
-export function insertMagicCommand(cmd, editor, overrides = {}) {
+export function insertMagicCommand(cmd, editor, overrides = {}, bodyContent = null) {
     const label = cmd.label;
     const argsSchema = cmd.args || "";
     const argsPairs = [];
@@ -298,21 +298,27 @@ export function insertMagicCommand(cmd, editor, overrides = {}) {
             argsPairs.push({ key: name, value: val });
         });
     }
+
     const html = createMagicHtml(label, argsPairs, argsSchema);
     let finalHtml = html;
     let autoPairing = false;
+
     if (cmd.pairing === 'begin' && cmd.group) {
         const partner = currentMagicCommands.find(c => c.group === cmd.group && c.pairing === 'end');
         if (partner) {
             autoPairing = true;
             const endHtml = createMagicHtml(partner.label, [], partner.args || "");
-            const content = '<div><br></div>';
+            const content = bodyContent
+                ? (bodyContent.includes('\n') ? `<div>${bodyContent.replace(/\n/g, '</div><div>')}</div>` : `<div>${bodyContent}</div>`)
+                : '<div><br></div>';
             finalHtml = `<div><br></div>${html}${content}${endHtml}<div><br></div>`;
         }
     }
+
     if (!autoPairing) {
         finalHtml = `<div><br></div><div><br></div>${html}<div><br></div><div><br></div>`;
     }
+
     focusAndRestore(editor);
     const sel = window.getSelection();
     if (sel.rangeCount && sel.isCollapsed) {
