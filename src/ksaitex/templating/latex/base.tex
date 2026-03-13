@@ -60,6 +60,13 @@
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
+% \VAR{ khanda_size, default='\Huge', tab='लेआउट', label='खण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ khanda_align, default='Left', tab='लेआउट', label='खण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
+% \VAR{ upakhanda_size, default='\huge', tab='लेआउट', label='उपखण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ upakhanda_align, default='Left', tab='लेआउट', label='उपखण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
+% \VAR{ upaupakhanda_size, default='\Large', tab='लेआउट', label='उप-उपखण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ upaupakhanda_align, default='Left', tab='लेआउट', label='उप-उपखण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
+
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
 
@@ -285,21 +292,21 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 \newcommand{\khanda}[1]{
     \markboth{#1}{}
     \vspace{0.8cm}
-    \noindent \textbf{\Huge \color{theme} #1} \hfill \par
+    \noindent \BLOCK{ if khanda_align == 'Right' or khanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{khanda_size} \color{theme} \textbf{#1}}\BLOCK{ if khanda_align == 'Left' or khanda_align == 'Center' }\hfill\BLOCK{ endif } \par
     \addcontentsline{toc}{section}{#1}
     \vspace{0.4cm}
 }
 
 \newcommand{\upakhanda}[1]{
     \vspace{0.6cm}
-    \noindent \textbf{\huge \color{theme} #1} \hfill \par
+    \noindent \BLOCK{ if upakhanda_align == 'Right' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upakhanda_align == 'Left' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par
     \addcontentsline{toc}{subsection}{#1}
     \vspace{0.3cm}
 }
 
 \newcommand{\upaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \textbf{\Large \color{theme} #1} \hfill \par
+    \noindent \BLOCK{ if upaupakhanda_align == 'Right' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upaupakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upaupakhanda_align == 'Left' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par
     \addcontentsline{toc}{subsubsection}{#1}
     \vspace{0.2cm}
 }
@@ -367,7 +374,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 \newcommand{\specialkhanda}[1]{
     \markboth{#1}{}
     \vspace{1.2cm}
-    \noindent \textbf{\Huge \color{theme} #1} \hfill \par \nointerlineskip
+    \noindent \BLOCK{ if khanda_align == 'Right' or khanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{khanda_size} \color{theme} \textbf{#1}}\BLOCK{ if khanda_align == 'Left' or khanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
@@ -377,7 +384,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 \newcommand{\specialupakhanda}[1]{
     \vspace{0.8cm}
-    \noindent \textbf{\huge \color{theme} #1} \hfill \par \nointerlineskip
+    \noindent \BLOCK{ if upakhanda_align == 'Right' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upakhanda_align == 'Left' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
@@ -387,7 +394,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 \newcommand{\specialupaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \textbf{\Large \color{theme} #1} \hfill \par \nointerlineskip
+    \noindent \BLOCK{ if upaupakhanda_align == 'Right' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upaupakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upaupakhanda_align == 'Left' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
     \end{tikzpicture}
