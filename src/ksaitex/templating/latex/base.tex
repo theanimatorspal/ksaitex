@@ -55,6 +55,8 @@
 % \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
 % \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.5cm}\begin{quote}' }
 % \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.5cm}' }
+% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:alternating', command='\begin{shloka}[VAR_align]' }
+% \MAGIC{ shloka_end, label='श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='shloka', command='\end{shloka}' }
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
@@ -311,6 +313,45 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Alignment and Spacing Macros ---
 \newcommand{\vspacer}[1]{\vspace{#1 cm}}
+
+% --- Shloka Environment ---
+\newcounter{shlokaline}
+\newenvironment{shloka}[1][alternating]{
+    \setcounter{shlokaline}{0}
+    \def\shlokaalign{#1}
+    \par\addvspace{0.5cm}
+    \begin{list}{}{
+        \leftmargin=1.5cm
+        \rightmargin=1.5cm
+        \parsep=0pt
+        \listparindent=0pt
+        \itemindent=0pt
+    }
+    \item\relax
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \renewcommand{\\}{
+            \stepcounter{shlokaline}
+            \ifodd\value{shlokaline}
+                \hfill\par\noindent\hfill
+            \else
+                \par\noindent
+            \fi
+        }
+    }{
+        \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
+        \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
+        \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
+    }
+}{
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \stepcounter{shlokaline}
+        \ifodd\value{shlokaline}
+            \hfill
+        \fi
+    }{}
+    \end{list}
+    \addvspace{0.5cm}
+}
 
 % --- Image Macros ---
 \newcommand{\customimage}[3]{
