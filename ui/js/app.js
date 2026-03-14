@@ -130,7 +130,7 @@ async function init() {
                 } catch (e) {
                     console.error("Sync error", e);
                 }
-            }, 500);
+            }, 5000);
         }
         document.addEventListener('selectionchange', triggerSync);
         markdownEditor.addEventListener('keyup', triggerSync);

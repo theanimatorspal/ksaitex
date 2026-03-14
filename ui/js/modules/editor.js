@@ -455,66 +455,100 @@ export function getHTMLContent(editor) {
 export function setHTMLContent(html, editor) {
     editor.innerHTML = html;
 }
+let lastSelectionState = { anchor: null, offset: null, editorScroll: 0 };
+let cursorUpdatePending = false;
+
 function updateCustomCursor(editor) {
     if (!cursorEl) return;
-    if (document.activeElement !== editor) {
-        cursorEl.classList.remove('active');
-        return;
-    }
-    const sel = window.getSelection();
-    if (!sel.rangeCount) {
-        cursorEl.classList.remove('active');
-        return;
-    }
-    const range = sel.getRangeAt(0);
-    if (!editor.contains(range.commonAncestorContainer)) {
-        cursorEl.classList.remove('active');
-        return;
-    }
-    const rects = range.getClientRects();
-    let rect = null;
-    if (rects.length > 0) {
-        rect = rects[0];
-    } else {
-        let node = range.startContainer;
-        while (node && node !== editor && node.nodeType !== Node.ELEMENT_NODE) {
-            node = node.parentNode;
-        }
-        if (node) {
-            const nodeRect = node.getBoundingClientRect();
-            const style = window.getComputedStyle(node);
-            const paddingLeft = parseFloat(style.paddingLeft);
-            const height = parseFloat(style.lineHeight) || 24;
-            rect = {
-                left: nodeRect.left + (isNaN(paddingLeft) ? 0 : paddingLeft),
-                top: nodeRect.top,
-                height: height,
-                bottom: nodeRect.top + height,
-                width: 0
-            };
-        }
-    }
-    if (rect) {
-        const left = sel.isCollapsed ? rect.left : rect.right;
-        const editorRect = editor.getBoundingClientRect();
-        const isVisible = (
-            rect.top >= editorRect.top &&
-            rect.bottom <= editorRect.bottom &&
-            left >= editorRect.left &&
-            left <= editorRect.right
-        );
-        if (isVisible) {
-            const tallerHeight = rect.height + 4;
-            const centeredTop = rect.top - 2;
-            cursorEl.style.left = `${left}px`;
-            cursorEl.style.top = `${centeredTop}px`;
-            cursorEl.style.height = `${tallerHeight}px`;
-            cursorEl.classList.add('active');
-            cursorEl.style.animation = 'none';
-            void cursorEl.offsetWidth;
-            cursorEl.style.animation = null;
-        } else {
+
+    // Decouple from synchronous event flow to prevent forced reflows
+    if (cursorUpdatePending) return;
+    cursorUpdatePending = true;
+
+    requestAnimationFrame(() => {
+        cursorUpdatePending = false;
+
+        if (document.activeElement !== editor) {
             cursorEl.classList.remove('active');
+            return;
         }
-    }
+
+        const sel = window.getSelection();
+        if (!sel.rangeCount) {
+            cursorEl.classList.remove('active');
+            return;
+        }
+
+        const range = sel.getRangeAt(0);
+
+        // Performance optimization: Skip if selection and scroll hasn't changed
+        const currentAnchor = sel.anchorNode;
+        const currentOffset = sel.anchorOffset;
+        const currentScroll = editor.scrollTop;
+
+        if (currentAnchor === lastSelectionState.anchor &&
+            currentOffset === lastSelectionState.offset &&
+            currentScroll === lastSelectionState.editorScroll) {
+            return;
+        }
+
+        lastSelectionState = { anchor: currentAnchor, offset: currentOffset, editorScroll: currentScroll };
+
+        if (!editor.contains(range.commonAncestorContainer)) {
+            cursorEl.classList.remove('active');
+            return;
+        }
+
+        const rects = range.getClientRects();
+        let rect = null;
+        if (rects.length > 0) {
+            rect = rects[0];
+        } else {
+            let node = range.startContainer;
+            while (node && node !== editor && node.nodeType !== Node.ELEMENT_NODE) {
+                node = node.parentNode;
+            }
+            if (node) {
+                const nodeRect = node.getBoundingClientRect();
+                const style = window.getComputedStyle(node);
+                const paddingLeft = parseFloat(style.paddingLeft);
+                const height = parseFloat(style.lineHeight) || 24;
+                rect = {
+                    left: nodeRect.left + (isNaN(paddingLeft) ? 0 : paddingLeft),
+                    top: nodeRect.top,
+                    height: height,
+                    bottom: nodeRect.top + height,
+                    width: 0
+                };
+            }
+        }
+
+        if (rect) {
+            const left = sel.isCollapsed ? rect.left : rect.right;
+            const editorRect = editor.getBoundingClientRect();
+            const isVisible = (
+                rect.top >= editorRect.top &&
+                rect.bottom <= editorRect.bottom &&
+                left >= editorRect.left &&
+                left <= editorRect.right
+            );
+
+            if (isVisible) {
+                const tallerHeight = rect.height + 4;
+                const centeredTop = rect.top - 2;
+                cursorEl.style.left = `${left}px`;
+                cursorEl.style.top = `${centeredTop}px`;
+                cursorEl.style.height = `${tallerHeight}px`;
+                cursorEl.classList.add('active');
+                // Avoid restarting animation if not needed
+                if (!cursorEl.classList.contains('blinking')) {
+                    cursorEl.style.animation = 'none';
+                    void cursorEl.offsetWidth;
+                    cursorEl.style.animation = null;
+                }
+            } else {
+                cursorEl.classList.remove('active');
+            }
+        }
+    });
 }

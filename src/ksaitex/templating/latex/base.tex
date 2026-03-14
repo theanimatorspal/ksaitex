@@ -24,6 +24,8 @@
 
 % \MAGIC{ mahakhanda, label='महाखण्ड (अध्याय)', tab='ढाँचा', args='title:text:नयाँ महाखण्ड', command='\mahakhanda{VAR_title}' }
 % \MAGIC{ special_mahakhanda, label='विशेष महाखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड', command='\specialmahakhanda{VAR_title}' }
+% \MAGIC{ special_mahakhandatwo, label='विशेष महाखण्ड २', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड|subtitle:text:उपशीर्षक', command='\specialmahakhandatwo{VAR_title}{VAR_subtitle}' }
+
 
 % \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
 % \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
@@ -55,16 +57,20 @@
 % \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
 % \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.5cm}\begin{quote}' }
 % \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.5cm}' }
-% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:alternating', command='\begin{shloka}[VAR_align]' }
+% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:left', command='\begin{shloka}[VAR_align]' }
 % \MAGIC{ shloka_end, label='श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='shloka', command='\end{shloka}' }
+% \MAGIC{ vishesh_shloka_begin, label='विशेष श्लोक सुरु', tab='ढाँचा', pairing='begin', group='visheshshloka', args='align:select,alternating,left,right,center:left', command='\begin{visheshshloka}[VAR_align]' }
+% \MAGIC{ vishesh_shloka_end, label='विशेष श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='visheshshloka', command='\end{visheshshloka}' }
+% \MAGIC{ vishesh_shlokatwo_begin, label='विशेष श्लोक २ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokatwo', args='align:select,alternating,left,right,center:alternating|ornament:select,88,87,84,75,71,63,1:88', command='\begin{visheshshlokatwo}[VAR_align]{VAR_ornament}' }
+% \MAGIC{ vishesh_shlokatwo_end, label='विशेष श्लोक २ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokatwo', command='\end{visheshshlokatwo}' }
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
-% \VAR{ khanda_size, default='\Huge', tab='लेआउट', label='खण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ khanda_size, default='XHuge', tab='लेआउट', label='खण्डको आकार', type='select', options='Normal|Large|XLarge|Huge|XHuge' }
 % \VAR{ khanda_align, default='Left', tab='लेआउट', label='खण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
-% \VAR{ upakhanda_size, default='\huge', tab='लेआउट', label='उपखण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ upakhanda_size, default='Huge', tab='लेआउट', label='उपखण्डको आकार', type='select', options='Normal|Large|XLarge|Huge|XHuge' }
 % \VAR{ upakhanda_align, default='Left', tab='लेआउट', label='उपखण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
-% \VAR{ upaupakhanda_size, default='\Large', tab='लेआउट', label='उप-उपखण्डको आकार', type='select', options='\normalsize|\large|\Large|\huge|\Huge' }
+% \VAR{ upaupakhanda_size, default='XLarge', tab='लेआउट', label='उप-उपखण्डको आकार', type='select', options='Normal|Large|XLarge|Huge|XHuge' }
 % \VAR{ upaupakhanda_align, default='Left', tab='लेआउट', label='उप-उपखण्डको पङ्क्ति मिलाउने', type='select', options='Left|Center|Right' }
 
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
@@ -289,24 +295,42 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \setcounter{section}{0}
     \pagebreak
 }
+
+\newcommand{\specialmahakhandatwo}[2]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+    \begin{tikzpicture}
+        \node[inner sep=20pt, fill=theme!10, rounded corners=10pt, drop shadow] (title) {
+            \parbox{0.8\textwidth}{\centering \textbf{\Huge \color{theme} #1} \par \vspace{0.6cm} \textbf{\Large \color{theme} #2}}
+        };
+    \end{tikzpicture}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
+
 \newcommand{\khanda}[1]{
     \markboth{#1}{}
     \vspace{0.8cm}
-    \noindent \BLOCK{ if khanda_align == 'Right' or khanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{khanda_size} \color{theme} \textbf{#1}}\BLOCK{ if khanda_align == 'Left' or khanda_align == 'Center' }\hfill\BLOCK{ endif } \par
+    \noindent\makebox[\textwidth][\BLOCK{ if khanda_align == 'Left' }l\BLOCK{ elif khanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if khanda_size == 'Normal' }\normalsize\BLOCK{ elif khanda_size == 'Large' }\large\BLOCK{ elif khanda_size == 'XLarge' }\Large\BLOCK{ elif khanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par
     \addcontentsline{toc}{section}{#1}
     \vspace{0.4cm}
 }
 
 \newcommand{\upakhanda}[1]{
     \vspace{0.6cm}
-    \noindent \BLOCK{ if upakhanda_align == 'Right' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upakhanda_align == 'Left' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par
+    \noindent\makebox[\textwidth][\BLOCK{ if upakhanda_align == 'Left' }l\BLOCK{ elif upakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upakhanda_size == 'Large' }\large\BLOCK{ elif upakhanda_size == 'XLarge' }\Large\BLOCK{ elif upakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par
     \addcontentsline{toc}{subsection}{#1}
     \vspace{0.3cm}
 }
 
 \newcommand{\upaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \BLOCK{ if upaupakhanda_align == 'Right' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upaupakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upaupakhanda_align == 'Left' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par
+    \noindent\makebox[\textwidth][\BLOCK{ if upaupakhanda_align == 'Left' }l\BLOCK{ elif upaupakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upaupakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upaupakhanda_size == 'Large' }\large\BLOCK{ elif upaupakhanda_size == 'XLarge' }\Large\BLOCK{ elif upaupakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par
     \addcontentsline{toc}{subsubsection}{#1}
     \vspace{0.2cm}
 }
@@ -324,40 +348,48 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 % --- Shloka Environment ---
 \newcounter{shlokaline}
 \newenvironment{shloka}[1][alternating]{
-    \setcounter{shlokaline}{0}
+    \par\vspace{0.5cm}
+    \begingroup
+    \parindent=0pt
     \def\shlokaalign{#1}
-    \par\addvspace{0.5cm}
-    \begin{list}{}{
-        \leftmargin=1.5cm
-        \rightmargin=1.5cm
-        \parsep=0pt
-        \listparindent=0pt
-        \itemindent=0pt
-    }
-    \item\relax
+    \setcounter{shlokaline}{0}
     \ifthenelse{\equal{\shlokaalign}{alternating}}{
-        \renewcommand{\\}{
-            \stepcounter{shlokaline}
-            \ifodd\value{shlokaline}
-                \hfill\par\noindent\hfill
-            \else
-                \par\noindent
-            \fi
-        }
+        \let\oldpar\par
+        \def\par{\oldpar\stepcounter{shlokaline}}
+        \everypar{\ifodd\value{shlokaline}\raggedleft\else\raggedright\fi}
     }{
         \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
         \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
         \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
     }
 }{
-    \ifthenelse{\equal{\shlokaalign}{alternating}}{
-        \stepcounter{shlokaline}
-        \ifodd\value{shlokaline}
-            \hfill
-        \fi
-    }{}
-    \end{list}
-    \addvspace{0.5cm}
+    \par\endgroup
+    \vspace{0.5cm}
+}
+
+% --- Vishesh Shloka Environment (with Ornament) ---
+\newenvironment{visheshshloka}[1][alternating]{
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.8cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{88}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Vishesh Shloka Two Environment (with Custom Ornament) ---
+\newenvironment{visheshshlokatwo}[2][alternating]{
+    \def\visheshornament{#2}
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.8cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
+    \end{center}
+    \vspace{0.1cm}
 }
 
 % --- Image Macros ---
@@ -374,29 +406,50 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 \newcommand{\specialkhanda}[1]{
     \markboth{#1}{}
     \vspace{1.2cm}
-    \noindent \BLOCK{ if khanda_align == 'Right' or khanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{khanda_size} \color{theme} \textbf{#1}}\BLOCK{ if khanda_align == 'Left' or khanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
+    \noindent\makebox[\textwidth][\BLOCK{ if khanda_align == 'Left' }l\BLOCK{ elif khanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if khanda_size == 'Normal' }\normalsize\BLOCK{ elif khanda_size == 'Large' }\large\BLOCK{ elif khanda_size == 'XLarge' }\Large\BLOCK{ elif khanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
-        \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
+        \BLOCK{ if khanda_align == 'Left' }
+            \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
+        \BLOCK{ elif khanda_align == 'Right' }
+            \shade[left color=white, right color=theme!80!white] (0,-0.4) rectangle (\textwidth, -0.2);
+        \BLOCK{ else }
+            \shade[left color=white, right color=theme!80!white] (0,-0.4) rectangle (0.5\textwidth, -0.2);
+            \shade[left color=theme!80!white, right color=white] (0.5\textwidth,-0.4) rectangle (\textwidth, -0.2);
+        \BLOCK{ endif }
     \end{tikzpicture}
     \vspace{0.8cm}
 }
 
 \newcommand{\specialupakhanda}[1]{
     \vspace{0.8cm}
-    \noindent \BLOCK{ if upakhanda_align == 'Right' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upakhanda_align == 'Left' or upakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
+    \noindent\makebox[\textwidth][\BLOCK{ if upakhanda_align == 'Left' }l\BLOCK{ elif upakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upakhanda_size == 'Large' }\large\BLOCK{ elif upakhanda_size == 'XLarge' }\Large\BLOCK{ elif upakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
     \noindent\begin{tikzpicture}[remember picture, overlay]
-        \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
+        \BLOCK{ if upakhanda_align == 'Left' }
+            \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
+        \BLOCK{ elif upakhanda_align == 'Right' }
+            \shade[left color=white, right color=theme!60!white] (0,-0.3) rectangle (\textwidth, -0.15);
+        \BLOCK{ else }
+            \shade[left color=white, right color=theme!60!white] (0,-0.3) rectangle (0.5\textwidth, -0.15);
+            \shade[left color=theme!60!white, right color=white] (0.5\textwidth,-0.3) rectangle (\textwidth, -0.15);
+        \BLOCK{ endif }
     \end{tikzpicture}
     \vspace{0.6cm}
 }
 
 \newcommand{\specialupaupakhanda}[1]{
     \vspace{0.4cm}
-    \noindent \BLOCK{ if upaupakhanda_align == 'Right' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif }{\VAR{upaupakhanda_size} \color{theme} \textbf{#1}}\BLOCK{ if upaupakhanda_align == 'Left' or upaupakhanda_align == 'Center' }\hfill\BLOCK{ endif } \par \nointerlineskip
+    \noindent\makebox[\textwidth][\BLOCK{ if upaupakhanda_align == 'Left' }l\BLOCK{ elif upaupakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upaupakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upaupakhanda_size == 'Large' }\large\BLOCK{ elif upaupakhanda_size == 'XLarge' }\Large\BLOCK{ elif upaupakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
     \noindent\begin{tikzpicture}[remember picture, overlay]
-        \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
+        \BLOCK{ if upaupakhanda_align == 'Left' }
+            \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
+        \BLOCK{ elif upaupakhanda_align == 'Right' }
+            \shade[left color=white, right color=theme!40!white] (0,-0.2) rectangle (\textwidth, -0.1);
+        \BLOCK{ else }
+            \shade[left color=white, right color=theme!40!white] (0,-0.2) rectangle (0.5\textwidth, -0.1);
+            \shade[left color=theme!40!white, right color=white] (0.5\textwidth,-0.2) rectangle (\textwidth, -0.1);
+        \BLOCK{ endif }
     \end{tikzpicture}
     \vspace{0.4cm}
     \addcontentsline{toc}{subsubsection}{#1}
@@ -410,7 +463,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 \BLOCK{ endif }
 
 \begin{document}
-
+\sloppypar
 \VAR{ content }
 
 \end{document}
