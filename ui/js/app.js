@@ -45,11 +45,8 @@ async function init() {
             throw new Error("Critical UI elements missing! Check index.html ids.");
         }
         editor.initEditor(markdownEditor);
-        setInterval(() => {
-            if (currentProjectId && isDirty) {
-                autoSave().catch(e => console.error("Interval autoSave failed:", e));
-            }
-        }, 5000);
+        // Auto-save disabled per user request to avoid UI blocking.
+        // Projects are now saved manually when the 'Generate' button is clicked.
         markdownEditor.addEventListener('input', () => { isDirty = true; });
         tabsContent.addEventListener('input', (e) => {
             if (e.target.classList.contains('dynamic-input')) isDirty = true;
@@ -816,6 +813,9 @@ async function loadTemplates() {
     }
 }
 async function compile() {
+    // Save project automatically before each compilation
+    await autoSave();
+
     const markdown = editor.getMarkdownContent(markdownEditor);
     if (!markdown.trim()) return;
     ui.setLoading(true, convertBtn, loadingOverlay);
@@ -854,26 +854,31 @@ async function compile() {
 }
 async function autoSave() {
     if (!isDirty) return;
-    console.error("DIAGNOSTIC: autoSave() tick");
+
     const title = projectTitleInput.value.trim();
     if (!title) return;
-    const markdown = editor.getMarkdownContent(markdownEditor);
-    const html = editor.getHTMLContent(markdownEditor);
-    const template = templateSelect.value;
-    const variables = {};
-    document.querySelectorAll('.dynamic-input').forEach(input => {
-        if (input.value.trim()) variables[input.id] = input.value.trim();
-    });
+
     saveStatus.textContent = "Saving...";
     saveStatus.classList.add('saving');
+
     try {
-        const res = await api.saveProject(title, markdown, template, variables, html);
+        const markdown = editor.getMarkdownContent(markdownEditor);
+        const html = editor.getHTMLContent(markdownEditor);
+
+        const template = templateSelect.value;
+        const variables = {};
+        document.querySelectorAll('.dynamic-input').forEach(input => {
+            if (input.value.trim()) variables[input.id] = input.id.includes('projectTitle') ? "" : input.value.trim();
+        });
+
+        await api.saveProject(title, markdown, template, variables, html);
+
         saveStatus.textContent = "Saved at " + new Date().toLocaleTimeString();
         saveStatus.classList.remove('saving');
         isDirty = false;
     } catch (e) {
-        console.error("DIAGNOSTIC: Save FAILED:", e);
         saveStatus.textContent = "Save Failed";
+        saveStatus.classList.remove('saving');
     }
 }
 async function refreshProjects() {

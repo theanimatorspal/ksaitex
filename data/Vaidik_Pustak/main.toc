@@ -1,0 +1,37 @@
+\xpg@aux {}{latex}
+\contentsline {subsection}{\textbf {किञ्चिद् मन्तव्यम्}}{३}{}%
+\contentsline {part}{\textbf {प्रथमपाठः}}{५}{}%
+\contentsline {section}{\textbf {वैदिकसूक्ताध्ययनम्}}{६}{}%
+\contentsline {subsection}{\textbf {नासदीयसूक्तम्}}{१३}{}%
+\contentsline {subsubsection}{\textbf {मूलपाठः}}{१४}{}%
+\contentsline {subsubsection}{\textbf {सारः}}{२०}{}%
+\contentsline {subsubsection}{\numberline {०.०.१}}{२२}{}%
+\contentsline {subsubsection}{\numberline {०.०.२}}{२२}{}%
+\contentsline {subsubsection}{\numberline {०.०.३}\textbf {उषासूक्तम्}}{२२}{}%
+\contentsline {subsubsection}{\numberline {०.०.४}\textbf {मूलपाठः}}{२२}{}%
+\contentsline {subsubsection}{\numberline {०.०.५}\textbf {परायतीनामन्वेति पाथ आयतीनां प्रथमा शश्वतीनाम् ।}}{२८}{}%
+\contentsline {subsubsection}{\numberline {०.०.६}}{२८}{}%
+\contentsline {section}{\numberline {१}}{३७}{}%
+\contentsline {section}{\numberline {२}\textbf {ऋग्वेदीयम्}}{३७}{}%
+\contentsline {section}{\numberline {३}\textbf {पुरूरवा-उर्वशी-संवाद-सूक्तम्}}{३७}{}%
+\contentsline {subsection}{\numberline {३.१}\textbf {अथर्ववेदीयम्}}{४८}{}%
+\contentsline {subsection}{\numberline {३.२}\textbf {पृथ्वीसूक्तम्}}{४८}{}%
+\contentsline {paragraph}{\textbf {अन्वयः}}{७४}{}%
+\contentsline {paragraph}{\textbf {शब्दार्थः}}{८८}{}%
+\contentsline {paragraph}{याम्= पृथिवीम् सुपर्णाः= शोभनपतनाः सुगतयो हंसाः= मानससरोनिवासिनश्चक्राङ्‍गाः तथा शकुनाः= शुभाशुभशकुननिदानभूताः, वयांसि= प्रडीनोड्‍डीनसंडीनाख्यनानागतिमन्तो द्विपादः= पादद्वयवन्तः पक्षिणः= संपतन्ति= इतरस्माद्देशादन्यत्र देशे विचरन्ति, डीयन्ते । यस्यां च पृथिव्यां स्वप्रवहणेन रजांसि= पांसून् कृण्वन्= विदधानः, वृक्षान्= तरून् च्यावयन्= पातयन् मातरिश्वा= मातर्यन्तरिक्षे श्वसिति चेष्टत इति मातरिश्वा वातो वायुर्देवः, ईयते= प्रचलति । (एवं वायुकृतं पृथिव्याः अपकारमुक्त्वा तस्याः क्षमात्मकमौदार्यमाह-) तस्याः पृथिव्याः, अर्चिः= गन्धात्मकः शोचिः ‘अर्च्यते पूज्यते परिचीयतेऽनेनेति परिचायको विशेषगुणः’ वातस्य= वायोः प्रवाम्= स्वाभाविकीं प्रगतिम्, उपवाम्= मनुष्यैः स्वानुकूलतयापादितां कृत्रिमां समीपगतिम्, अनु= अनुलक्ष्यीकृत्यैव वाति= प्रवहतीति क्षमागुणप्रशस्तिः ।}{८९}{}%
+\contentsline {section}{\numberline {४}\textbf {द्वितीयः पाठः}}{९९}{}%
+\contentsline {section}{\numberline {५}\textbf {शुनःशेपाख्यानम्}}{१००}{}%
+\contentsline {subsection}{\numberline {५.१}\textbf {पुरूरवोर्वश्याख्यानम्}}{१३५}{}%
+\contentsline {section}{\numberline {६}\textbf {तृतीयः पाठः}}{१६२}{}%
+\contentsline {section}{\numberline {७}}{१६२}{}%
+\contentsline {section}{\numberline {८}\textbf {केनोपनिषद्}}{१७४}{}%
+\contentsline {section}{\numberline {९}}{१७६}{}%
+\contentsline {section}{\numberline {१०}}{१७६}{}%
+\contentsline {section}{\numberline {११}}{१७६}{}%
+\contentsline {section}{\numberline {१२}\textbf {केनोपनिषद्}}{१७६}{}%
+\contentsline {subsection}{\numberline {१२.१}}{१८०}{}%
+\contentsline {subsection}{\numberline {१२.२}\textbf {केनोपनिषद्}}{१८०}{}%
+\contentsline {subsection}{\numberline {१२.३}\textbf {अथ द्वितीयखण्डः}}{१८०}{}%
+\contentsline {subsection}{\numberline {१२.४}\textbf {केनोपनिषद्}}{१८३}{}%
+\contentsline {subsection}{\numberline {१२.५}\textbf {अथ तृतीयखण्डः}}{१८३}{}%
+\contentsline {section}{\numberline {१३}\textbf {परिशिष्टः}}{१९१}{}%

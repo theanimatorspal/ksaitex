@@ -1,0 +1,29 @@
+\xpg@aux {}{latex}
+\contentsline {section}{\textbf {किञ्चिद् मन्तव्यम्}}{1}{}%
+\contentsline {part}{प्रथमपाठः}{५}{}%
+\contentsline {section}{\textbf {ऋग्वेदीयं नासदीयसूक्तम्}}{१३}{}%
+\contentsline {section}{\textbf {ऋग्वेदीयम् उषासूक्तम्}}{२२}{}%
+\contentsline {section}{\textbf {ऋग्वेदीयं पुरूरवा-उर्वशी-संवाद-सूक्तम्}}{४२}{}%
+\contentsline {section}{\textbf {अथर्ववेदीयम् पृथ्वीसूक्तम्}}{५६}{}%
+\contentsline {part}{\textbf {द्वितीयः पाठः}}{१२१}{}%
+\contentsline {section}{\textbf {ऐतरेयब्राह्मणान्तर्गतं शुनःशेपाख्यानम्}}{१२२}{}%
+\contentsline {subsection}{प्रथमखण्डः}{१२४}{}%
+\contentsline {subsection}{** द्वितीयः खण्डः**}{१३३}{}%
+\contentsline {subsection}{\textbf {तृतीयः खण्डः}}{१३९}{}%
+\contentsline {subsection}{\textbf {चतुर्थः खण्डः}}{१४६}{}%
+\contentsline {subsection}{\textbf {पञ्चमः खण्डः}}{१५५}{}%
+\contentsline {subsection}{\textbf {षष्ठः खण्डः}}{१६२}{}%
+\contentsline {section}{\textbf {पुरूरवोर्वश्याख्यानम्}}{१७२}{}%
+\contentsline {section}{\numberline {१}\textbf {तृतीयः पाठः}}{२०१}{}%
+\contentsline {section}{\numberline {२}}{२०१}{}%
+\contentsline {section}{\numberline {३}\textbf {केनोपनिषद्}}{२१३}{}%
+\contentsline {section}{\numberline {४}}{२१५}{}%
+\contentsline {section}{\numberline {५}}{२१५}{}%
+\contentsline {section}{\numberline {६}}{२१५}{}%
+\contentsline {section}{\numberline {७}\textbf {केनोपनिषद्}}{२१५}{}%
+\contentsline {subsection}{\numberline {७.१}}{२१९}{}%
+\contentsline {subsection}{\numberline {७.२}\textbf {केनोपनिषद्}}{२१९}{}%
+\contentsline {subsection}{\numberline {७.३}\textbf {अथ द्वितीयखण्डः}}{२१९}{}%
+\contentsline {subsection}{\numberline {७.४}\textbf {केनोपनिषद्}}{२२२}{}%
+\contentsline {subsection}{\numberline {७.५}\textbf {अथ तृतीयखण्डः}}{२२२}{}%
+\contentsline {section}{\numberline {८}परिशिष्टः १}{२३१}{}%

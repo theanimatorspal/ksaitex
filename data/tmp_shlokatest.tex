@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{ifthen}
+
+\newcounter{shlokaline}
+\newenvironment{shloka}[1][alternating]{
+    \par\vspace{0.5cm}
+    \begingroup
+    \def\shlokaalign{#1}
+    \setcounter{shlokaline}{0}
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \let\oldpar\par
+        \def\par{\oldpar\stepcounter{shlokaline}}
+        \everypar{\ifodd\value{shlokaline}\raggedleft\else\raggedright\fi}
+    }{
+        \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
+        \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
+        \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
+    }
+}{
+    \par\endgroup
+    \vspace{0.5cm}
+}
+
+\begin{document}
+
+\begin{shloka}
+    First line, should be left.
+    Second line of the same paragraph? Wait, this is still line 1
+
+    Second paragraph, should be right.
+    
+    Third paragraph, should be left.
+\end{shloka}
+
+\end{document}
