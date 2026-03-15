@@ -39,7 +39,7 @@
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 % \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
-% \MAGIC{ vishesh_butta, label='विशेष बुट्टा', tab='ढाँचा', args='align:select,Center,Left,Right:Center|id:select,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,65,69,17,18,70,71,88:65|count:number:3|width:text:1cm', command='\visheshbutta{VAR_align}{VAR_id}{VAR_count}{VAR_width}' }
+% \MAGIC{ vishesh_butta, label='विशेष बुट्टा', tab='ढाँचा', args='align:select,Center,Left,Right:Center|id:select,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,65,69,17,18,70,71,88:4|count:number:3|width:text:0.3cm|sep:text:0.2cm', command='\visheshbutta{VAR_align}{VAR_id}{VAR_count}{VAR_width}{VAR_sep}' }
 % \MAGIC{ vishesh_toc, label='विशेष विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|ornl:select,65,69,17,18,70,71,88:65|ornr:select,65,17,18,69,70,71,88:65|size:text:1.2cm|y:text:0pt', command='\visheshcontents{VAR_title}{VAR_ornl}{VAR_ornr}{VAR_size}{VAR_y}' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
@@ -77,6 +77,7 @@
 
 % \VAR{ header_rule, default='On', tab='हेडर-फुटर', label='हेडर लाइन', type='select', options='On|Off' }
 % \VAR{ footer_rule, default='Off', tab='हेडर-फुटर', label='फुटर लाइन', type='select', options='On|Off' }
+% \VAR{ header_footer_mirror, default='Off', tab='हेडर-फुटर', label='मिरर हेडर/फुटर (जोर/बिजोर)', type='select', options='On|Off' }
 
 % \VAR{ header_left, default='None', tab='हेडर-फुटर', label='हेडर बायाँ', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ header_left_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
@@ -96,7 +97,11 @@
 % \VAR{ footer_page_ornament_size, default='1.5cm', tab='हेडर-फुटर', label='— सजावटको आकार' }
 % \VAR{ footer_page_ornament_y_offset, default='0pt', tab='हेडर-फुटर', label='— सजावटको उचाइ (उदा: 5pt, 10pt)' }
 
-\documentclass[\VAR{font_size}, \VAR{page_size}]{\VAR{document_class}}
+\documentclass[\VAR{font_size}, \VAR{page_size}\BLOCK{ if header_footer_mirror == 'On' }, twoside\BLOCK{ endif }]{\VAR{document_class}}
+
+\BLOCK{ if header_footer_mirror == 'On' }
+    \raggedbottom
+\BLOCK{ endif }
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
@@ -230,59 +235,31 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \renewcommand{\footrulewidth}{0pt}
 \BLOCK{ endif }
 
-% -- Header Left --
-\BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }%
-    \lhead{\leftmark}%
-\BLOCK{ elif header_left == 'Page' }%
-    \lhead{\ornamentalpage}%
-\BLOCK{ elif header_left == 'Custom' }%
-    \lhead{\VAR{header_left_text}}%
-\BLOCK{ endif }%
-
-% -- Header Right --
-\BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }%
-    \rhead{\leftmark}%
-\BLOCK{ elif header_right == 'Page' }%
-    \rhead{\ornamentalpage}%
-\BLOCK{ elif header_right == 'Custom' }%
-    \rhead{\VAR{header_right_text}}%
-\BLOCK{ endif }%
-
-% -- Header Center --
-\BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }%
-    \chead{\leftmark}%
-\BLOCK{ elif header_center == 'Page' }%
-    \chead{\ornamentalpage}%
-\BLOCK{ elif header_center == 'Custom' }%
-    \chead{\VAR{header_center_text}}%
-\BLOCK{ endif }%
-
-% -- Footer Left --
-\BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }%
-    \lfoot{\leftmark}%
-\BLOCK{ elif footer_left == 'Page' }%
-    \lfoot{\ornamentalpage}%
-\BLOCK{ elif footer_left == 'Custom' }%
-    \lfoot{\VAR{footer_left_text}}%
-\BLOCK{ endif }%
-
-% -- Footer Right --
-\BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }%
-    \rfoot{\leftmark}%
-\BLOCK{ elif footer_right == 'Page' }%
-    \rfoot{\ornamentalpage}%
-\BLOCK{ elif footer_right == 'Custom' }%
-    \rfoot{\VAR{footer_right_text}}%
-\BLOCK{ endif }%
-
-% -- Footer Center --
-\BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }%
-    \cfoot{\leftmark}%
-\BLOCK{ elif footer_center == 'Page' }%
-    \cfoot{\ornamentalpage}%
-\BLOCK{ elif footer_center == 'Custom' }%
-    \cfoot{\VAR{footer_center_text}}%
-\BLOCK{ endif }%
+% -- Header/Footer Positioning --
+\BLOCK{ if header_footer_mirror == 'On' }
+    % Mirrored (Outer/Inner logic)
+    % Header Left -> Left Side on Odd (Outer), Right Side on Even (Outer)
+    \BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }\fancyhead[LO,RE]{\leftmark}\BLOCK{ elif header_left == 'Page' }\fancyhead[LO,RE]{\ornamentalpage}\BLOCK{ elif header_left == 'Custom' }\fancyhead[LO,RE]{\VAR{header_left_text}}\BLOCK{ endif }
+    % Header Right -> Right Side on Odd (Outer), Left Side on Even (Outer)
+    \BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }\fancyhead[RO,LE]{\leftmark}\BLOCK{ elif header_right == 'Page' }\fancyhead[RO,LE]{\ornamentalpage}\BLOCK{ elif header_right == 'Custom' }\fancyhead[RO,LE]{\VAR{header_right_text}}\BLOCK{ endif }
+    % Header Center
+    \BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }\fancyhead[CO,CE]{\leftmark}\BLOCK{ elif header_center == 'Page' }\fancyhead[CO,CE]{\ornamentalpage}\BLOCK{ elif header_center == 'Custom' }\fancyhead[CO,CE]{\VAR{header_center_text}}\BLOCK{ endif }
+    
+    % Footer Left
+    \BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }\fancyfoot[LO,RE]{\leftmark}\BLOCK{ elif footer_left == 'Page' }\fancyfoot[LO,RE]{\ornamentalpage}\BLOCK{ elif footer_left == 'Custom' }\fancyfoot[LO,RE]{\VAR{footer_left_text}}\BLOCK{ endif }
+    % Footer Right
+    \BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }\fancyfoot[RO,LE]{\leftmark}\BLOCK{ elif footer_right == 'Page' }\fancyfoot[RO,LE]{\ornamentalpage}\BLOCK{ elif footer_right == 'Custom' }\fancyfoot[RO,LE]{\VAR{footer_right_text}}\BLOCK{ endif }
+    % Footer Center
+    \BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }\fancyfoot[CO,CE]{\leftmark}\BLOCK{ elif footer_center == 'Page' }\fancyfoot[CO,CE]{\ornamentalpage}\BLOCK{ elif footer_center == 'Custom' }\fancyfoot[CO,CE]{\VAR{footer_center_text}}\BLOCK{ endif }
+\BLOCK{ else }
+    % Standard (Left is Left, Right is Right)
+    \BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }\lhead{\leftmark}\BLOCK{ elif header_left == 'Page' }\lhead{\ornamentalpage}\BLOCK{ elif header_left == 'Custom' }\lhead{\VAR{header_left_text}}\BLOCK{ endif }
+    \BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }\rhead{\leftmark}\BLOCK{ elif header_right == 'Page' }\rhead{\ornamentalpage}\BLOCK{ elif header_right == 'Custom' }\rhead{\VAR{header_right_text}}\BLOCK{ endif }
+    \BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }\chead{\leftmark}\BLOCK{ elif header_center == 'Page' }\chead{\ornamentalpage}\BLOCK{ elif header_center == 'Custom' }\chead{\VAR{header_center_text}}\BLOCK{ endif }
+    \BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }\lfoot{\leftmark}\BLOCK{ elif footer_left == 'Page' }\lfoot{\ornamentalpage}\BLOCK{ elif footer_left == 'Custom' }\lfoot{\VAR{footer_left_text}}\BLOCK{ endif }
+    \BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }\rfoot{\leftmark}\BLOCK{ elif footer_right == 'Page' }\rfoot{\ornamentalpage}\BLOCK{ elif footer_right == 'Custom' }\rfoot{\VAR{footer_right_text}}\BLOCK{ endif }
+    \BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }\cfoot{\leftmark}\BLOCK{ elif footer_center == 'Page' }\cfoot{\ornamentalpage}\BLOCK{ elif footer_center == 'Custom' }\cfoot{\VAR{footer_center_text}}\BLOCK{ endif }
+\BLOCK{ endif }
 
 % --- Theme Color Definition ---
 \definecolor{theme}{named}{\VAR{theme_color}}
@@ -303,7 +280,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     % 3. Style Mahakhanda (Part)
     \cftpagenumbersoff{part}% Hide page numbers for Mahakhanda
     \renewcommand{\cftpartfont}{\hfill\raisebox{#5}{\mbox{\pgfornament[width=#4]{#2}}}\quad\Large\bfseries\color{theme}}% Left Orn + Title
-    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null}% Right Orn
+    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null\par\vspace{1em}}% Right Orn + Gap Below
     \setlength{\cftbeforepartskip}{2.5em}%
     \setlength{\cftpartnumwidth}{0pt}% 
 
@@ -446,14 +423,14 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Image Macros ---
 % --- Vishesh Butta (Repeated Ornaments) ---
-\newcommand{\visheshbutta}[4]{%
+\newcommand{\visheshbutta}[5]{%
     \par\vspace{0.4cm}
     \noindent\begin{minipage}{\textwidth}
         \ifthenelse{\equal{#1}{Center}}{\centering}{}%
         \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
         \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
         \foreach \n in {1,...,#3}{%
-            \pgfornament[width=#4]{#2}%
+            \pgfornament[width=#4]{#2}\hspace{#5}%
         }%
     \end{minipage}\par\vspace{0.4cm}
 }

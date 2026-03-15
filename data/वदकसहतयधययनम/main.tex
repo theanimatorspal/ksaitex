@@ -12,7 +12,11 @@
 
 
 
-\documentclass[11pt, a5paper]{article}
+\documentclass[11pt, a5paper, twoside]{article}
+
+
+    \raggedbottom
+
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
@@ -140,29 +144,23 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \renewcommand{\footrulewidth}{0.4pt}
 
 
-% -- Header Left --
-%
+% -- Header/Footer Positioning --
 
-% -- Header Right --
-%
-    \rhead{\leftmark}%
-%
+    % Mirrored (Outer/Inner logic)
+    % Header Left -> Left Side on Odd (Outer), Right Side on Even (Outer)
+    
+    % Header Right -> Right Side on Odd (Outer), Left Side on Even (Outer)
+    \fancyhead[RO,LE]{\leftmark}
+    % Header Center
+    
+    
+    % Footer Left
+    
+    % Footer Right
+    \fancyfoot[RO,LE]{वैदिकसाहित्याध्ययनम्}
+    % Footer Center
+    \fancyfoot[CO,CE]{\ornamentalpage}
 
-% -- Header Center --
-%
-
-% -- Footer Left --
-%
-    \lfoot{वैदिकसाहित्याध्ययनम्}%
-%
-
-% -- Footer Right --
-%
-
-% -- Footer Center --
-%
-    \cfoot{\ornamentalpage}%
-%
 
 % --- Theme Color Definition ---
 \definecolor{theme}{named}{black}
@@ -183,7 +181,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     % 3. Style Mahakhanda (Part)
     \cftpagenumbersoff{part}% Hide page numbers for Mahakhanda
     \renewcommand{\cftpartfont}{\hfill\raisebox{#5}{\mbox{\pgfornament[width=#4]{#2}}}\quad\Large\bfseries\color{theme}}% Left Orn + Title
-    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null}% Right Orn
+    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null\par\vspace{1em}}% Right Orn + Gap Below
     \setlength{\cftbeforepartskip}{2.5em}%
     \setlength{\cftpartnumwidth}{0pt}% 
 
@@ -326,14 +324,14 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Image Macros ---
 % --- Vishesh Butta (Repeated Ornaments) ---
-\newcommand{\visheshbutta}[4]{%
+\newcommand{\visheshbutta}[5]{%
     \par\vspace{0.4cm}
     \noindent\begin{minipage}{\textwidth}
         \ifthenelse{\equal{#1}{Center}}{\centering}{}%
         \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
         \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
         \foreach \n in {1,...,#3}{%
-            \pgfornament[width=#4]{#2}%
+            \pgfornament[width=#4]{#2}\hspace{#5}%
         }%
     \end{minipage}\par\vspace{0.4cm}
 }
@@ -417,11 +415,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 \end{center}
 
-\pagebreak
-
 \visheshcontents{विषय सूची}{17}{18}{0.7cm}{5pt}
-
-\pagebreak
 
 \setcounter{page}{1}
 
@@ -545,7 +539,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 प्राणिषु समुत्कृष्ट विवेकसमन्वितोमानवः । एष स्वभाविकरूपेण जिज्ञासुर्भवति,  तस्माद् वयं सर्वे जिज्ञासवः । तदनुसारमस्माकं सर्वेषां हृदि ज्ञातुमिच्छा भवत्येव यत्- यत्र वयं वसामः, तस्य स्थानस्य किं महत्त्वम् ? तस्यैतिहासिकी पृष्ठभूमिश्च का वर्तते ? अस्माकं पूर्वजाः कथमत्रागत्य निवासं चक्रुः ? अस्या आवासभूमेः किं वैशिष्ट्यमिति ? अस्माकं पूर्वजानामागमनात् प्रागस्यां भूमौ किमासीत् ? एतेषां समेषां प्रश्नानामुत्तराणि अस्माभिरन्वेषणीयान्येव भवन्ति । एवमेव साध्याः देवाः सृष्ट्युत्पत्तेः प्राक्कालीनां प्रकृतेः स्थितिमन्वेषयन्तो नैकधा चिन्तितवन्तः । तेषां चिन्तनस्य यन्निष्कर्षमासीत्तदेव नासदीयसूक्तरूपेणास्माकं समक्षं विद्यमानमस्तीति ज्ञायते । अतो विश्वव्यापिनमीश्वरमनुज्ञातुम्, तत्सृष्टस्यास्य ब्रह्माण्डस्य स्वरूपमनुमातुञ्च अस्य सूक्तस्य महत्त्वं सार्वत्रिकं सार्वकालिकं सार्वजनीनञ्चास्ति ।
 
-\visheshbutta{Center}{65}{3}{0.3cm}
+\visheshbutta{Center}{4}{3}{0.3cm}{0.2cm}
 
 \begin{visheshshloka}[center]
 
