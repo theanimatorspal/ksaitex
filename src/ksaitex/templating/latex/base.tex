@@ -39,6 +39,8 @@
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 % \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
+% \MAGIC{ vishesh_butta, label='विशेष बुट्टा', tab='ढाँचा', args='align:select,Center,Left,Right:Center|id:select,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,65,69,17,18,70,71,88:65|count:number:3|width:text:1cm', command='\visheshbutta{VAR_align}{VAR_id}{VAR_count}{VAR_width}' }
+% \MAGIC{ vishesh_toc, label='विशेष विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|ornl:select,65,69,17,18,70,71,88:65|ornr:select,65,17,18,69,70,71,88:65|size:text:1.2cm|y:text:0pt', command='\visheshcontents{VAR_title}{VAR_ornl}{VAR_ornr}{VAR_size}{VAR_y}' }
 
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
@@ -109,6 +111,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage[object = vectorian]{pgfornament}
+\usepackage{tocloft}
 
 
 % --- Robust Purnaviram Line Break Control (LuaTeX) ---
@@ -284,6 +287,36 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 % --- Theme Color Definition ---
 \definecolor{theme}{named}{\VAR{theme_color}}
 
+% --- Vishesh Vishaya Suchi (Special Table of Contents) ---
+\newcommand{\visheshcontents}[5]{%
+    \cleardoublepage
+    \begingroup
+    
+    % 1. Use specialkhanda for title (handles marks, TOC entry, and fancy style)
+    \specialkhanda{#1}%
+    
+    % 2. Suppress standard ToC title and force fancy style
+    \renewcommand{\contentsname}{}% 
+    \renewcommand{\cftaftertoctitle}{\thispagestyle{fancy}}% 
+    \tocloftpagestyle{fancy}%
+    
+    % 3. Style Mahakhanda (Part)
+    \cftpagenumbersoff{part}% Hide page numbers for Mahakhanda
+    \renewcommand{\cftpartfont}{\hfill\raisebox{#5}{\mbox{\pgfornament[width=#4]{#2}}}\quad\Large\bfseries\color{theme}}% Left Orn + Title
+    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null}% Right Orn
+    \setlength{\cftbeforepartskip}{2.5em}%
+    \setlength{\cftpartnumwidth}{0pt}% 
+
+    % 4. Style Khanda (Section)
+    \renewcommand{\cftsecfont}{\large\bfseries}%
+    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\cftbeforesecskip}{0.5em}%
+
+    \tableofcontents
+    \endgroup
+    \pagebreak
+}
+
 % --- Custom Segments (Khanda) ---
 \newcommand{\mahakhanda}[1]{
     \cleardoublepage
@@ -395,7 +428,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \begin{center}
         \color{theme}\pgfornament[width=0.2\textwidth]{88}
     \end{center}
-    \vspace{0.1cm}
+    \vspace{-0.3cm}
 }
 
 % --- Vishesh Shloka Two Environment (with Custom Ornament) ---
@@ -412,6 +445,19 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 }
 
 % --- Image Macros ---
+% --- Vishesh Butta (Repeated Ornaments) ---
+\newcommand{\visheshbutta}[4]{%
+    \par\vspace{0.4cm}
+    \noindent\begin{minipage}{\textwidth}
+        \ifthenelse{\equal{#1}{Center}}{\centering}{}%
+        \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
+        \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
+        \foreach \n in {1,...,#3}{%
+            \pgfornament[width=#4]{#2}%
+        }%
+    \end{minipage}\par\vspace{0.4cm}
+}
+
 \newcommand{\customimage}[3]{
     \begin{figure}[H]
         \ifthenelse{\equal{#2}{Center}}{\centering}{}
