@@ -88,6 +88,11 @@
 % \VAR{ footer_right_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
 % \VAR{ footer_center, default='Page', tab='हेडर-फुटर', label='फुटर मध्य', type='select', options='None|Section|Khanda|Page|Custom' }
 % \VAR{ footer_center_text, default='', tab='हेडर-फुटर', label='— कस्टम पाठ' }
+% \VAR{ footer_page_ornament, default='Off', tab='हेडर-फुटर', label='पृष्ठ संख्या सजावट', type='select', options='On|Off' }
+% \VAR{ footer_page_ornament_left_id, default='65', tab='हेडर-फुटर', label='— बायाँ सजावट ID (flower: 65,69,70,71)' }
+% \VAR{ footer_page_ornament_right_id, default='65', tab='हेडर-फुटर', label='— दायाँ सजावट ID (flower: 65,69,70,71)' }
+% \VAR{ footer_page_ornament_size, default='1.5cm', tab='हेडर-फुटर', label='— सजावटको आकार' }
+% \VAR{ footer_page_ornament_y_offset, default='0pt', tab='हेडर-फुटर', label='— सजावटको उचाइ (उदा: 5pt, 10pt)' }
 
 \documentclass[\VAR{font_size}, \VAR{page_size}]{\VAR{document_class}}
 
@@ -186,6 +191,20 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 }
 \makeatother
 
+\newcommand{\ornamentalpage}{%
+    \BLOCK{ if footer_page_ornament == 'On' }%
+        \smash{%
+        \begin{tikzpicture}[baseline=(page.base)]
+            \node[color=theme, inner sep=0pt, yshift=\VAR{footer_page_ornament_y_offset}] (ornl) {\pgfornament[width=\VAR{footer_page_ornament_size}]{\VAR{footer_page_ornament_left_id}}};
+            \node[anchor=west, xshift=5pt, inner sep=0pt] (page) at (ornl.east) {\thepage};
+            \node[anchor=west, color=theme, xshift=5pt, inner sep=0pt, yshift=\VAR{footer_page_ornament_y_offset}] (ornr) at (page.east) {\pgfornament[width=\VAR{footer_page_ornament_size}]{\VAR{footer_page_ornament_right_id}}};
+        \end{tikzpicture}%
+        }%
+    \BLOCK{ else }%
+        \thepage
+    \BLOCK{ endif }%
+}
+
 \pagestyle{fancy}
 \fancyhf{} 
 
@@ -209,58 +228,58 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 \BLOCK{ endif }
 
 % -- Header Left --
-\BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }
-    \lhead{\leftmark}
-\BLOCK{ elif header_left == 'Page' }
-    \lhead{\thepage}
-\BLOCK{ elif header_left == 'Custom' }
-    \lhead{\VAR{header_left_text}}
-\BLOCK{ endif }
+\BLOCK{ if header_left == 'Khanda' or header_left == 'Section' }%
+    \lhead{\leftmark}%
+\BLOCK{ elif header_left == 'Page' }%
+    \lhead{\ornamentalpage}%
+\BLOCK{ elif header_left == 'Custom' }%
+    \lhead{\VAR{header_left_text}}%
+\BLOCK{ endif }%
 
 % -- Header Right --
-\BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }
-    \rhead{\leftmark}
-\BLOCK{ elif header_right == 'Page' }
-    \rhead{\thepage}
-\BLOCK{ elif header_right == 'Custom' }
-    \rhead{\VAR{header_right_text}}
-\BLOCK{ endif }
+\BLOCK{ if header_right == 'Khanda' or header_right == 'Section' }%
+    \rhead{\leftmark}%
+\BLOCK{ elif header_right == 'Page' }%
+    \rhead{\ornamentalpage}%
+\BLOCK{ elif header_right == 'Custom' }%
+    \rhead{\VAR{header_right_text}}%
+\BLOCK{ endif }%
 
 % -- Header Center --
-\BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }
-    \chead{\leftmark}
-\BLOCK{ elif header_center == 'Page' }
-    \chead{\thepage}
-\BLOCK{ elif header_center == 'Custom' }
-    \chead{\VAR{header_center_text}}
-\BLOCK{ endif }
+\BLOCK{ if header_center == 'Khanda' or header_center == 'Section' }%
+    \chead{\leftmark}%
+\BLOCK{ elif header_center == 'Page' }%
+    \chead{\ornamentalpage}%
+\BLOCK{ elif header_center == 'Custom' }%
+    \chead{\VAR{header_center_text}}%
+\BLOCK{ endif }%
 
 % -- Footer Left --
-\BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }
-    \lfoot{\leftmark}
-\BLOCK{ elif footer_left == 'Page' }
-    \lfoot{\thepage}
-\BLOCK{ elif footer_left == 'Custom' }
-    \lfoot{\VAR{footer_left_text}}
-\BLOCK{ endif }
+\BLOCK{ if footer_left == 'Khanda' or footer_left == 'Section' }%
+    \lfoot{\leftmark}%
+\BLOCK{ elif footer_left == 'Page' }%
+    \lfoot{\ornamentalpage}%
+\BLOCK{ elif footer_left == 'Custom' }%
+    \lfoot{\VAR{footer_left_text}}%
+\BLOCK{ endif }%
 
 % -- Footer Right --
-\BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }
-    \rfoot{\leftmark}
-\BLOCK{ elif footer_right == 'Page' }
-    \rfoot{\thepage}
-\BLOCK{ elif footer_right == 'Custom' }
-    \rfoot{\VAR{footer_right_text}}
-\BLOCK{ endif }
+\BLOCK{ if footer_right == 'Khanda' or footer_right == 'Section' }%
+    \rfoot{\leftmark}%
+\BLOCK{ elif footer_right == 'Page' }%
+    \rfoot{\ornamentalpage}%
+\BLOCK{ elif footer_right == 'Custom' }%
+    \rfoot{\VAR{footer_right_text}}%
+\BLOCK{ endif }%
 
 % -- Footer Center --
-\BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }
-    \cfoot{\leftmark}
-\BLOCK{ elif footer_center == 'Page' }
-    \cfoot{\thepage}
-\BLOCK{ elif footer_center == 'Custom' }
-    \cfoot{\VAR{footer_center_text}}
-\BLOCK{ endif }
+\BLOCK{ if footer_center == 'Khanda' or footer_center == 'Section' }%
+    \cfoot{\leftmark}%
+\BLOCK{ elif footer_center == 'Page' }%
+    \cfoot{\ornamentalpage}%
+\BLOCK{ elif footer_center == 'Custom' }%
+    \cfoot{\VAR{footer_center_text}}%
+\BLOCK{ endif }%
 
 % --- Theme Color Definition ---
 \definecolor{theme}{named}{\VAR{theme_color}}
