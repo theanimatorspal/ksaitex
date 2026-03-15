@@ -43,6 +43,9 @@
                 <button id="redoBtn" class="icon-btn" title="Redo (Ctrl+Y)">
                     <i class="fa-solid fa-rotate-right"></i>
                 </button>
+                <button id="findBtn" class="icon-btn" title="Find and Replace (Ctrl+F)">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </div>
 
             <div class="status-container">
@@ -66,6 +69,26 @@
             <!-- Left Pane: Editor (Top) + Controls (Bottom) -->
             <div class="left-pane">
                 <div class="editor-section">
+                    <div id="findReplaceBar" class="find-replace-bar hidden">
+                        <div class="find-row">
+                            <input type="text" id="findInput" placeholder="Find text...">
+                            <span id="findMatches" class="find-matches">0/0</span>
+                            <button id="findPrevBtn" class="icon-btn" title="Previous (Shift+Enter)">
+                                <i class="fa-solid fa-chevron-up"></i>
+                            </button>
+                            <button id="findNextBtn" class="icon-btn" title="Next (Enter)">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <button id="closeFindBtn" class="icon-btn" title="Close (Esc)">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="replace-row">
+                            <input type="text" id="replaceInput" placeholder="Replace with...">
+                            <button id="replaceBtn" class="secondary-btn">Replace</button>
+                            <button id="replaceAllBtn" class="secondary-btn">Replace All</button>
+                        </div>
+                    </div>
                     <div class="editor-container">
                         <div id="markdownEditor" contenteditable="true" class="rich-editor"
                             placeholder="Start typing strategy here..."></div>

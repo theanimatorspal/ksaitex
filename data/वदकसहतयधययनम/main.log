@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2026.1.25)  15 MAR 2026 19:56
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2026.1.25)  15 MAR 2026 22:59
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -5706,7 +5706,7 @@ lorstack nodes
 ksaitex/fonts/TiroDevanagariSanskrit-Regular.ttf></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr8.pfb>
-Output written on main.pdf (269 pages, 1931519 bytes).
+Output written on main.pdf (269 pages, 1931491 bytes).
 
 PDF statistics: 902 PDF objects out of 1000 (max. 8388607)
  598 compressed objects within 6 object streams

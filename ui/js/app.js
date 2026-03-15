@@ -167,6 +167,213 @@ async function init() {
                 document.execCommand('redo');
             });
         }
+
+        // Find + Replace Implementation
+        const findBtn = document.getElementById('findBtn');
+        const findReplaceBar = document.getElementById('findReplaceBar');
+        const findInput = document.getElementById('findInput');
+        const findMatchesSpan = document.getElementById('findMatches');
+        const findPrevBtn = document.getElementById('findPrevBtn');
+        const findNextBtn = document.getElementById('findNextBtn');
+        const closeFindBtn = document.getElementById('closeFindBtn');
+        const replaceInput = document.getElementById('replaceInput');
+        const replaceBtn = document.getElementById('replaceBtn');
+        const replaceAllBtn = document.getElementById('replaceAllBtn');
+
+        let searchMatches = [];
+        let currentMatchIndex = -1;
+
+        function updateMatches() {
+            const query = findInput.value;
+            if (!query) {
+                searchMatches = [];
+                currentMatchIndex = -1;
+                findMatchesSpan.textContent = '0/0';
+                clearHighlights();
+                return;
+            }
+
+            searchMatches = [];
+            const walker = document.createTreeWalker(markdownEditor, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            while (node = walker.nextNode()) {
+                // Skip text inside magic blocks except for arg buttons
+                if (node.parentElement.closest('.magic-block') && !node.parentElement.closest('.magic-arg-btn')) continue;
+
+                let start = 0;
+                while ((start = node.textContent.indexOf(query, start)) !== -1) {
+                    searchMatches.push({ node, start, length: query.length });
+                    start += query.length;
+                }
+            }
+
+            if (searchMatches.length > 0) {
+                if (currentMatchIndex === -1) currentMatchIndex = 0;
+                else if (currentMatchIndex >= searchMatches.length) currentMatchIndex = searchMatches.length - 1;
+                findMatchesSpan.textContent = `${currentMatchIndex + 1}/${searchMatches.length}`;
+                highlightMatch(currentMatchIndex);
+            } else {
+                currentMatchIndex = -1;
+                findMatchesSpan.textContent = '0/0';
+                clearHighlights();
+            }
+        }
+
+        function clearHighlights() {
+            const highlights = markdownEditor.querySelectorAll('.search-highlight');
+            highlights.forEach(h => {
+                const parent = h.parentNode;
+                parent.replaceChild(document.createTextNode(h.textContent), h);
+                parent.normalize();
+            });
+        }
+
+        function highlightMatch(index) {
+            const activeEl = document.activeElement;
+            const startPos = activeEl.selectionStart;
+            const endPos = activeEl.selectionEnd;
+
+            clearHighlights();
+            if (index < 0 || index >= searchMatches.length) return;
+
+            const match = searchMatches[index];
+            const range = document.createRange();
+
+            const sel = window.getSelection();
+            try {
+                range.setStart(match.node, match.start);
+                range.setEnd(match.node, match.start + match.length);
+            } catch (e) {
+                // Node might have been modified/normalized
+                updateMatches();
+                return;
+            }
+
+            // Scroll into view
+            const span = document.createElement('span');
+            span.className = 'search-highlight current';
+            range.surroundContents(span);
+            span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Re-select text inside span for visibility but ONLY if focus wasn't in input
+            if (activeEl !== findInput && activeEl !== replaceInput) {
+                range.selectNodeContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else {
+                // Restore focus to input
+                activeEl.focus();
+                activeEl.setSelectionRange(startPos, endPos);
+            }
+        }
+
+        function showFindBar() {
+            findReplaceBar.classList.remove('hidden');
+            findInput.focus();
+            findInput.select();
+            if (findInput.value) updateMatches();
+        }
+
+        function hideFindBar() {
+            findReplaceBar.classList.add('hidden');
+            clearHighlights();
+            editor.focusAndRestore(markdownEditor);
+        }
+
+        if (findBtn) findBtn.addEventListener('click', showFindBar);
+        if (closeFindBtn) closeFindBtn.addEventListener('click', hideFindBar);
+
+        findInput.addEventListener('input', updateMatches);
+        findInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                if (e.shiftKey) findPrevBtn.click();
+                else findNextBtn.click();
+            }
+            if (e.key === 'Escape') hideFindBar();
+        });
+
+        findNextBtn.addEventListener('click', () => {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex + 1) % searchMatches.length;
+            updateMatchesDisplay();
+            highlightMatch(currentMatchIndex);
+        });
+
+        findPrevBtn.addEventListener('click', () => {
+            if (searchMatches.length === 0) return;
+            currentMatchIndex = (currentMatchIndex - 1 + searchMatches.length) % searchMatches.length;
+            updateMatchesDisplay();
+            highlightMatch(currentMatchIndex);
+        });
+
+        function updateMatchesDisplay() {
+            findMatchesSpan.textContent = `${currentMatchIndex + 1}/${searchMatches.length}`;
+        }
+
+        replaceBtn.addEventListener('click', () => {
+            if (currentMatchIndex === -1) return;
+            const replacement = replaceInput.value;
+
+            // Cache current index because updateMatches will reset it
+            const targetIndex = currentMatchIndex;
+
+            clearHighlights();
+            updateMatches();
+
+            if (searchMatches[targetIndex]) {
+                const match = searchMatches[targetIndex];
+                const range = document.createRange();
+                range.setStart(match.node, match.start);
+                range.setEnd(match.node, match.start + match.length);
+
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+
+                document.execCommand('insertText', false, replacement);
+                isDirty = true;
+
+                updateMatches();
+                if (searchMatches.length > 0) {
+                    currentMatchIndex = targetIndex % searchMatches.length;
+                    highlightMatch(currentMatchIndex);
+                }
+            }
+            replaceInput.focus();
+        });
+
+        replaceAllBtn.addEventListener('click', () => {
+            const query = findInput.value;
+            if (!query) return;
+            const replacement = replaceInput.value;
+
+            clearHighlights();
+
+            const walker = document.createTreeWalker(markdownEditor, NodeFilter.SHOW_TEXT, null, false);
+            let node;
+            const nodesToProcess = [];
+            while (node = walker.nextNode()) {
+                if (node.parentElement.closest('.magic-block') && !node.parentElement.closest('.magic-arg-btn')) continue;
+                nodesToProcess.push(node);
+            }
+
+            let anyChanged = false;
+            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(escapedQuery, 'g');
+
+            nodesToProcess.forEach(textNode => {
+                if (textNode.textContent.includes(query)) {
+                    textNode.textContent = textNode.textContent.replace(regex, replacement);
+                    anyChanged = true;
+                }
+            });
+
+            if (anyChanged) {
+                isDirty = true;
+                updateMatches();
+            }
+        });
         const uploadChoiceModal = document.getElementById('uploadChoiceModal');
         const uploadReplaceBtn = document.getElementById('uploadReplaceBtn');
         const uploadNewBtn = document.getElementById('uploadNewBtn');
@@ -633,6 +840,7 @@ async function init() {
         }
         if (cancelCommandBtn) cancelCommandBtn.onclick = closeCommandModal;
         document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'f') { e.preventDefault(); showFindBar(); }
             if (e.ctrlKey && e.key === 'Enter') compile();
             if (e.ctrlKey && e.key === 's') { e.preventDefault(); if (currentProjectId) autoSave(); }
             if (e.key === 'Escape') {

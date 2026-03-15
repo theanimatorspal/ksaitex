@@ -432,6 +432,64 @@ button:active {
 
 
 
+/* Find + Replace Bar */
+.find-replace-bar {
+    background-color: var(--bg1);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 15;
+}
+
+.find-replace-bar.hidden {
+    display: none;
+}
+
+.find-row, .replace-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.find-row input, .replace-row input {
+    flex: 1;
+    height: 32px;
+    padding: 4px 8px;
+    font-size: 13px;
+    background-color: var(--bg0);
+}
+
+.find-matches {
+    font-size: 12px;
+    color: var(--fg3);
+    font-family: var(--font-mono);
+    min-width: 40px;
+    text-align: center;
+}
+
+.find-replace-bar .icon-btn {
+    padding: 4px;
+    font-size: 14px;
+}
+
+.find-replace-bar button.secondary-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    height: 32px;
+}
+
+.search-highlight {
+    background-color: var(--yellow);
+    color: var(--bg0);
+}
+
+.search-highlight.current {
+    background-color: var(--orange);
+    color: var(--fg0);
+}
+
 /* Status Container for Toolbar */
 .status-container {
     position: absolute;
