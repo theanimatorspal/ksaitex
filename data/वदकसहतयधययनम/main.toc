@@ -14,16 +14,15 @@
 \contentsline {subsection}{\textbf {पञ्चमः खण्डः}}{१५५}{}%
 \contentsline {subsection}{\textbf {षष्ठः खण्डः}}{१६२}{}%
 \contentsline {section}{\textbf {पुरूरवोर्वश्याख्यानम्}}{१७२}{}%
-\contentsline {section}{\numberline {१}\textbf {तृतीयः पाठः}}{२०१}{}%
-\contentsline {section}{\numberline {२}}{२०१}{}%
-\contentsline {section}{\numberline {३}\textbf {केनोपनिषद्}}{२१३}{}%
-\contentsline {section}{\numberline {४}}{२१५}{}%
-\contentsline {section}{\numberline {५}}{२१५}{}%
-\contentsline {section}{\numberline {६}}{२१५}{}%
-\contentsline {section}{\numberline {७}\textbf {केनोपनिषद्}}{२१५}{}%
-\contentsline {subsection}{\numberline {७.१}}{२१९}{}%
-\contentsline {subsection}{\numberline {७.२}\textbf {केनोपनिषद्}}{२१९}{}%
-\contentsline {subsection}{\numberline {७.३}\textbf {अथ द्वितीयखण्डः}}{२१९}{}%
-\contentsline {subsection}{\numberline {७.४}\textbf {केनोपनिषद्}}{२२२}{}%
-\contentsline {subsection}{\numberline {७.५}\textbf {अथ तृतीयखण्डः}}{२२२}{}%
-\contentsline {section}{\numberline {८}परिशिष्टः १}{२३१}{}%
+\contentsline {subsection}{चतुर्थः पाठः}{१८६}{}%
+\contentsline {subsection}{\textbf {याज्ञवल्क्यमैत्रेयी-संवादाख्यानम्}}{१८७}{}%
+\contentsline {part}{\textbf {तृतीयः पाठः}}{२०८}{}%
+\contentsline {section}{शुक्लयजुर्वेदस्था ईशावास्योपनिषद्}{२१०}{}%
+\contentsline {section}{\textbf {तवल्कारब्राह्मणस्था} \textbf {केनोपनिषद्}}{२२४}{}%
+\contentsline {subsection}{प्रथमः खण्डः}{२२७}{}%
+\contentsline {subsection}{\textbf {अथ द्वितीयखण्डः}}{२३२}{}%
+\contentsline {subsection}{\textbf {अथ तृतीयखण्डः}}{२३६}{}%
+\contentsline {section}{\textbf {अथ चतुर्थखण्डः}}{२४२}{}%
+\contentsline {section}{परिशिष्टः १ - पाठ्यक्रमः}{२४८}{}%
+\contentsline {section}{परिशिष्टः २ - \textbf {वैदिकशब्दज्ञानम्}}{२५०}{}%
+\contentsline {section}{परिशिष्टः ३ - विष्णुधर्मोत्तरपुराणसारः}{२५२}{}%
