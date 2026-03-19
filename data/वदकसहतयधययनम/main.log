@@ -1,9 +1,9 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2026/dev/Arch Linux)  (format=lualatex 2026.1.25)  15 MAR 2026 22:59
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.3.16)  19 MAR 2026 13:51
  restricted system commands enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
 Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
 Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
 Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended 
@@ -41,73 +41,71 @@ Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
 Inserting `tracingstacklevels' in `input_level_string'. (/usr/share/texmf-dist/
 tex/latex/base/article.cls
-Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 luaotfload | db : Font names database loaded from /home/ksai/.texlive/texmf-var/
 luatex-cache/generic/names/luaotfload-names.luc.gz)
-\c@part=\count194
-\c@section=\count195
-\c@subsection=\count196
-\c@subsubsection=\count197
-\c@paragraph=\count198
-\c@subparagraph=\count199
-\c@figure=\count266
-\c@table=\count267
+\c@part=\count273
+\c@section=\count274
+\c@subsection=\count275
+\c@subsubsection=\count276
+\c@paragraph=\count277
+\c@subparagraph=\count278
+\c@figure=\count279
+\c@table=\count280
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen140
+\bibindent=\dimen147
 )
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
 (/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 (/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-01-18 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader) 
 
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
-File: l3backend-luatex.def 2024-05-08 L3 backend support: PDF output (LuaTeX)
-\l__color_backend_stack_int=\count268
-Inserting `l3color' in `luaotfload.parse_color'.
-\l__pdf_internal_box=\box52
-))
-Package: xparse 2024-08-16 L3 Experimental document command parser
+File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count281
+Inserting `l3color' in `luaotfload.parse_color'.))
+Package: xparse 2025-10-09 L3 Experimental document command parser
 )
-Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
-Lua module: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
-Package: fontspec-luatex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaT
+Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaT
 eX
-\l__fontspec_script_int=\count269
-\l__fontspec_language_int=\count270
-\l__fontspec_strnum_int=\count271
-\l__fontspec_tmp_int=\count272
-\l__fontspec_tmpa_int=\count273
-\l__fontspec_tmpb_int=\count274
-\l__fontspec_tmpc_int=\count275
-\l__fontspec_em_int=\count276
-\l__fontspec_emdef_int=\count277
-\l__fontspec_strong_int=\count278
-\l__fontspec_strongdef_int=\count279
-\l__fontspec_tmpa_dim=\dimen141
-\l__fontspec_tmpb_dim=\dimen142
-\l__fontspec_tmpc_dim=\dimen143
+\l__fontspec_script_int=\count282
+\l__fontspec_language_int=\count283
+\l__fontspec_strnum_int=\count284
+\l__fontspec_tmp_int=\count285
+\l__fontspec_tmpa_int=\count286
+\l__fontspec_tmpb_int=\count287
+\l__fontspec_tmpc_int=\count288
+\l__fontspec_em_int=\count289
+\l__fontspec_emdef_int=\count290
+\l__fontspec_strong_int=\count291
+\l__fontspec_strongdef_int=\count292
+\l__fontspec_tmpa_dim=\dimen148
+\l__fontspec_tmpb_dim=\dimen149
+\l__fontspec_tmpc_dim=\dimen150
 
 (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 )
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
 (/usr/share/texmf-dist/tex/latex/polyglossia/polyglossia.sty
-Package: polyglossia 2025/01/31 v2.4 Modern multilingual typesetting with XeLaT
+Package: polyglossia 2025/12/01 v2.9 Modern multilingual typesetting with XeLaT
 eX and LuaLaTeX
 
 (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count280
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
 )
 (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 Lua module: polyglossia 2013/05/11 v1.3 Polyglossia
-\l_xpg_alias_keyvals_int=\count281
+\l_xpg_alias_keyvals_int=\count294
 
 (/usr/share/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf
 File: gloss-latex.ldf polyglossia: module for default language
@@ -126,17 +124,17 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count282
-\Gm@cntv=\count283
-\c@Gm@tempcnt=\count284
-\Gm@bindingoffset=\dimen144
-\Gm@wd@mp=\dimen145
-\Gm@odd@mp=\dimen146
-\Gm@even@mp=\dimen147
-\Gm@layoutwidth=\dimen148
-\Gm@layoutheight=\dimen149
-\Gm@layouthoffset=\dimen150
-\Gm@layoutvoffset=\dimen151
+\Gm@cnth=\count295
+\Gm@cntv=\count296
+\c@Gm@tempcnt=\count297
+\Gm@bindingoffset=\dimen151
+\Gm@wd@mp=\dimen152
+\Gm@odd@mp=\dimen153
+\Gm@even@mp=\dimen154
+\Gm@layoutwidth=\dimen155
+\Gm@layoutheight=\dimen156
+\Gm@layouthoffset=\dimen157
+\Gm@layoutvoffset=\dimen158
 \Gm@dimlist=\toks18
 )
 (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
@@ -159,28 +157,28 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \@temptokenb=\toks19
 )
 (/usr/share/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
-Package: tcolorbox 2024/10/22 version 6.4.1 text color boxes
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
 
 (/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks20
-\pgfutil@tempdima=\dimen152
-\pgfutil@tempdimb=\dimen153
+\pgfutil@tempdima=\dimen159
+\pgfutil@tempdimb=\dimen160
 )
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box53
 )
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
-Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
-Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
 (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
@@ -194,14 +192,14 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 Package graphics Info: Driver file: luatex.def on input line 106.
 
 (/usr/share/texmf-dist/tex/latex/graphics-def/luatex.def
-File: luatex.def 2024/04/13 v1.2e Graphics/color driver for luatex
+File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
 ))
-\Gin@req@height=\dimen154
-\Gin@req@width=\dimen155
+\Gin@req@height=\dimen161
+\Gin@req@width=\dimen162
 )
 (/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks21
@@ -211,44 +209,44 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 x
 \pgfkeys@tmptoks=\toks23
 ))
-\pgf@x=\dimen156
-\pgf@y=\dimen157
-\pgf@xa=\dimen158
-\pgf@ya=\dimen159
-\pgf@xb=\dimen160
-\pgf@yb=\dimen161
-\pgf@xc=\dimen162
-\pgf@yc=\dimen163
-\pgf@xd=\dimen164
-\pgf@yd=\dimen165
+\pgf@x=\dimen163
+\pgf@y=\dimen164
+\pgf@xa=\dimen165
+\pgf@ya=\dimen166
+\pgf@xb=\dimen167
+\pgf@yb=\dimen168
+\pgf@xc=\dimen169
+\pgf@yc=\dimen170
+\pgf@xd=\dimen171
+\pgf@yd=\dimen172
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count285
-\c@pgf@countb=\count286
-\c@pgf@countc=\count287
-\c@pgf@countd=\count288
+\c@pgf@counta=\count298
+\c@pgf@countb=\count299
+\c@pgf@countc=\count300
+\c@pgf@countd=\count301
 \t@pgf@toka=\toks24
 \t@pgf@tokb=\toks25
 \t@pgf@tokc=\toks26
-\pgf@sys@id@count=\count289
+\pgf@sys@id@count=\count302
  (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
 Driver file for pgf: pgfsys-luatex.def
 
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
-File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsys-luatex.def 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
-File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
-File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count290
-\pgfsyssoftpath@bigbuffer@items=\count291
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count303
+\pgfsyssoftpath@bigbuffer@items=\count304
 )
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
-File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
@@ -270,13 +268,13 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen166
-\pgfmath@count=\count292
+\pgfmath@dimen=\dimen173
+\pgfmath@count=\count305
 \pgfmath@box=\box54
 \pgfmath@toks=\toks27
 \pgfmath@stack@operand=\toks28
@@ -294,103 +292,103 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
 .code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count293
+\c@pgfmathroundto@lastzeros=\count306
 ))
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
-File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen167
-\pgf@picmaxx=\dimen168
-\pgf@picminy=\dimen169
-\pgf@picmaxy=\dimen170
-\pgf@pathminx=\dimen171
-\pgf@pathmaxx=\dimen172
-\pgf@pathminy=\dimen173
-\pgf@pathmaxy=\dimen174
-\pgf@xx=\dimen175
-\pgf@xy=\dimen176
-\pgf@yx=\dimen177
-\pgf@yy=\dimen178
-\pgf@zx=\dimen179
-\pgf@zy=\dimen180
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen174
+\pgf@picmaxx=\dimen175
+\pgf@picminy=\dimen176
+\pgf@picmaxy=\dimen177
+\pgf@pathminx=\dimen178
+\pgf@pathmaxx=\dimen179
+\pgf@pathminy=\dimen180
+\pgf@pathmaxy=\dimen181
+\pgf@xx=\dimen182
+\pgf@xy=\dimen183
+\pgf@yx=\dimen184
+\pgf@yy=\dimen185
+\pgf@zx=\dimen186
+\pgf@zy=\dimen187
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
-File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen181
-\pgf@path@lasty=\dimen182
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen188
+\pgf@path@lasty=\dimen189
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
-File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen183
-\pgf@shorten@start@additional=\dimen184
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen190
+\pgf@shorten@start@additional=\dimen191
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
-File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box55
 \pgf@hbox=\box56
 \pgf@layerbox@main=\box57
-\pgf@picture@serial@count=\count294
+\pgf@picture@serial@count=\count307
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
-File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen185
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen192
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
 ex
-File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen186
-\pgf@pt@y=\dimen187
-\pgf@pt@temp=\dimen188
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen193
+\pgf@pt@y=\dimen194
+\pgf@pt@temp=\dimen195
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
-File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
-File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
 x
-File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
-File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen189
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen196
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
-File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen190
-\pgf@sys@shading@range@num=\count295
-\pgf@shadingcount=\count296
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen197
+\pgf@sys@shading@range@num=\count308
+\pgf@shadingcount=\count309
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
-File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
-File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfexternal@startupbox=\box58
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
-File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
-File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
-File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
-File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
-File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfnodeparttextbox=\box59
 )
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
-File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
-Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen191
-\pgf@nodesepend=\dimen192
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen198
+\pgf@nodesepend=\dimen199
 )
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
-Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 ))
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
@@ -398,48 +396,48 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 (/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen193
-\pgffor@skip=\dimen194
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen256
+\pgffor@skip=\dimen257
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 ))
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
-Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
 x
-File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count297
-\pgfplotmarksize=\dimen195
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count310
+\pgfplotmarksize=\dimen258
 )
-\tikz@lastx=\dimen196
-\tikz@lasty=\dimen197
-\tikz@lastxsaved=\dimen198
-\tikz@lastysaved=\dimen199
-\tikz@lastmovetox=\dimen256
-\tikz@lastmovetoy=\dimen257
-\tikzleveldistance=\dimen258
-\tikzsiblingdistance=\dimen259
+\tikz@lastx=\dimen259
+\tikz@lasty=\dimen260
+\tikz@lastxsaved=\dimen261
+\tikz@lastysaved=\dimen262
+\tikz@lastmovetox=\dimen263
+\tikz@lastmovetoy=\dimen264
+\tikzleveldistance=\dimen265
+\tikzsiblingdistance=\dimen266
 \tikz@figbox=\box60
 \tikz@figbox@bg=\box61
 \tikz@tempbox=\box62
 \tikz@tempbox@bg=\box63
-\tikztreelevel=\count298
-\tikznumberofchildren=\count299
-\tikznumberofcurrentchild=\count300
-\tikz@fig@count=\count301
+\tikztreelevel=\count311
+\tikznumberofchildren=\count312
+\tikznumberofcurrentchild=\count313
+\tikz@fig@count=\count314
  (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
-File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count302
-\pgfmatrixcurrentcolumn=\count303
-\pgf@matrix@numberofcolumns=\count304
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count315
+\pgfmatrixcurrentcolumn=\count316
+\pgf@matrix@numberofcolumns=\count317
 )
-\tikz@expandcount=\count305
+\tikz@expandcount=\count318
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 topaths.code.tex
-File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))) (/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks32
@@ -458,11 +456,11 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box65
 \tcb@lowerbox=\box66
 \tcb@phantombox=\box67
-\c@tcbbreakpart=\count306
-\c@tcblayer=\count307
-\c@tcolorbox@number=\count308
+\c@tcbbreakpart=\count319
+\c@tcblayer=\count320
+\c@tcolorbox@number=\count321
 \l__tcobox_tmpa_box=\box68
-\l__tcobox_tmpa_dim=\dimen260
+\l__tcobox_tmpa_dim=\dimen267
 \tcb@temp=\box69
 \tcb@temp=\box70
 \tcb@temp=\box71
@@ -473,34 +471,34 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 shadows.code.tex
-File: tikzlibraryshadows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryshadows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 fadings.code.tex
-File: tikzlibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: tikzlibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
+File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
 \MT@toks=\toks35
 \MT@tempbox=\box73
-\MT@count=\count309
-LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
-LaTeX Info: Redefining \leftprotrusion on input line 1088.
+\MT@count=\count322
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
 \MT@prot@toks=\toks36
-LaTeX Info: Redefining \rightprotrusion on input line 1107.
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen261
+\MT@outer@kern=\dimen268
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count310
+\MT@listname@count=\count323
 
 (/usr/share/texmf-dist/tex/latex/microtype/microtype-luatex.def
-File: microtype-luatex.def 2025/02/11 v3.2a Definitions specific to luatex (RS)
+File: microtype-luatex.def 2026/03/01 v3.2d Definitions specific to luatex (RS)
 
-Lua module: microtype 2025/02/11 v3.2a microtype module.
+Lua module: microtype 2026/03/01 v3.2d microtype module.
 Module microtype Info: overwriting function `keepligature' on input line 63
 LaTeX Info: Redefining \lsstyle on input line 779.
 LaTeX Info: Redefining \lslig on input line 779.
@@ -509,13 +507,13 @@ LaTeX Info: Redefining \lslig on input line 779.
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
 )
 (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count311
+\c@float@type=\count324
 \float@exts=\toks37
 \float@box=\box74
 \@float@everytoks=\toks38
@@ -560,8 +558,8 @@ Package tocloft Info: The document has section divisions on input line 51.
 \cftbeforefigskip=\skip89
 \cftfigindent=\skip90
 \cftfignumwidth=\skip91
-\c@lofdepth=\count312
-\c@lotdepth=\count313
+\c@lofdepth=\count325
+\c@lotdepth=\count326
 \cftbeforelottitleskip=\skip92
 \cftafterlottitleskip=\skip93
 \cftbeforetabskip=\skip94
@@ -579,7 +577,7 @@ Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX
 
 (/usr/share/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
 Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
-\@catcodetablestackcnt=\count314
+\@catcodetablestackcnt=\count327
 )
 \CatcodeTableOther=\catcodetable14
 \CatcodeTableExpl=\catcodetable15
@@ -588,7 +586,7 @@ Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 \luacode@table@soft=\catcodetable16
 )
 Inserting `Fix Devanagari Breaks' in `pre_linebreak_filter'.
-\c@shlokaline=\count315
+\c@shlokaline=\count328
 luaotfload | cache : Lookup cache loaded from /home/ksai/.texlive/texmf-var/luat
 ex-cache/generic/names/luaotfload-lookup-cache.luc.
 
@@ -753,16 +751,16 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count316
-\scratchdimen=\dimen262
+\scratchcounter=\count329
+\scratchdimen=\dimen269
 \scratchbox=\box76
-\nofMPsegments=\count317
-\nofMParguments=\count318
+\nofMPsegments=\count330
+\nofMParguments=\count331
 \everyMPshowfont=\toks42
-\MPscratchCnt=\count319
-\MPscratchDim=\dimen263
-\MPnumerator=\count320
-\makeMPintoPDFobject=\count321
+\MPscratchCnt=\count332
+\MPscratchDim=\dimen270
+\MPnumerator=\count333
+\makeMPintoPDFobject=\count334
 \everyMPtoPDFconversion=\toks43
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -786,7 +784,7 @@ Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 392.
+Package microtype Info: Patching command `\showhyphens'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of spacing.
 Package microtype Info: No adjustment of kerning.
@@ -799,211 +797,211 @@ Package microtype Info: Loading generic protrusion settings for font family
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\k A'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\k a'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\'C'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\'c'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v D'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v d'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\k E'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v E'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\k e'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v e'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\u G'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\u g'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\.I'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v L'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v l'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\'N'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v N'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\'n'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v n'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\H O'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\H o'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v R'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v r'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\c S'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\c s'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\c T'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v T'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\c t'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\v t'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\H U'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\r U'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\H u'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\r u'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\.Z'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Package microtype Warning: Unknown slot number of character
 (microtype)                `\.z'
 (microtype)                in font encoding `TU' in inheritance list
-(microtype)                `microtype.cfg/411(protrusion)'.
+(microtype)                `microtype.cfg/425(protrusion)'.
 
 
 Underfull \hbox (badness 2426) in paragraph at lines 398--399
@@ -1046,8 +1044,6 @@ Underfull \hbox (badness 2951) in paragraph at lines 400--401
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.73793pt, for example:
 (fancyhdr)                \setlength{\headheight}{13.73793pt}.
@@ -1064,8 +1060,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 404--405
 ा केवलं लघुलेखादिकमेव रचितमा
 सीत् । संस्कृतभाषायां
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1092,7 +1086,6 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian17.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian18.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
 (fancyhdr)                \setlength{\headheight}{13.59999pt}.
@@ -1112,7 +1105,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 \openout4 = main.toc
 
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
 (fancyhdr)                \setlength{\headheight}{13.59999pt}.
@@ -1121,9 +1113,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
-[4]
-
-[1
+[4] [1
 
 ]
 Underfull \hbox (badness 2269) in paragraph at lines 444--445
@@ -1132,8 +1122,6 @@ Underfull \hbox (badness 2269) in paragraph at lines 444--445
 िद्यन्ते । तत्र होतृगणे होता, 
 अध्वर्युगणे
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1145,7 +1133,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [2]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1162,8 +1149,6 @@ Underfull \hbox (badness 1490) in paragraph at lines 460--461
 त्विग् ‘यज्ञकार्ये त्रुटयो म
 ा भवन्तु’ इति
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1183,8 +1168,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 462--463
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1194,7 +1177,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [5]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1229,8 +1211,6 @@ Underfull \hbox (badness 4403) in paragraph at lines 516--517
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1246,8 +1226,6 @@ Underfull \hbox (badness 2990) in paragraph at lines 526--527
 भागयोर्विभक्तमस्ति । द्वयोर
 ्मध्ये वैदिकसाहित्यं
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1305,8 +1283,6 @@ Underfull \hbox (badness 5050) in paragraph at lines 536--537
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1319,7 +1295,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian4.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian4.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1335,8 +1310,6 @@ Underfull \hbox (badness 1178) in paragraph at lines 582--583
 ्, मृत्युः= मरणधर्मविशेषः, न= न
 ैव, आसीत्= स्थितः । अमृतम्=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1356,7 +1329,6 @@ Underfull \hbox (badness 2269) in paragraph at lines 586--587
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1366,7 +1338,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [12] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1378,7 +1349,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [13] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1388,7 +1358,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [14] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1404,8 +1373,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 702--703
 ा विसृष्टिः= चराचरविशिष्टा व
 िचित्रा सृष्टिः यतः=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1434,7 +1401,6 @@ Underfull \hbox (badness 1014) in paragraph at lines 714--715
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1444,7 +1410,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [17]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1466,8 +1431,6 @@ m/n/10.95 = महनीयः, \TU/TiroDevanagariSanskrit(0)/b/n/10.95 प्
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1485,8 +1448,6 @@ Underfull \hbox (badness 1478) in paragraph at lines 790--791
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1496,7 +1457,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [20] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1517,8 +1477,6 @@ rit(0)/b/n/10.95 नेत्री\TU/TiroDevanagariSanskrit(0)/m/n/10.95 =
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1529,7 +1487,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [22] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1539,7 +1496,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [23] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1552,7 +1508,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [24] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1562,7 +1517,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [25] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1574,7 +1528,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [26] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1585,7 +1538,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [27] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1595,7 +1547,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [28] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1617,8 +1568,6 @@ DevanagariSanskrit(0)/m/n/10.95 = व्यौच्छत्, अन्धक
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1628,7 +1577,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [30] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1649,8 +1597,6 @@ anskrit(0)/m/n/10.95 =
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1660,7 +1606,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [32] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1673,7 +1618,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [33] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1684,7 +1628,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [34] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1694,7 +1637,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [35] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1713,8 +1655,6 @@ Underfull \hbox (badness 3895) in paragraph at lines 1238--1239
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1725,7 +1665,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [37]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1735,7 +1674,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [38] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1748,7 +1686,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [39] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1758,7 +1695,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [40] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1771,7 +1707,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [41] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1781,7 +1716,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [42] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1794,7 +1728,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [43] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1804,7 +1737,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [44] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1833,7 +1765,6 @@ you left one out. Proceed, with fingers crossed.
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1843,7 +1774,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [46] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1855,7 +1785,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [47] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1875,8 +1804,6 @@ Underfull \hbox (badness 4353) in paragraph at lines 1538--1539
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1886,7 +1813,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [49] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1905,8 +1831,6 @@ Underfull \hbox (badness 1043) in paragraph at lines 1580--1581
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1916,7 +1840,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [51] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1933,8 +1856,6 @@ Underfull \hbox (badness 3354) in paragraph at lines 1622--1623
 िवर्धिनीर्गोधूमधान्यादिनीश
 ्चैता उभयविधा
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1970,8 +1891,6 @@ Underfull \hbox (badness 2073) in paragraph at lines 1646--1647
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -1981,7 +1900,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [54] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -1993,7 +1911,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [55] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2003,7 +1920,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [56] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2037,8 +1953,6 @@ Underfull \hbox (badness 1917) in paragraph at lines 1742--1743
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2054,8 +1968,6 @@ Underfull \hbox (badness 2503) in paragraph at lines 1768--1769
 अन्वचरन्= भूम्याः सविधे सलिल 
 एवासीदन्
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2074,8 +1986,6 @@ Underfull \hbox (badness 2653) in paragraph at lines 1792--1793
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2085,7 +1995,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [60] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2102,8 +2011,6 @@ Underfull \hbox (badness 2680) in paragraph at lines 1844--1845
 अरण्यम्= सिंहव्याघ्रचौरादिभ
 िया
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2131,8 +2038,6 @@ Underfull \hbox (badness 5260) in paragraph at lines 1870--1871
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2142,7 +2047,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [63] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2159,8 +2063,6 @@ Underfull \hbox (badness 1527) in paragraph at lines 1920--1921
 न= शारीरिकव्यापारेण अभिदासात
 ्=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2196,8 +2098,6 @@ Underfull \hbox (badness 2418) in paragraph at lines 1950--1951
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2207,7 +2107,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [66] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2227,7 +2126,6 @@ Underfull \hbox (badness 1454) in paragraph at lines 1994--1995
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2243,8 +2141,6 @@ Underfull \hbox (badness 1371) in paragraph at lines 2020--2021
 ति । (यावद्धि सूर्यः एकस्मिन् 
 वर्षेे
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2264,8 +2160,6 @@ Underfull \hbox (badness 3312) in paragraph at lines 2044--2045
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2276,7 +2170,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [70] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2295,7 +2188,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 2090--2091
  []
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2339,7 +2231,6 @@ Underfull \hbox (badness 1852) in paragraph at lines 2120--2121
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2356,8 +2247,6 @@ Underfull \hbox (badness 1014) in paragraph at lines 2168--2169
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2367,7 +2256,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [74] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2395,7 +2283,6 @@ Underfull \hbox (badness 3536) in paragraph at lines 2200--2201
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2406,7 +2293,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [76] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2416,7 +2302,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [77] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2433,8 +2318,6 @@ Underfull \hbox (badness 4621) in paragraph at lines 2296--2297
 मित्युच्यते- सर्वबीजानां सहन
 शीलाम्
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2454,8 +2337,6 @@ Underfull \hbox (badness 1521) in paragraph at lines 2316--2317
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2465,7 +2346,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [80] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2507,8 +2387,6 @@ Underfull \hbox (badness 1142) in paragraph at lines 2366--2367
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2518,7 +2396,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [82] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2530,7 +2407,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [83] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2540,7 +2416,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [84] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2557,8 +2432,6 @@ Underfull \hbox (badness 4120) in paragraph at lines 2468--2469
 रावणभाद्रौ) शरद् (आश्विनकार्
 तिकौ)
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2586,8 +2459,6 @@ Underfull \hbox (badness 2020) in paragraph at lines 2490--2491
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2598,7 +2469,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [87] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2608,7 +2478,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [88] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2636,7 +2505,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 2566--2567
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2652,8 +2520,6 @@ Underfull \hbox (badness 1708) in paragraph at lines 2592--2593
 ाद्यविशेषः, वदति= उद्घोष्यते 
 । सा= एवंविधा
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2673,7 +2539,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 2620--2621
  []
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2708,7 +2573,6 @@ Underfull \hbox (badness 1400) in paragraph at lines 2640--2641
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2723,8 +2587,6 @@ Underfull \hbox (badness 1005) in paragraph at lines 2688--2689
 िधभाषाभाषिणम्, नानाधर्माणम्= 
 नैकविधमर्यादावन्तम्, बहुधा=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2745,7 +2607,6 @@ Underfull \hbox (badness 1888) in paragraph at lines 2692--2693
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2755,7 +2616,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [95] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2767,7 +2627,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [96] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2777,7 +2636,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [97]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2790,7 +2648,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [98] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2800,7 +2657,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [99] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2819,8 +2675,6 @@ Underfull \hbox (badness 1142) in paragraph at lines 2842--2843
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2830,7 +2684,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [101] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2849,8 +2702,6 @@ Underfull \hbox (badness 1655) in paragraph at lines 2912--2913
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2860,7 +2711,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [103] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2884,8 +2734,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 2960--2961
 िन्यः सामाजिकविचारपर्षदादय
 श्च सन्ति, तेषु= सर्वेष्वपि ते=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2913,8 +2761,6 @@ Underfull \hbox (badness 1448) in paragraph at lines 2984--2985
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2933,7 +2779,6 @@ Underfull \hbox (badness 1400) in paragraph at lines 2988--2989
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2943,7 +2788,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [107] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -2986,8 +2830,6 @@ Underfull \hbox (badness 6348) in paragraph at lines 3056--3057
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -2997,7 +2839,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [109] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3014,8 +2855,6 @@ Underfull \hbox (badness 1609) in paragraph at lines 3104--3105
 ्तोतृभ्यः सन्तु= जायन्ताम् । 
 तथा वयं नः=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3043,8 +2882,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 3138--3139
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3054,7 +2891,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [112] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3066,7 +2902,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [113]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3075,9 +2910,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
-[114]
-
-[115
+[114] [115
 
 ]
 Underfull \hbox (badness 3078) in paragraph at lines 3214--3215
@@ -3086,8 +2919,6 @@ Underfull \hbox (badness 3078) in paragraph at lines 3214--3215
 यसंस्कारानन्तरं पुत्रं यजाम
 ीति विलम्बयति ।
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3107,8 +2938,6 @@ Underfull \hbox (badness 1466) in paragraph at lines 3218--3219
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3118,7 +2947,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [117] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3130,7 +2958,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [118] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3140,7 +2967,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [119] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3152,7 +2978,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [120] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3162,7 +2987,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [121] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3174,7 +2998,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [122] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3184,7 +3007,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [123] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3196,7 +3018,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [124] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3206,7 +3027,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [125] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3226,7 +3046,6 @@ Underfull \hbox (badness 7379) in paragraph at lines 3490--3491
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3236,7 +3055,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [127] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3256,7 +3074,6 @@ Underfull \hbox (badness 1028) in paragraph at lines 3550--3551
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3275,7 +3092,6 @@ Underfull \hbox (badness 4739) in paragraph at lines 3566--3567
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3285,7 +3101,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [130] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3297,7 +3112,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [131] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3308,7 +3122,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [132] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3318,7 +3131,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [133] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3334,8 +3146,6 @@ Underfull \hbox (badness 1360) in paragraph at lines 3708--3709
 ्, आसीनस्य= उपविष्टस्य आस्ते= 
 तथैव तिष्ठति, न तु वर्धते ।
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3356,7 +3166,6 @@ Underfull \hbox (badness 5533) in paragraph at lines 3730--3731
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3366,7 +3175,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [136] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3378,7 +3186,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [137] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3389,7 +3196,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [138] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3399,7 +3205,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [139] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3434,8 +3239,6 @@ Underfull \hbox (badness 3895) in paragraph at lines 3862--3863
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3451,8 +3254,6 @@ Underfull \hbox (badness 2057) in paragraph at lines 3896--3897
 नामनुज्ञानात् सविता ईशे‍= स्
 वामी भवति ।
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3479,8 +3280,6 @@ Underfull \hbox (badness 5847) in paragraph at lines 3916--3917
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3496,8 +3295,6 @@ Underfull \hbox (badness 1383) in paragraph at lines 3952--3953
 शेपमुत्स्रष्टुं समर्थः। तथा
 ऽप्यग्न्यादीनां
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3525,8 +3322,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 3986--3987
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3537,7 +3332,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [145] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3547,7 +3341,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [146] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3566,8 +3359,6 @@ Underfull \hbox (badness 1028) in paragraph at lines 4070--4071
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3577,7 +3368,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [148] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3589,7 +3379,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [149] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3599,7 +3388,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [150] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3618,8 +3406,6 @@ Underfull \hbox (badness 1163) in paragraph at lines 4160--4161
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3629,7 +3415,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [152] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3648,8 +3433,6 @@ Underfull \hbox (badness 5622) in paragraph at lines 4224--4225
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3659,7 +3442,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [154] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3684,8 +3466,6 @@ Underfull \hbox (badness 7238) in paragraph at lines 4266--4267
 न् ज्येष्ठाननुलक्ष्य विश्वा
 मित्रो व्याजहार=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3737,8 +3517,6 @@ Underfull \hbox (badness 2856) in paragraph at lines 4300--4301
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3757,7 +3535,6 @@ Underfull \hbox (badness 4048) in paragraph at lines 4318--4319
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3773,8 +3550,6 @@ Underfull \hbox (badness 1072) in paragraph at lines 4372--4373
 नसम्पत्तिस्तया युक्ताः सन्त
 ो देवराताय=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3801,8 +3576,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4390--4391
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3812,7 +3585,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [160] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3829,8 +3601,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4456--4457
 वर्योरोमित्यतादृशः प्रतिगर
 ो भवति ।
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3850,8 +3620,6 @@ Underfull \hbox (badness 4205) in paragraph at lines 4488--4489
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3868,7 +3636,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4504--4505
  []
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3919,8 +3686,6 @@ Underfull \hbox (badness 1052) in paragraph at lines 4530--4531
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3930,7 +3695,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [165] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3942,7 +3706,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [166] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3952,7 +3715,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [167] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3964,7 +3726,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [168] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3974,7 +3735,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [169] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -3986,7 +3746,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [170] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -3996,7 +3755,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [171] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4008,7 +3766,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [172] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4019,7 +3776,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [173] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4029,7 +3785,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [174] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4056,8 +3811,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4736--4737
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4081,8 +3834,6 @@ Underfull \hbox (badness 5091) in paragraph at lines 4768--4769
 रण्योः वृक्षद्वयजत्वम् । एतत
 ्परोऽक्षमिव=
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -4111,7 +3862,6 @@ Underfull \hbox (badness 2818) in paragraph at lines 4782--4783
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4129,8 +3879,6 @@ Underfull \hbox (badness 1102) in paragraph at lines 4804--4805
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4141,7 +3889,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [179] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4151,7 +3898,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [180] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4170,8 +3916,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4878--4879
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4181,7 +3925,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [182]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4193,7 +3936,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [183] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4203,7 +3945,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [184] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4220,8 +3961,6 @@ Underfull \hbox (badness 1199) in paragraph at lines 4966--4967
 ाद्यविशेषस्य घ्मायमानस्य= शब
 ्देन
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -4257,8 +3996,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4982--4983
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4286,8 +4023,6 @@ Underfull \hbox (badness 1173) in paragraph at lines 5012--5013
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4297,7 +4032,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [188]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4316,8 +4050,6 @@ Underfull \hbox (badness 1748) in paragraph at lines 5042--5043
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4327,7 +4059,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [190] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4339,7 +4070,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [191]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4349,7 +4079,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [192]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4361,7 +4090,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [193] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4371,7 +4099,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [194]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4383,7 +4110,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [195] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4393,7 +4119,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [196] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
@@ -4405,7 +4130,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [197]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4414,9 +4138,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
-[198]
-
-[199
+[198] [199
 
 ]
 Underfull \hbox (badness 3724) in paragraph at lines 5228--5229
@@ -4459,8 +4181,6 @@ Underfull \hbox (badness 1297) in paragraph at lines 5234--5235
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.63583pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.63583pt}.
@@ -4476,8 +4196,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 5256--5257
 मन्त्रोपनिषद् । शुक्लयजुर्व
 ेदसंहिताया
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -4503,8 +4221,6 @@ Underfull \hbox (badness 2828) in paragraph at lines 5280--5281
 ापकस्य नियामकस्य ईशस्य वर्णन
 म्,
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -4540,8 +4256,6 @@ Underfull \hbox (badness 5954) in paragraph at lines 5318--5319
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4551,7 +4265,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [203] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4563,7 +4276,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [204] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4574,7 +4286,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [205] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4584,7 +4295,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [206] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4611,8 +4321,6 @@ Underfull \hbox (badness 2951) in paragraph at lines 5452--5453
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4622,7 +4330,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [208] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4634,7 +4341,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [209] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4644,7 +4350,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [210] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4656,7 +4361,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [211] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4667,7 +4371,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [212] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4677,7 +4380,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [213] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4696,8 +4398,6 @@ Underfull \hbox (badness 2529) in paragraph at lines 5656--5657
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4707,7 +4407,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [215]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4726,8 +4425,6 @@ Underfull \hbox (badness 1838) in paragraph at lines 5680--5681
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4737,7 +4434,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [217] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4749,7 +4445,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [218] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4760,7 +4455,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [219] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4770,7 +4464,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [220] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4790,7 +4483,6 @@ Underfull \hbox (badness 2556) in paragraph at lines 5826--5827
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4809,7 +4501,6 @@ Underfull \hbox (badness 3482) in paragraph at lines 5852--5853
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4819,7 +4510,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [223] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4831,7 +4521,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [224] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4841,7 +4530,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [225] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4860,7 +4548,6 @@ Underfull \hbox (badness 6316) in paragraph at lines 5966--5967
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4870,7 +4557,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [227] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4889,7 +4575,6 @@ Underfull \hbox (badness 3872) in paragraph at lines 6022--6023
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4900,7 +4585,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [229] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4910,7 +4594,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [230] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4923,7 +4606,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [231] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4933,7 +4615,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [232] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4945,7 +4626,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [233] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4955,7 +4635,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [234] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4974,8 +4653,6 @@ Underfull \hbox (badness 2903) in paragraph at lines 6254--6255
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -4985,7 +4662,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [236] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -4997,7 +4673,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [237]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5006,12 +4681,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
-[238]
-
-[239
+[238] [239
 
 ]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -5023,7 +4695,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [240]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5034,7 +4705,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [241]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5044,7 +4714,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [242]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -5061,8 +4730,6 @@ Underfull \hbox (badness 3815) in paragraph at lines 6524--6525
 कारः, महाकाव्यम्, प्रहेलिका, द
 ्वादशरूपकम्,
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5106,8 +4773,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6562--6563
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5139,8 +4804,6 @@ Underfull \hbox (badness 5878) in paragraph at lines 6586--6587
 ुहृद्भिरूपेतो निशामनैषीत्” (
 कादम्बरी ३६)
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5176,8 +4839,6 @@ Underfull \hbox (badness 1142) in paragraph at lines 6604--6605
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5195,8 +4856,6 @@ Underfull \hbox (badness 3895) in paragraph at lines 6618--6619
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5206,7 +4865,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [248]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -5240,8 +4898,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6696--6697
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5267,8 +4923,6 @@ Underfull \hbox (badness 6141) in paragraph at lines 6720--6721
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5284,8 +4938,6 @@ Underfull \hbox (badness 1931) in paragraph at lines 6752--6753
 ्र प्रमुखभावानां स्वरूपम्, त
 ेषाम्
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5314,7 +4966,6 @@ Underfull \hbox (badness 5064) in paragraph at lines 6770--6771
 
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5338,8 +4989,6 @@ Underfull \hbox (badness 3199) in paragraph at lines 6798--6799
 रन्थरूपेण स्वीक्रियन्ते । तत
 ्र केषुचिद् ग्रन्थेषु
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5367,8 +5016,6 @@ Underfull \hbox (badness 1466) in paragraph at lines 6850--6851
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5394,8 +5041,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6884--6885
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5405,7 +5050,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [256]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -5464,8 +5108,6 @@ Underfull \hbox (badness 2894) in paragraph at lines 6934--6935
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5476,7 +5118,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [258]
 
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5486,7 +5127,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [259]
-
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
@@ -5528,8 +5168,6 @@ Underfull \hbox (badness 5161) in paragraph at lines 7006--7007
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5552,8 +5190,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 7048--7049
 न् शब्दालङ्कारभेदानां सस्वर
 ूपं निरूपणं विद्यते । तेषु
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5594,8 +5230,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 7080--7081
 दिषडलङ्कारविवेचनम्, तदनन्तर
 माक्षेप-
  []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5647,8 +5281,6 @@ Underfull \hbox (badness 1776) in paragraph at lines 7106--7107
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5674,8 +5306,6 @@ Underfull \hbox (badness 1028) in paragraph at lines 7114--7115
  []
 
 
-
-
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.05548pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.05548pt}.
@@ -5686,30 +5316,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [265] (./main.aux)
  ***********
-LaTeX2e <2024-11-01> patch level 2
-L3 programming layer <2025-01-18>
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
  ***********
 )
 
 Here is how much of LuaTeX's memory you used:
- 25894 strings out of 475506
+ 25966 strings out of 476076
  125240,1144653 words of node,token memory allocated
  1162 words of node memory still in use:
    20 hlist, 1 vlist, 9 rule, 1 local_par, 5 glue, 3 kern, 1 penalty, 1 glyph, 5
 6 attribute, 82 glue_spec, 56 attribute_list, 2 write, 16 pdf_literal, 18 pdf_co
 lorstack nodes
-   avail lists: 1:1,2:1946,3:2033,4:60,5:195,6:60,7:5659,8:3,9:439,10:21,11:31
- 44329 multiletter control sequences out of 65536+600000
+   avail lists: 2:1948,3:2033,4:60,5:195,6:60,7:5659,8:3,9:439,10:21,11:31
+ 43835 multiletter control sequences out of 65536+600000
  44 fonts using 8314455 bytes
- 116i,18n,114p,8770b,1379s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 116i,18n,114p,8770b,1384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/ksai/dev/ksaitex/fonts/TiroDevanagariSanskrit-Italic.ttf></home/ksai/dev/
 ksaitex/fonts/TiroDevanagariSanskrit-Regular.ttf></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr8.pfb>
-Output written on main.pdf (269 pages, 1931491 bytes).
+Output written on main.pdf (269 pages, 1931487 bytes).
 
 PDF statistics: 902 PDF objects out of 1000 (max. 8388607)
  598 compressed objects within 6 object streams
- 0 named destinations out of 1000 (max. 131072)
+ 0 named destinations out of 1000 (max. 1048576)
  206 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -46,6 +46,9 @@
                 <button id="findBtn" class="icon-btn" title="Find and Replace (Ctrl+F)">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
+                <button id="toggleTocBtn" class="icon-btn" title="Table of Contents">
+                    <i class="fa-solid fa-list-ul"></i>
+                </button>
             </div>
 
             <div class="status-container">
@@ -66,6 +69,17 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Sidebar: Table of Contents -->
+            <aside id="tocSidebar" class="toc-sidebar hidden">
+                <div class="toc-header">
+                    <h3>Table of Contents</h3>
+                </div>
+                <div id="tocContent" class="toc-content">
+                    <!-- Items injected via JS -->
+                    <div class="toc-empty">No sectioning commands found.</div>
+                </div>
+            </aside>
+
             <!-- Left Pane: Editor (Top) + Controls (Bottom) -->
             <div class="left-pane">
                 <div class="editor-section">

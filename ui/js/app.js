@@ -34,6 +34,9 @@ const confirmRenameBtn = document.getElementById('confirmRenameBtn');
 const welcomeScreen = document.getElementById('welcomeScreen');
 const welcomeProjectList = document.getElementById('welcomeProjectList');
 const welcomeNewBtn = document.getElementById('welcomeNewBtn');
+const toggleTocBtn = document.getElementById('toggleTocBtn');
+const tocSidebar = document.getElementById('tocSidebar');
+const tocContent = document.getElementById('tocContent');
 let availableTemplates = {};
 let projectsListCache = [];
 let currentProjectId = null;
@@ -54,6 +57,22 @@ async function init() {
         tabsContent.addEventListener('change', (e) => {
             if (e.target.classList.contains('dynamic-input')) isDirty = true;
         });
+
+        if (toggleTocBtn) {
+            toggleTocBtn.addEventListener('click', () => {
+                tocSidebar.classList.toggle('hidden');
+                if (!tocSidebar.classList.contains('hidden')) {
+                    updateToC();
+                }
+            });
+        }
+
+        markdownEditor.addEventListener('input', () => {
+            if (!tocSidebar.classList.contains('hidden')) {
+                debouncedUpdateToC();
+            }
+        });
+
         await refreshProjects();
         loadTemplates().catch(e => console.error("Initial loadTemplates failed:", e));
         showWelcomeScreen();
@@ -1127,7 +1146,66 @@ async function loadProject(id) {
         }
         saveStatus.textContent = "Project Loaded";
         isDirty = false;
+        if (tocSidebar && !tocSidebar.classList.contains('hidden')) updateToC();
     } catch (e) {
         ui.showError("Load Failed: " + e.message, errorLog, errorOverlay);
+    }
+}
+const SECTIONING_COMMANDS = {
+    'महाखण्ड': 1,
+    'विशेष महाखण्ड': 1,
+    'खण्ड': 2,
+    'विशेष खण्ड': 2,
+    'उपखण्ड': 3,
+    'विशेष उपखण्ड': 3,
+    'उप-उपखण्ड': 4,
+    'विशेष उप-उपखण्ड': 4,
+    'अनुच्छेद शीर्षक': 5,
+    'Section': 2,
+    'Subsection': 3,
+    'Subsubsection': 4,
+    'Chapter': 1
+};
+
+let tocUpdateTimeout = null;
+function debouncedUpdateToC() {
+    if (tocUpdateTimeout) clearTimeout(tocUpdateTimeout);
+    tocUpdateTimeout = setTimeout(updateToC, 1000);
+}
+
+function updateToC() {
+    if (!tocContent) return;
+    
+    const blocks = markdownEditor.querySelectorAll('.magic-block');
+    tocContent.innerHTML = '';
+    
+    let found = false;
+    blocks.forEach((block, index) => {
+        const label = block.dataset.label;
+        const level = SECTIONING_COMMANDS[label];
+        
+        if (level) {
+            found = true;
+            const titleBtn = block.querySelector('.magic-arg-btn[data-name="title"]');
+            const title = titleBtn ? (titleBtn.dataset.fullValue || "Untitled") : label;
+            
+            const item = document.createElement('div');
+            item.className = `toc-item toc-level-${level}`;
+            item.textContent = title.replace(/\*\*/g, ''); 
+            item.title = title;
+            item.onclick = () => {
+                block.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const originalBorder = block.style.borderColor;
+                block.style.borderColor = 'var(--yellow)';
+                setTimeout(() => { block.style.borderColor = ''; }, 2000);
+                document.querySelectorAll('.toc-item').forEach(el => el.classList.remove('active'));
+                item.classList.add('active');
+            };
+            tocContent.appendChild(item);
+        }
+    });
+    
+    if (!found) {
+        tocContent.innerHTML = '<div class="toc-empty">No sectioning commands found.</div>';
     }
 }
