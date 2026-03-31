@@ -1,0 +1,242 @@
+% METADATA DEFINITIONS (Hidden from PDF output)
+% \VAR{ aspect_ratio, default='169', tab='लेआउट', label='स्लाइडको आकार', type='select', options='169|1610|43|149|141|54|32' }
+% \VAR{ font_size, default='12pt', tab='लेआउट', label='अक्षरको आकार', type='select', options='10pt|11pt|12pt|14pt|17pt|20pt' }
+% \VAR{ theme, default='metropolis', tab='थिम', label='मुख्य थिम', type='select', options='metropolis|Madrid|Berlin|Frankfurt|AnnArbor|CambridgeUS|Rochester|Boadilla|Pittsburgh|Singapore|Szeged' }
+% \VAR{ color_theme, default='default', tab='थिम', label='रङ थिम', type='select', options='default|beaver|dolphin|whale|structure|orchid|rose|seahorse|sidebartab|lily' }
+% \VAR{ font_theme, default='default', tab='थिम', label='फन्ट थिम', type='select', options='default|serif|professionalfonts|structurebold|structuresmallcapsserif' }
+% \VAR{ theme_color, default='blue', tab='थिम', label='मुख्य रङ (कस्टम)', type='select', options='blue|red|green|orange|black|purple|brown' }
+% \VAR{ navigation_symbols, default='Off', tab='थिम', label='नेभिगेसन चिन्हहरू', type='select', options='On|Off' }
+% \VAR{ script, default='DEVANAGARI', tab='लेआउट', label='लिपि प्रणाली', type='select', options='DEVANAGARI|LATIN' }
+% \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
+% \VAR{ section_titles_frame, default='On', tab='लेआउट', label='खण्ड शीर्षक स्लाइड', type='select', options='On|Off' }
+% \VAR{ header_style, default='Full', tab='लेआउट', label='हेडर शैली', type='select', options='Full|Minimal|None' }
+
+% \MAGIC{ title_slide, label='शीर्षक स्लाइड', tab='ढाँचा', args='title:text:प्रस्तुति शीर्षक|subtitle:text:उपशीर्षक|author:text:प्रस्तुतकर्ता|date:text:\today', command='\maketitleframe{VAR_title}{VAR_subtitle}{VAR_author}{VAR_date}' }
+% \MAGIC{ slide_begin, label='स्लाइड सुरु', tab='ढाँचा', pairing='begin', group='slide', args='title:text:स्लाइड शीर्षक|subtitle:text:स्लाइड उपशीर्षक', command='\begin{frame}[fragile]{VAR_title}{VAR_subtitle}' }
+% \MAGIC{ slide_end, label='स्लाइड अन्त्य', tab='ढाँचा', pairing='end', group='slide', command='\end{frame}' }
+
+% \MAGIC{ block_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='block', args='title:text:शीर्षक', command='\begin{block}{VAR_title}' }
+% \MAGIC{ block_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='block', command='\end{block}' }
+% \MAGIC{ alert_block_begin, label='विशेष बक्स सुरु', tab='ढाँचा', pairing='begin', group='alertblock', args='title:text:शीर्षक', command='\begin{alertblock}{VAR_title}' }
+% \MAGIC{ alert_block_end, label='विशेष बक्स अन्त्य', tab='ढाँचा', pairing='end', group='alertblock', command='\end{alertblock}' }
+% \MAGIC{ example_block_begin, label='उदाहरण बक्स सुरु', tab='ढाँचा', pairing='begin', group='exampleblock', args='title:text:शीर्षक', command='\begin{exampleblock}{VAR_title}' }
+% \MAGIC{ example_block_end, label='उदाहरण बक्स अन्त्य', tab='ढाँचा', pairing='end', group='exampleblock', command='\end{exampleblock}' }
+
+% \MAGIC{ columns_begin, label='स्तम्भहरू सुरु', tab='ढाँचा', pairing='begin', group='columns', args='align:select,t,c,b:t', command='\begin{columns}[VAR_align]' }
+% \MAGIC{ columns_end, label='स्तम्भहरू अन्त्य', tab='ढाँचा', pairing='end', group='columns', command='\end{columns}' }
+% \MAGIC{ column_begin, label='स्तम्भ सुरु', tab='ढाँचा', pairing='begin', group='column', args='width:text:0.5', command='\begin{column}{VAR_width\textwidth}' }
+% \MAGIC{ column_end, label='स्तम्भ अन्त्य', tab='ढाँचा', pairing='end', group='column', command='\end{column}' }
+
+% \MAGIC{ pause, label='पज (रोक्नुहोस्)', tab='एनिमेसन', command='\pause' }
+% \MAGIC{ uncover_begin, label='देखाउनुहोस् सुरु (Uncover)', tab='एनिमेसन', pairing='begin', group='uncover', args='range:text:1-', command='\uncover<VAR_range>{' }
+% \MAGIC{ uncover_end, label='देखाउनुहोस् अन्त्य', tab='एनिमेसन', pairing='end', group='uncover', command='}' }
+% \MAGIC{ only_begin, label='मात्र देखाउनुहोस् सुरु (Only)', tab='एनिमेसन', pairing='begin', group='only', args='range:text:1-', command='\only<VAR_range>{' }
+% \MAGIC{ only_end, label='मात्र देखाउनुहोस् अन्त्य', tab='एनिमेसन', pairing='end', group='only', command='}' }
+
+% \MAGIC{ toc_slide, label='विषय सूची स्लाइड', tab='ढाँचा', args='title:text:विषय सूची', command='\begin{frame}{VAR_title}\tableofcontents\end{frame}' }
+% \MAGIC{ section_slide, label='खण्ड शीर्षक स्लाइड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
+% \MAGIC{ thank_you_slide, label='धन्यवाद स्लाइड', tab='ढाँचा', args='message:text:धन्यवाद !|sub:text:प्रश्नहरू छन् ?', command='\thankyouframe{VAR_message}{VAR_sub}' }
+
+% \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
+% \MAGIC{ vishesh_butta, label='विशेष बुट्टा', tab='ढाँचा', args='align:select,Center,Left,Right:Center|id:select,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,65,69,17,18,70,71,88:4|count:number:3|width:text:0.3cm|sep:text:0.2cm', command='\visheshbutta{VAR_align}{VAR_id}{VAR_count}{VAR_width}{VAR_sep}' }
+
+% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:left', command='\begin{shloka}[VAR_align]' }
+% \MAGIC{ shloka_end, label='श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='shloka', command='\end{shloka}' }
+% \MAGIC{ vishesh_shloka_begin, label='विशेष श्लोक सुरु', tab='ढाँचा', pairing='begin', group='visheshshloka', args='align:select,alternating,left,right,center:left', command='\begin{visheshshloka}[VAR_align]' }
+% \MAGIC{ vishesh_shloka_end, label='विशेष श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='visheshshloka', command='\end{visheshshloka}' }
+% \MAGIC{ vishesh_shlokatwo_begin, label='विशेष श्लोक २ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokatwo', args='align:select,alternating,left,right,center:alternating|ornament:select,88,87,84,75,71,63,1:88', command='\begin{visheshshlokatwo}[VAR_align]{VAR_ornament}' }
+% \MAGIC{ vishesh_shlokatwo_end, label='विशेष श्लोक २ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokatwo', command='\end{visheshshlokatwo}' }
+
+% \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.3cm}\begin{quote}' }
+% \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.3cm}' }
+
+% \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
+% \MAGIC{ horizontal_rule, label='तेर्सो रेखा', tab='ढाँचा', command='\hrule' }
+% \MAGIC{ vfill, label='ठाउँ भर्नुहोस्', tab='ढाँचा', command='\vfill' }
+
+% \MAGIC{ center_begin, label='बिचमा सुरु', tab='ढाँचा', pairing='begin', group='center', command='\begin{center}' }
+% \MAGIC{ center_end, label='बिचमा अन्त्य', tab='ढाँचा', pairing='end', group='center', command='\end{center}' }
+% \MAGIC{ flush_right_begin, label='दायाँ सुरु', tab='ढाँचा', pairing='begin', group='right', command='\begin{flushright}' }
+% \MAGIC{ flush_right_end, label='दायाँ अन्त्य', tab='ढाँचा', pairing='end', group='right', command='\end{flushright}' }
+% \MAGIC{ flush_left_begin, label='बायाँ सुरु', tab='ढाँचा', pairing='begin', group='left', command='\begin{flushleft}' }
+% \MAGIC{ flush_left_end, label='बायाँ अन्त्य', tab='ढाँचा', pairing='end', group='left', command='\end{flushleft}' }
+
+% \MAGIC{ footnote_begin, label='फुटनोट सुरु', tab='ढाँचा', pairing='begin', group='footnote', command='\footnote{' }
+% \MAGIC{ footnote_end, label='फुटनोट अन्त्य', tab='ढाँचा', pairing='end', group='footnote', command='}' }
+
+\documentclass[aspectratio=\VAR{aspect_ratio}, \VAR{font_size}]{beamer}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[object = vectorian]{pgfornament}
+
+% --- Beamer Theme Configuration ---
+\usetheme{\VAR{theme}}
+\usecolortheme{\VAR{color_theme}}
+\usefonttheme{\VAR{font_theme}}
+
+% Metropolis specific tweaks
+\BLOCK{ if theme == 'metropolis' }
+  \metroset{block=fill, progressbar=frametitle}
+\BLOCK{ endif }
+
+% Devanagari Support logic
+\BLOCK{ if script == 'DEVANAGARI' }
+    \setmainfont[Script=Devanagari, AutoFakeBold=1.8]{\VAR{font_file}}
+    \setsansfont[Script=Devanagari, AutoFakeBold=1.8]{\VAR{font_file}}
+\BLOCK{ else }
+    \setmainfont{\VAR{font_file}}
+    \setsansfont{\VAR{font_file}}
+\BLOCK{ endif }
+
+% --- Devanagari Digit Macros ---
+\makeatletter
+\def\devanagaridigits#1{\expandafter\@devanagaridigits\number#1@}
+\def\@devanagaridigits#1{%
+  \ifx#1@\else
+    \ifcase#1 ०\or १\or २\or ३\or ४\or ५\or ६\or ७\or ८\or ९\fi
+    \expandafter\@devanagaridigits
+  \fi
+}
+\makeatother
+
+\BLOCK{ if script == 'DEVANAGARI' }
+    \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
+    \setbeamertemplate{page number in head/foot}[totalnumber]
+\BLOCK{ endif }
+
+% --- Navigation Symbols ---
+\BLOCK{ if navigation_symbols == 'Off' }
+    \setbeamertemplate{navigation symbols}{}
+\BLOCK{ endif }
+
+% --- Section Titles frame logic ---
+\BLOCK{ if section_titles_frame == 'On' }
+    \AtBeginSection[]{
+      \begin{frame}
+      \vfill
+      \centering
+      \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}\insertsectionhead\par%
+      \end{beamercolorbox}
+      \vfill
+      \end{frame}
+    }
+\BLOCK{ endif }
+
+% --- Custom Macros ---
+\newcommand{\maketitleframe}[4]{
+    \title{#1}
+    \subtitle{#2}
+    \author{#3}
+    \date{#4}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+}
+
+\newcommand{\thankyouframe}[2]{
+    \begin{frame}
+        \vfill
+        \centering
+        \begin{tikzpicture}
+            \node[inner sep=20pt, fill=structure!10, rounded corners=15pt, draw=structure, thick] (box) {
+                \begin{minipage}{0.6\textwidth}
+                    \centering
+                    {\Huge \bfseries \color{structure} #1} \par
+                    \vspace{0.5cm}
+                    {\large #2}
+                \end{minipage}
+            };
+        \end{tikzpicture}
+        \vfill
+    \end{frame}
+}
+
+% --- Alignment and Spacing Macros ---
+\newcommand{\vspacer}[1]{\vspace{#1 cm}}
+
+% --- Shloka Environment ---
+\newcounter{shlokaline}
+\newenvironment{shloka}[1][alternating]{
+    \par\vspace{0.3cm}
+    \begingroup
+    \parindent=0pt
+    \def\shlokaalign{#1}
+    \setcounter{shlokaline}{0}
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \let\oldpar\par
+        \def\par{\oldpar\stepcounter{shlokaline}}
+        \everypar{\ifodd\value{shlokaline}\raggedleft\else\raggedright\fi}
+    }{
+        \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
+        \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
+        \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
+    }
+}{
+    \par\endgroup
+    \vspace{0.3cm}
+}
+
+% --- Vishesh Shloka Environment (with Ornament) ---
+\newenvironment{visheshshloka}[1][alternating]{
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.4cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{88}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Vishesh Shloka Two Environment (with Custom Ornament) ---
+\newenvironment{visheshshlokatwo}[2][alternating]{
+    \def\visheshornament{#2}
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.4cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Image Macros ---
+\newcommand{\customimage}[3]{
+    \begin{figure}[H]
+        \ifthenelse{\equal{#2}{Center}}{\centering}{}
+        \ifthenelse{\equal{#2}{Left}}{\raggedright}{}
+        \ifthenelse{\equal{#2}{Right}}{\raggedleft}{}
+        \includegraphics[width=#3\textwidth]{#1}
+    \end{figure}
+}
+
+% --- Vishesh Butta (Repeated Ornaments) ---
+\newcommand{\visheshbutta}[5]{%
+    \par\vspace{0.2cm}
+    \noindent\begin{minipage}{\textwidth}
+        \ifthenelse{\equal{#1}{Center}}{\centering}{}%
+        \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
+        \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
+        \foreach \n in {1,...,#3}{%
+            \pgfornament[width=#4]{#2}\hspace{#5}%
+        }%
+    \end{minipage}\par\vspace{0.2cm}
+}
+
+% --- Custom Colors ---
+\definecolor{theme}{named}{\VAR{theme_color}}
+
+\begin{document}
+
+\VAR{content}
+
+\end{document}

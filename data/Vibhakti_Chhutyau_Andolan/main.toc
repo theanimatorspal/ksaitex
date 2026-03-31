@@ -1,0 +1,5 @@
+\xpg@aux {}{latex}
+\beamer@sectionintoc {1}{पृष्ठभूमि}{4}{0}{1}
+\beamer@sectionintoc {2}{विभक्तिहरूको प्राचीन विकासक्रम}{7}{0}{2}
+\beamer@sectionintoc {3}{हिन्दी र अन्य भाषाहरूसँग तुलना}{13}{0}{3}
+\beamer@sectionintoc {4}{संज्ञानात्मक विलम्ब}{17}{0}{4}

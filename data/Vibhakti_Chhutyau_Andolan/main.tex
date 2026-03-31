@@ -1,0 +1,447 @@
+% METADATA DEFINITIONS (Hidden from PDF output)
+
+
+
+
+
+
+
+
+
+
+
+
+\documentclass[aspectratio=169, 12pt]{beamer}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{listings}
+\usepackage{float}
+\usepackage[object = vectorian]{pgfornament}
+
+% --- Beamer Theme Configuration ---
+\usetheme{Berlin}
+\usecolortheme{default}
+\usefonttheme{default}
+
+% Metropolis specific tweaks
+
+
+% Devanagari Support logic
+
+    \setmainfont[Script=Devanagari, AutoFakeBold=1.8]{Tiro Devanagari Sanskrit}
+    \setsansfont[Script=Devanagari, AutoFakeBold=1.8]{Tiro Devanagari Sanskrit}
+
+
+% --- Devanagari Digit Macros ---
+\makeatletter
+\def\devanagaridigits#1{\expandafter\@devanagaridigits\number#1@}
+\def\@devanagaridigits#1{%
+  \ifx#1@\else
+    \ifcase#1 ०\or १\or २\or ३\or ४\or ५\or ६\or ७\or ८\or ९\fi
+    \expandafter\@devanagaridigits
+  \fi
+}
+\makeatother
+
+
+    \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
+    \setbeamertemplate{page number in head/foot}[totalnumber]
+
+
+% --- Navigation Symbols ---
+
+    \setbeamertemplate{navigation symbols}{}
+
+
+% --- Section Titles frame logic ---
+
+    \AtBeginSection[]{
+      \begin{frame}
+      \vfill
+      \centering
+      \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+        \usebeamerfont{title}\insertsectionhead\par%
+      \end{beamercolorbox}
+      \vfill
+      \end{frame}
+    }
+
+
+% --- Custom Macros ---
+\newcommand{\maketitleframe}[4]{
+    \title{#1}
+    \subtitle{#2}
+    \author{#3}
+    \date{#4}
+    \begin{frame}
+        \titlepage
+    \end{frame}
+}
+
+\newcommand{\thankyouframe}[2]{
+    \begin{frame}
+        \vfill
+        \centering
+        \begin{tikzpicture}
+            \node[inner sep=20pt, fill=structure!10, rounded corners=15pt, draw=structure, thick] (box) {
+                \begin{minipage}{0.6\textwidth}
+                    \centering
+                    {\Huge \bfseries \color{structure} #1} \par
+                    \vspace{0.5cm}
+                    {\large #2}
+                \end{minipage}
+            };
+        \end{tikzpicture}
+        \vfill
+    \end{frame}
+}
+
+% --- Alignment and Spacing Macros ---
+\newcommand{\vspacer}[1]{\vspace{#1 cm}}
+
+% --- Shloka Environment ---
+\newcounter{shlokaline}
+\newenvironment{shloka}[1][alternating]{
+    \par\vspace{0.3cm}
+    \begingroup
+    \parindent=0pt
+    \def\shlokaalign{#1}
+    \setcounter{shlokaline}{0}
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \let\oldpar\par
+        \def\par{\oldpar\stepcounter{shlokaline}}
+        \everypar{\ifodd\value{shlokaline}\raggedleft\else\raggedright\fi}
+    }{
+        \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
+        \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
+        \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
+    }
+}{
+    \par\endgroup
+    \vspace{0.3cm}
+}
+
+% --- Vishesh Shloka Environment (with Ornament) ---
+\newenvironment{visheshshloka}[1][alternating]{
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.4cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{88}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Vishesh Shloka Two Environment (with Custom Ornament) ---
+\newenvironment{visheshshlokatwo}[2][alternating]{
+    \def\visheshornament{#2}
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.4cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Image Macros ---
+\newcommand{\customimage}[3]{
+    \begin{figure}[H]
+        \ifthenelse{\equal{#2}{Center}}{\centering}{}
+        \ifthenelse{\equal{#2}{Left}}{\raggedright}{}
+        \ifthenelse{\equal{#2}{Right}}{\raggedleft}{}
+        \includegraphics[width=#3\textwidth]{#1}
+    \end{figure}
+}
+
+% --- Vishesh Butta (Repeated Ornaments) ---
+\newcommand{\visheshbutta}[5]{%
+    \par\vspace{0.2cm}
+    \noindent\begin{minipage}{\textwidth}
+        \ifthenelse{\equal{#1}{Center}}{\centering}{}%
+        \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
+        \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
+        \foreach \n in {1,...,#3}{%
+            \pgfornament[width=#4]{#2}\hspace{#5}%
+        }%
+    \end{minipage}\par\vspace{0.2cm}
+}
+
+% --- Custom Colors ---
+\definecolor{theme}{named}{blue}
+
+\begin{document}
+
+\maketitleframe{विभक्ति छुट्ट्याऊ आन्दोलन}{विभक्ति छुट्ट्याउँदा राम्रो कि नछुट्ट्याउँदा ?}{क्वैराला संस्कृतः}{चैत्र, २०८२}
+
+\begin{frame}{विषय सूची}\tableofcontents\end{frame}
+
+\begin{frame}[fragile]{प्रारम्भ}{मुद्दा के हो ?}
+
+\begin{alertblock}{प्रश्न}
+
+`सबैको घरमा' हो कि `सबै को घर मा' ?
+
+विशेषतः विभक्ति छुट्ट्याएर लेख्दा राम्रो कि जोडेर ?
+
+\end{alertblock}
+
+\begin{itemize}
+\item केही नेपाली लेखकहरूले विभक्ति छुट्ट्याइएको देखिन्छ । त्यो प्रयोगको पृष्ठमा के छ ?
+
+
+\item मानक नेपालीमा यथावत् रहेको विभक्ति जोडिने नियम कत्तिको ठिक छ ?
+
+
+\end{itemize}
+\end{frame}
+
+\section{पृष्ठभूमि}
+
+\begin{frame}[fragile]{भाषाका दुई स्वभाव}{संश्लेेषणात्मक र विश्लेषणात्मक}
+
+\begin{columns}[t]
+
+\begin{column}{0.5\textwidth}
+
+\textbf{संश्लेषणात्मक स्वभाव}
+
+\begin{itemize}
+\item एकै शब्दले धेरै कुरा व्यक्त गर्ने ।
+
+
+\end{itemize}
+\begin{alertblock}{उदा०}
+
+पशुहरूको ध्वनि ।
+
+पिपृच्छामि ।
+
+नेपाली = खान्छु ।
+
+\end{alertblock}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+\textbf{विश्लेषणात्मक स्वभाव}
+
+\begin{itemize}
+\item धेरै शब्दहरूद्वारा भावहरू व्यक्त गरिने ।
+
+
+\end{itemize}
+\begin{exampleblock}{उदा०}
+
+मान्छेहरूको भाषा ।
+
+अहं प्रष्टुम् इच्छामि = अहं प्रश्नं कर्तुम् इच्छामि ।
+
+अङ्ग्रेजी = I eat.
+
+\end{exampleblock}
+
+\end{column}
+
+\end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile]{प्राकृत > नेपाली}{नेपाली कता पर्दछ?}
+
+\begin{itemize}
+\item नेपालीमा केही संश्लेषणात्मक र केही विश्लेषणात्मक विशेषताहरू छन् । (अर्को कुनै वेला कुरा गरौँला)
+
+
+\item केही नेपाली संश्लेषणात्मक विशेषताहरू संस्कृत पछि पनि विकास भएका छन् ।
+
+
+\item संस्कृतको जस्तो धातुको स्तरमा गएर मानकीकरण भएजस्तो विश्लेषण नेपाली भाषाविज्ञानमा छैन ।
+
+
+\end{itemize}
+\end{frame}
+
+\section{विभक्तिहरूको प्राचीन विकासक्रम}
+
+\begin{frame}[fragile]{विभक्ति के हो ?}{}
+
+\begin{itemize}
+\item विभक्ति एउटा परस्थानिक (Postposition) हो । कुनै पनि संज्ञाको पछाडि आउने शब्दांश, जसले संज्ञाको कारक/वचन इत्यादिलाई बुझाउँछ परस्थानिक भनिन्छ । अङ्ग्रेजीमा पूर्वस्थानिक (Preposition) हुन्छ ।
+
+
+\end{itemize}
+\begin{exampleblock}{उदा०}
+
+घर\textit{मा}, घर\textit{भित्र} इत्यादि ‍ = परस्थानिक
+
+On the table, Under the table = पूर्वस्थानिक
+
+\end{exampleblock}
+
+\begin{itemize}
+\item नेपालीमा शीर्ष दुई परस्थानिकहरू छन् । नामयोगी र विभक्ति चिह्न ।
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{नेपाली विभक्ति चिह्न विकासक्रम}{}
+
+\begin{itemize}
+\item ``मा'' = `मध्य' शब्दबाट आएको हो। (मध्य > मज्झ > माझ > मा)
+
+
+\item ``बाट'' = `वर्त्मन्' (बाटो) बाट आएको हो। (वर्त्मन् > वट्ट > बाटो > बाट)
+
+
+\item ``देखि'' = `दृश्' धातुको पूर्वकालिक रूपबाट। (दृष्टि/दृक्ष्य > देखिअ > देखि)
+
+
+\item ``ले'' = `लग्' धातुबाट। (लग्न > लग्गिअ > लागि > ले)
+
+
+\item ``लाई'' = `लग्' धातुबाटै विकसित। (लग्न > लग्गिअ > लागि > लाई)
+
+
+\item ``को/का/की'' = `कृत' शब्दबाट आएको हो। (कृतक > केरअ > केरा > को)
+
+
+\item ``तिर'' = `तीर' शब्दबाट। (तीर > तीर > तीर > तिर)
+
+
+\item ``सँग'' = `सङ्ग' शब्दबाट। (सङ्ग > सङ्ग > सङ्ग > सँग)
+
+
+\item ``सित'' = `सहित' शब्दबाट। (सहित > सहिअ > सित)
+
+
+\item ``सम्म'' = `सम' शब्दबाट। (सम > सम्म > सम्म)
+
+
+\item ``द्वारा'' = `द्वार्' शब्दबाट। (द्वारा (द्वार् ले) > दुआर > द्वारा)
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{व्याकरणिकीरण (Grammaticalization)}{}
+
+\begin{block}{परिभाषा}
+
+व्याकरणिकीकरण एउटा यस्तो भाषाई प्रक्रिया हो, जसमा कुनै स्वतन्त्र र ठोस अर्थ बोक्ने शब्द (Lexical Item) समयक्रमसँगै आफ्नो मूल अर्थ गुमाउँदै व्याकरणको एउटा नियम, प्रत्यय वा सहायक तत्त्व (Grammatical/Functional Item) मा परिणत हुन्छ।
+
+\end{block}
+
+जस्तै-
+
+अङ्ग्रेजीमा `will' शब्द पहिले `willan' भन्ने क्रियापद जसले `चाहनु' भन्ने बुझाउँछ, त्यो आधुनिक अङ्ग्रेजीमा सहायक क्रियापद (Auxiliary Verb) भएको छ ।
+
+\end{frame}
+
+\begin{frame}[fragile]{पद-वियोगको समर्थन}{}
+
+\begin{itemize}
+\item मूल भाषामा भिन्न शब्दका  रूपमा स्थापित भएकाले
+
+
+\item ती चिह्नहरू शब्दरूप नभएकाले (संस्कृतमा जस्तो `ले' र `मा' शब्दानुसार परिवर्तन हुँदैन)
+
+
+\end{itemize}
+\begin{block}{नोट}
+
+सर्वनाममा भने केही स्थानमा रूप परिवर्तन हुन्छ, जस्तै (म + को = मेरो, ऊ + ले = उसले/उल्ले, आफू + को = आफ्नो, हामी + को = हाम्रो)  । त्यसैले पद-वियोग गर्ने जमातले सर्वनाम भने योग गरेर लेख्दछन् । (हिन्दी सरह)
+
+\end{block}
+
+\begin{itemize}
+\item केही सर्वनामका रूपहरू वास्तवमा मूलबाट एकै चोटि अपभ्रंश भएका कारणले छुट्टै शब्द हो भनेर पनि भन्न सकिन्छ । (अस्माकम् > अम्हाक/अम्हार > हाम्रो)
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{मध्यकालीन नेपाली}{}
+
+मध्यकालीन नेपाली अभिलेखहरूमा केही अतिरिक्त परस्थानिकहरू छन् । जस्तै -
+
+\begin{itemize}
+\item हर = पछि (खाइ हर, अहिले  `खाएर' भनेर संश्लेषण भएको छ । `खाए पछि' को `खाएसी' जस्तै)
+
+
+\item थि/थ्यौ/शुँ = सँग (अन्नशुँ/हामीथ्यौ/हामुथि)
+
+
+\item सुदा = समेत (षेतसुदा, अहिलेको `सुद्ध' जस्तै)
+
+
+\item छयो = सँग (कार्कीसँग)
+
+
+\end{itemize}
+यस्ता प्रयोगले भाषाको संश्लेषणात्मक हुन खोजेको यत्न र जोडेरै लेख्दा उचित हुन्छ कि जस्तो देखिन्छ ।
+
+\end{frame}
+
+\section{हिन्दी र अन्य भाषाहरूसँग तुलना}
+
+\begin{frame}[fragile]{हिन्दी vs नेपाली}{हिन्दी र नेपालीको स्वभावमा फरक}
+
+क्रियापदको विषयमा हिन्दी भाषा नेपालीभन्दा धेरै विश्लेषणात्मक भाषा हो। जस्तै -
+
+\begin{itemize}
+\item `जाता हुं' (हिन्दी) = `जान्छु' (नेपाली)
+
+
+\item `नहीं जाता हुं' (हिन्दी) = `जान्न/जादिनँ' (नेपाली) [यो विषयमा नेपाली संस्कृतभन्दा पनि संश्लेषणात्मक छ]
+
+
+\item `अरे ! राम तो घर चला गया' / `राम तो घर चला गया' (हिन्दी) = राम घर गएछ (नेपाली)
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{हिन्दी vs नेपाली}{हिन्दी र नेपालीको स्वभावमा समानता}
+
+तर विभक्तिको विषयमा भने नेपाली र हिन्दीमा (तथा अङ्ग्रेजीमा पनि) धेरै फरक नभई वस्तुतः विश्लेषणात्मक छन् । जस्तै -
+
+\begin{itemize}
+\item `घर में रखे टेबल के नींचे से चाकु निकाल कर ला' (हिन्दी) = `घरमा राखेको टेबलको मुनिबाट चाकु निकालेर ले' (नेपाली) वा छुट्ट्याएर लेख्दा - `घर मा राखेको टेबल को मुनि बाट चाकु निकालेर ले' = home at kept table below from knife take out and get = Take out and get the knife from under the table kept at home. (अङ्ग्रेजी)
+
+
+\item अङ्ग्रेजीको `Preposition' ‍=  नेपाली/हिन्दीको आसन्न `Postposition'
+
+
+\item केही भाषाविज्ञानीहरूले हिन्दीमा र तदनुसार नेपालीमा कारक २/३ मात्र भएको बताउँछन् । सरल, तिर्यक् र सम्बोधन
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{अन्य भाषामा के गरिन्छ ?}{}
+
+\begin{itemize}
+\item हिन्दी वा हिन्दीको अतिप्रभाव भएका भाषाहरूभन्दा बाहेक जोडेर लेखिन्छ । मराठीमा `रामाचा', गुजरातीमा `घरमां', बङ्गालीमा `रामेर', उडीयामा `रामकु' इत्यादि ।
+
+
+\item पारसीको अतिप्रभावले रसम-उल-ख़तमा हिन्दवी भाषा बढी प्रचलित भएसँगै विश्लिष्ट रूपमा लेख्ने चलन भएको देखिन्छ ।
+
+
+\end{itemize}
+\end{frame}
+
+\section{संज्ञानात्मक विलम्ब}
+
+
+
+\end{document}
