@@ -10,8 +10,10 @@
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
 % \VAR{ section_titles_frame, default='On', tab='लेआउट', label='खण्ड शीर्षक स्लाइड', type='select', options='On|Off' }
 % \VAR{ header_style, default='Full', tab='लेआउट', label='हेडर शैली', type='select', options='Full|Minimal|None' }
+% \VAR{ primary_color, default='blue', tab='थिम', label='थिम रङ (Primary)', type='select', options='blue|red|green|orange|black|purple|brown' }
+% \VAR{ secondary_color, default='orange', tab='थिम', label='थिम रङ (Secondary)', type='select', options='blue|red|green|orange|black|purple|brown' }
 
-% \MAGIC{ title_slide, label='शीर्षक स्लाइड', tab='ढाँचा', args='title:text:प्रस्तुति शीर्षक|subtitle:text:उपशीर्षक|author:text:प्रस्तुतकर्ता|date:text:\today', command='\maketitleframe{VAR_title}{VAR_subtitle}{VAR_author}{VAR_date}' }
+% \MAGIC{ title_slide, label='शीर्षक स्लाइड', tab='ढाँचा', args='title:text:प्रस्तुति शीर्षक|subtitle:text:उपशीर्षक|author:text:प्रस्तुतकर्ता|date:text:\today', toc_level='1', command='\maketitleframe{VAR_title}{VAR_subtitle}{VAR_author}{VAR_date}' }
 % \MAGIC{ slide_begin, label='स्लाइड सुरु', tab='ढाँचा', pairing='begin', group='slide', args='title:text:स्लाइड शीर्षक|subtitle:text:स्लाइड उपशीर्षक', command='\begin{frame}[fragile]{VAR_title}{VAR_subtitle}' }
 % \MAGIC{ slide_end, label='स्लाइड अन्त्य', tab='ढाँचा', pairing='end', group='slide', command='\end{frame}' }
 
@@ -34,7 +36,7 @@
 % \MAGIC{ only_end, label='मात्र देखाउनुहोस् अन्त्य', tab='एनिमेसन', pairing='end', group='only', command='}' }
 
 % \MAGIC{ toc_slide, label='विषय सूची स्लाइड', tab='ढाँचा', args='title:text:विषय सूची', command='\begin{frame}{VAR_title}\tableofcontents\end{frame}' }
-% \MAGIC{ section_slide, label='खण्ड शीर्षक स्लाइड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\section{VAR_title}' }
+% \MAGIC{ section_slide, label='खण्ड शीर्षक स्लाइड', tab='ढाँचा', args='title:text:नयाँ खण्ड', toc_level='1', command='\section{VAR_title}' }
 % \MAGIC{ thank_you_slide, label='धन्यवाद स्लाइड', tab='ढाँचा', args='message:text:धन्यवाद !|sub:text:प्रश्नहरू छन् ?', command='\thankyouframe{VAR_message}{VAR_sub}' }
 
 % \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
@@ -63,6 +65,10 @@
 
 % \MAGIC{ footnote_begin, label='फुटनोट सुरु', tab='ढाँचा', pairing='begin', group='footnote', command='\footnote{' }
 % \MAGIC{ footnote_end, label='फुटनोट अन्त्य', tab='ढाँचा', pairing='end', group='footnote', command='}' }
+% \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
+% \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
+% \MAGIC{ empty_frame_begin, label='खाली स्लाइड सुरु', tab='ढाँचा', pairing='begin', group='emptyframe', args='title:text:शीर्षक', command='\begin{frame}[plain, fragile]{VAR_title}' }
+% \MAGIC{ empty_frame_end, label='खाली स्लाइड अन्त्य', tab='ढाँचा', pairing='end', group='emptyframe', command='\end{frame}' }
 
 \documentclass[aspectratio=\VAR{aspect_ratio}, \VAR{font_size}]{beamer}
 
@@ -81,9 +87,24 @@
 \usecolortheme{\VAR{color_theme}}
 \usefonttheme{\VAR{font_theme}}
 
+% --- Custom Colors ---
+\definecolor{primary}{named}{\VAR{primary_color}}
+\definecolor{secondary}{named}{\VAR{secondary_color}}
+\setbeamercolor{structure}{fg=primary}
+\setbeamercolor{alerted text}{fg=secondary}
+
 % Metropolis specific tweaks
 \BLOCK{ if theme == 'metropolis' }
   \metroset{block=fill, progressbar=frametitle}
+  \setbeamercolor{palette primary}{bg=primary, fg=white}
+\BLOCK{ endif }
+
+% --- Header/Footer Style Logic ---
+\BLOCK{ if header_style == 'Minimal' }
+    \setbeamertemplate{headline}{}
+\BLOCK{ elif header_style == 'None' }
+    \setbeamertemplate{headline}{}
+    \setbeamertemplate{footline}{}
 \BLOCK{ endif }
 
 % Devanagari Support logic
@@ -105,6 +126,47 @@
   \fi
 }
 \makeatother
+
+% --- Robust Purnaviram Line Break Control (LuaTeX) ---
+\usepackage{luacode}
+\begin{luacode*}
+function fix_devanagari_punctuation_breaks(head)
+  local GLYPH = node.id("glyph")
+  local GLUE  = node.id("glue")
+  local KERN  = node.id("kern")
+  local PENALTY = node.id("penalty")
+
+  for n in node.traverse_id(GLYPH, head) do
+    if n.char == 0x0964 or n.char == 0x0965 then
+      local curr = n.prev
+      while curr and (curr.id == GLUE or curr.id == KERN or curr.id == PENALTY) do
+        if curr.id == GLUE or curr.id == KERN then
+            local p = node.new(PENALTY)
+            p.penalty = 10000 
+            head = node.insert_before(head, curr, p)
+        elseif curr.id == PENALTY then
+            curr.penalty = 10000 
+        end
+        curr = curr.prev
+      end
+      local nxt = n.next
+      if nxt and nxt.id == GLUE then
+         local p = node.new(PENALTY)
+         p.penalty = -500 
+         head = node.insert_before(head, nxt, p)
+      end
+    end
+  end
+  return head
+end
+luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_breaks, "Fix Devanagari Breaks")
+\end{luacode*}
+
+\sloppy
+\emergencystretch=5cm
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\linepenalty=1000
 
 \BLOCK{ if script == 'DEVANAGARI' }
     \renewcommand{\thepage}{\devanagaridigits{\value{page}}}

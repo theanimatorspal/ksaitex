@@ -225,7 +225,8 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
     const magicString = argsPairs.length > 0
         ? `${MARKER_START}[[MAGIC:${label}|${serializedArgs}]]${MARKER_END}`
         : `${MARKER_START}[[MAGIC:${label}]]${MARKER_END}`;
-    return `<div class="magic-block${extraClass}" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}" ${pairingAttr} ${groupAttr}> ${icon}<span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="window.deleteMagicBlock(event, this);"><i class="fa-solid fa-xmark"></i></button> </div>`;
+    const tocLevelAttr = (cmd && cmd.toc_level) ? `data-toc-level="${cmd.toc_level}"` : "";
+    return `<div class="magic-block${extraClass}" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}" ${pairingAttr} ${groupAttr} ${tocLevelAttr}> ${icon}<span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="window.deleteMagicBlock(event, this);"><i class="fa-solid fa-xmark"></i></button> </div>`;
 }
 export function updateArgButton(btn, newValue) {
     btn.dataset.fullValue = newValue;

@@ -13,27 +13,27 @@
 % \VAR{ theme_color, default='black', tab='लेआउट', label='थिम रङ', type='select', options='red|blue|green|orange|black|purple' }
 % \VAR{ font_file, default='Tiro Devanagari Sanskrit', tab='लेआउट', label='मुख्य फन्ट' }
 
-% \MAGIC{ paragraph, label='अनुच्छेद शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन अनुच्छेद शीर्षक', command='\customparagraph{VAR_title}' }
-% \MAGIC{ khanda, label='खण्ड', tab='ढाँचा', args='title:text:नयाँ खण्ड', command='\khanda{VAR_title}' }
-% \MAGIC{ upakhanda, label='उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', command='\upakhanda{VAR_title}' }
-% \MAGIC{ upaupakhanda, label='उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उप-उपखण्ड', command='\upaupakhanda{VAR_title}' }
+% \MAGIC{ paragraph, label='अनुच्छेद शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन अनुच्छेद शीर्षक', toc_level='5', command='\customparagraph{VAR_title}' }
+% \MAGIC{ khanda, label='खण्ड', tab='ढाँचा', args='title:text:नयाँ खण्ड', toc_level='2', command='\khanda{VAR_title}' }
+% \MAGIC{ upakhanda, label='उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उपखण्ड', toc_level='3', command='\upakhanda{VAR_title}' }
+% \MAGIC{ upaupakhanda, label='उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ उप-उपखण्ड', toc_level='4', command='\upaupakhanda{VAR_title}' }
 
-% \MAGIC{ special_khanda, label='विशेष खण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष खण्ड', command='\specialkhanda{VAR_title}' }
-% \MAGIC{ special_upakhanda, label='विशेष उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उपखण्ड', command='\specialupakhanda{VAR_title}' }
-% \MAGIC{ special_upaupakhanda, label='विशेष उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उप-उपखण्ड', command='\specialupaupakhanda{VAR_title}' }
+% \MAGIC{ special_khanda, label='विशेष खण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष खण्ड', toc_level='2', command='\specialkhanda{VAR_title}' }
+% \MAGIC{ special_upakhanda, label='विशेष उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उपखण्ड', toc_level='3', command='\specialupakhanda{VAR_title}' }
+% \MAGIC{ special_upaupakhanda, label='विशेष उप-उपखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष उप-उपखण्ड', toc_level='4', command='\specialupaupakhanda{VAR_title}' }
 
-% \MAGIC{ mahakhanda, label='महाखण्ड (अध्याय)', tab='ढाँचा', args='title:text:नयाँ महाखण्ड', command='\mahakhanda{VAR_title}' }
-% \MAGIC{ special_mahakhanda, label='विशेष महाखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड', command='\specialmahakhanda{VAR_title}' }
-% \MAGIC{ special_mahakhandatwo, label='विशेष महाखण्ड २', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड|subtitle:text:उपशीर्षक', command='\specialmahakhandatwo{VAR_title}{VAR_subtitle}' }
+% \MAGIC{ mahakhanda, label='महाखण्ड (अध्याय)', tab='ढाँचा', args='title:text:नयाँ महाखण्ड', toc_level='1', command='\mahakhanda{VAR_title}' }
+% \MAGIC{ special_mahakhanda, label='विशेष महाखण्ड', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड', toc_level='1', command='\specialmahakhanda{VAR_title}' }
+% \MAGIC{ special_mahakhandatwo, label='विशेष महाखण्ड २', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड|subtitle:text:उपशीर्षक', toc_level='1', command='\specialmahakhandatwo{VAR_title}{VAR_subtitle}' }
 
 
-% \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}' }
-% \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}' }
-% \MAGIC{ subsubsection, label='संख्याहीन उप-उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}' }
+% \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', toc_level='2', command='\section*{VAR_title}' }
+% \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', toc_level='3', command='\subsection*{VAR_title}' }
+% \MAGIC{ subsubsection, label='संख्याहीन उप-उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपर्षक', toc_level='4', command='\subsubsection*{VAR_title}' }
 
-% \MAGIC{ section_toc, label='संख्याहीन शीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', command='\section*{VAR_title}\addcontentsline{toc}{section}{VAR_title}' }
-% \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
-% \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
+% \MAGIC{ section_toc, label='संख्याहीन शीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', toc_level='2', command='\section*{VAR_title}\addcontentsline{toc}{section}{VAR_title}' }
+% \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', toc_level='3', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
+% \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', toc_level='4', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
 
 % \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=theme!5!white, colframe=theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }

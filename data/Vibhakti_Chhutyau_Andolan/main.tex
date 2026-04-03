@@ -28,7 +28,16 @@
 \usecolortheme{default}
 \usefonttheme{default}
 
+% --- Custom Colors ---
+\definecolor{primary}{named}{blue}
+\definecolor{secondary}{named}{orange}
+\setbeamercolor{structure}{fg=primary}
+\setbeamercolor{alerted text}{fg=secondary}
+
 % Metropolis specific tweaks
+
+
+% --- Header/Footer Style Logic ---
 
 
 % Devanagari Support logic
@@ -47,6 +56,47 @@
   \fi
 }
 \makeatother
+
+% --- Robust Purnaviram Line Break Control (LuaTeX) ---
+\usepackage{luacode}
+\begin{luacode*}
+function fix_devanagari_punctuation_breaks(head)
+  local GLYPH = node.id("glyph")
+  local GLUE  = node.id("glue")
+  local KERN  = node.id("kern")
+  local PENALTY = node.id("penalty")
+
+  for n in node.traverse_id(GLYPH, head) do
+    if n.char == 0x0964 or n.char == 0x0965 then
+      local curr = n.prev
+      while curr and (curr.id == GLUE or curr.id == KERN or curr.id == PENALTY) do
+        if curr.id == GLUE or curr.id == KERN then
+            local p = node.new(PENALTY)
+            p.penalty = 10000 
+            head = node.insert_before(head, curr, p)
+        elseif curr.id == PENALTY then
+            curr.penalty = 10000 
+        end
+        curr = curr.prev
+      end
+      local nxt = n.next
+      if nxt and nxt.id == GLUE then
+         local p = node.new(PENALTY)
+         p.penalty = -500 
+         head = node.insert_before(head, nxt, p)
+      end
+    end
+  end
+  return head
+end
+luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_breaks, "Fix Devanagari Breaks")
+\end{luacode*}
+
+\sloppy
+\emergencystretch=5cm
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\linepenalty=1000
 
 
     \renewcommand{\thepage}{\devanagaridigits{\value{page}}}
@@ -347,7 +397,7 @@ On the table, Under the table = पूर्वस्थानिक
 
 \end{frame}
 
-\begin{frame}[fragile]{पद-वियोगको समर्थन}{}
+\begin{frame}[fragile]{व्याकरणिकीकरण (Grammaticalization)}{}
 
 \begin{itemize}
 \item मूल भाषामा भिन्न शब्दका  रूपमा स्थापित भएकाले
@@ -441,6 +491,53 @@ On the table, Under the table = पूर्वस्थानिक
 \end{frame}
 
 \section{संज्ञानात्मक विलम्ब}
+
+\begin{frame}[fragile]{कुन सजिलो छ ?}{}
+
+\begin{alertblock}{परिभाषा}
+
+संज्ञानात्मक विलम्ब (Cognitive Latency) भनेको कुनै पनि कुरा बुझ्न वा बोल्नलाई लाग्ने विलम्ब वा समय हो ।
+
+\end{alertblock}
+
+जस्तै भाषणहरूमा अधिकतम अवरोध आउने सक्ने स्थानहरू-
+
+\begin{itemize}
+\item जनतालाई प्रत्यक्ष रूपमा (विलम्ब) प्रभाव पर्ने ...
+
+
+\end{itemize}
+परस्थानिकहरूमा र पूर्वस्थानिकहरूमा भाषामा अवरोध आउँदैन वा एकदमै विरलै हुन्छ ।
+
+\end{frame}
+
+\begin{frame}[fragile]{लिपि विशेष}{}
+
+स्वतः स्फूर्तरूपमा Latin लिपिमा नेपाली लेख्दा बढी नै छुट्ट्याएर लेख्दा संज्ञानात्मक विलम्ब एकदमै कम हुन्छ ।
+
+\begin{itemize}
+\item janta lai pratakshya roop ma ...
+
+
+\item jantalai pratakshya roopma ...
+
+
+\end{itemize}
+तर गर्दा Abugida लिपि (ब्राह्मी लिपि परिवार) जस्मा स्वर र व्यञ्जन वर्णको ऐक्य हुन्छ, यो लिपिहरूमा भने धेरै फरक पर्दैन ।
+
+\begin{itemize}
+\item जनताको प्रत्यक्ष रूपमें
+
+
+\item जनता को प्रत्यक्ष रूप में
+
+
+\end{itemize}
+यसै कारणले विकासक्रममा उर्दूप्रेरित हिन्दी भाषाबाहेक सबै भाषाहरूमा छुट्ट्याएर लेख्ने प्रचलन आएको देखिन्न ।
+
+\end{frame}
+
+\thankyouframe{धन्यवाद !}{शुभमस्तु}
 
 
 

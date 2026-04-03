@@ -1121,16 +1121,18 @@ async function loadProject(id) {
         const data = await api.fetchProject(id);
         currentProjectId = id;
         projectTitleInput.value = data.title;
+        if (data.template) {
+            templateSelect.value = data.template;
+            if (availableTemplates[data.template]) {
+                editor.setMagicCommands(availableTemplates[data.template].magic_commands);
+            }
+        }
         if (data.html) {
             editor.setHTMLContent(data.html, markdownEditor);
         } else {
             editor.loadContent(data.markdown, markdownEditor);
         }
         if (data.template) {
-            templateSelect.value = data.template;
-            if (availableTemplates[data.template]) {
-                editor.setMagicCommands(availableTemplates[data.template].magic_commands);
-            }
             await ui.renderTabs(data.template, availableTemplates, {
                 tabsHeader, tabsContent,
                 onMagicClick: (label) => editor.insertMagicCommand(label, markdownEditor)
@@ -1155,6 +1157,8 @@ const SECTIONING_COMMANDS = {
     'महाखण्ड': 1,
     'विशेष महाखण्ड': 1,
     'खण्ड': 2,
+    'शीर्षक स्लाइड': 1,
+    'खण्ड शीर्षक स्लाइड': 1,
     'विशेष खण्ड': 2,
     'उपखण्ड': 3,
     'विशेष उपखण्ड': 3,
@@ -1180,9 +1184,12 @@ function updateToC() {
     tocContent.innerHTML = '';
     
     let found = false;
+    const templateMagicCommands = availableTemplates[templateSelect.value]?.magic_commands || [];
+    
     blocks.forEach((block, index) => {
         const label = block.dataset.label;
-        const level = SECTIONING_COMMANDS[label];
+        const cmd = templateMagicCommands.find(c => c.label === label);
+        const level = block.dataset.tocLevel || (cmd && cmd.toc_level) || SECTIONING_COMMANDS[label];
         
         if (level) {
             found = true;
