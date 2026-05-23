@@ -54,6 +54,32 @@ class LatexRenderer:
                  src = token.attrGet("src") or ""
                  alt = token.content
                  term = f"\\begin{{figure}}[h]\\centering\\includegraphics[width=0.8\\linewidth]{{{src}}}\\caption{{{alt}}}\\end{{figure}}\n"
+            elif token.type == "table_open":
+                # Determine column count by seeking the first tr_close
+                cols = 0
+                temp_i = i + 1
+                while temp_i < len(tokens) and tokens[temp_i].type != "tr_close":
+                    if tokens[temp_i].type in ["th_open", "td_open"]:
+                        cols += 1
+                    temp_i += 1
+                self.table_cols = cols
+                col_spec = "|" + "K|" * cols
+                term = f"\\begin{{xltabular}}{{\\textwidth}}{{{col_spec}}}\n\\toprule\n"
+            elif token.type == "table_close":
+                term = "\\bottomrule\n\\end{xltabular}\n\n"
+            elif token.type == "thead_close":
+                term = "\\midrule\n\\endhead\n"
+            elif token.type == "tr_open":
+                self.cell_index = 0
+                term = ""
+            elif token.type == "tr_close":
+                term = " \\\\\n"
+            elif token.type in ["th_open", "td_open"]:
+                if self.cell_index > 0:
+                    term = " & "
+                else:
+                    term = ""
+                self.cell_index += 1
             result += term
             self.current_tex_line += term.count('\n')
         return result, self.source_map
@@ -132,7 +158,7 @@ class LatexRenderer:
     def old_render_inline(self, tokens: List[Token]) -> str:
         pass
 def parse(text: str) -> Tuple[str, Dict[int, int]]:
-    md = MarkdownIt().disable("code")
+    md = MarkdownIt().enable("table").disable("code")
     tokens = md.parse(text)
     renderer = LatexRenderer(md)
     return renderer.render(tokens, {}, {})

@@ -2,30 +2,30 @@
 \contentsline {section}{\textbf {किञ्चिद् मन्तव्यम्}}{अ}{}%
 \contentsline {section}{विषय सूची}{इ}{}%
 \contentsline {part}{प्रथमः पाठः}{अ}{}%
-\contentsline {section}{\textbf {वेदपरिचयः}}{२}{}%
-\contentsline {section}{\textbf {ऋग्वेदीयं नासदीयसूक्तम्}}{९}{}%
-\contentsline {section}{\textbf {ऋग्वेदीयम् उषासूक्तम्}}{१८}{}%
+\contentsline {section}{\textbf {वेदपरिचयः}}{आ}{}%
+\contentsline {section}{\textbf {ऋग्वेदीयं नासदीयसूक्तम्}}{१०}{}%
+\contentsline {section}{\textbf {ऋग्वेदीयम् उषासूक्तम्}}{१९}{}%
 \contentsline {section}{\textbf {ऋग्वेदीयं पुरूरवा-उर्वशी-संवाद-सूक्तम्}}{३७}{}%
-\contentsline {section}{\textbf {अथर्ववेदीयम् पृथ्वीसूक्तम्}}{५१}{}%
-\contentsline {part}{\textbf {द्वितीयः पाठः}}{११५}{}%
-\contentsline {section}{\textbf {ऐतरेयब्राह्मणान्तर्गतं शुनःशेपाख्यानम्}}{११६}{}%
-\contentsline {subsection}{\textbf {प्रथमः खण्डः}}{११८}{}%
-\contentsline {subsection}{\textbf {द्वितीयः खण्डः}}{१२७}{}%
-\contentsline {subsection}{\textbf {तृतीयः खण्डः}}{१३२}{}%
-\contentsline {subsection}{\textbf {चतुर्थः खण्डः}}{१४०}{}%
-\contentsline {subsection}{\textbf {पञ्चमः खण्डः}}{१४८}{}%
-\contentsline {subsection}{\textbf {षष्ठः खण्डः}}{१५५}{}%
-\contentsline {section}{\textbf {पुरूरवोर्वश्याख्यानम्}}{१६५}{}%
-\contentsline {section}{\textbf {याज्ञवल्क्यमैत्रेयी-संवादाख्यानम्}}{१७९}{}%
-\contentsline {part}{\textbf {तृतीयः पाठः}}{१९९}{}%
-\contentsline {section}{शुक्लयजुर्वेदस्था ईशावास्योपनिषद्}{२०१}{}%
-\contentsline {section}{\textbf {तवल्कारब्राह्मणस्था} \textbf {केनोपनिषद्}}{२१५}{}%
-\contentsline {subsection}{\textbf {प्रथमः खण्डः}}{२१७}{}%
-\contentsline {subsection}{\textbf {द्वितीयः खण्डः}}{२२२}{}%
-\contentsline {subsection}{\textbf {तृतीयः खण्डः}}{२२६}{}%
-\contentsline {subsection}{\textbf {चतुर्थः खण्डः}}{२३२}{}%
-\contentsline {part}{परिशिष्टः}{२३९}{}%
-\contentsline {subsection}{\textbf {पाठ्यक्रमः}}{२४०}{}%
-\contentsline {subsection}{\textbf {वैदिकशब्दज्ञानम्}}{२४१}{}%
-\contentsline {subsection}{\textbf {विष्णुधर्मोत्तरपुराणसारः}}{२४३}{}%
-\contentsline {subsection}{\textbf {अग्निपुराणस्य काव्यशास्त्रीयांशसारः}}{२५३}{}%
+\contentsline {section}{\textbf {अथर्ववेदीयं पृथ्वीसूक्तम्}}{४९}{}%
+\contentsline {part}{\textbf {द्वितीयः पाठः}}{१०९}{}%
+\contentsline {section}{\textbf {ऐतरेयब्राह्मणान्तर्गतं शुनःशेपाख्यानम्}}{११०}{}%
+\contentsline {subsection}{\textbf {प्रथमः खण्डः}}{११२}{}%
+\contentsline {subsection}{\textbf {द्वितीयः खण्डः}}{११९}{}%
+\contentsline {subsection}{\textbf {तृतीयः खण्डः}}{१२४}{}%
+\contentsline {subsection}{\textbf {चतुर्थः खण्डः}}{१३०}{}%
+\contentsline {subsection}{\textbf {पञ्चमः खण्डः}}{१३७}{}%
+\contentsline {subsection}{\textbf {षष्ठः खण्डः}}{१४३}{}%
+\contentsline {section}{\textbf {पुरूरवोर्वश्याख्यानम्}}{१५१}{}%
+\contentsline {section}{\textbf {याज्ञवल्क्यमैत्रेयी-संवादाख्यानम्}}{१६४}{}%
+\contentsline {part}{\textbf {तृतीयः पाठः}}{१८३}{}%
+\contentsline {section}{शुक्लयजुर्वेदस्था ईशावास्योपनिषद्}{१८५}{}%
+\contentsline {section}{\textbf {तवल्कारब्राह्मणस्था} \textbf {केनोपनिषद्}}{१९६}{}%
+\contentsline {subsection}{\textbf {प्रथमः खण्डः}}{१९९}{}%
+\contentsline {subsection}{\textbf {द्वितीयः खण्डः}}{२०२}{}%
+\contentsline {subsection}{\textbf {तृतीयः खण्डः}}{२०५}{}%
+\contentsline {subsection}{\textbf {चतुर्थः खण्डः}}{२११}{}%
+\contentsline {part}{परिशिष्टः}{२१७}{}%
+\contentsline {subsection}{\textbf {पाठ्यक्रमः}}{२१८}{}%
+\contentsline {subsection}{\textbf {वैदिकशब्दज्ञानम्}}{२१९}{}%
+\contentsline {subsection}{\textbf {विष्णुधर्मोत्तरपुराणसारः}}{२२१}{}%
+\contentsline {subsection}{\textbf {अग्निपुराणस्य काव्यशास्त्रीयांशसारः}}{२२९}{}%

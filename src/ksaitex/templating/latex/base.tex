@@ -45,6 +45,8 @@
 % \MAGIC{ footnote_begin, label='फुटनोट सुरु', tab='ढाँचा', pairing='begin', group='footnote', command='\footnote{' }
 % \MAGIC{ footnote_end, label='फुटनोट अन्त्य', tab='ढाँचा', pairing='end', group='footnote', command='}' }
 
+% \MAGIC{ table_align, label='table_align', tab='ढाँचा', args='align:select,Left,Right:Left', command='\settablealign{VAR_align}' }
+
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
 % \MAGIC{ devanagari_alph, label='देवनागरी अक्षर सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
@@ -105,6 +107,7 @@
 \BLOCK{ if header_footer_mirror == 'On' }
     \raggedbottom
 \BLOCK{ endif }
+% \flushbottom
 
 \usepackage{fontspec}
 \usepackage{polyglossia}
@@ -120,6 +123,20 @@
 \usepackage{float}
 \usepackage[object = vectorian]{pgfornament}
 \usepackage{tocloft}
+\usepackage{xltabular}
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- Table Alignment Control ---
+\newcommand{\tabledefaultalign}{\raggedright}
+\newcolumntype{K}{>{\tabledefaultalign\arraybackslash}X}
+\newcommand{\settablealign}[1]{%
+    \ifthenelse{\equal{#1}{Right}}{%
+        \renewcommand{\tabledefaultalign}{\raggedleft}%
+    }{%
+        \renewcommand{\tabledefaultalign}{\raggedright}%
+    }%
+}
 
 
 % --- Robust Purnaviram Line Break Control (LuaTeX) ---
@@ -133,7 +150,7 @@ function fix_devanagari_punctuation_breaks(head)
 
   for n in node.traverse_id(GLYPH, head) do
     -- 0x0964 = । (Purnaviram), 0x0965 = ॥ (Deerghapurnaviram)
-    if n.char == 0x0964 or n.char == 0x0965 then
+    if n.char == 0x0964 or n.char == 0x0965 or n.char == '?' then
       
       -- 1. Prohibit break BEFORE punctuation
       local curr = n.prev
@@ -178,12 +195,15 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     top=\VAR{top_margin},
     bottom=\VAR{bottom_margin},
     left=\VAR{left_margin},
-    right=\VAR{right_margin}
+    right=\VAR{right_margin},
+    headheight=15pt,   % Ensures fancyhdr has enough room for the text
+    headsep=0.3cm
 }
 
 % --- spacing configuration ---
 \linespread{\VAR{line_spacing}}
-\setlength{\parskip}{\VAR{paragraph_spacing}}
+% \setlength{\parskip}{\VAR{paragraph_spacing}}
+\setlength{\parskip}{\VAR{paragraph_spacing} plus 3pt minus 1.5pt}
 \setlength{\parindent}{\VAR{paragraph_indent}}
 
 % --- Devanagari Page Numbering Macros ---
@@ -369,9 +389,14 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Custom Paragraph ---
 \newcommand{\customparagraph}[1]{
-    \vspace{0.2cm}
+    % \penalty 10000 
+    % \vspace{0.2cm}
+    % \vspace{0.2cm plus 0.1cm minus 0.05cm}
     \noindent \textbf{#1} \par
-    \vspace{0.1cm}
+    \penalty 10000 % Prohibits a page break right here
+    % \vspace{0.1cm}
+    \vspace{0.1cm plus 0.05cm minus 0.02cm}
+    \penalty 10000 % Prohibits a page break right here
 }
 
 % --- Alignment and Spacing Macros ---
@@ -380,9 +405,11 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 % --- Shloka Environment ---
 \newcounter{shlokaline}
 \newenvironment{shloka}[1][alternating]{
-    \par\vspace{0.5cm}
-    \begingroup
+    \par\vspace{0.3cm plus 0.3cm minus 0.1cm}
+    % \begingroup
+    \noindent\begin{minipage}{\textwidth} % <-- Replaced \begingroup
     \parindent=0pt
+    \linespread{1} \selectfont
     \def\shlokaalign{#1}
     \setcounter{shlokaline}{0}
     \ifthenelse{\equal{\shlokaalign}{alternating}}{
@@ -395,8 +422,11 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
         \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
     }
 }{
-    \par\endgroup
-    \vspace{0.5cm}
+    % \par\endgroup
+    \goodbreak
+    \par\end{minipage} % <-- Replaced \endgroup
+    \nopagebreak
+    % \vspace{-0.5cm}
 }
 
 % --- Vishesh Shloka Environment (with Ornament) ---
@@ -404,11 +434,11 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \begin{shloka}[#1]
 }{
     \end{shloka}
-    \vspace{-0.8cm}
-    \begin{center}
-        \color{theme}\pgfornament[width=0.2\textwidth]{88}
-    \end{center}
-    \vspace{-0.3cm}
+    % \vspace{-0.8cm}
+    % \begin{center}
+    %     \color{theme}\pgfornament[width=0.2\textwidth]{88}
+    % \end{center}
+    % \vspace{-0.3cm}
 }
 
 % --- Vishesh Shloka Two Environment (with Custom Ornament) ---
@@ -417,7 +447,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \begin{shloka}[#1]
 }{
     \end{shloka}
-    \vspace{-0.8cm}
+    \vspace{-0.5cm}
     \begin{center}
         \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
     \end{center}

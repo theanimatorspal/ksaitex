@@ -1,0 +1,431 @@
+% METADATA DEFINITIONS (Hidden from PDF output)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\documentclass[11pt, a5paper, twoside]{article}
+
+
+    \raggedbottom
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usetikzlibrary{shadows}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[object = vectorian]{pgfornament}
+\usepackage{tocloft}
+\usepackage{xltabular}
+\usepackage{booktabs}
+\usepackage{array}
+
+% --- Table Alignment Control ---
+\newcommand{\tabledefaultalign}{\raggedright}
+\newcolumntype{K}{>{\tabledefaultalign\arraybackslash}X}
+\newcommand{\settablealign}[1]{%
+    \ifthenelse{\equal{#1}{Right}}{%
+        \renewcommand{\tabledefaultalign}{\raggedleft}%
+    }{%
+        \renewcommand{\tabledefaultalign}{\raggedright}%
+    }%
+}
+
+
+% --- Robust Purnaviram Line Break Control (LuaTeX) ---
+\usepackage{luacode}
+\begin{luacode*}
+function fix_devanagari_punctuation_breaks(head)
+  local GLYPH = node.id("glyph")
+  local GLUE  = node.id("glue")
+  local KERN  = node.id("kern")
+  local PENALTY = node.id("penalty")
+
+  for n in node.traverse_id(GLYPH, head) do
+    -- 0x0964 = । (Purnaviram), 0x0965 = ॥ (Deerghapurnaviram)
+    if n.char == 0x0964 or n.char == 0x0965 then
+      
+      -- 1. Prohibit break BEFORE punctuation
+      local curr = n.prev
+      while curr and (curr.id == GLUE or curr.id == KERN or curr.id == PENALTY) do
+        if curr.id == GLUE or curr.id == KERN then
+            local p = node.new(PENALTY)
+            p.penalty = 10000 -- Block break
+            head = node.insert_before(head, curr, p)
+        elseif curr.id == PENALTY then
+            curr.penalty = 10000 -- Override existing penalty
+        end
+        curr = curr.prev
+      end
+      
+      -- 2. Encourage break AFTER punctuation
+      local nxt = n.next
+      if nxt and nxt.id == GLUE then
+         local p = node.new(PENALTY)
+         p.penalty = -500 -- Preferred break point
+         head = node.insert_before(head, nxt, p)
+      end
+    end
+  end
+  return head
+end
+luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_breaks, "Fix Devanagari Breaks")
+\end{luacode*}
+
+% Support settings for the above
+\sloppy
+\emergencystretch=5cm
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\linepenalty=1000
+
+% Layout settings for better line breaking
+\sloppy
+\emergencystretch=5cm
+
+
+\geometry{
+    top=1in,
+    bottom=1in,
+    left=0.5in,
+    right=0.5in
+}
+
+% --- spacing configuration ---
+\linespread{1.0}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{20pt}
+
+% --- Devanagari Page Numbering Macros ---
+\makeatletter
+\def\devanagaridigits#1{\expandafter\@devanagaridigits\number#1@}
+\def\@devanagaridigits#1{%
+  \ifx#1@\else
+    \ifcase#1 ०\or १\or २\or ३\or ४\or ५\or ६\or ७\or ८\or ९\fi
+    \expandafter\@devanagaridigits
+  \fi
+}
+
+\def\devanagarialph#1{\expandafter\@devanagarialph\number#1}
+\def\@devanagarialph#1{%
+  \ifcase#1\or अ\or आ\or इ\or ई\or उ\or ऊ\or ऋ\or ॠ\or ऌ\or ॡ\or ए\or ऐ\or ओ\or औ\or क\or ख\or ग\or घ\or ङ\or च\or छ\or ज\or झ\or ञ\or ट\or ठ\or ड\or ढ\or ण\or त\or थ\or द\or ध\or न\or प\or फ\or ब\or भ\or म\or य\or र\or ल\or व\or श\or ष\or स\or ह\or ळ\or क्ष\or ज्ञ\else\@ctrerr\fi
+}
+\makeatother
+
+\newcommand{\ornamentalpage}{%
+    %
+        \smash{%
+        \begin{tikzpicture}[baseline=(page.base)]
+            \node[color=theme, inner sep=0pt, yshift=0pt] (ornl) {\pgfornament[width=1.5cm]{65}};
+            \node[anchor=west, xshift=5pt, inner sep=0pt] (page) at (ornl.east) {\thepage};
+            \node[anchor=west, color=theme, xshift=5pt, inner sep=0pt, yshift=0pt] (ornr) at (page.east) {\pgfornament[width=1.5cm]{65}};
+        \end{tikzpicture}%
+        }%
+    %
+}
+
+\pagestyle{fancy}
+\fancyhf{} 
+
+
+    \renewcommand{\thesection}{\devanagaridigits{\value{section}}}
+    \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}}
+    \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}}
+
+
+% -- Rules --
+
+    \renewcommand{\headrulewidth}{0.4pt}
+
+
+
+    \renewcommand{\footrulewidth}{0.4pt}
+
+
+% -- Header/Footer Positioning --
+
+    % Mirrored (Outer/Inner logic)
+    % Header Left -> Left Side on Odd (Outer), Right Side on Even (Outer)
+    
+    % Header Right -> Right Side on Odd (Outer), Left Side on Even (Outer)
+    
+    % Header Center
+    
+    
+    % Footer Left
+    
+    % Footer Right
+    
+    % Footer Center
+    
+
+
+% --- Theme Color Definition ---
+\definecolor{theme}{named}{blue}
+
+% --- Vishesh Vishaya Suchi (Special Table of Contents) ---
+\newcommand{\visheshcontents}[5]{%
+    \cleardoublepage
+    \begingroup
+    
+    % 1. Use specialkhanda for title (handles marks, TOC entry, and fancy style)
+    \specialkhanda{#1}%
+    
+    % 2. Suppress standard ToC title and force fancy style
+    \renewcommand{\contentsname}{}% 
+    \renewcommand{\cftaftertoctitle}{\thispagestyle{fancy}}% 
+    \tocloftpagestyle{fancy}%
+    
+    % 3. Style Mahakhanda (Part)
+    \cftpagenumbersoff{part}% Hide page numbers for Mahakhanda
+    \renewcommand{\cftpartfont}{\hfill\raisebox{#5}{\mbox{\pgfornament[width=#4]{#2}}}\quad\Large\bfseries\color{theme}}% Left Orn + Title
+    \renewcommand{\cftpartafterpnum}{\quad\raisebox{#5}{\mbox{\pgfornament[width=#4]{#3}}}\hfill\null\par\vspace{1em}}% Right Orn + Gap Below
+    \setlength{\cftbeforepartskip}{2.5em}%
+    \setlength{\cftpartnumwidth}{0pt}% 
+
+    % 4. Style Khanda (Section)
+    \renewcommand{\cftsecfont}{\large\bfseries}%
+    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%
+    \setlength{\cftbeforesecskip}{0.5em}%
+
+    \tableofcontents
+    \endgroup
+    \pagebreak
+}
+
+% --- Custom Segments (Khanda) ---
+\newcommand{\mahakhanda}[1]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+        \textbf{\Huge \color{theme} #1}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
+
+\newcommand{\specialmahakhanda}[1]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+    \begin{tikzpicture}
+        \node[inner sep=20pt, fill=theme!10, rounded corners=10pt, drop shadow] (title) {
+            \parbox{0.8\textwidth}{\centering \textbf{\Huge \color{theme} #1}}
+        };
+    \end{tikzpicture}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
+
+\newcommand{\specialmahakhandatwo}[2]{
+    \cleardoublepage
+    \thispagestyle{empty}
+    \vspace*{\fill}
+    \begin{center}
+    \begin{tikzpicture}
+        \node[inner sep=20pt, fill=theme!10, rounded corners=10pt, drop shadow] (title) {
+            \parbox{0.8\textwidth}{\centering \textbf{\Huge \color{theme} #1} \par \vspace{0.6cm} \textbf{\Large \color{theme} #2}}
+        };
+    \end{tikzpicture}
+    \end{center}
+    \vspace*{\fill}
+    \addcontentsline{toc}{part}{#1}
+    \setcounter{section}{0}
+    \pagebreak
+}
+
+\newcommand{\khanda}[1]{
+    \markboth{#1}{}
+    \vspace{0.8cm}
+    \noindent\makebox[\textwidth][l]{{\huge \color{theme} \textbf{#1}}} \par
+    \addcontentsline{toc}{section}{#1}
+    \vspace{0.4cm}
+}
+
+\newcommand{\upakhanda}[1]{
+    \vspace{0.6cm}
+    \noindent\makebox[\textwidth][l]{{\large \color{theme} \textbf{#1}}} \par
+    \addcontentsline{toc}{subsection}{#1}
+    \vspace{0.3cm}
+}
+
+\newcommand{\upaupakhanda}[1]{
+    \vspace{0.4cm}
+    \noindent\makebox[\textwidth][l]{{\normalsize \color{theme} \textbf{#1}}} \par
+    \addcontentsline{toc}{subsubsection}{#1}
+    \vspace{0.2cm}
+}
+
+% --- Custom Paragraph ---
+\newcommand{\customparagraph}[1]{
+    \vspace{0.2cm}
+    \noindent \textbf{#1} \par
+    \vspace{0.1cm}
+}
+
+% --- Alignment and Spacing Macros ---
+\newcommand{\vspacer}[1]{\vspace{#1 cm}}
+
+% --- Shloka Environment ---
+\newcounter{shlokaline}
+\newenvironment{shloka}[1][alternating]{
+    \par\vspace{0.5cm}
+    \begingroup
+    \parindent=0pt
+    \def\shlokaalign{#1}
+    \setcounter{shlokaline}{0}
+    \ifthenelse{\equal{\shlokaalign}{alternating}}{
+        \let\oldpar\par
+        \def\par{\oldpar\stepcounter{shlokaline}}
+        \everypar{\ifodd\value{shlokaline}\raggedleft\else\raggedright\fi}
+    }{
+        \ifthenelse{\equal{\shlokaalign}{left}}{\raggedright}{}
+        \ifthenelse{\equal{\shlokaalign}{right}}{\raggedleft}{}
+        \ifthenelse{\equal{\shlokaalign}{center}}{\centering}{}
+    }
+}{
+    \par\endgroup
+    \vspace{0.5cm}
+}
+
+% --- Vishesh Shloka Environment (with Ornament) ---
+\newenvironment{visheshshloka}[1][alternating]{
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.8cm}
+    % \begin{center}
+    %     \color{theme}\pgfornament[width=0.2\textwidth]{88}
+    % \end{center}
+    % \vspace{-0.3cm}
+}
+
+% --- Vishesh Shloka Two Environment (with Custom Ornament) ---
+\newenvironment{visheshshlokatwo}[2][alternating]{
+    \def\visheshornament{#2}
+    \begin{shloka}[#1]
+}{
+    \end{shloka}
+    \vspace{-0.8cm}
+    \begin{center}
+        \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
+    \end{center}
+    \vspace{0.1cm}
+}
+
+% --- Image Macros ---
+% --- Vishesh Butta (Repeated Ornaments) ---
+\newcommand{\visheshbutta}[5]{%
+    \par\vspace{0.4cm}
+    \noindent\begin{minipage}{\textwidth}
+        \ifthenelse{\equal{#1}{Center}}{\centering}{}%
+        \ifthenelse{\equal{#1}{Left}}{\raggedright}{}%
+        \ifthenelse{\equal{#1}{Right}}{\raggedleft}{}%
+        \foreach \n in {1,...,#3}{%
+            \pgfornament[width=#4]{#2}\hspace{#5}%
+        }%
+    \end{minipage}\par\vspace{0.4cm}
+}
+
+\newcommand{\customimage}[3]{
+    \begin{figure}[H]
+        \ifthenelse{\equal{#2}{Center}}{\centering}{}
+        \ifthenelse{\equal{#2}{Left}}{\raggedright}{}
+        \ifthenelse{\equal{#2}{Right}}{\raggedleft}{}
+        \includegraphics[width=#3\textwidth]{#1}
+    \end{figure}
+}
+
+% --- Special segments with TikZ gradient ---
+\newcommand{\specialkhanda}[1]{
+    \markboth{#1}{}
+    \vspace{1.2cm}
+    \noindent\makebox[\textwidth][l]{{\huge \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \addcontentsline{toc}{section}{#1}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        
+            \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
+        
+    \end{tikzpicture}
+    \vspace{0.8cm}
+}
+
+\newcommand{\specialupakhanda}[1]{
+    \vspace{0.8cm}
+    \noindent\makebox[\textwidth][l]{{\large \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \addcontentsline{toc}{subsection}{#1}
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        
+            \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
+        
+    \end{tikzpicture}
+    \vspace{0.6cm}
+}
+
+\newcommand{\specialupaupakhanda}[1]{
+    \vspace{0.4cm}
+    \noindent\makebox[\textwidth][l]{{\normalsize \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \noindent\begin{tikzpicture}[remember picture, overlay]
+        
+            \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
+        
+    \end{tikzpicture}
+    \vspace{0.4cm}
+    \addcontentsline{toc}{subsubsection}{#1}
+}
+
+% --- Font Configuration ---
+
+    \setmainfont[Script=Devanagari, AutoFakeBold=1.8]{Tiro Devanagari Sanskrit}
+
+
+\begin{document}
+\sloppypar
+\specialkhanda{Abstract}
+
+This is my humble effort to find out whether or not the diet of श्री राम included \textit{meat}. In this document, I try to get into the controversial verses from the रामायण and extract the best information out of it. This is a solo-effort so, might not be academically rigorous, however it was really interesting for me to go into.
+
+\specialkhanda{Introduction}
+
+The रामायण is an epic and a religious book followed by many people, for whom श्रीराम is much more than a character. This induces a lot of religious pressure of not demeaning श्रीराम's character as it is a question of many people's religion.
+
+Though, having a deep Bhakti towards श्रीराम is good for one's well-being, it can create emotional clashes if the श्रीराम of any book doesn't match the deity they have भक्ति in. I believe भक्ति transcends way above any character of any epic, especially if we are not sure that we are getting the un-interpolated unchanged as-is original version.
+
+For this research, I want to maintain an eye of an outsider alien that has landed in this world, and he is somehow curious about what श्रीराम, as a character from one of the best epics, रामायण ate. I want to consider whatever रामायण we have got now as-a-whole, without marking any part of रामायण as later interpolation.
+
+There are multiple contrasting views in the case of श्रीराम's diet, a person who is a Vaishnavite might have a pre-assumption that श्रीराम could not eat meat; and a person who is a Smarta or Shaiva might not find surprising that श्रीराम's diet included meat. There could be some bias from my side as well; but will try to remain as much objective as possible.
+
+\specialkhanda{Literature Review}
+
+\specialkhanda{Analysis}
+
+\specialkhanda{Conclusion}
+
+
+
+\end{document}
