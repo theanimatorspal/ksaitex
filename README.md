@@ -1,6 +1,6 @@
 <h1 align="center">🕉️ ksai_TEX</h1>
 <p align="center"><i>A Frictionless, Strictly-Typed Markdown-to-PDF Engine for the Typographically Obsessed</i></p>
-<p align="center"><b> Powered by Python, LuaLaTeX, and pure "Vibe Coding" energy </b></p>
+<p align="center"><b> Powered by Python, LuaLaTeX, and JS </b></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/build-chaotic-orange?style=flat-square&logo=github" />
