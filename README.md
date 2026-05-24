@@ -88,7 +88,7 @@ uv run ksaitex convert input.md --output masterpiece.pdf --template base
 ## 🧩 Python + LaTeX + JS = ♥️?
 
 Yes. 
-*   **Javascript** handles the frontend editor (Vanilla, no React bloat).
+*   **Javascript** handles the frontend editor.
 *   **Python (FastAPI)** orchestrates the madness and handles the heavy logic.
 *   **LuaLaTeX** does the actual rendering, because we care about typography.
 
@@ -100,11 +100,11 @@ Yes.
 
 > Because if you can't see the kerning, does it even matter?
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/placeholder" alt="Editor UI Screenshot" width="600"/>
-  <br/>
-  <i>↑ The Interface: Dark, Orange, and Strictly Business.</i>
-</p>
+
+<img width="1917" height="1009" alt="image" src="https://github.com/user-attachments/assets/878859a5-585c-48cf-8d3c-312cc9761311" />
+
+<img width="1920" height="1009" alt="image" src="https://github.com/user-attachments/assets/2c09bc20-6580-4e2c-ac38-cff256a27c61" />
+
 
 ---
 
