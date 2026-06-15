@@ -1,0 +1,4028 @@
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.5.11)  15 JUN 2026 17:28
+ restricted system commands enabled.
+**main.tex
+(./main.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended 
+collection.
+luaotfload | conf : Root cache directory is "/home/ksai/.texlive/texmf-var/luate
+x-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
+olved path "/usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-2023-12-28.lu
+a".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.134
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/home/ksai/.texlive/texmf-var/luate
+x-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. (/usr/share/texmf-dist/
+tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /home/ksai/.texlive/texmf-var/
+luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count273
+\c@section=\count274
+\c@subsection=\count275
+\c@subsubsection=\count276
+\c@paragraph=\count277
+\c@subparagraph=\count278
+\c@figure=\count279
+\c@table=\count280
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen147
+)
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2026-01-19 L3 programming layer (loader) 
+
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count281
+Inserting `l3color' in `luaotfload.parse_color'.))
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
+Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaT
+eX
+\l__fontspec_script_int=\count282
+\l__fontspec_language_int=\count283
+\l__fontspec_strnum_int=\count284
+\l__fontspec_tmp_int=\count285
+\l__fontspec_tmpa_int=\count286
+\l__fontspec_tmpb_int=\count287
+\l__fontspec_tmpc_int=\count288
+\l__fontspec_em_int=\count289
+\l__fontspec_emdef_int=\count290
+\l__fontspec_strong_int=\count291
+\l__fontspec_strongdef_int=\count292
+\l__fontspec_tmpa_dim=\dimen148
+\l__fontspec_tmpb_dim=\dimen149
+\l__fontspec_tmpc_dim=\dimen150
+
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/share/texmf-dist/tex/latex/polyglossia/polyglossia.sty
+Package: polyglossia 2025/12/01 v2.9 Modern multilingual typesetting with XeLaT
+eX and LuaLaTeX
+
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
+)
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+Lua module: polyglossia 2013/05/11 v1.3 Polyglossia
+\l_xpg_alias_keyvals_int=\count294
+
+(/usr/share/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+)
+
+Package polyglossia Info: Setting LuaTeX font renderer to Harfbuzz
+
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count295
+\Gm@cntv=\count296
+\c@Gm@tempcnt=\count297
+\Gm@bindingoffset=\dimen151
+\Gm@wd@mp=\dimen152
+\Gm@odd@mp=\dimen153
+\Gm@even@mp=\dimen154
+\Gm@layoutwidth=\dimen155
+\Gm@layoutheight=\dimen156
+\Gm@layouthoffset=\dimen157
+\Gm@layoutvoffset=\dimen158
+\Gm@dimlist=\toks18
+)
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip51
+\f@nch@offset@elh=\skip52
+\f@nch@offset@erh=\skip53
+\f@nch@offset@olh=\skip54
+\f@nch@offset@orh=\skip55
+\f@nch@offset@elf=\skip56
+\f@nch@offset@erf=\skip57
+\f@nch@offset@olf=\skip58
+\f@nch@offset@orf=\skip59
+\f@nch@height=\skip60
+\f@nch@footalignment=\skip61
+\f@nch@widthL=\skip62
+\f@nch@widthC=\skip63
+\f@nch@widthR=\skip64
+\@temptokenb=\toks19
+)
+(/usr/share/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+
+(/usr/share/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks20
+\pgfutil@tempdima=\dimen159
+\pgfutil@tempdimb=\dimen160
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box53
+)
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 106.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen161
+\Gin@req@width=\dimen162
+)
+(/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks21
+\pgfkeys@temptoks=\toks22
+
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.te
+x
+\pgfkeys@tmptoks=\toks23
+))
+\pgf@x=\dimen163
+\pgf@y=\dimen164
+\pgf@xa=\dimen165
+\pgf@ya=\dimen166
+\pgf@xb=\dimen167
+\pgf@yb=\dimen168
+\pgf@xc=\dimen169
+\pgf@yc=\dimen170
+\pgf@xd=\dimen171
+\pgf@yd=\dimen172
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count298
+\c@pgf@countb=\count299
+\c@pgf@countc=\count300
+\c@pgf@countd=\count301
+\t@pgf@toka=\toks24
+\t@pgf@tokb=\toks25
+\t@pgf@tokc=\toks26
+\pgf@sys@id@count=\count302
+ (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-luatex.def
+File: pgfsys-luatex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count303
+\pgfsyssoftpath@bigbuffer@items=\count304
+)
+(/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 274.
+
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen173
+\pgfmath@count=\count305
+\pgfmath@box=\box54
+\pgfmath@toks=\toks27
+\pgfmath@stack@operand=\toks28
+\pgfmath@stack@operation=\toks29
+)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code
+.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.te
+x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
+.code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count306
+))
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen174
+\pgf@picmaxx=\dimen175
+\pgf@picminy=\dimen176
+\pgf@picmaxy=\dimen177
+\pgf@pathminx=\dimen178
+\pgf@pathmaxx=\dimen179
+\pgf@pathminy=\dimen180
+\pgf@pathmaxy=\dimen181
+\pgf@xx=\dimen182
+\pgf@xy=\dimen183
+\pgf@yx=\dimen184
+\pgf@yy=\dimen185
+\pgf@zx=\dimen186
+\pgf@zy=\dimen187
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen188
+\pgf@path@lasty=\dimen189
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen190
+\pgf@shorten@start@additional=\dimen191
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box55
+\pgf@hbox=\box56
+\pgf@layerbox@main=\box57
+\pgf@picture@serial@count=\count307
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen192
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
+ex
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen193
+\pgf@pt@y=\dimen194
+\pgf@pt@temp=\dimen195
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.te
+x
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen196
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen197
+\pgf@sys@shading@range@num=\count308
+\pgf@shadingcount=\count309
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box58
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box59
+)
+(/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen198
+\pgf@nodesepend=\dimen199
+)
+(/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+))
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen256
+\pgffor@skip=\dimen257
+\pgffor@stack=\toks30
+\pgffor@toks=\toks31
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
+x
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count310
+\pgfplotmarksize=\dimen258
+)
+\tikz@lastx=\dimen259
+\tikz@lasty=\dimen260
+\tikz@lastxsaved=\dimen261
+\tikz@lastysaved=\dimen262
+\tikz@lastmovetox=\dimen263
+\tikz@lastmovetoy=\dimen264
+\tikzleveldistance=\dimen265
+\tikzsiblingdistance=\dimen266
+\tikz@figbox=\box60
+\tikz@figbox@bg=\box61
+\tikz@tempbox=\box62
+\tikz@tempbox@bg=\box63
+\tikztreelevel=\count311
+\tikznumberofchildren=\count312
+\tikznumberofcurrentchild=\count313
+\tikz@fig@count=\count314
+ (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count315
+\pgfmatrixcurrentcolumn=\count316
+\pgf@matrix@numberofcolumns=\count317
+)
+\tikz@expandcount=\count318
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+topaths.code.tex
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))) (/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks32
+\verbatim@line=\toks33
+\verbatim@in@stream=\read3
+)
+(/usr/share/texmf-dist/tex/latex/environ/environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+
+(/usr/share/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+)
+\@envbody=\toks34
+)
+\tcb@titlebox=\box64
+\tcb@upperbox=\box65
+\tcb@lowerbox=\box66
+\tcb@phantombox=\box67
+\c@tcbbreakpart=\count319
+\c@tcblayer=\count320
+\c@tcolorbox@number=\count321
+\l__tcobox_tmpa_box=\box68
+\l__tcobox_tmpa_dim=\dimen267
+\tcb@temp=\box69
+\tcb@temp=\box70
+\tcb@temp=\box71
+\tcb@temp=\box72
+)
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shadows.code.tex
+File: tikzlibraryshadows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+fadings.code.tex
+File: tikzlibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
+File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+(/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
+\MT@toks=\toks35
+\MT@tempbox=\box73
+\MT@count=\count322
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
+LaTeX Info: Redefining \leftprotrusion on input line 1085.
+\MT@prot@toks=\toks36
+LaTeX Info: Redefining \rightprotrusion on input line 1104.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen268
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count323
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype-luatex.def
+File: microtype-luatex.def 2026/03/01 v3.2d Definitions specific to luatex (RS)
+
+Lua module: microtype 2026/03/01 v3.2d microtype module.
+Module microtype Info: overwriting function `keepligature' on input line 63
+LaTeX Info: Redefining \lsstyle on input line 779.
+LaTeX Info: Redefining \lslig on input line 779.
+\MT@outer@space=\skip65
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(/usr/share/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2026/03/01 v3.2d microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count324
+\float@exts=\toks37
+\float@box=\box74
+\@float@everytoks=\toks38
+\@floatcapt=\box75
+)
+(/usr/share/texmf-dist/tex/latex/pgfornament/pgfornament.sty
+(/usr/share/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+\pgfopts@list@add@a@toks=\toks39
+\pgfopts@list@add@b@toks=\toks40
+)
+Package: pgfornament 2024/08/14 v1.3 vector ornaments
+
+(/usr/share/texmf-dist/tex/latex/pgfornament/pgflibraryvectorian.code.tex
+2020/04/06 1.1 pgflibraryvectorian.code.tex
+)) (/usr/share/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has section divisions on input line 51.
+\cftparskip=\skip66
+\cftbeforetoctitleskip=\skip67
+\cftaftertoctitleskip=\skip68
+\cftbeforepartskip=\skip69
+\cftpartnumwidth=\skip70
+\cftpartindent=\skip71
+\cftbeforesecskip=\skip72
+\cftsecindent=\skip73
+\cftsecnumwidth=\skip74
+\cftbeforesubsecskip=\skip75
+\cftsubsecindent=\skip76
+\cftsubsecnumwidth=\skip77
+\cftbeforesubsubsecskip=\skip78
+\cftsubsubsecindent=\skip79
+\cftsubsubsecnumwidth=\skip80
+\cftbeforeparaskip=\skip81
+\cftparaindent=\skip82
+\cftparanumwidth=\skip83
+\cftbeforesubparaskip=\skip84
+\cftsubparaindent=\skip85
+\cftsubparanumwidth=\skip86
+\cftbeforeloftitleskip=\skip87
+\cftafterloftitleskip=\skip88
+\cftbeforefigskip=\skip89
+\cftfigindent=\skip90
+\cftfignumwidth=\skip91
+\c@lofdepth=\count325
+\c@lotdepth=\count326
+\cftbeforelottitleskip=\skip92
+\cftafterlottitleskip=\skip93
+\cftbeforetabskip=\skip94
+\cfttabindent=\skip95
+\cfttabnumwidth=\skip96
+)
+(/usr/share/texmf-dist/tex/latex/xltabular/xltabular.sty
+Package: xltabular 2025/02/28 v0.2i `xltabular' package (hv,RN)
+
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen269
+\ar@mcellbox=\box76
+\extrarowheight=\dimen270
+\NC@list=\toks41
+\extratabsurround=\skip97
+\backup@length=\skip98
+\ar@cellbox=\box77
+)
+\TX@col@width=\dimen271
+\TX@old@table=\dimen272
+\TX@old@col=\dimen273
+\TX@target=\dimen274
+\TX@delta=\dimen275
+\TX@cols=\count327
+\TX@ftn=\toks42
+)
+(/usr/share/texmf-dist/tex/latex/ltablex/ltablex.sty
+Package: ltablex 2014/08/13 v1.1 Modified tabularx
+
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
+\LTleft=\skip99
+\LTright=\skip100
+\LTpre=\skip101
+\LTpost=\skip102
+\LTchunksize=\count328
+\LTcapwidth=\dimen276
+\LT@head=\box78
+\LT@firsthead=\box79
+\LT@foot=\box80
+\LT@lastfoot=\box81
+\LT@gbox=\box82
+\LT@cols=\count329
+\LT@rows=\count330
+\c@LT@tables=\count331
+\c@LT@chunks=\count332
+\LT@p@ftn=\toks43
+)))
+(/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen277
+\lightrulewidth=\dimen278
+\cmidrulewidth=\dimen279
+\belowrulesep=\dimen280
+\belowbottomsep=\dimen281
+\aboverulesep=\dimen282
+\abovetopsep=\dimen283
+\cmidrulesep=\dimen284
+\cmidrulekern=\dimen285
+\defaultaddspace=\dimen286
+\@cmidla=\count333
+\@cmidlb=\count334
+\@aboverulesep=\dimen287
+\@belowrulesep=\dimen288
+\@thisruleclass=\count335
+\@lastruleclass=\count336
+\@thisrulewidth=\dimen289
+)
+(/usr/share/texmf-dist/tex/lualatex/luacode/luacode.sty
+Package: luacode 2012/01/23 v1.2a lua-in-tex helpers (mpg)
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(/usr/share/texmf-dist/tex/luatex/luatexbase/luatexbase.sty
+Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
+
+(/usr/share/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
+Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
+\@catcodetablestackcnt=\count337
+)
+\CatcodeTableOther=\catcodetable14
+\CatcodeTableExpl=\catcodetable15
+)
+\luacode@lines=\toks44
+\luacode@table@soft=\catcodetable16
+)
+Inserting `Fix Devanagari Breaks' in `pre_linebreak_filter'.
+\c@shlokaline=\count338
+luaotfload | cache : Lookup cache loaded from /home/ksai/.texlive/texmf-var/luat
+ex-cache/generic/names/luaotfload-lookup-cache.luc.
+
+Package fontspec Info: 
+(fontspec)             Font family 'TiroDevanagariSanskrit(0)' created for
+(fontspec)             font 'Tiro Devanagari Sanskrit' with options
+(fontspec)             [Renderer=Harfbuzz,Ligatures=TeX,Script=Devanagari,AutoF
+akeBold=1.8].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Tiro
+(fontspec)             Devanagari
+(fontspec)             Sanskrit:mode=harf;script=dev2;language=dflt;+tlig;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"name:Tiro
+(fontspec)             Devanagari
+(fontspec)             Sanskrit:mode=harf;script=dev2;language=dflt;+tlig;+smcp
+;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Tiro
+(fontspec)             Devanagari
+(fontspec)             Sanskrit:mode=harf;script=dev2;language=dflt;embolden=1.
+8;+tlig;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"name:Tiro Devanagari
+(fontspec)             Sanskrit:mode=harf;script=dev2;language=dflt;embolden=1.
+8;+tlig;+smcp;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Tiro
+(fontspec)             Devanagari
+(fontspec)             Sanskrit/I:mode=harf;script=dev2;language=dflt;+tlig;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->"name:Tiro Devanagari
+(fontspec)             Sanskrit/I:mode=harf;script=dev2;language=dflt;+tlig;+sm
+cp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"name:Tiro
+(fontspec)             Devanagari
+(fontspec)             Sanskrit/I:mode=harf;script=dev2;language=dflt;+tlig;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->"name:Tiro Devanagari
+(fontspec)             Sanskrit/I:mode=harf;script=dev2;language=dflt;+tlig;+sm
+cp;"
+
+ (./main.aux)
+\openout1 = main.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 424.
+LaTeX Font Info:    ... okay on input line 424.
+
+Package fontspec Info: 
+(fontspec)             Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 424.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 424.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 424.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 424.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 424.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 424.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 424.
+LaTeX Font Info:    Redeclaring math accent \check on input line 424.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 424.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 424.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 424.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 424.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 424.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 424.
+
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/TiroDevanagariSanskrit(0)/m/n on inp
+ut line 424.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 424.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/TiroDevanagariSanskrit(0)/m/n on in
+put line 424.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/TiroDevanagariSanskrit(0)/m/n --> TU/TiroDevanagariS
+anskrit(0)/m/n on input line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/TiroDevanagariSanskrit(0)/m/it on i
+nput line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/TiroDevanagariSanskrit(0)/b/n on in
+put line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 424.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/TiroDevanagariSanskrit(0)/m/n --> TU/TiroDevanagariS
+anskrit(0)/b/n on input line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/TiroDevanagariSanskrit(0)/b/it on 
+input line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 424.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 424.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: a5paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(36.135pt, 348.8308pt, 36.135pt)
+* v-part:(T,H,B)=(72.26999pt, 452.9679pt, 72.26999pt)
+* \paperwidth=421.10078pt
+* \paperheight=597.50787pt
+* \textwidth=348.8308pt
+* \textheight=452.9679pt
+* \oddsidemargin=-36.135pt
+* \evensidemargin=-36.135pt
+* \topmargin=-23.5359pt
+* \headheight=15.0pt
+* \headsep=8.5359pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=47.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count339
+\scratchdimen=\dimen290
+\scratchbox=\box83
+\nofMPsegments=\count340
+\nofMParguments=\count341
+\everyMPshowfont=\toks45
+\MPscratchCnt=\count342
+\MPscratchDim=\dimen291
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
+\everyMPtoPDFconversion=\toks46
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Info: Redefining \microtypecontext on input line 424.
+Package microtype Info: Applying patch `item' on input line 424.
+Package microtype Info: Applying patch `toc' on input line 424.
+Package microtype Info: Applying patch `eqnum' on input line 424.
+Package microtype Info: Applying patch `footnote' on input line 424.
+Package microtype Info: Applying patch `verbatim' on input line 424.
+LaTeX Info: Redefining \microtypesetup on input line 424.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+Package microtype Info: Patching command `\showhyphens'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `TiroDevanagariSanskrit' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\k A'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\k a'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\'C'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\'c'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v D'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v d'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\k E'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v E'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\k e'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v e'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\u G'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\u g'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\.I'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v L'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v l'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\'N'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v N'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\'n'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v n'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\H O'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\H o'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v R'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v r'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\c S'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\c s'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\c T'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v T'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\c t'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\v t'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\H U'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\r U'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\H u'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\r u'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\.Z'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+
+Package microtype Warning: Unknown slot number of character
+(microtype)                `\.z'
+(microtype)                in font encoding `TU' in inheritance list
+(microtype)                `microtype.cfg/425(protrusion)'.
+
+(./main.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+ (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+(/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian70.pgf)
+[2])
+\tf@toc=\write4
+
+\openout4 = main.toc
+ [3] [4
+
+]
+Underfull \hbox (badness 1769) in paragraph at lines 468--469
+\TU/TiroDevanagariSanskrit(0)/m/n/10 इति कथयित्वा \TU/Tir
+oDevanagariSanskrit(0)/b/n/10 अलङ्कारशास्त्र\TU/Tir
+oDevanagariSanskrit(0)/m/n/10 मिति प्रयोगाभिप्
+रायः प्रकटीकृतः । पश्चाज्जात
+ः भोजदेवः स्वकीये
+ []
+
+[5]
+Underfull \hbox (badness 2980) in paragraph at lines 478--479
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यालङ्कारव
+त् काव्यशास्त्रवच्च \TU/TiroDevanagariSansk
+rit(0)/b/n/10 साहित्यशास्त्र\TU/TiroDevanagariSansk
+rit(0)/m/n/10 स्य प्रयोगोऽपि प्राचीन
+कालादेव अजायत ।
+ []
+
+
+Underfull \hbox (badness 2452) in paragraph at lines 478--479
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यशास्त्रा
+र्थे शब्दोऽयमर्वाचीने कालेऽ
+तीव प्रख्यातिमगात् । चतुर्दश
+शताब्द्यां जातः विश्वनाथः
+ []
+
+[6]
+Underfull \hbox (badness 2326) in paragraph at lines 494--495
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वाचि’ इति धातोः 
+‘ख्या’ आदेशात् निर्मितस्य सम
+ुपसर्गपूर्वकस्य सङ्ख्यानशब
+्दस्यार्थः सङ्कलनम्,
+ []
+
+
+Underfull \hbox (badness 1701) in paragraph at lines 494--495
+\TU/TiroDevanagariSanskrit(0)/m/n/10 स्पष्टरूपेण च प
+्रकटीभूता निर्मितिरेव कलाशब
+्देन गृह्यते । पाश्चात्त्यवा
+ङ्‌मये मानवश्रमनिर्मितानि
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+विकासपरम्परायां पौराणिकग्र
+न्था आधाररूपा विद्यन्ते । का
+व्यरचनायां
+ []
+
+
+Underfull \hbox (badness 5417) in paragraph at lines 532--533
+\TU/TiroDevanagariSanskrit(0)/m/n/10 महर्षिव्यासप्
+रणीतानि पुराणानि उपजीव्यग्र
+न्थरूपेण स्वीक्रियन्ते । इत्
+येव न कतिचिद् ग्रन्थेषु
+ []
+
+
+Underfull \hbox (badness 2600) in paragraph at lines 536--537
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 विष्णुधर्मोत्
+तरपुराणे\TU/TiroDevanagariSanskrit(0)/m/n/10 ऽपि प्
+रायशः सर्वेषां काव्यतत्त्वा
+नां चर्चा लभ्यते । अस्य तृतीय
+े खण्डे
+ []
+
+
+Underfull \hbox (badness 1072) in paragraph at lines 536--537
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रूपकरसयोः सन्द
+र्भे नाट्यशास्त्रस्यानुसरण
+ं कृतं विद्यते । अन्यत्रापि क
+ेषुचित् स्थलेषु प्राग्जातान
+ां
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 536--537
+\TU/TiroDevanagariSanskrit(0)/m/n/10 महाकाव्यम्, प्र
+हेलिका, द्वादशरूपकम्, आहार्य
+ाभिनयः, सामान्याभिनयः, रसः, एक
+ोनपञ्चाशद्
+ []
+
+
+Underfull \hbox (badness 1033) in paragraph at lines 538--539
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पुराणानां रचन
+ासमयानिश्चितत्वाद् नाट्यशा
+स्त्रं नाम ग्रन्थ एव पौरस्त्
+यकाव्यशास्त्रस्य प्रथमः
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 निरूपणञ्च प्रा
+प्यते । तदनु प्राचीनाः काव्य
+शास्त्रिणः काव्यविषये बहूनन
+ि मतानि प्रदत्तवन्तः ।
+ []
+
+
+Underfull \hbox (badness 2521) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्ये किमात्म
+स्थानीयं तत्त्वं भवति ? इति वि
+षये काव्यशास्त्रिणां मतसाम्
+यं मतवैषम्यं च
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ध्वनिकारोऽऽनन
+्दवर्धनः स्वकीये ध्वन्यालोक
+ग्रन्थे रसध्वनिरेव काव्यस्य
+ात्मस्थानीयं तत्त्वमिति
+ []
+
+
+Underfull \hbox (badness 4621) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विमतिं प्रदर्श
+्य विश्वनाथेन साहित्यदर्पणा
+ख्यो लाक्षणिकग्रन्थोपस्थाप
+ितः । एतेषां पूर्वाचार्याणां
+ []
+
+
+Underfull \hbox (badness 7344) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यालङ्कारस
+ूत्रवृत्तेः प्रणेतुर्वामनस
+्य रीतिप्राधान्यम्, अलङ्कारस
+र्वस्वकारस्य रुय्यकस्यालङ्
+काराणां
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 538--539
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वैज्ञानिकं वर्
+गीकरणम्, वक्रोक्तिजीवीतस्य र
+चयितुः कुन्तकस्य वक्रोक्तिस
+म्प्रदायप्रतिपादनञ्च
+ []
+
+[8] [9]
+Underfull \hbox (badness 10000) in paragraph at lines 546--547
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पाश्चात्त्यका
+व्यशास्त्रस्य परवर्तिनि युग
+े ‘वर्डसवर्थ’महोदयस्य काव्य
+भाषासिद्धान्तः,
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 546--547
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘कलरिज’महोदयस
+्य ‘कल्पनासिद्धान्तः’ (The-ory of Imag-i
+-na-tion) चेति द्वावेव सिद्धान्तौ
+ []
+
+
+Underfull \hbox (badness 1178) in paragraph at lines 546--547
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तयोश्च रूपमेव स
+ौन्दर्यस्याधारतत्त्वं भवति, 
+इदमेवाभिव्यञ्जनायाः पर्याय
+भूतम् । अन्तःकरणदर्शनं
+ []
+
+
+Underfull \hbox (badness 2027) in paragraph at lines 546--547
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्राधान्येन स्
+वीकुर्वाणः क्रोचे ज्ञानस्य द
+्वौ भेदौ मनुते— अन्तःप्रेरणा 
+(In-tu-ition) विचारश्च ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 550--551
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 सामान्यतया दे
+श-काल-परिधिवशात् संज्ञाभेदे 
+सत्यपि पौरस्त्य-काव्यशास्त्
+रस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 550--551
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सिद्धान्तैः का
+व्यस्यान्तरात्मानं भावपक्ष
+ञ्च परिचिन्वन्ति, तत्रैव पाश
+्चात्त्याः समीक्षकाः
+ []
+
+
+Underfull \hbox (badness 2856) in paragraph at lines 550--551
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अनुकरण-विरेचन-क
+ल्पना-वैयक्तिकतादिभिर्दृष्
+टिभिः कलाया मनोवैज्ञानिकं व्
+यावहारिकञ्च स्वरूपं
+ []
+
+[10]
+Underfull \hbox (badness 6510) in paragraph at lines 554--555
+\TU/TiroDevanagariSanskrit(0)/m/n/10 व्यापकतत्त्वे 
+एव काव्यं समाविशति, यदा तु पौर
+स्त्यचिन्तने काव्यं कलाभेदे
+भ्य उच्चतरम्,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 556--557
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यसाहित
+्यशास्त्रे आचार्यैः काव्यस्
+य स्वरूपम्, हेतुः, प्रयोजनम्, 
+शब्दशक्तयः,
+ []
+
+[11]
+Underfull \hbox (badness 4279) in paragraph at lines 562--563
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 कवेः कर्मभूतस
+्य काव्यस्य शास्त्रीयपक्षस्
+य चर्चा वैदिककालादेव समुपलभ्
+यते । तदानीं
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 562--563
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वेदपुराणादिग्
+रन्थेषु काव्यशास्त्रीयतत्त
+्वानां सङ्केताः प्राप्यन्ते, 
+तथापि तस्मिन् युगे काव्यशास्
+त्रस्य
+ []
+
+
+Underfull \hbox (badness 3954) in paragraph at lines 562--563
+\TU/TiroDevanagariSanskrit(0)/m/n/10 स्वरूपं सुस्पष
+्टं नासीत् । अग्निपुराणे विद
+्यमानं काव्यशास्त्रीयविवेच
+नप्रकारं विलोक्य कतिपये
+ []
+
+
+Underfull \hbox (badness 8019) in paragraph at lines 562--563
+\TU/TiroDevanagariSanskrit(0)/m/n/10 समालोचकाः अस्य 
+ग्रन्थस्य वर्तमानं रूपं परवर
+्तिकालोनं मन्यन्ते, अतः पौरा
+णिककालस्य
+ []
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 562--563
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थत्वेन अस
+्य प्राचीनता न सर्वैः समाद्र
+ियते । तस्मात् काव्यशास्त्री
+यविषयस्य प्रामाणिको
+ []
+
+[12] [13] [14
+
+]
+Underfull \hbox (badness 6575) in paragraph at lines 612--613
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 कालोऽयं पौरस्
+त्यकाव्यशास्त्रस्य बीजरूपो 
+मन्यते । अत्र वैदिकग्रन्थेषु 
+पुराणग्रन्थेषु च
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 भरतमुनिना नाट
+्यशास्त्रे केवलं चत्वार एवाल
+ङ्कारा उल्लिखिताः ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पश्चाज्जाताना
+मलङ्कारशास्त्रिणामलङ्कारसङ
+्‌ख्या त्रिंशदधिका प्राप्यत
+े । अलङ्कारविवेचनदृष्ट्या
+ []
+
+
+Underfull \hbox (badness 1540) in paragraph at lines 626--627
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कालिदासस्योल्
+लेखनेन चास्य समयः कालिदासप्र
+ाग् विक्रमपूर्वद्वितीयशताब
+्द एव मन्यते । अनेन
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 626--627
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाट्यशास्त्रस
+्य मुख्यमुद्देश्यं नाट्यविव
+ेचनमेवास्ति । किन्तु तत्र छन
+्दःशास्त्रस्य, अलङ्कारशास्त
+्रस्य,
+ []
+
+
+Underfull \hbox (badness 5862) in paragraph at lines 626--627
+\TU/TiroDevanagariSanskrit(0)/m/n/10 हस्ताभिनयस्य व
+र्णनम्, \TU/TiroDevanagariSanskrit(0)/b/n/10 दशमेऽध्
+याये \TU/TiroDevanagariSanskrit(0)/m/n/10 शरीराभिनय
+स्य वर्णनम्, \TU/TiroDevanagariSanskrit(0)/b/n/10 एक
+ादशेऽध्याये \TU/TiroDevanagariSanskrit(0)/m/n/10 पा
+रिविधानम्,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+\TU/TiroDevanagariSanskrit(0)/b/n/10 एकोनत्रिंशेऽध
+्याये \TU/TiroDevanagariSanskrit(0)/m/n/10 ततातोद्य
+वर्णनम्, \TU/TiroDevanagariSanskrit(0)/b/n/10 त्रिंश
+ेऽध्याये \TU/TiroDevanagariSanskrit(0)/m/n/10 सुषिर
+ातोद्यविधानवर्णनम्, \TU/TiroDevanagariSansk
+rit(0)/b/n/10 एकत्रिंशेऽध्याये
+ []
+
+[15]
+Underfull \hbox (badness 5519) in paragraph at lines 630--631
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 भरतमुनिना नाट
+कमुद्दिश्य कृतं शास्त्रीयवि
+वेचनं काव्यशास्त्रस्य कृते व
+िकासपूर्वाधारार्थं
+ []
+
+
+Underfull \hbox (badness 4569) in paragraph at lines 630--631
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मार्गदर्शकं जा
+तम् । पश्चवर्त्तिभिराचार्यै
+ः एतानेव नाट्यशास्त्रीयान् व
+िषयानङ्गीकृत्य सपरिष्कारं
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 630--631
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रसिद्धाः शास
+्त्रीयग्रन्थाः रचिताः । तेषु 
+रसविवेचनप्रसङ्गे प्रस्तुतं 
+रससूत्रं तु पौरस्त्यकाव्यशा
+स्त्रस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 634--635
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यवाङ्म
+यान्तर्गतस्य दृश्यकाव्यस्य
+ैव न, अपितु संस्कृतकाव्यशास्
+त्रस्यैव प्राथमिकी
+ []
+
+
+Underfull \hbox (badness 2547) in paragraph at lines 634--635
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रतिपादिता दृ
+श्यन्ते । नाट्यशास्त्रे नाटक
+मुद्दिश्यैव अन्ये शास्त्रीय
+सिद्धान्ता निरूपिताः सन्ति ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 634--635
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तत्र रसालङ्कार
+गुणादीनां काव्यातत्त्वानाम
+पि नाट्यार्थमेव विवेचनं कृतम
+् । प्रजापतेरुपदेशेन
+ []
+
+
+Underfull \hbox (badness 1960) in paragraph at lines 634--635
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वैदिकज्ञानार्
+जनासमर्थानां जनसाधारणानां क
+ृते पञ्चमवेदमहत्त्वाधायकस्
+य नाट्यशास्त्रस्य रचनार्थं
+ []
+
+
+Underfull \hbox (badness 1303) in paragraph at lines 644--645
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाट्यसिद्धान्
+तग्रन्थः, विश्वनाथस्य साहित्
+यदर्पणस्य नाट्यविवेचनात्मक
+ः षष्ठपरिच्छेदश्च भरतमुनेरे
+व
+ []
+
+[16]
+Underfull \hbox (badness 1721) in paragraph at lines 658--659
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 गुणस्य विषये भ
+रतमुनेर्विचारः प्राचीनमतान
+ुयायिनां कृते आधारोऽस्ति । अ
+स्यैव मताधारे
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रीयेतिहासे रससम्प्रद
+ायस्य सर्वोत्कृष्टं स्थानमस
+्ति । नाट्यशास्त्रप्रणेता
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भरतमुनी रसविषय
+ेऽऽधारस्तम्भरूपं सूत्रात्म
+कं मतं प्रदर्श्य रससम्प्रदाय
+स्य ‘संस्थापकः’
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\TU/TiroDevanagariSanskrit(0)/m/n/10 इति सर्वोत्कृष
+्टविशेषणेन विभूषितो जातः। अस
+्य रसनिष्पत्तिविषयकं सूत्रं 
+विद्यते यत्-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘विभावानुभावव
+्यभिचारिसंयोगाद् रसनिष्पत्
+तिः’ इति । अस्यैव रससूत्रस्य 
+व्याख्यानक्रमे
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\TU/TiroDevanagariSanskrit(0)/m/n/10 श्रीशङ्कुक–भट
+्टलोल्लट–भट्टनायक– अभिनवगु
+प्ताचार्याणामुत्पत्ति–अनुम
+िति–भुक्ति–अभिव्यक्तिश्चेत
+ि
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यभरतमुने
+र्नाट्यशास्त्रं केवलं नाट्य
+कलाया मार्गदर्शकमेव नापितु स
+मग्रस्य
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 678--679
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतकाव्यश
+ास्त्रस्य, सङ्गीतशास्त्रस्य, 
+छन्दःशास्त्रस्य च अक्षया आधा
+रशिला वर्तते । मुनिना
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 678--679
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्राणभूतं तत्त
+्वमस्ति, यमधिकृत्य भट्टलोल्ल
+ट-श्रीशङ्कुक-भट्टनायक-अभिनवग
+ुप्तादिभिः प्रवरैराचार्यैः
+ []
+
+
+Underfull \hbox (badness 3128) in paragraph at lines 678--679
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कलात्मकं सङ्गम
+स्थलम् अस्ति । धनञ्जयकृत-दशर
+ूपकादारभ्य विश्वनाथकृत-साहि
+त्यदर्पणपर्यन्तं
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रायः सर्वेऽप
+ि दृश्यकाव्यविवेचका आचार्या 
+भरतमुनेरेव सिद्धान्तान् आदृ
+तवन्तः । अतः
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यसाहित
+्यपरम्परायाम् आदिगुरुत्वेन 
+प्रतिष्ठितस्य भरतमुनेर्नाट
+्यशास्त्रमिति महान् ग्रन्थो
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 682--683
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 नैकैः काव्यशा
+स्त्रिभिः स्वग्रन्थस्योद्ध
+रणेषु मेधाविरुद्रस्य नामोल्
+लेखः कृतः । विद्वानयं
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--683
+\TU/TiroDevanagariSanskrit(0)/m/n/10 जन्मान्ध आसीदि
+ति राजशेखरः स्वग्रन्थस्य प्र
+तिभायाः प्रभावनिरूपणप्रसङ्
+गे उल्लिखति
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--683
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘ननु दण्डीमेधा
+विरुद्रभामहकृतानि सन्त्येव
+ालङ्कारशास्त्राणि ।’ एतस्या
+नुसारेणैव मेधाविरुद्रः
+ []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 682--683
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘नामाख्यातोपस
+र्गनिपाताः’ इति चतुरः शब्दप्
+रकारान् स्वीकरोति । आचार्यो 
+भामहोऽपि स्वग्रन्थे
+ []
+
+
+Underfull \hbox (badness 3713) in paragraph at lines 686--687
+\TU/TiroDevanagariSanskrit(0)/m/n/10 यत्र तत्र तेषाम
+वदानोल्लेखेन ज्ञायते परं स्प
+ष्टतया तेषां ग्रन्थादिकं नोप
+लभ्यते । सामान्यतया
+ []
+
+[18] [19] [20
+
+]
+Underfull \hbox (badness 2990) in paragraph at lines 704--705
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रसरीतिध्वन्यल
+ङ्कारसम्प्रदायानां स्थापनय
+ैव विश्ववाङ्मये संस्कृतकाव्
+यशास्त्रस्य महत्ता प्रवर्धि
+ता ।
+ []
+
+
+Underfull \hbox (badness 7631) in paragraph at lines 708--709
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रेतिहासे भामहः प्रारम
+्भिक आचार्योऽस्ति । प्राग् ज
+ातेन भरतमुनिना
+ []
+
+[21] [22] [23]
+Underfull \hbox (badness 2293) in paragraph at lines 856--857
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 गुणस्य विषये भ
+ामहः प्राचीनोऽपि नवीनमतप्रव
+र्तको मन्यते । अयमाचार्यो भर
+तस्थापितं
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 856--857
+\TU/TiroDevanagariSanskrit(0)/m/n/10 दशगुणवादं परिष
+्कृत्य त्रिगुणवादं स्थापयति 
+। भामहो भरतोल्लिखितानां दशगु
+णानां
+ []
+
+[24]
+Underfull \hbox (badness 6284) in paragraph at lines 908--909
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाट्यशास्त्रस
+्य दृश्यकाव्याश्रितात् परिध
+ेः काव्यशास्त्रं बहिर्निष्क
+ास्य, तस्मै स्वतन्त्रविद्यार
+ूपेण
+ []
+
+
+Underfull \hbox (badness 1655) in paragraph at lines 908--909
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रतिष्ठाप्रद
+ानस्य श्रेयो भामहायैव गच्छति 
+। तेन प्रणीतः ‘काव्यालङ्कारः
+’ उत्तरवर्त्तिनां सर्वेषामप
+ि
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 912--913
+\TU/TiroDevanagariSanskrit(0)/m/n/10 समयोऽष्टमशताब
+्दादनन्तरं नहि भवितुमर्हति । 
+दण्डिनः ‘अरत्नालोकसंहार्यम
+वार्यं सूर्यरश्मिभिः—’
+ []
+
+[25]
+Underfull \hbox (badness 5302) in paragraph at lines 918--919
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 दण्डिनः काव्य
+ादर्शाख्यः शास्त्रीयग्रन्थ 
+उपलभ्यते । तत्र त्रयः परिच्छ
+ेदाः सन्ति । तेषु
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
+\TU/TiroDevanagariSanskrit(0)/m/n/10 षष्ट्युत्तराण
+ि षट्शतानि पद्यानि विद्यन्ते 
+। प्रथमे परिच्छेदे– काव्यपरि
+भाषायाः, काव्यभेदस्य,
+ []
+
+
+Underfull \hbox (badness 7613) in paragraph at lines 918--919
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तृतीये परिच्छे
+दे– यमकस्य पञ्चदशोपरित्रिंश
+द्भेदयुतं विस्तृतं वर्णनं लभ
+्यते । तथा च तत्र
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 918--919
+\TU/TiroDevanagariSanskrit(0)/m/n/10 दोषाणाञ्च वर्ण
+नं समुपलभ्यते । आचार्यो दण्ड
+ी रसध्वन्यादिविषये स्पष्टतय
+ा किमपि नोल्लिखति,
+ []
+
+[26] [27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 1044--1045
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आनन्दवर्धनाप्
+पयदीक्षितरुय्यकजगन्नाथादयो
+ऽस्य योगदानस्य चर्चां सम्मान
+ेन कुर्वन्ति ।
+ []
+
+
+Underfull \hbox (badness 3291) in paragraph at lines 1044--1045
+\TU/TiroDevanagariSanskrit(0)/m/n/10 केवलमलङ्कारतत
+्त्वमेव विवेचितं विद्यते । त
+त्र षड्‍वर्गाः सन्ति । तेषु ए
+कोनाशीतिसङ्ख्यकाभिः
+ []
+
+
+Underfull \hbox (badness 4492) in paragraph at lines 1044--1045
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कारिकाभिरेकचत
+्वारिंशदलङ्काराणां लक्षणं क
+ृत्वा तेषामुदाहरणार्थं स्वक
+ीयकुमारसम्भवकाव्यादेव
+ []
+
+
+Overfull \hbox (17.13042pt too wide) in paragraph at lines 1044--1045
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विशेषोक्तिविर
+ोधतुल्ययोगिता-प्रस्तुतप्रश
+ंसाव्याजस्तुतिनिदर्शनासहोक
+्त्युपमेयोपमापरिवृत्तिसङ्क
+रादीनामलङ्काराणां
+ []
+
+[29]
+Underfull \hbox (badness 1365) in paragraph at lines 1054--1055
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यो वामनो 
+रीतिसम्प्रदायस्य प्रवर्तको
+ऽस्ति । सूत्रशैल्यां रचिता ‘
+काव्यालङ्कारसूत्रवृत्तिः’
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1054--1055
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यप्रयोजनस
+्याधिकारिणश्च वर्णनमास्ते । 
+अत्रैव ग्रन्थकारो रीतेः काव्
+यात्मत्वं प्रतिपाद्य
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 1054--1055
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वाक्यदोषाणां व
+ाक्यार्थदोषाणाञ्च विवेचनं प
+्राप्यते । तृतीयं तु गुणविवे
+चनाख्यमधिकरणम् ।
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 1054--1055
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तत्र गुणालङ्का
+रयोः पार्थक्यं विविच्य दशाना
+ं शब्दगुणानां दशानामर्थगुणा
+नाञ्च विश्लेषणं वर्तते ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1058--1059
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रे प्रसिद्धस्य रीतिसम
+्प्रदायस्य प्रवर्तकोऽयं काव
+्यशास्त्रीयेतिहास- रसिकानां
+ []
+
+
+Underfull \hbox (badness 5161) in paragraph at lines 1062--1063
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 वामनो रीतिवाद
+ी आचार्योऽस्ति । अस्य मते काव
+्यम् अलङ्कारेणैव ग्रहणीयं भव
+ति ।
+ []
+
+[30]
+Underfull \hbox (badness 1072) in paragraph at lines 1064--1065
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 काव्यं ग्राह्
+यमलङ्कारात्, काव्यशब्दोऽयं ग
+ुणालङ्कारयोः शब्दार्थयोर्व
+र्तते । रीतिरात्मा काव्यस्य,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1071
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 लोकः, विद्या, प
+्रकीर्णञ्च काव्याङ्गानि । लो
+कवृत्तज्ञानम् एव ‘लोकः’ इत्य
+स्याशयः ।
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 1070--1071
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शब्दकोशः, छन्दः
+शास्त्रम्, कलाशास्त्रम्, काम
+शास्त्रम्, दण्डनीतिः, इत्याद
+िषु ज्ञानार्जनम्, पूर्वा
+ []
+
+
+Underfull \hbox (badness 2951) in paragraph at lines 1108--1109
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्राह्यत्वे प्
+रयोजका भवन्ति । तस्मात् काव्
+येऽलङ्काराणां स्थानं महत्त्
+वपूर्णमस्तीति कथयति यत्
+ []
+
+
+Underfull \hbox (badness 5274) in paragraph at lines 1110--1111
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 सौन्दर्यमलङ्क
+ारः । काव्यं ग्राह्यमलङ्कारा
+त् । गुणप्रतिपादितायाः काव्य
+ाशोभाया अतिशयो
+ []
+
+[31]
+Underfull \hbox (badness 1043) in paragraph at lines 1120--1121
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्ये वर्णपद
+ादीनां काव्यानुकूलव्यवस्था
+पनमेव रीतिर्मन्यते । काव्ये 
+रीतितत्त्वं प्राधान्यतया
+ []
+
+
+Underfull \hbox (badness 3240) in paragraph at lines 1122--1123
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विरच्य साहित्य
+शास्त्रस्य सर्वपक्षीयविवेच
+नस्य सुदृढं मार्गं प्रदर्शित
+वान्। “रीतिरात्मा काव्यस्य”
+ []
+
+
+Underfull \hbox (badness 3838) in paragraph at lines 1122--1123
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कर्तारो धर्मा ग
+ुणाः’ इत्युल्लिख्य गुणतत्त्
+वं काव्यात्मस्थानीयत्वेन अङ
+्गीकृतम्, प्राचीनदशगुणानां
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 1122--1123
+\TU/TiroDevanagariSanskrit(0)/m/n/10 च प्रीति-कीर्त्
+योः (आनन्द-यशसोः) सप्रमाणं निर
+ूपणं विहितम्। अतः परवर्त्तिष
+ु लक्षणशास्त्रिषु
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1133
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सोदाहरणं विवेच
+िताः । अष्टमे नवमे च—औपम्यात
+िशयमूलकालङ्काराः प्रस्तुता
+ः सन्ति ।
+ []
+
+
+Underfull \hbox (badness 3209) in paragraph at lines 1132--1133
+\TU/TiroDevanagariSanskrit(0)/m/n/10 दशमे—अर्थश्ले
+षस्य दशभेदाः, एकादशे—अर्थदोष
+ाश्च वर्णिताः । द्वादशात् पञ
+्चदशाध्यायपर्यन्तं
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1135
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अयमलङ्कारशास्
+त्री प्रथमोऽस्ति यः रसस्य मह
+त्त्वं स्वीकरोति । अनेन रसस्
+य विषये
+ []
+
+
+Underfull \hbox (badness 4193) in paragraph at lines 1134--1135
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रेरकमभवत् । भ
+ावस्य विश्लेषणप्रसङ्गे उदाह
+ृतं पद्यद्वयं ध्वनिवादिनो गु
+णीभूतव्यङ्ग्यस्य तथा
+ []
+
+[33]
+Underfull \hbox (badness 5711) in paragraph at lines 1214--1215
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य काव्यालङ
+्काराख्ये ग्रन्थे पञ्चशब्दा
+लङ्काराणां सप्तचत्वारिंशद् (
+४७) अर्थालङ्काराणाञ्च
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विवेचनं प्राप्
+यते । पूर्ववर्त्तिनस्तु २६ अ
+र्थालङ्काराणामेव विवेचनमकु
+र्वन् । अनेन
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 समुच्चय–अनुमा
+न–परिवृत्ति–परिकर–परिसङ्ख्
+या–कारणमाला–अन्योन्य–सार–ए
+कावली–इत्यादयः
+ []
+
+
+Underfull \hbox (badness 3148) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 जाताः । अतो नवी
+नालङ्कारप्रतिपादनमस्य महत्
+त्वपूर्णं योगदानं मन्यते । अ
+स्यालङ्कारवर्गीकरणं
+ []
+
+
+Underfull \hbox (badness 3838) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तु सर्वथा नावीन
+्यं ज्ञायते । रुद्रटोऽलङ्कार
+ाणां विभाजकतत्त्वरूपेण वास्
+तव्यौपम्यातिशयश्लेषान्
+ []
+
+
+Underfull \hbox (badness 3612) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अङ्गीकृत्य तेन
+ैव नाम्ना चतुर्षु भागेषु विभ
+ाजितवान् । तेषु कस्यापि वस्त
+ुनः स्वरूपवर्णनरूपं
+ []
+
+
+Underfull \hbox (badness 3635) in paragraph at lines 1214--1215
+\TU/TiroDevanagariSanskrit(0)/m/n/10 समाविशन्ति । पद
+ार्थस्य सम्पूर्णताबोधनार्थ
+ं तत्सदृशपदार्थस्य वर्णनम् औ
+पम्यमूलके भवति ।
+ []
+
+[34] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 1262--1263
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 एभिर्विवेचनैर
+्रुद्रटो न केवलमलङ्कारपक्षप
+ाती रसवाद्यप्यस्तीति स्वीकर
+्तुं शक्यते ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1262--1263
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यलक्षण–का
+व्यहेतु–काव्यप्रयोजनालङ्का
+रविस्तारादिप्रदर्शनपूर्वकं 
+रसमहत्त्वप्रकाशनञ्च कृत्वा
+ []
+
+
+Underfull \hbox (badness 4144) in paragraph at lines 1264--1265
+\TU/TiroDevanagariSanskrit(0)/m/n/10 स्वग्रन्थेषु र
+ुद्रटमतस्य सविशेषमुल्लेखः क
+ृतः, येन तस्य ऐतिहासिकं महत्त
+्वं स्वतः सिद्ध्यति।
+ []
+
+
+Underfull \hbox (badness 1112) in paragraph at lines 1264--1265
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यलक्षण-हेत
+ु-प्रयोजनानां निरूपणपूर्वकं 
+रसालङ्कारादीनां यत् प्रौढवि
+वेचनं रुद्रटेन कृतम्, तेन
+ []
+
+
+Underfull \hbox (badness 1430) in paragraph at lines 1268--1269
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वर्तते। अस्मिन
+् काले काव्यशास्त्रिभी रस-अल
+ङ्कार-गुण-रीति-प्रभृतीनि विभ
+िन्नानि काव्यतत्त्वानि
+ []
+
+
+Underfull \hbox (badness 7012) in paragraph at lines 1270--1271
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्मिन् समये भ
+ामह-दण्डि-उद्भट-वामन-रुद्रटा
+दयः प्रतिभाशालिनः काव्यशास्
+त्रनिष्णाताः
+ []
+
+
+Underfull \hbox (badness 4647) in paragraph at lines 1270--1271
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सञ्जाताः, यैर्न
+ाट्यशास्त्रस्य परिधेर्बहिः 
+काव्यशास्त्रस्य स्वतन्त्रव
+िधारूपेण प्रतिष्ठापनं विहित
+म्।
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 1270--1271
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सीमानिर्धारणं 
+असम्भवप्रायम् अनुमीयते। अस्
+मिन् समये सञ्जातानां विदुषाम
+् अनुपमं योगदानं
+ []
+
+[36] [37
+
+]
+Underfull \hbox (badness 3068) in paragraph at lines 1284--1285
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थाः प्रका
+शयन्ति स्म । तदा काव्यप्रणयन
+े आवश्यकीयानां तत्त्वानां मध
+्ये कस्य प्राधान्यम्
+ []
+
+
+Underfull \hbox (badness 4792) in paragraph at lines 1284--1285
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ? कस्याप्राधान्
+यम् ? को बाह्यसौन्दर्यपक्षः ? 
+कश्चान्तरिकात्मपक्षः ? इत्या
+दिकासु
+ []
+
+
+Underfull \hbox (badness 2662) in paragraph at lines 1320--1321
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य पञ्च ग्रन
+्थाः प्राप्यन्ते । विषमवाणली
+ला, अर्जुनचरितम्, देवीशतकम्, त
+त्त्वालोकः,
+ []
+
+[38]
+Underfull \hbox (badness 1997) in paragraph at lines 1324--1325
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विना अलङ्कारशा
+स्त्रं न कदापि पूर्णतामेति । 
+शास्त्रजगति तस्य ध्वन्यालोक
+स्य प्रवेशः सुमहत्
+ []
+
+
+Underfull \hbox (badness 2556) in paragraph at lines 1348--1349
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विरोधाविरोधान
+ां सिद्धान्ताः प्रस्तुताः । \TU
+/TiroDevanagariSanskrit(0)/b/n/10 चतुर्थोद्योते– \T
+U/TiroDevanagariSanskrit(0)/m/n/10 ध्वनेः, गुणीभूत
+व्यङ्ग्यस्य समावेशेन प्राक्
+ []
+
+[39]
+Underfull \hbox (badness 1596) in paragraph at lines 1352--1353
+\TU/TiroDevanagariSanskrit(0)/m/n/10 स ध्वन्यालोके प
+्रतीयमानार्थव्यञ्जनसामर्थ्
+यौ शब्दार्थौ एव काव्यत्वं स्
+वीकरोति । एतादृशे काव्ये
+ []
+
+
+Underfull \hbox (badness 2486) in paragraph at lines 1364--1365
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 क्रोञ्चद्वन्द
+्ववियोगदर्शनाद् हृदि आविष्क
+ृतः शोक एव श्लोकत्वेन आदिकवि
+वाल्मीकिमुखाद्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1386--1387
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्याङ्गानि क
+ाव्यस्यात्मतत्त्वानीति उक्
+तवन्तः । तेषां मतानि विविच्य 
+ध्यवन्यालोककारो
+ []
+
+
+Underfull \hbox (badness 2197) in paragraph at lines 1386--1387
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रकाशयति । ध्व
+निकारो ध्वनितत्त्वप्रतिपाद
+ने बीजरूपेण वैयाकरणस्य स्फोट
+तत्त्वं स्वीकरोति ।
+ []
+
+[40]
+Underfull \hbox (badness 10000) in paragraph at lines 1428--1429
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ध्वनिकारो रीत
+ेरपेक्षया गुणतत्त्वं रसध्वन
+ेर्निकटसम्बन्धयुतं स्वीकरो
+ति । स रीतिवत्
+ []
+
+
+Underfull \hbox (badness 2359) in paragraph at lines 1430--1431
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 गुणानां हि माध
+ुर्यप्रसादप्रकर्षः करुणविप
+्रलम्भशृङ्गारविषय एव । रौद्र
+ाद्भुतादिविषयमोजः ।
+ []
+
+
+Underfull \hbox (badness 5622) in paragraph at lines 1430--1431
+\TU/TiroDevanagariSanskrit(0)/b/n/10 माधुर्यप्रसाद
+ौ रसभावतदाभासविषयावेव, इति व
+िषयनियमो व्यवस्थितः । तथा च ग
+ुणास्तु
+ []
+
+
+Underfull \hbox (badness 5578) in paragraph at lines 1434--1435
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारविषयेऽ
+ऽनन्दवर्धनस्य मतमेवोत्तरवर
+्त्तिनो काव्यशास्त्रिणः साद
+रं स्वीकुर्वन्ति । स
+ []
+
+[41]
+Underfull \hbox (badness 2065) in paragraph at lines 1456--1457
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अनेन प्रकारेण 
+ध्वनिकारो बाह्यसौन्दर्यबर्
+धकतत्त्वरूपेणालङ्कारस्य स्
+वरूपमुल्लिखति । पश्चात्
+ []
+
+
+Underfull \hbox (badness 6032) in paragraph at lines 1460--1461
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्योऽयम् औ
+चित्यसम्प्रदायस्य स्थापनार
+्थं स्पष्टरूपेण प्रारूपप्रद
+र्शनात् क्षेमेन्द्रस्य कृते
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 1498--1499
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आनन्दवर्धनस्य
+ेतत्प्रकारक औचित्यविचार आचा
+र्यक्षेमेन्द्रस्य कृते औचित
+्यसम्प्रदायस्थापनार्थं
+ []
+
+
+Underfull \hbox (badness 6141) in paragraph at lines 1500--1501
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आनन्दवर्धनो न
+वमशताब्द्यां जातः काश्मीरदे
+शीयः संस्कृतकाव्यशास्त्रीय
+ेतिहासस्य कश्चन
+ []
+
+
+Underfull \hbox (badness 1874) in paragraph at lines 1500--1501
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अक्षयकीर्तेः श
+ास्त्रीयस्तम्भः ‘ध्वन्यालो
+कः’ एव वर्तते। अनेन ग्रन्थेन 
+प्राक्तनानां ध्वनिविरोधिना
+ं
+ []
+
+[42]
+Underfull \hbox (badness 1308) in paragraph at lines 1504--1505
+\TU/TiroDevanagariSanskrit(0)/m/n/10 हृदयदर्पणस्य स
+मधिका चर्चा विहिता । अयं ध्वन
+िविरोधिष्वाचार्येषु अन्यतम 
+आसीत् । अनेन
+ []
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 1511--1512
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 भट्टनायकः स्व
+ोत्तरवर्त्तिनामाचार्याणां 
+ग्रन्थेषु हेतुद्वयेन ख्याति
+ं प्राप्नोति यत्– ध्वनिविरोध
+िना
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 1513--1514
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मतं भुक्तिवादस
+्य नाम्ना काव्यशास्त्रे प्रस
+िद्धमस्ति । काव्यप्रकाशकारो
+ऽपि स्वग्रन्थे भट्टनायकस्य
+ []
+
+[43]
+Underfull \hbox (badness 2245) in paragraph at lines 1523--1524
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विवृतिविमर्शि
+नी–क्रमस्तोत्र–भैरवस्तोत्र
+ाख्यानां ग्रन्थानां रचनाकाल
+ं निर्दिशति स्म । क्रमस्तोत्
+रस्य
+ []
+
+
+Underfull \hbox (badness 1824) in paragraph at lines 1527--1528
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रसध्वनिगुणालङ
+्कारादिविषये स्थाने स्थाने स
+मालोचका अस्य विचारं प्रमाणरू
+पेणोपस्थापयन्ति ।
+ []
+
+
+Underfull \hbox (badness 1533) in paragraph at lines 1531--1532
+\TU/TiroDevanagariSanskrit(0)/m/n/10 एतेषां संयोगाव
+स्थायां रोमाञ्चादीनि, वियोगा
+वस्थायाञ्च अश्रुपातादिकार्
+याणि तथा हर्षचिन्तादीनि
+ []
+
+
+Underfull \hbox (badness 6094) in paragraph at lines 1531--1532
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सहायककारणानि ज
+ायन्ते । एतान्येव कार्यकारणस
+हकारिकारणानि सुललितकाव्येन 
+समर्पितै
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1531--1532
+\TU/TiroDevanagariSanskrit(0)/m/n/10 लौकिकसीतारामा
+दिभिरसाधारणधर्मविनाशैरलौकि
+क–विभावानुभावव्यभिचारीशब्द
+ाभिधेयैः
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1531--1532
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सीतादिभिरालम्
+बनकारणैः चन्द्रिकादिभिरुद्
+दीपनकारणैरश्रुपातादिभिः का
+र्यैश्चिन्तादिभिश्च
+ []
+
+[44]
+Underfull \hbox (badness 10000) in paragraph at lines 1533--1534
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य मते विभाव
+ादीनां रत्यादिस्थायिभावेन स
+ह संयोगात्= व्यङ्ग्यव्यञ्जकस
+म्बन्धाद्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1533--1534
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रसनिष्पत्तिः=अ
+भिव्यक्तिर्भवति । रसनिष्पत्
+तिविषये काव्यशास्त्रेऽयमभि
+नवगुप्तस्य विचारः
+ []
+
+[45]
+Underfull \hbox (badness 3735) in paragraph at lines 1543--1544
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अधिकरणानि उपकल
+्पितानि, परम् अधुना कविरहस्य
+ाभिधं प्रथममधिकरणमेवोपलब्ध
+मास्ते ।
+ []
+
+
+Underfull \hbox (badness 3229) in paragraph at lines 1557--1558
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य मते इहलोक
+परलोकेषु सर्वत्र चिरन्तनानन
+्दप्रदानमेव काव्यस्य प्रयोज
+नम् भवतीति
+ []
+
+[46]
+Underfull \hbox (badness 1308) in paragraph at lines 1577--1578
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारस्यावश
+्यकतां विचार्य वेदस्य सप्तमम
+ङ्गमिति घोषयति च । काव्यपुरु
+षमुपामादयोऽलङ्कारा
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1589--1590
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 राजशेखरः काव्
+ये वचनविन्यासक्रमरूपेण रीति
+तत्त्वं स्वीकरोति । अयं वामन
+ाचार्यस्य
+ []
+
+
+Underfull \hbox (badness 7704) in paragraph at lines 1591--1592
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘वचनविन्यासक्
+रमो रीतिः ।’ सा च वैदर्भी, गौड
+ीया, पाञ्चाली चेति तिस्रः ।’ ए
+षु
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1593--1594
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 एतादृशैर्विवे
+चनैः काव्यमीमांसाया लेखको रा
+जशेखरः संस्कृतकाव्यशास्त्र
+स्य कृते
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 1595--1596
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यराजशेखर
+ः संस्कृतसाहित्यस्य काव्यशा
+स्त्रस्य च क्षेत्रे देदीप्यम
+ानो नक्षत्र आसीत् ।
+ []
+
+[47]
+Underfull \hbox (badness 2237) in paragraph at lines 1615--1616
+\TU/TiroDevanagariSanskrit(0)/m/n/10 द्वितीये—नायि
+कानायकभेदवृत्त्यादीनां निर
+ूपणम्, तृतीये—नाटकलक्षणम्, त
+त्स्वरूपञ्च सविस्तारं
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 1629--1630
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तथापि कुन्तक आन
+न्दवर्धनस्य ध्वनिप्रस्थाने
+न सह सुपरिचित आसीत् । असौ आनन्
+दवर्धनस्य
+ []
+
+
+Underfull \hbox (badness 7468) in paragraph at lines 1633--1634
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अत्र कारिका वृत
+्तिरुदाहरणञ्चेति त्रयो भागा
+ः सन्ति । कारिकावृत्तिभागौ क
+ुन्तकस्य रचने,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1635--1636
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 वक्रोक्तितत्त
+्वस्य कल्पना भामहेन कृता । तस
+्यैवोल्लेखस्य प्रेरणया असौ व
+क्रोक्तिं
+ []
+
+
+Underfull \hbox (badness 4981) in paragraph at lines 1635--1636
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यस्यात्मत
+्वेन स्वीकृतवान् । अस्य वक्र
+ोक्तिर् विशिष्टस्वरूपा विद्
+यते, यथा— ‘वक्रोक्तिरेव
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 1635--1636
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रसिद्धाभिधा
+नव्यतिरेकिणी विचित्रैवाभिध
+ा । कीदृशी भङ्गीभणितिः ? वैदग्
+ध्यं विदग्ध्यभावः
+ []
+
+
+Underfull \hbox (badness 4441) in paragraph at lines 1635--1636
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कविकर्मकौशलम्, 
+तस्य भङ्गी विच्छित्तिः, तया भ
+णिति विचित्रैवाभिधा वक्रोक्
+तिरित्युच्यते ।
+ []
+
+[48] [49]
+Underfull \hbox (badness 1590) in paragraph at lines 1721--1722
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘वक्रोक्तिः’ 
+इति शब्दस्य प्रयोगस्तु पौरस्
+त्यकाव्यशास्त्रे प्राचीनका
+लादेव प्रचलित आसीत् ।
+ []
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अनेन प्रकारेण 
+कुन्तकः स्वप्रतिभाशक्त्या प
+्रबलतार्किकविचारपरिपाकेन प
+्राग्जातैः
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यशास्त्रि
+भिरलङ्कारभेदरूपेण विवेचितं 
+वक्रोक्तितत्त्वं काव्यात्म
+स्थानीयमुद्घोषयति ।
+ []
+
+
+Underfull \hbox (badness 6592) in paragraph at lines 1733--1734
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘राजनकः’ इत्य
+ुपाधिभूषितः कुन्तकः संस्कृत
+काव्यशास्त्रस्य इतिहासे वक्
+रोक्तिसम्प्रदायस्य
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 1733--1734
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यतत्त्वान
+ां समन्वयं कृत्वा ‘वक्रोक्ति
+ः काव्यजीवितम्’ इति नवीनं सि
+द्धान्तं प्रस्थापितवान् ।
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 1733--1734
+\TU/TiroDevanagariSanskrit(0)/m/n/10 च काव्यप्रयोजन
+े आह्लादप्रदानपूर्वकं चतुर्
+वर्गफलप्राप्तिरङ्गीकृता । त
+ेन पारम्परिकम् अलङ्कारतत्त्
+वं
+ []
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 1737--1738
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतकाव्यश
+ास्त्रेतिहासे महिमभट्टो ध्व
+निविरोधिनि प्रस्थाने समायात
+ि । अस्य समयोऽपि
+ []
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 1737--1738
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नामोल्लखं करोत
+ि । अत आचार्योऽयं कुन्तकात् प
+रवर्त्तीति स्वीक्रियते । ईशव
+ीयद्वादशशताब्दस्य
+ []
+
+[51]
+Underfull \hbox (badness 5288) in paragraph at lines 1759--1760
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 महिमभट्टो विश
+िष्टप्रतिभासम्पन्नः काव्यश
+ास्त्री आसीत् । अनेन स्वपूर्
+ववर्त्तिनामाचार्याणां
+ []
+
+
+Underfull \hbox (badness 4531) in paragraph at lines 1767--1768
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 क्षेमेन्द्राच
+ार्येण रचिता नैका ग्रन्थाः ल
+भ्यन्ते । तेषु औचित्यविचारचर
+्चा, सुवृत्ततिलकम्,
+ []
+
+
+Overfull \hbox (87.65462pt too wide) in paragraph at lines 1767--1768
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विशेषण–उपसर्ग
+–निपात–काल–देश–कुल–व्रत–तत
+्त्व–सत्त्व–अभिप्राय–स्वभा
+व–सार–सङ्ग्रह–प्रतिभा–अवस्
+था–विचार–नाम–आशीः
+ []
+
+[52] [53]
+Underfull \hbox (badness 10000) in paragraph at lines 1819--1820
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 एकादशशतकस्योत
+्तरार्धे काश्मीरभूमौ प्रादु
+र्भूतः आचार्यः क्षेमेन्द्रः 
+संस्कृतकाव्यशास्त्रस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1827--1828
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 भोजराजस्य सरस
+्वतीकण्ठाभरणम्, शृङ्गारप्रक
+ाशश्च काव्यशास्त्रसम्बद्धौ 
+ग्रन्थौ स्तः ।
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 1827--1828
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पदगताः षोडश, वा
+क्यगताः षोडश, वाक्यार्थगता ष
+ोडशेति अष्टचत्वारिंशद् दोषा
+ः विवेचिताः ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1827--1828
+\TU/TiroDevanagariSanskrit(0)/m/n/10 एवमेव शब्दगताश
+्चतुर्विंशतिरर्थगताश्चतुर्
+विंशतिरिति अष्टाचत्वारिंशत
+् गुणा निरूपिताः सन्ति ।
+ []
+
+[54]
+Underfull \hbox (badness 7522) in paragraph at lines 1829--1830
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 शृङ्गारप्रकाश
+श्चास्यापरो ग्रन्थः । अत्र ष
+ट्त्रिंशत् प्रकाशाः सन्ति । 
+तेषु आद्याष्टप्रकाशेषु
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1839--1840
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 परं तन्मते यः श
+ृङ्गारः स न केवलं यूनोः परस्प
+राकाङ्क्षात्मकमपितु
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 1855--1856
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 भोजराजोऽलङ्का
+रादपि महत्त्वाधिकं गुणतत्त्
+वं स्वीकरोति । अस्य मते गुणाल
+ङ्कारयोर्मुख्यं तु
+ []
+
+
+Underfull \hbox (badness 7047) in paragraph at lines 1865--1866
+\TU/TiroDevanagariSanskrit(0)/m/n/10 आश्रयदाता, स्वय
+ञ्च उत्कृष्टः काव्यशास्त्री 
+च आसीत्। तस्य ‘सरस्वतीकण्ठाभ
+रणम्’ तथा
+ []
+
+
+Underfull \hbox (badness 4303) in paragraph at lines 1865--1866
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतकाव्यश
+ास्त्रस्य इतिहासस्य सर्वाधि
+कविशालकायः ग्रन्थः ‘शृङ्गार
+प्रकाशः’ इति द्वौ ग्रन्थौ
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 1865--1866
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रसान्वितञ्च कव
+ेः कर्म काव्यमिति काव्यस्वरू
+पं स्वीकृतम्, यस्य प्रयोजनं क
+ीर्तिः प्रीतिश्चास्ति।
+ []
+
+[55]
+Underfull \hbox (badness 5592) in paragraph at lines 1871--1872
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 कालेऽस्मिन् आ
+नन्दवर्धन-अभिनवगुप्त-राजशेख
+र-कुन्तक-मम्मटप्रभृतयो धुरन्
+धरा मूर्धन्याश्च
+ []
+
+
+Underfull \hbox (badness 3386) in paragraph at lines 1873--1874
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यतत्त्वान
+ां स्थानञ्च निर्धारितम्; तदु
+त्तरवर्त्तिभिराचार्यैरपि प
+्रायशः सादरमभिनन्दितम्। अतः
+ []
+
+[56] [57
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1887--1888
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रेतिहासे मम्मटाचार्य
+स्योदयाद् व्याख्याकाल आरभ्य
+ते । अत्र
+ []
+
+
+Underfull \hbox (badness 1286) in paragraph at lines 1887--1888
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ध्वनिसम्प्रदा
+यपक्षपातिनो मम्मट-रुय्यक-हेम
+चन्द्र-विद्याधर-विद्यानाथप्
+रभृतय आचार्याः समभवन् ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1887--1888
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रससम्प्रदायस्
+य विश्वनाथ-शारदातनय-शिङ्गभुप
+ाल-भानुदत्त-रूपगोस्वामिप्रभ
+ृतयः समालोचकाः
+ []
+
+
+Underfull \hbox (badness 4036) in paragraph at lines 1887--1888
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सञ्जाताः । अलङ्
+कारसम्प्रदायस्य जगन्नाथविश
+्वेश्वरादयः प्रतिभाशालिनः श
+ास्त्रकाराः समागताः ।
+ []
+
+
+Underfull \hbox (badness 1460) in paragraph at lines 1887--1888
+\TU/TiroDevanagariSanskrit(0)/m/n/10 निर्णीता विषया
+ः कालेऽस्मिन् स्थिरीभूताः । 
+कालस्यास्य समयो जगन्नाथविश्
+वेश्वरपर्यन्तं मन्यते ।
+ []
+
+[58]
+Underfull \hbox (badness 1314) in paragraph at lines 1911--1912
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मम्मटस्य विद्व
+तां प्रमाणयितुं तस्य काव्यप्
+रकाश एव अलम् । ग्रन्थोऽयं गभी
+रकाव्यतत्त्वप्रकाशने
+ []
+
+
+Underfull \hbox (badness 8056) in paragraph at lines 1911--1912
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यतत्त्वस्
+थानस्थिरीकरणे चाद्वितीयो वि
+द्यते । स च सूत्रात्मिकायां श
+ैल्यां रचितोऽस्ति ।
+ []
+
+
+Underfull \hbox (badness 6268) in paragraph at lines 1911--1912
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अत एवास्याभिप्
+रायबोधे कुत्रचित् काठिन्यमन
+ुभूयते । काव्यशास्त्रनिष्णा
+तैर्विद्वद्भिरस्य ग्रन्थस्
+य
+ []
+
+
+Underfull \hbox (badness 1127) in paragraph at lines 1919--1920
+\TU/TiroDevanagariSanskrit(0)/m/n/10 त्रिगुणान् प्र
+स्तौति । नवमदशमयोरुल्लासयोः 
+क्रमशः शब्दालङ्कारार्थालङ्
+कारयोर्विवेचनमस्ति । अनेन
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 1941--1942
+\TU/TiroDevanagariSanskrit(0)/m/n/10 गुणाभ्यां वा सह
+ितौ, अनलङ्कृती क्वचित् स्फुट
+रससहितस्थले तु स्फुटालङ्कार
+रहितौ–अपि, अत्र
+ []
+
+[59]
+Underfull \hbox (badness 10000) in paragraph at lines 1955--1956
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यहेतुविषय
+ेऽपि मम्मटमतं सर्वोत्कृष्टं 
+मन्यते । सर्वेषां प्राग्जाता
+नां काव्यशास्त्रिणां
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 1965--1966
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 शक्तिः (प्रतिभ
+ा)- \TU/TiroDevanagariSanskrit(0)/m/n/10 आह्लादपरकबो
+धजनिका वर्णना, स चातिशयो जन्म
+ान्तरतोऽनुवर्तमाना
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1968
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 निपुणता (व्युत
+्पत्तिः)\TU/TiroDevanagariSanskrit(0)/m/n/10 - लोकशा
+स्त्रकाव्याद्यवेक्षणाद् **नि
+पुणता- ‘**लोकः’ इत्यनेन
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1968
+\TU/TiroDevanagariSanskrit(0)/m/n/10 लौकिकव्यवहारज
+्ञानम्, ‘शास्त्रम्’ इत्यनेन 
+व्याकरणाभिधानकोषकलादिग्रन्
+थानामध्ययनम्,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1968
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘काव्य’मित्यन
+ेन वाल्मीकिकालिदासादीनां रा
+मायणरघुवंशादीनामनुशीलनम्, ‘
+आदि’शब्देन
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1968
+\TU/TiroDevanagariSanskrit(0)/m/n/10 स्त्रीपुरुषलक
+्षणग्रन्थाः, चार्वाक–बौद्ध–
+जैनादिधर्मदर्शनग्रन्थादयो 
+ग्रन्थाश्चेतेषां सर्वेषां स
+ङ्ग्रहः ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1967--1968
+\TU/TiroDevanagariSanskrit(0)/m/n/10 इत्यादिविषयाण
+ामवेक्षणाद्‍= विमर्शनात्, पु
+नः पुनः पठनाद् विचारणाच्च नि
+पुणता=
+ []
+
+[60]
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1988
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 कालिदासादीनाम
+िव यशः, श्रीहर्षादेः धावकादी
+नामिव धनम्, राजादिगतोचिताचार-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1988
+\TU/TiroDevanagariSanskrit(0)/m/n/10 परिज्ञानम्, आदि
+त्यादेर्मयुरादीनामिव रोगनि
+वारणम्, सकलप्रयोजनमौलिभूतम्, 
+समनन्तरमेव
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1987--1988
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रसास्वादनसमुद
+्भूतम्, विगलितवेद्यान्तरमान
+न्दम्, प्रभुसम्मितशब्दप्रधा
+नवेदादिशास्त्रेभ्यः,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1991--1992
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 राजादिगतोचिता
+चारपरिज्ञान\TU/TiroDevanagariSanskrit(0)/m/n/10 मि
+त्यस्य राजा, आदिपदात् राजपुत
+्रादीनां वर्णाश्रमाणाञ्च
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1991--1992
+\TU/TiroDevanagariSanskrit(0)/b/n/10 रसास्वादनसमुद
+्भूत\TU/TiroDevanagariSanskrit(0)/m/n/10 मित्यस्य ‘
+रस्यते इति रसः’ स्थायिभावस्त
+दास्वादनेनाऽऽस्वादकरणभूतेन
+ []
+
+[61]
+Underfull \hbox (badness 10000) in paragraph at lines 1995--1996
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 रामादिवत्प्रव
+र्त्तितव्यं न रावणादिव\TU/TiroDevanagar
+iSanskrit(0)/m/n/10 दित्यस्य काव्ये तु सद
+सत्पक्षयोः प्रस्तुतिर्भवति 
+परं
+ []
+
+
+Underfull \hbox (badness 3803) in paragraph at lines 1995--1996
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तत्र वर्णिताद् 
+विषयाद् रामादिवत्सत्कर्मशी
+लस्येव कार्यमनुकरणीयं न तु र
+ावणवद् असत्कार्ये
+ []
+
+
+Underfull \hbox (badness 1867) in paragraph at lines 1997--1998
+[]\TU/TiroDevanagariSanskrit(0)/b/n/10 सर्वथा तत्र यत
+नीय\TU/TiroDevanagariSanskrit(0)/m/n/10 मित्यस्य— ए
+तावदिष्टविशिष्टं काव्यम्, अत 
+एव तत्र कविः सहृदयश्च
+ []
+
+
+Underfull \hbox (badness 7740) in paragraph at lines 2025--2026
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 यथा— मानवशरीर
+े शौर्यादय आत्मनो धर्मा भवन्
+ति । ते च स्थायिरूपेण आत्मनि
+ []
+
+
+Underfull \hbox (badness 6110) in paragraph at lines 2025--2026
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अवस्थिताः सन्त
+ि, तथैव काव्यशरीरेऽपि माधुर्
+यादयो गुणा आत्मरूपेणावस्थित
+ं रसमङ्गीकृत्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2029--2030
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यप्रकाशका
+रो मम्मटो रीतेर्विषये समहत्त
+्वं विवेचनं न करोति । स
+ []
+
+[62]
+Underfull \hbox (badness 10000) in paragraph at lines 2059--2060
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पूर्वाचार्यैर
+्वैयाकरणैः प्रधानभूतस्फोटर
+ूपव्यङ्ग्यव्यञ्जकशब्दस्य ध
+्वनिरितिव्यवहारकृतः ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2059--2060
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ततस्तन्मतानुस
+ारिभिरन्यैरपि न्यग्भावितवा
+च्यव्यङ्ग्यव्यञ्जनक्षमस्य 
+शब्दार्थयुगलस्य ध्वनिरिति
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 2059--2060
+\TU/TiroDevanagariSanskrit(0)/m/n/10 व्यवहारकृतः । अ
+त एव वाच्यापेक्षया व्यङ्ग्यस
+्य प्राधान्यत्वं ध्वनित्वमि
+ति उत्तमकाव्यलक्षणम् ।
+ []
+
+[63]
+Underfull \hbox (badness 7667) in paragraph at lines 2117--2118
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अत्र कवेर्मन्
+दाकिनीविषयको रतिभावो विद्यत
+े, तथा च अन्यतीर्थापेक्षया मन
+्दाकिन्या
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2117--2118
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विशेषताधिक्यव
+र्णनाद् व्यतिरेकालङ्कारोऽप
+ि व्यज्यते, परं कवेरत्र अनुप्
+राससहकारेण
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2127--2128
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अत्र हयग्रीवस
+्योत्साहस्थायिभावात्मकस्य 
+वीरत्वव्यङ्ग्येऽपि कवेर्ता
+त्पर्यमत्र
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2127--2128
+\TU/TiroDevanagariSanskrit(0)/m/n/10 उत्प्रेक्षाऽल
+ङ्कारचमत्कारप्रदर्शनेऽस्ति 
+। अतोऽमरावत्या नेत्रनिमीलना
+त्मकेन सम्भावनारूपेण
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2127--2128
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अर्थगतचमत्कार
+जनकोत्प्रेक्षाऽलङ्कारेण प्
+रतीयमानार्थतिरोहितत्वाद् अ
+र्थाऽलङ्कारप्राधन्यमस्ति ।
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 2129--2130
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यमम्मट ए
+कादशशताब्द्या उत्तरार्धे का
+श्मीरदेशे समुत्पन्नः संस्कृ
+तकाव्यशास्त्रेतिहासस्य
+ []
+
+
+Underfull \hbox (badness 2635) in paragraph at lines 2129--2130
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कश्चन युगप्रवर
+्तकः, निर्णायकश्च विद्वान् आ
+सीत्। ‘वाग्देवतावतारः’ इति उ
+पाधिना विख्यातेन
+ []
+
+
+Underfull \hbox (badness 4181) in paragraph at lines 2129--2130
+\TU/TiroDevanagariSanskrit(0)/m/n/10 आकरग्रन्थो वर्
+तते। ध्वनिसिद्धान्तस्य खण्ड
+नकर्तॄणां भट्टनायक-महिमभट्ट
+ादीनां युक्तीनां सतर्कं
+ []
+
+[64] [65]
+Underfull \hbox (badness 1622) in paragraph at lines 2149--2150
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य अलङ्कारस
+र्वस्वाख्यो लाक्षणिकग्रन्थ
+स्तु अलङ्कारसम्प्रदायस्य कृ
+ते वरदानरूपं दृश्यते ।
+ []
+
+
+Underfull \hbox (badness 2573) in paragraph at lines 2163--2164
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य अलङ्कारश
+ास्त्रीयपक्षे महत्त्वपूर्ण
+ं योगदानं तु अलङ्काराणां वैज
+्ञानिकं वर्गीकरणमेव ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारविश्ले
+षणसन्दर्भेऽनेन अलङ्कारस्य व
+र्गीकरणमिति शीर्षकमुल्लिख्
+य स्पष्टरूपेण एकत्र
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारवर्गीक
+रणं नोक्तम् । तत्र तु ‘अथ सादृ
+श्यमूलका अलङ्काराः’ ‘इति साद
+ृश्यमूलका
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 2163--2164
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारा वर्णि
+ता’ इत्यनया शैल्या विहितं सा
+ङ्केतिकवर्गीकरणं समालोचकैर
+्विविच्य एकत्रीकृत्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘रुय्यकस्यालङ
+्कारवर्गीकरण’मिति प्रकाशित
+म् । अतोऽलङ्काराध्ययने प्रवृ
+त्ता जिज्ञासवः
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2163--2164
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारसर्वस्
+वे सारल्येन अलङ्कारवर्गीकरण
+ं कुत्र विद्यते इति ज्ञातुं न 
+शक्नुवन्ति । अस्य
+ []
+
+[66]
+Underfull \hbox (badness 1122) in paragraph at lines 2205--2206
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तदनन्तरं सादृश
+्य-विरोध-शृङ्खला-न्यायादि सप
+्तसु वर्गेषु कृतम्। अलङ्कारस
+र्वस्वे विप्रकीर्णम् अस्य
+ []
+
+[67]
+Underfull \hbox (badness 3049) in paragraph at lines 2213--2214
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यहेतोः, काव
+्यलक्षणस्य, शब्दार्थयोः स्वर
+ूपस्य च विवेचनमास्ते । द्वित
+ीये— रसस्य तस्य
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 2215--2216
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 हेमचन्द्रः पू
+र्वेषां मते विद्यमानस्य संसृ
+ष्टेरलङ्कारस्य सङ्करालङ्का
+रे एवान्तर्भावं चकार, तथा
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2215--2216
+\TU/TiroDevanagariSanskrit(0)/m/n/10 च दीपके तुल्ययो
+गितायाः । अनेन परिवृत्तिनामक
+स्य नवीनालङ्कारस्य चोद्भावन
+ं कृतम् ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2219--2220
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यो हेमचन
+्द्रः प्राग्जातानामाचार्या
+णामनुयायी विद्यते । अस्य काव
+्यलक्षणमपि
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2229--2230
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 हेमचन्द्रस्य 
+समकालिको जैनधर्मावलम्बी आलङ
+्कारिकोऽस्ति वाग्भटः । एतस्य 
+रचना
+ []
+
+
+Underfull \hbox (badness 1983) in paragraph at lines 2229--2230
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतप्राकृ
+तभाषयोर्विशेषज्ञो ज्ञायते । 
+अस्य ग्रन्थस्योदाहरणेषु कर्
+णपुत्रस्य अनहिलवाडाधिपतेश्
+ []
+
+
+Underfull \hbox (badness 3098) in paragraph at lines 2233--2234
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्य शास्त्री
+यग्रन्थस्य नाम वाग्भटालङ्का
+रो वर्तते । लाक्षणिकग्रन्थोऽ
+यं पञ्चसु परिच्छेदेषु
+ []
+
+
+Underfull \hbox (badness 2119) in paragraph at lines 2233--2234
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संविभक्तोऽस्त
+ि । तत्र काव्यशास्त्रसिद्धान
+्तानां सङ्क्षेपेण विवेचनं प्
+राप्यते । तेषु प्रथमपरिच्छेद
+े—
+ []
+
+[68]
+Underfull \hbox (badness 10000) in paragraph at lines 2251--2252
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतकाव्यश
+ास्त्रस्यालङ्कारपक्षीयेतिह
+ासे जयदेवस्यावदानं स्मरणीयं 
+विद्यते । अस्य
+ []
+
+
+Underfull \hbox (badness 3872) in paragraph at lines 2251--2252
+\TU/TiroDevanagariSanskrit(0)/m/n/10 चन्द्रालोकाख्
+योऽलङ्कारविषयको ग्रन्थः शास
+्त्रीयज्ञानार्जनशीलान् पाठ
+कान् कृते सरलसुबोध्यतया
+ []
+
+[69]
+Underfull \hbox (badness 1147) in paragraph at lines 2285--2286
+\TU/TiroDevanagariSanskrit(0)/m/n/10 जयदेवोऽपि चन्द
+्रालोके इमौ अलङ्कारौ यथा स्य
+ाताम् तथा वर्णयति । तस्मात् ज
+यदेवस्य समय
+ []
+
+
+Underfull \hbox (badness 3930) in paragraph at lines 2289--2290
+\TU/TiroDevanagariSanskrit(0)/m/n/10 एतादृशम् अलङ्क
+ाराणां विवेचनं काव्यशास्त्र
+ीयेतिहासे दुर्लभमेव । उदाहरण
+ार्थमत्रोपमालङ्कारस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2299--2300
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्यैव अलङ्का
+रवर्णनशैल्या लोकप्रियतामवल
+ोक्य पश्चाद् अप्पयदीक्षितोऽ
+पि स्वकीये
+ []
+
+[70]
+Underfull \hbox (badness 1728) in paragraph at lines 2335--2336
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विरचितः \TU/TiroDevanagariSa
+nskrit(0)/b/n/10 ‘चन्द्रालोकः’ \TU/TiroDevanagariSans
+krit(0)/m/n/10 इत्याख्यो ग्रन्थः सरलस
+ुबोधशैलीमवलम्ब्य कठिनकाव्य
+शास्त्रीयसिद्धान्तान्
+ []
+
+
+Underfull \hbox (badness 2435) in paragraph at lines 2335--2336
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सरलीकृत्य पाठक
+ानां हृदये अलङ्कारज्ञानसौकर
+्यं जनयति । अस्य अभूतपूर्वां 
+लोकप्रियतां दृष्ट्वा
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 2335--2336
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारतत्त्व
+स्य परमसमर्थकः आसीत् । मम्मत
+स्य मतं खण्डयन् सः दृढतापूर्
+वकं प्रतिपादयति
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 2335--2336
+\TU/TiroDevanagariSanskrit(0)/m/n/10 यत्- अलङ्कारहीन
+ां वाचमेव काव्यं मन्यमानो जन
+ोऽग्निम् उष्णतारहितं किमर्थ
+ं न स्वीकरोति ?
+ []
+
+[71]
+Underfull \hbox (badness 10000) in paragraph at lines 2371--2372
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थस्योदाह
+रणानि एतेन स्वयमेव प्रतापरुद
+्रस्य यशोवर्णने रचितानि सन्त
+ि । ग्रन्थस्यास्य
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 2371--2372
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मम्मटस्य काव्य
+प्रकाशस्यानुकरणं कृतम्, अलङ्
+कारविषये त्वनेनालङ्कारसर्व
+स्वस्य मतमङ्गीकृतम् ।
+ []
+
+
+Underfull \hbox (badness 1394) in paragraph at lines 2371--2372
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अतोऽत्र रुय्यक
+स्य ग्रन्थानुसारेणायं परिणा
+मोल्लेखविचित्रविकल्पानामलङ
+्काराणां विवेचनं करोति ।
+ []
+
+[72]
+Underfull \hbox (badness 2197) in paragraph at lines 2389--2390
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मूर्धन्यविद्व
+ान्, रसवादी च मन्यते। अनेन प्र
+थमतो मम्मटकृत-काव्यप्रकाशस्
+य ‘दर्पणः’ आख्या
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2389--2390
+\TU/TiroDevanagariSanskrit(0)/m/n/10 टीका लिखिता। टी
+कालेखनकारणाद् अनेन काव्यशास
+्त्रीयविषयेषु गभीरं ज्ञानं ल
+ब्धम्।
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 2407--2408
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रतिष्ठितौ आस
+्ताम्। अयं महानुभावो वैष्णवम
+तानुयायी आसीत्। अस्य पाण्डित
+्येन प्रभाविताः
+ []
+
+
+Underfull \hbox (badness 4266) in paragraph at lines 2407--2408
+\TU/TiroDevanagariSanskrit(0)/m/n/10 समकालिका राजान
+ो विद्वांसश्च तम् \TU/TiroDevanagariSanskrit(0)/b
+/n/10 महापात्र-कविसूक्तिसुधाकर-
+आलङ्कारिकचक्रवर्त्ति\TU/TiroDevanagariS
+anskrit(0)/m/n/10 -प्रभृतिभिः
+ []
+
+
+Underfull \hbox (badness 2617) in paragraph at lines 2413--2414
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्यविश्वना
+थः केवलं लक्षणग्रन्थकार एव न
+ासीत्, अपितु एष उच्चकोटिकः कव
+िरपि
+ []
+
+
+Underfull \hbox (badness 4266) in paragraph at lines 2413--2414
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यम्, साहित्
+यदर्पणाख्यो लाक्षणिकग्रन्थ
+श्चेति विविधविषयसम्बद्धा ग्
+रन्था लिखिताः । एतेषु
+ []
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 2413--2414
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यशास्त्रस
+म्बन्धिग्रन्थः साहित्यदर्प
+णोऽस्ति । अत्र संस्कृतसाहित्
+ये प्रचलितानां सर्वेषां विधा
+नां
+ []
+
+[73]
+Underfull \hbox (badness 10000) in paragraph at lines 2418--2419
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रथमपरिच्छेद
+े काव्यलक्षणकाव्यप्रयोजनाद
+िनां काव्याड्गानां विवेचनमा
+स्ते। अत्रैव
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2427--2428
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 चतुर्थपरिच्छे
+दे ध्वनिवादानुसारं ध्वनिकाव
+्यस्य (उत्तमकाव्यस्य) गुणीभू
+तव्यङ्ग्यकाव्यस्य
+ []
+
+
+Underfull \hbox (badness 4001) in paragraph at lines 2433--2434
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाटकस्याङ्गभू
+तानां सन्धिसन्ध्यङ्गादीनाञ
+्च विस्तृतं विवेचनं कृतम्। द
+ृश्यकाव्यदृष्ट्या अयं
+ []
+
+[74]
+Underfull \hbox (badness 4291) in paragraph at lines 2487--2488
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 विश्वनाथोऽभिन
+वगुप्तस्य रसस्वरूपं दृढतया स
+्वीकृत्य ब्रूते यत्- सहृदयान
+ां हृदये स्थितो
+ []
+
+[75]
+Underfull \hbox (badness 2512) in paragraph at lines 2516--2517
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 केशवमित्रस्य 
+लाक्षणिकग्रन्थस्य नाम \TU/TiroDevanagar
+iSanskrit(0)/b/n/10 अलङ्कारशेखरो\TU/TiroDevanagariSansk
+rit(0)/m/n/10 ऽस्ति । ग्रन्थस्यास्य प
+्रारम्भे अन्त्ये च
+ []
+
+
+Underfull \hbox (badness 1448) in paragraph at lines 2516--2517
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रामचन्द्राख्य
+स्य राज्ञः पुत्र आसीत् । स काब
+ुलदेशस्य मुगलनृपमजयत् । कनिङ
+्‌घममतानुसारेण
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 2518--2519
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अस्यालङ्कारशे
+खराख्ये लाक्षणिकग्रन्थे कार
+िका, वृत्तिः, उदाहरणश्चेति त्
+रयो भागाः सन्ति ।
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 2528--2529
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 शिङ्गभूपालस्य 
+कालविषये मतभेदाः सन्ति । केच
+ित् त्रयोदशशताब्दस्य मध्यभा
+गः, केचित्
+ []
+
+[76]
+Underfull \hbox (badness 1057) in paragraph at lines 2544--2545
+\TU/TiroDevanagariSanskrit(0)/m/n/10 इति गणितो विद्य
+ते । अस्य पितु गणेश्वरस्य पुत
+्र चण्डेश्वरो विवादरत्नाकरा
+ख्यां कृतिं प्रणैषित् ।
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 2550--2551
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रीयेतिहासे कैश्चिद् व
+िद्वद्भिर्वैष्णवभक्तिधाराय
+ां भक्तिरसस्य शास्त्रीया चर्
+चा
+ []
+
+
+Underfull \hbox (badness 1348) in paragraph at lines 2550--2551
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सर्वोत्कृष्टं 
+सर्वमान्यञ्च विद्यते । असौ भ
+क्तिसाहित्यप्रवर्तकस्य श्र
+ीकृष्णचैतन्यमहाप्रभोः परमप
+्रियः
+ []
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 2550--2551
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शिष्यः, मुकुन्द
+स्य पौत्रः, कुमारस्य पुत्रः, स
+नातनगोस्वामिनो भ्राता आसीत् 
+। अस्य समयः
+ []
+
+
+Underfull \hbox (badness 2042) in paragraph at lines 2554--2555
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थेऽस्मिन
+् नाटकस्य नाट्यशास्त्रस्य च 
+साङ्गोपाङ्गं मौलिकं वर्णनमा
+स्ते । आचार्यभरतस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2554--2555
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाट्यशास्त्रम
+्, शिङ्गभूपालस्य रसार्णवसुधा
+करश्चेति ग्रन्थद्वयस्य गहनम
+ध्ययनं कृत्वा
+ []
+
+
+Underfull \hbox (badness 3547) in paragraph at lines 2554--2555
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अष्टसु प्रकाशे
+षु विभक्तेऽस्मिन् ग्रन्थे ना
+टकलक्षणम्, नायकनायिकाभेदवर्
+णनम्, रूपकविभागः,
+ []
+
+
+Underfull \hbox (badness 3460) in paragraph at lines 2554--2555
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नाट्याङ्गानां 
+वैज्ञानिकं विवेचनम्, नाटकस्य 
+अङ्कदृश्यविभाजनम्, भाषाविधा
+नम्, वृत्तिविचारः,
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 2554--2555
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अत्र स्वरचितवि
+दग्धमाधवललितमाधवादिवैष्णवग
+्रन्थेभ्यः प्रायशो भगवल्लील
+ामयानि उदाहरणानि
+ []
+
+[77]
+Underfull \hbox (badness 3354) in paragraph at lines 2558--2559
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ``भक्तिर्देवादि
+विषयिका रतिर्भाव एव न तु रसः'' 
+इति मतं सप्रमाणं खण्डयित्वा 
+भक्तिरसस्य
+ []
+
+
+Underfull \hbox (badness 1107) in paragraph at lines 2576--2577
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थोऽयं भक
+्तिरसामृतसिन्धोः परिशिष्टत
+्वेन पूरकत्वेन रचितोऽस्ति, य
+त्र भक्तिरसामृतसिन्धोः
+ []
+
+
+Underfull \hbox (badness 6842) in paragraph at lines 2576--2577
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पश्चिमविभागे व
+र्णितस्य सर्वोत्कृष्टस्य ‘म
+धुरभक्तिरसस्य’ सर्वाङ्गविव
+ेचनं विद्यते । ग्रन्थेऽस्मिन
+्
+ []
+
+
+Underfull \hbox (badness 1237) in paragraph at lines 2576--2577
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भक्तिरसवर्णनद
+ृष्ट्या अद्वितीयो विशालकाया
+त्मकश्चास्ति । ग्रन्थोऽयं भक
+्तेरसस्य, अलङ्कारशास्त्रस्य,
+ []
+
+[78]
+Underfull \hbox (badness 10000) in paragraph at lines 2578--2579
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सुदृढत्वेन संस
+्थापितः । अतो रससिद्धान्तस्य 
+व्यापकदृष्ट्या, नाट्यलक्षणस
+्य परिष्कारदृष्ट्या,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2582--2583
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्योऽयं दक
+्षिणभारतस्य ग्रन्थकारेषु वि
+शिष्टो वर्तते ।
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 2582--2583
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतकाव्यश
+ास्त्रस्योत्तरवर्त्तिसमयेऽ
+ऽलङ्कारिकसमाजेऽयं समादरणीय
+ोऽस्ति । अयं वेङ्कटपतिनाम्नो
+ []
+
+
+Underfull \hbox (badness 1776) in paragraph at lines 2592--2593
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शिवादित्यमणिद
+ीपिकायां स्वपितुर्नाम रङ्गर
+ाजः, पितामहश्च आचार्यः दीक्ष
+ितः, इति अलिखत् ।
+ []
+
+[79]
+Underfull \hbox (badness 1019) in paragraph at lines 2594--2595
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अनेन विविधविध
+ासम्बद्धाः शताधिका ग्रन्था व
+िरचिता इति सङ्केतः प्राप्यते, 
+परन्तु अधुना
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2626--2627
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 चन्द्रलोकपथमन
+ुसरन् असौ स्वकीये कुवलयानन्द
+े अनुष्टुप् छन्दसि रचितेषु श
+्लोकेषु
+ []
+
+
+Underfull \hbox (badness 2626) in paragraph at lines 2626--2627
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मतसंयोजनेन अलङ
+्कारसङ्ख्यापि शतोपरिपञ्चवि
+ंशतिरधिका प्रस्तुताः । प्राय
+ः पूर्वजानां केषाञ्चित्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2628--2629
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 विविधविधासु प
+ारङ्गतोऽप्पयदीक्षितः काव्य
+शास्त्रेऽपि सम्मानितोऽस्ति 
+। यद्यपि अनेन
+ []
+
+
+Underfull \hbox (badness 3536) in paragraph at lines 2632--2633
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्योऽयं का
+व्यशास्त्रीयेतिहासस्योत्कर
+्षकाले सर्वाधिकपाण्डित्यपू
+र्णं रसगङ्गाधराख्यं ग्रन्थं
+ []
+
+
+Underfull \hbox (badness 1107) in paragraph at lines 2632--2633
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विरचय्य संस्कृ
+तवाङ्मयस्य साहित्यशास्त्री
+यपक्षं सर्वोत्कृष्टस्थानं प
+्रापयति स्म । स मुगलशासकस्य
+ []
+
+[80] [81]
+Underfull \hbox (badness 5316) in paragraph at lines 2708--2709
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 आचार्योऽयं प्
+राचीनविदुषां काव्यलक्षणान्
+नधीत्य परिष्कृतं काव्यस्वरू
+पं प्रस्तौति । पूर्वेषां
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2716--2717
+[]\TU/TiroDevanagariSanskrit(0)/b/it/10 >स्वविशिष्टजन
+कतावच्छेदकार्थप्रतिपादकतास
+ंसर्गेण चमत्कारत्ववत्वमेव व
+ा काव्यत्वमिति
+ []
+
+[82]
+Underfull \hbox (badness 1867) in paragraph at lines 2726--2727
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 तथैव \TU/TiroDevanagariSanskrit(
+0)/b/n/10 ‘प्रतिपादकः’ \TU/TiroDevanagariSanskrit(0)/m/
+n/10 शब्दस्य निवेशने कारणं यद् - 
+वाचकाः, लक्षकाः, व्यञ्जकाश्च 
+शब्दा
+ []
+
+
+Underfull \hbox (badness 3407) in paragraph at lines 2728--2729
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 रमणीयार्थप्रत
+िपादकः शब्द इत्यत्र \TU/TiroDevanagariSanskri
+t(0)/b/n/10 ‘शब्दः’ \TU/TiroDevanagariSanskrit(0)/m/n/10 इत
+ि पदं विशेष्यं भवति । तत्र विश
+ेषणं तु
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 2730--2731
+\TU/TiroDevanagariSanskrit(0)/m/n/10 व्याकरणादावति
+व्याप्तिनिरासाय । ‘\TU/TiroDevanagariSanskrit
+(0)/b/n/10 प्रतिपादकम्’ \TU/TiroDevanagariSanskrit(0)/m
+/n/10 इति पदं व्यङ्ग्यादिसङ्ग्र
+हाय । ‘\TU/TiroDevanagariSanskrit(0)/b/n/10 शब्द’ \TU/TiroD
+evanagariSanskrit(0)/m/n/10 इति पदं
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2742--2743
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 रमणीयार्थप्रत
+िपादकः शब्दः काव्यमिति लक्षण
+े रमणीयताशब्दस्य परिष्कारं प
+्रदर्श्यानेन
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 2744--2745
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यलक्षणे स
+ंघटितस्य रमणीयपदस्य विवृत्त
+ौ \TU/TiroDevanagariSanskrit(0)/b/n/10 ‘रमणीयता च लो
+कोत्तरज्ञानगोचरता’ \TU/TiroDevanagariSanskr
+it(0)/m/n/10 इत्यत्र
+ []
+
+
+Underfull \hbox (badness 2735) in paragraph at lines 2744--2745
+\TU/TiroDevanagariSanskrit(0)/m/n/10 उक्तज्ञानस्य स
+्थले घटमानय इत्यस्य काव्यत्व
+ं न भवेत् इत्यतिव्याप्तेर्वा
+रणाय ज्ञानपदस्य स्थाने
+ []
+
+[83]
+Underfull \hbox (badness 10000) in paragraph at lines 2746--2747
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 (शब्दार्थः> लोक
+ोत्तरस्य‍= अलौकिकस्य आह्लादस
+्य= आनन्दस्य जनकम्= उत्पादकं
+ []
+
+
+Underfull \hbox (badness 2302) in paragraph at lines 2746--2747
+\TU/TiroDevanagariSanskrit(0)/m/n/10 यज् ज्ञानम् तद् 
+गोचरता= तन्निरूपितविषयतारूप
+ा अर्थनिष्ठा रमणीयता इति । ‘\TU/T
+iroDevanagariSanskrit(0)/b/n/10 लोकोत्तरत्वम्’
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2746--2747
+\TU/TiroDevanagariSanskrit(0)/m/n/10 चाह्लादगतश्चम
+त्कारत्वापरपर्यायोऽनुभवसाक
+्षिको जातिविशेषः । ‘\TU/TiroDevanagariSanskri
+t(0)/b/n/10 लोकोत्तराह्लादे कारणम्
+’ \TU/TiroDevanagariSanskrit(0)/m/n/10 पुनः
+ []
+
+
+Underfull \hbox (badness 5802) in paragraph at lines 2768--2769
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रज्ञानवनवोन
+्मेषशालिनी प्रतिभोच्यते’ इत
+ि च प्रतिभायाः लक्षणम् । प्रत
+िभायाश्च हेतुः
+ []
+
+[84]
+Underfull \hbox (badness 10000) in paragraph at lines 2790--2791
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 एतादृशैः काव्
+यशास्त्रीयविवेचनैः पण्डितर
+ाजः पौरस्त्यकाव्यशास्त्रे स
+मादरणीयं स्थानं
+ []
+
+
+Underfull \hbox (badness 2318) in paragraph at lines 2790--2791
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भजते । काव्यशास
+्त्रस्योत्तरसमये जातानामलङ
+्कारशास्त्रिणां समाजेऽस्य व
+िलक्षणप्रतिभावैशिष्ट्यम्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2790--2791
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अद्वितीयं दृश्
+यते । काव्यलक्षणकाव्यभेदयोर
+स्य नवीनदृष्टिकोणो विद्यते । 
+रसविषयेऽनेन
+ []
+
+
+Underfull \hbox (badness 4518) in paragraph at lines 2790--2791
+\TU/TiroDevanagariSanskrit(0)/m/n/10 उत्पत्ति-अनुमि
+ति-भुक्ति–अभिव्यक्तिरूपाणा
+ं निष्पत्तिर्विषयकसिद्धान्
+तानामतिरिक्ता अन्ये सिद्धान
+्ताः
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2790--2791
+\TU/TiroDevanagariSanskrit(0)/m/n/10 परं काव्यशास्त
+्ररसिकानां कृते तु गीष्मर्तौ 
+सुस्वस्थस्वच्छगभीरजलयुते स
+मुद्रे निमज्जनवत्
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 2794--2795
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘व्याख्याकालः
+’ काव्यशास्त्रीयसिद्धान्ता
+नां स्थिरीकरणाय, परिष्करणाय, 
+समन्वयाय च पूर्णतया
+ []
+
+
+Underfull \hbox (badness 1383) in paragraph at lines 2794--2795
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विशिष्टसमय आसी
+त् । निर्णयात्मककाले उद्भावि
+ता विभिन्नसिद्धान्ता अस्मिन
+् काले प्रौढताङ्गताः
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 2794--2795
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सङ्ग्रहात्मकश
+ैल्या काव्यतत्त्वानि विवेचय
+न्ति । पीयूषवर्षेण जयदेवेन ‘
+चन्द्रालोके’ अनुष्टुप्छन्द
+सा
+ []
+
+
+Underfull \hbox (badness 1867) in paragraph at lines 2794--2795
+\TU/TiroDevanagariSanskrit(0)/m/n/10 बालानां कृतेऽप
+ि सुबोधं सरलञ्च कृतम्, यस्य अन
+ुकरणम् अग्रे अप्पयदीक्षितेन 
+‘कुवलयानन्दे’
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2796--2797
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कविराजो विश्वन
+ाथो मम्मटमतं खण्डयित्वा ‘वाक
+्यं रसात्मकं काव्यम्’ इति सम
+ुद्‌घोषयन्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2796--2797
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यशास्त्रं 
+रसमयमकरोत्, दृश्यश्रव्यकाव्
+ययोरद्वितीयं शास्त्रीयसमीक
+्षणञ्च प्रस्तुतवान् ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2796--2797
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शारदातनयशिङ्ग
+भूपालभानुदत्तादयो लक्षणशास
+्त्रिणो नैकेषु ग्रन्थेषु रस-
+भाव-नायकनायिका-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2796--2797
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भेदादीनां गम्भ
+ीरं विवेचनं चक्रुः । वैष्णवभ
+क्तिधाराया रूपगोस्वामिना भक
+्तिरसामृतसिन्धु-
+ []
+
+
+Underfull \hbox (badness 7081) in paragraph at lines 2796--2797
+\TU/TiroDevanagariSanskrit(0)/m/n/10 उज्ज्वलनीलमणि-
+नाटकचन्द्रिकादिभिर्ग्रन्थै
+र्लौकिक-अलौकिकयोः समन्वयम् व
+िधाय, अन्यरसान्
+ []
+
+[85] [86] [87
+
+]
+Underfull \hbox (badness 2253) in paragraph at lines 2812--2813
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भारतद्वाजगोत्
+रियाः कान्यकुब्जब्राह्मणा आ
+सन् । अस्य पिता लक्ष्मीदत्तप
+ाण्डेयो जीवनस्योत्तरार्द्ध
+े
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2822--2823
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अयं पौरस्त्यक
+ाव्यशास्त्रस्य तीव्रविकासस
+्यान्तिमप्रायो विवेचकोऽस्त
+ि । पण्डितवरस्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2822--2823
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विश्वेश्वरस्य 
+रचनाबाहुल्येऽपि प्रसिद्धा अ
+लङ्कारशास्त्रसम्बद्धाः पञ्
+चग्रन्थाः सन्ति, यत्—
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2822--2823
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारकौस्तु
+भः, अलङ्कारमुक्तावली, अलङ्का
+रप्रदीपः, रसचद्रिका, कवीन्द्
+रकण्ठाभरणञ्चेति ।
+ []
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 2822--2823
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यप्रकाशवर
+्णितेष्वलङ्कारेष्वन्तर्भाव
+ात् तत्रस्था अलङ्कारा एव विव
+ेचिता इति विश्वेश्वरः स्वयमे
+व
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 2822--2823
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारकौस्तु
+भस्यान्तिमपद्ये समुल्लिखति 
+। अत एवास्य अलङ्कारविकासे नू
+तनं प्रणयनं नास्ति ।
+ []
+
+[88]
+Underfull \hbox (badness 10000) in paragraph at lines 2848--2849
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रीयेतिहासे पण्डितराज
+जगन्नाथपश्चात् विश्वेश्वरा
+नन्तरं
+ []
+
+[89]
+Underfull \hbox (badness 10000) in paragraph at lines 2920--2921
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रस्य तीव्रतरो विकासः प
+ण्डितराजजगन्नाथस्य प्रौढवि
+वेचनानन्तरं
+ []
+
+
+Underfull \hbox (badness 2310) in paragraph at lines 2920--2921
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शास्त्रीयविका
+से अष्टादशशताब्द्याः प्रारम
+्भे काश्यां प्रादुर्भूतो भार
+द्वाजगोत्रीयः कान्यकुब्जब्
+राह्मणो
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2922--2923
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 विश्वेश्वरानन
+्तरं नरसिंह-अमरनाथपाण्डेय- स
+ीतारामशास्त्रि-यदुनाथमिश्र-
+श्रीपादशास्त्रि-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2922--2923
+\TU/TiroDevanagariSanskrit(0)/m/n/10 करपात्री-लेखना
+थझा-गजाननशास्त्रि-रेवाप्रसा
+दद्विवेदि-आनन्दझा-ब्रह्मानन
+्दझा
+ []
+
+
+Underfull \hbox (badness 1259) in paragraph at lines 2922--2923
+\TU/TiroDevanagariSanskrit(0)/m/n/10 -राधावल्लभत्रि
+पाठि-राजेन्द्रमिश्र-रहसबिहा
+रीद्विवेदिप्रभृतयः प्रकाण्
+डविद्वांसः काव्यशास्त्रीयप
+रम्पराया
+ []
+
+
+Underfull \hbox (badness 6477) in paragraph at lines 2922--2923
+\TU/TiroDevanagariSanskrit(0)/m/n/10 व्याख्या- विवेच
+नादिमाध्यमेन प्रवर्धनं चक्र
+ुः । एतेषां सर्वेषाम् आचार्य
+ाणां मुख्यं प्रतिपाद्यं
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 2928--2929
+\TU/TiroDevanagariSanskrit(0)/m/n/10 नेपालभूमिर्वश
+िष्ठविश्वामित्रादीनां मुनी
+नां साधनाभूमिरासीदिति सङ्के
+तादयः प्राप्यन्ते । अतोऽधुना
+ []
+
+
+Underfull \hbox (badness 7081) in paragraph at lines 2928--2929
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तु पृथक् सैद्धा
+न्तिकप्रणयनसहितः काव्यशास्
+त्रीयविकासो नोपलभ्यते । नेपा
+लीभाषावाङ्मयस्य
+ []
+
+
+Underfull \hbox (badness 2591) in paragraph at lines 2928--2929
+\TU/TiroDevanagariSanskrit(0)/m/n/10 सञ्जात इति अधुन
+ा प्रकाशितास्तदनुकूलग्नन्थ
+ानवलोक्य ज्ञायते । तथापि पौर
+स्त्यकाव्यशास्त्रस्य
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 2928--2929
+\TU/TiroDevanagariSanskrit(0)/m/n/10 विकासे आधुनिकन
+ेपालदेशस्यापि किञ्चद् योगदा
+नमस्तीति स्वीकर्तुं शक्यते । 
+पौरस्त्यवाङ्मयस्य
+ []
+
+[90]
+Underfull \hbox (badness 1789) in paragraph at lines 2932--2933
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारचन्द्र
+ोदय इति द्वौ शास्त्रीयग्नन्थ
+ौ रचितौ । अनेन द्वयोरेव ग्रन्
+थयोरेकस्मिन्नेव पद्ये पूर्व
+ार्धे
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2932--2933
+\TU/TiroDevanagariSanskrit(0)/m/n/10 लक्षणम्, अपरार्
+धे चोदाहरणमिति चन्द्रालोकस्
+य अलङ्कारविश्लेषणशैली स्वीक
+ृता दृश्यते ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2932--2933
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अलङ्कारचन्द्र
+ोदये (१९७८) पौरस्त्यकाव्यशास
+्त्रानुसारम् अलङ्कारलक्षणं 
+समुल्लिख्य उदाहरणे
+ []
+
+[91]
+Underfull \hbox (badness 1436) in paragraph at lines 2956--2957
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 पौराणिकेतिहास
+ाद् आरभ्य ऋषिमुनीनां पवित्रत
+पोभूमित्वेन संस्तुतायाम् अस
+्यां नेपालभूमौ
+ []
+
+
+Underfull \hbox (badness 2393) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रस्य संरक्षणे, संवर्धन
+े च नैपालकविदुषां प्रयासोऽती
+व श्लाघनीयः प्रतीयते ।
+ []
+
+
+Underfull \hbox (badness 4366) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 यद्यपि आधुनिकन
+ेपालदेशे कश्चन सर्वथा मौलिको 
+नवीनः सैद्धान्तिकः सम्प्रदा
+यो नोद्भावितः,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 तथापि प्राचीनभ
+ारतवर्षे विरचितानां काव्यशा
+स्त्रीयसिद्धान्तानां दार्ढ
+्याय, समन्वयाय च
+ []
+
+
+Underfull \hbox (badness 1924) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 अत्रत्यैर्मनी
+षिभिः सातिशयं योगदानं दत्तम् 
+। अस्मिन् क्रमे अग्रणीकाव्यश
+ास्त्री कुलचन्द्रगौतमो
+ []
+
+
+Underfull \hbox (badness 1735) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 जयदेवकृतस्य चन
+्द्रालोकस्य शैल्याम् एकस्मि
+न्नेव श्लोके लक्षणोदाहरणयोर
+द्भुतं सामञ्जस्यं कृत्वा
+ []
+
+
+Underfull \hbox (badness 6542) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ‘अलङ्कारचन्द्
+रोदयः’ तथा च नव-शब्दालङ्कारा
+णां त्रिनवत्यर्थालङ्काराणा
+ञ्च महता प्रपञ्चेन युक्तो
+ []
+
+
+Underfull \hbox (badness 6592) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 च उदात्ताः प्रश
+स्तयः सन्ति । तथैव ‘साहित्यप
+्रदीपः’ इत्याख्यस्य शास्त्र
+ीयग्रन्थस्य रचयिता
+ []
+
+
+Underfull \hbox (badness 6893) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 उपस्थाप्य नैपा
+लदेशीयसमालोचनापरम्परायां प
+ौरस्त्यकाव्यशास्त्रस्य पूर
+्णं व्याख्यानं कृतवान् ।
+ []
+
+
+Overfull \hbox (28.77289pt too wide) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ऋषभदेव-भरतराजप
+न्त-लक्ष्मीप्रसादाचार्य-हेम
+ाङ्गराजाधिकारि-हिमांशुथापा-
+ईश्वरबराल-केशवप्रसादोपाध्य
+ायाश्चेति
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 2956--2957
+\TU/TiroDevanagariSanskrit(0)/m/n/10 शास्त्रीयभित्
+तिं सुदृढां कर्तुम्, पौरस्त्
+यसाहित्यशास्त्रस्य ज्ञानगङ
+्गां नेपालभूमावपि प्रवाहयित
+ुं च
+ []
+
+
+Underfull \hbox (badness 2772) in paragraph at lines 2960--2961
+\TU/TiroDevanagariSanskrit(0)/m/n/10 कुन्तकस्य वक्र
+ोक्तिजीवितम्, मम्मटस्य काव्य
+प्रकाशः, हेमचन्द्रस्य काव्या
+नुशासनम्, वाग्भटस्य
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 2960--2961
+\TU/TiroDevanagariSanskrit(0)/m/n/10 वाग्भटालङ्कार
+ः, जयदेवस्य चन्द्रालोकः, विश्
+वनाथस्य साहित्यदर्पणः, जगन्न
+ाथस्य रसगङ्गाधरश्च
+ []
+
+
+Underfull \hbox (badness 4193) in paragraph at lines 2960--2961
+\TU/TiroDevanagariSanskrit(0)/m/n/10 ग्रन्थाः काव्य
+शास्त्रस्य सर्वाङ्गविवेचका
+ः सन्ति । अलङ्कारमात्रसमीक्ष
+णयुतेषु ग्रन्थेषु— उद्भटस्य
+ []
+
+
+Underfull \hbox (badness 1137) in paragraph at lines 2960--2961
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यालङ्कारस
+ारसङ्ग्रहः, शोभाकरस्यालङ्का
+ररत्नाकरः, अप्पयदीक्षितस्य क
+ुवलयानन्दश्चित्रमीमांसा च
+ []
+
+[92]
+Underfull \hbox (badness 10000) in paragraph at lines 2962--2963
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 अनेन प्रकारेण 
+विलक्षणप्रतिभायुता विद्वां
+सः पृथक् पृथक् काव्यतत्त्वमङ
+्गीकृत्य
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2962--2963
+\TU/TiroDevanagariSanskrit(0)/m/n/10 मौलिकविचाराना
+विष्कुर्वन्तो विविधान् ग्रन
+्थान् रचितवन्तः। तत्र मुख्यव
+ैचारिकसिद्धान्तेषु
+ []
+
+
+Underfull \hbox (badness 5203) in paragraph at lines 2962--2963
+\TU/TiroDevanagariSanskrit(0)/m/n/10 रस–अलङ्कार–री
+ति–ध्वनि–वक्रोक्ति–औचित्ये
+ति षट् काव्यशास्त्रीयसम्प्र
+दायाः सन्ति । एते एव
+ []
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 2962--2963
+\TU/TiroDevanagariSanskrit(0)/m/n/10 पौरस्त्यकाव्य
+शास्त्रस्य शिरोभूषणभूताः, सं
+स्कृतभाषाया गौरवविषयकविचार
+ाश्च मन्यन्ते । एतेषां
+ []
+
+
+Underfull \hbox (badness 4254) in paragraph at lines 2962--2963
+\TU/TiroDevanagariSanskrit(0)/m/n/10 भामहः, रीतेर्वा
+मनः, ध्वनेरानन्दवर्धनः, वक्र
+ोक्तेः कुन्तकः, औचित्यस्य च क
+्षेमेन्द्रमहोदयाः ।
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2964--2965
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतलक्षणश
+ास्त्रस्येतिहासो नैकैर्विच
+ारैरलङ्कृतत्वात् काव्यप्रण
+यने कानि तत्त्वानि
+ []
+
+
+Underfull \hbox (badness 1248) in paragraph at lines 2968--2969
+[]\TU/TiroDevanagariSanskrit(0)/m/n/10 ब्रह्मानन्दमय
+ो रस एव काव्यशरीरस्यात्मा भव
+तीति विचारे केवलनामान्तरमेव
+ास्ति, अर्थात्
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2968--2969
+\TU/TiroDevanagariSanskrit(0)/m/n/10 प्रकारान्तरेण
+ापि तथ्यमिदं सर्वे काव्यसमाल
+ोचकाः स्वीकुर्वन्ति एव । गुण
+ालङ्काररीतयस्तु
+ []
+
+
+Underfull \hbox (badness 4120) in paragraph at lines 2968--2969
+\TU/TiroDevanagariSanskrit(0)/m/n/10 काव्यशरीरस्यो
+त्कर्षहेतव एव । अलङ्कारा रसम
+ेवालङ्‌कुर्वन्ति, किञ्च–आत्
+मैवालङ्कार्यो भवति ।
+ []
+
+
+Underfull \hbox (badness 2221) in paragraph at lines 2968--2969
+\TU/TiroDevanagariSanskrit(0)/m/n/10 एतेन सिद्ध्यति 
+यत् केवलं विभिन्नकाव्यतत्त्
+वपरिपुष्टो रस एव काव्यात्मतय
+ाऽवस्थितो भवति ।
+ []
+
+
+Underfull \hbox (badness 4144) in paragraph at lines 2970--2971
+\TU/TiroDevanagariSanskrit(0)/m/n/10 संस्कृतवाङ्मय
+स्य सम्मानिता स्थितिरस्ति । 
+अधुनापि पाश्चात्त्यसमालोचक
+ाः काव्यतत्त्वानुसन्धाने
+ []
+
+[93] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
+[94] [95] (./main.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+)
+
+Here is how much of LuaTeX's memory you used:
+ 21530 strings out of 476076
+ 100000,1144653 words of node,token memory allocated
+ 1182 words of node memory still in use:
+   20 hlist, 1 vlist, 9 rule, 1 local_par, 4 glue, 3 kern, 1 penalty, 3 glyph, 5
+5 attribute, 87 glue_spec, 55 attribute_list, 2 write, 16 pdf_literal, 16 pdf_co
+lorstack nodes
+   avail lists: 1:1,2:3741,3:2819,4:57,5:320,6:100,7:5814,8:1,9:508,10:17,11:121
+
+ 43394 multiletter control sequences out of 65536+600000
+ 45 fonts using 8694143 bytes
+ 116i,12n,114p,6453b,824s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</home/ksai/dev/ksaitex/fonts/TiroDevanagariSanskrit-Italic.ttf></home/ksai/dev/
+ksaitex/fonts/TiroDevanagariSanskrit-Regular.ttf>
+Output written on main.pdf (95 pages, 562877 bytes).
+
+PDF statistics: 353 PDF objects out of 1000 (max. 8388607)
+ 226 compressed objects within 3 object streams
+ 0 named destinations out of 1000 (max. 1048576)
+ 226 words of extra memory for PDF output out of 10000 (max. 100000000)
+

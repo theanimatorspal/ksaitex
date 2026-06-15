@@ -1,0 +1,88 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.11)  24 MAY 2026 07:13
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex
+(/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Undefined control sequence.
+<argument> \VAR 
+                {font_size},
+l.104 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Undefined control sequence.
+<argument> \VAR 
+                {page_size}\BLOCK { if header_footer_mirror == 'On' },
+l.104 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Undefined control sequence.
+<argument> \VAR {page_size}\BLOCK 
+                                  { if header_footer_mirror == 'On' },
+l.104 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Undefined control sequence.
+<argument> twoside\BLOCK 
+                         { endif }
+l.104 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Undefined control sequence.
+<argument> \VAR 
+                {document_class}.\@clsextension 
+l.104 
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: File `{document_class}.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name: 
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104: Emergency stop.
+<read *> 
+         
+l.104 ^^M
+         
+*** (cannot \read from terminal in nonstop modes)
+
+ 
+Here is how much of TeX's memory you used:
+ 22 strings out of 469515
+ 617 string characters out of 5470807
+ 433756 words of memory out of 5000000
+ 28774 multiletter control sequences out of 15000+600000
+ 627721 words of font info for 40 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 19i,0n,29p,927b,17s stack positions out of 10000i,1000n,20000p,200000b,200000s
+/home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex:104:  ==> Fatal error occurred, no output PDF file produced!

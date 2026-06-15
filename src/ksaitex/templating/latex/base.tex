@@ -45,8 +45,6 @@
 % \MAGIC{ footnote_begin, label='फुटनोट सुरु', tab='ढाँचा', pairing='begin', group='footnote', command='\footnote{' }
 % \MAGIC{ footnote_end, label='फुटनोट अन्त्य', tab='ढाँचा', pairing='end', group='footnote', command='}' }
 
-% \MAGIC{ table_align, label='table_align', tab='ढाँचा', args='align:select,Left,Right:Left', command='\settablealign{VAR_align}' }
-
 % \MAGIC{ page_break, label='नयाँ पृष्ठ', tab='पृष्ठ', command='\pagebreak' }
 % \MAGIC{ devanagari_num, label='देवनागरी अंक सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagaridigits{\value{page}}}' }
 % \MAGIC{ devanagari_alph, label='देवनागरी अक्षर सुरु', tab='पृष्ठ', command='\renewcommand{\thepage}{\devanagarialph{\value{page}}}' }
@@ -202,7 +200,6 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- spacing configuration ---
 \linespread{\VAR{line_spacing}}
-% \setlength{\parskip}{\VAR{paragraph_spacing}}
 \setlength{\parskip}{\VAR{paragraph_spacing} plus 3pt minus 1.5pt}
 \setlength{\parindent}{\VAR{paragraph_indent}}
 
@@ -332,8 +329,10 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 }
 
 \newcommand{\specialmahakhanda}[1]{
-    \cleardoublepage
+    % \cleardoublepage
+    \clearpage
     \thispagestyle{empty}
+    \nopagebreak
     \vspace*{\fill}
     \begin{center}
     \begin{tikzpicture}
@@ -410,6 +409,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \noindent\begin{minipage}{\textwidth} % <-- Replaced \begingroup
     \parindent=0pt
     \linespread{1} \selectfont
+    \large
     \def\shlokaalign{#1}
     \setcounter{shlokaline}{0}
     \ifthenelse{\equal{\shlokaalign}{alternating}}{

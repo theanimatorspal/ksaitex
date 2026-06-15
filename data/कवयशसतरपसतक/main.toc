@@ -1,0 +1,57 @@
+\xpg@aux {}{latex}
+\contentsline {section}{विषय सूची}{1}{}%
+\contentsline {part}{\textbf {प्रथम-प्रकाशः}}{4}{}%
+\contentsline {section}{\textbf {शास्त्र-परिचयः}}{5}{}%
+\contentsline {subsection}{\textbf {शब्दप्रयोगवैविध्यम्}}{6}{}%
+\contentsline {subsection}{\textbf {पौरस्त्यवाङ्मये काव्यशास्त्रम्}}{7}{}%
+\contentsline {subsection}{\textbf {पाश्चात्त्यवाङ्मये काव्यशास्त्रम्}}{9}{}%
+\contentsline {subsection}{\textbf {कालविभागः}}{12}{}%
+\contentsline {part}{\textbf {द्वितीय-प्रकाशः}}{14}{}%
+\contentsline {section}{\textbf {प्रारम्भकालः}}{15}{}%
+\contentsline {subsection}{\textbf {भरतमुनिः}}{15}{}%
+\contentsline {subsection}{\textbf {मेधाविरुद्रः}}{18}{}%
+\contentsline {subsection}{\textbf {प्रारम्भकाल-उपसंहारः}}{18}{}%
+\contentsline {part}{\textbf {तृतीय-प्रकाशः}}{20}{}%
+\contentsline {subsection}{\textbf {रचनात्मकः कालः}}{21}{}%
+\contentsline {subsection}{\textbf {भामहः}}{21}{}%
+\contentsline {subsection}{\textbf {आचार्यो दण्डी}}{25}{}%
+\contentsline {subsection}{\textbf {आचार्यो भट्टोद्भटः}}{28}{}%
+\contentsline {subsection}{\textbf {आचार्यो वामनः}}{29}{}%
+\contentsline {subsection}{\textbf {आचार्यो रुद्रटः}}{32}{}%
+\contentsline {subsection}{\textbf {रचनात्मककाल-उपसंहारः}}{36}{}%
+\contentsline {part}{\textbf {चतुर्थ-प्रकाशः}}{37}{}%
+\contentsline {subsection}{\textbf {निर्णयात्मकः कालः}}{38}{}%
+\contentsline {subsection}{\textbf {आनन्दवर्धनाचार्यः}}{38}{}%
+\contentsline {subsection}{\textbf {भट्टनायकः}}{43}{}%
+\contentsline {subsection}{\textbf {आचार्यो राजशेखरः}}{45}{}%
+\contentsline {subsection}{\textbf {आचार्यो धनञ्जयः}}{47}{}%
+\contentsline {subsection}{\textbf {आचार्यो राजनकः कुन्तकः}}{48}{}%
+\contentsline {subsection}{\textbf {आचार्य महिमभट्टः}}{51}{}%
+\contentsline {subsection}{\textbf {आचार्यः क्षेमेन्द्रः}}{52}{}%
+\contentsline {subsection}{\textbf {आचार्यो भोजराजः}}{54}{}%
+\contentsline {subsection}{\textbf {निर्णयात्मककाल-उपसंहारः}}{56}{}%
+\contentsline {part}{\textbf {पञ्चम-प्रकाशः}}{57}{}%
+\contentsline {subsection}{\textbf {व्याख्याकालः}}{58}{}%
+\contentsline {subsection}{\textbf {मम्मटः}}{58}{}%
+\contentsline {subsection}{\textbf {रुय्यकः}}{65}{}%
+\contentsline {subsection}{\textbf {हेमचन्द्रः}}{67}{}%
+\contentsline {subsection}{\textbf {आचार्यो वाग्भटः}}{68}{}%
+\contentsline {subsection}{\textbf {जयदेवः}}{69}{}%
+\contentsline {subsection}{\textbf {विद्याधरः}}{71}{}%
+\contentsline {subsection}{\textbf {विद्यानाथः}}{72}{}%
+\contentsline {subsection}{\textbf {कविराजो विश्वनाथः}}{73}{}%
+\contentsline {subsection}{\textbf {केशवमिश्रः}}{76}{}%
+\contentsline {subsection}{\textbf {शारदातनयः}}{76}{}%
+\contentsline {subsection}{\textbf {शिङ्गभूपालः}}{76}{}%
+\contentsline {subsection}{\textbf {भानुदत्तः}}{77}{}%
+\contentsline {subsection}{\textbf {रूपगोस्वामी}}{77}{}%
+\contentsline {subsection}{\textbf {अप्पयदीक्षितः}}{79}{}%
+\contentsline {subsubsection}{\textbf {पण्डितराजो जगन्नाथः}}{80}{}%
+\contentsline {subsection}{\textbf {व्याख्याकाल-उपसंहारः}}{85}{}%
+\contentsline {part}{\textbf {षष्ठ-प्रकाशः}}{87}{}%
+\contentsline {subsection}{\textbf {ह्रासकालः (अर्वाचीनकालः)}}{88}{}%
+\contentsline {subsection}{\textbf {आचार्यो विश्वेश्वरः}}{88}{}%
+\contentsline {subsubsection}{\textbf {ह्रासकाल-उपसंहारः}}{90}{}%
+\contentsline {section}{\textbf {नेपालदेशोद्भवानां काव्यशास्त्रिणां परिचयः}}{90}{}%
+\contentsline {subsection}{\textbf {काव्यशास्त्रप्रवेशिका- पुस्तकस्य निष्कर्षः/उपसंहारः}}{92}{}%
+\contentsline {subsection}{\textbf {सन्दर्भसामग्रीसूची}}{94}{}%

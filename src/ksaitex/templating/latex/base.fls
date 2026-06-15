@@ -1,0 +1,5 @@
+PWD /home/ksai/dev/ksaitex/src/ksaitex/templating/latex
+INPUT /usr/share/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/ksai/dev/ksaitex/src/ksaitex/templating/latex/base.tex
+OUTPUT base.log
