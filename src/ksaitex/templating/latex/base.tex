@@ -62,12 +62,14 @@
 % \MAGIC{ vertical_space, label='खाली ठाउँ', tab='ढाँचा', args='cm:number:1', command='\vspacer{VAR_cm}' }
 % \MAGIC{ quote_begin, label='भनाइ सुरु', tab='ढाँचा', pairing='begin', group='quote', command='\vspace{0.5cm}\begin{quote}' }
 % \MAGIC{ quote_end, label='भनाइ अन्त्य', tab='ढाँचा', pairing='end', group='quote', command='\end{quote}\vspace{0.5cm}' }
-% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:left', command='\begin{shloka}[VAR_align]' }
+% \MAGIC{ shloka_begin, label='श्लोक सुरु', tab='ढाँचा', pairing='begin', group='shloka', args='align:select,alternating,left,right,center:center', command='\begin{shloka}[VAR_align]' }
 % \MAGIC{ shloka_end, label='श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='shloka', command='\end{shloka}' }
-% \MAGIC{ vishesh_shloka_begin, label='विशेष श्लोक सुरु', tab='ढाँचा', pairing='begin', group='visheshshloka', args='align:select,alternating,left,right,center:left', command='\begin{visheshshloka}[VAR_align]' }
+% \MAGIC{ vishesh_shloka_begin, label='विशेष श्लोक सुरु', tab='ढाँचा', pairing='begin', group='visheshshloka', args='align:select,alternating,left,right,center:center', command='\begin{visheshshloka}[VAR_align]' }
 % \MAGIC{ vishesh_shloka_end, label='विशेष श्लोक अन्त्य', tab='ढाँचा', pairing='end', group='visheshshloka', command='\end{visheshshloka}' }
-% \MAGIC{ vishesh_shlokatwo_begin, label='विशेष श्लोक २ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokatwo', args='align:select,alternating,left,right,center:alternating|ornament:select,88,87,84,75,71,63,1:88', command='\begin{visheshshlokatwo}[VAR_align]{VAR_ornament}' }
+% \MAGIC{ vishesh_shlokatwo_begin, label='विशेष श्लोक २ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokatwo', args='align:select,alternating,left,right,center:center|ornament:select,88,87,84,75,71,63,1:88', command='\begin{visheshshlokatwo}[VAR_align]{VAR_ornament}' }
 % \MAGIC{ vishesh_shlokatwo_end, label='विशेष श्लोक २ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokatwo', command='\end{visheshshlokatwo}' }
+% \MAGIC{ vishesh_shlokathree_begin, label='विशेष श्लोक ३ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokathree', args='align:select,alternating,left,right,center:center|author:text:(लेखकको नाम)', command='\begin{visheshshlokathree}[VAR_align]{VAR_author}' }
+% \MAGIC{ vishesh_shlokathree_end, label='विशेष श्लोक ३ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokathree', command='\end{visheshshlokathree}' }
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
@@ -452,6 +454,15 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
         \color{theme}\pgfornament[width=0.2\textwidth]{\visheshornament}
     \end{center}
     \vspace{0.1cm}
+}
+
+% --- Vishesh Shloka Three Environment (with Author Only) ---
+\newenvironment{visheshshlokathree}[2][alternating]{
+    \def\visheshauthor{#2}
+    \begin{shloka}[#1]
+}{
+    \nopagebreak\hfill\mbox{\visheshauthor}
+    \end{shloka}
 }
 
 % --- Image Macros ---
