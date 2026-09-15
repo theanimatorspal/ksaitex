@@ -1,34 +1,31 @@
 :root {
-    /* Gruvbox Dark (Orange Tainted) Palette */
-    --bg0: #1d2021;
-    /* Hard background */
-    --bg1: #282828;
-    /* Panel background */
-    --bg2: #32302f;
-    /* Hover/Selection background */
+    /* Pure White Mode Palette */
+    
+    /* Backgrounds (पृष्ठभूमि) */
+    --bg0: #ffffff;            /* Hard background: शुद्ध सेतो मुख्य पृष्ठभूमि */
+    --bg1: #f8f9fa;            /* Panel background: हल्का खैरो प्यानल पृष्ठभूमि */
+    --bg2: #f1f3f5;            /* Hover/Selection: माउस लैजाँदा वा सेलेक्ट गर्दा देखिने रङ */
 
-    --fg0: #fbf1c7;
-    /* Brightest cream */
-    --fg1: #ebdbb2;
-    /* Normal text */
-    --fg2: #d5c4a1;
-    /* Muted text */
-    --fg3: #a89984;
-    /* Muted/Disabled text */
+    /* Foregrounds / Text (अक्षर र टेक्स्टका रङहरू) */
+    --fg0: #1a1a1a;            /* Brightest dark: मुख्य र एकदम गाढा अक्षरहरू */
+    --fg1: #2d3748;            /* Normal text: साधारण पढिने अक्षरहरू (प्रोपर् डार्क) */
+    --fg2: #4a5568;            /* Muted text: अलि कम प्राथमिकता भएका अक्षरहरू */
+    --fg3: #718096;            /* Muted/Disabled text: बन्द वा निस्क्रिय अक्षरहरू */
 
-    --orange: #fe8019;
-    /* Primary accent */
-    --orange-dim: #af3a03;
-    --yellow: #fabd2f;
-    --red: #fb4934;
+    /* Accent Colors (लाइट मोडमा प्रस्ट देखिने गरी गाढा पारिएका रङहरू) */
+    --orange: #d65d0e;         /* Primary accent: लाइट मोडका लागि उपयुक्त ओरेन्ज */
+    --orange-dim: #af3a03;      /* Darker orange */
+    --yellow: #b57614;         /* Light-friendly yellow (आँखा नबिझाउने पहेंलो) */
+    --red: #9d0006;            /* Light-friendly red (प्रस्ट देखिने रातो) */
 
-    --border-color: #3c3836;
-    --blue: #83a598;
-    --blue-lite: #b8bb26;
-    /* Using a slightly different tint for contrast if needed, but let's stick to blue */
+    /* Borders & UI Structure */
+    --border-color: #e2e8f0;   /* Borders: लाइट मोडका लागि हल्का र सफा बोर्डर */
+    --blue: #076678;           /* Proper blue for light mode */
+    --blue-lite: #79740e;      /* Adjusted contrast */
     --blue-soft: #458588;
     --blue-dark: #076678;
 
+    /* Structural Variables (यथावत राखिएको) */
     --radius-sm: 4px;
     --radius-md: 6px;
 
@@ -255,13 +252,13 @@ button:active {
 }
 
 .primary-btn {
-    background-color: var(--orange-dim);
+    background-color: var(--bg2);
     border-color: var(--orange);
     color: var(--fg0);
 }
 
 .primary-btn:hover {
-    background-color: var(--orange);
+    background-color: var(--bg2);
     box-shadow: 0 0 12px rgba(254, 128, 25, 0.3);
 }
 
