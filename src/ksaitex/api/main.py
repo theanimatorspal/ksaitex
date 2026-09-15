@@ -8,6 +8,7 @@ from ksaitex.templating.engine import render_latex
 from ksaitex.compilation.compiler import compile_latex
 app = FastAPI()
 from fastapi import Request
+
 @app.middleware("http")
 async def disable_cache(request: Request, call_next):
     new_headers = []
