@@ -385,41 +385,53 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
+    \pagebreak[3]
     \markboth{#1}{}
     \vspace{1.2cm}
     \noindent\makebox[\textwidth][c]{{\huge \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=white, right color=theme!80!white] (0,-0.4) rectangle (0.5\textwidth, -0.2);
             \shade[left color=theme!80!white, right color=white] (0.5\textwidth,-0.4) rectangle (\textwidth, -0.2);
         
     \end{tikzpicture}
+    \penalty 100000
     \vspace{0.8cm}
+    \penalty 100000
 }
 
 \newcommand{\specialupakhanda}[1]{
+    \goodbreak
     \vspace{0.8cm}
     \noindent\makebox[\textwidth][r]{{\Large \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=white, right color=theme!60!white] (0,-0.3) rectangle (\textwidth, -0.15);
         
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.6cm}
+    \penalty 10000
 }
 
 \newcommand{\specialupaupakhanda}[1]{
+    \goodbreak
     \vspace{0.4cm}
     \noindent\makebox[\textwidth][l]{{\normalsize \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
         
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.4cm}
     \addcontentsline{toc}{subsubsection}{#1}
+    \penalty 10000
 }
 
 % --- Font Configuration ---

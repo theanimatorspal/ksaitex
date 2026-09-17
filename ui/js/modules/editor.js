@@ -192,12 +192,125 @@ window.deleteMagicBlock = function (event, btn) {
     editorNode.scrollTop = savedScrollTop;
     editorNode.focus();
 };
+export function getMagicCommands() {
+    return currentMagicCommands;
+}
+
+export function ensureMagicBlockDropdowns(editor) {
+    if (!editor) return;
+    const blocks = editor.querySelectorAll('.magic-block');
+    blocks.forEach(block => {
+        if (!block.querySelector('.change-cmd-btn')) {
+            const deleteBtn = block.querySelector('.delete-btn');
+            const changeBtn = document.createElement('button');
+            changeBtn.className = 'change-cmd-btn';
+            changeBtn.title = 'Change Command';
+            changeBtn.onclick = (e) => window.toggleMagicDropdown(e, changeBtn);
+            changeBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
+            if (deleteBtn) {
+                block.insertBefore(changeBtn, deleteBtn);
+            } else {
+                block.appendChild(changeBtn);
+            }
+        }
+    });
+}
+
+export function replaceMagicBlock(block, newCmd, editorNode) {
+    if (!block || !newCmd) return;
+
+    const oldArgBtns = Array.from(block.querySelectorAll('.magic-arg-btn'));
+    const oldValues = oldArgBtns.map(btn => btn.dataset.fullValue || "");
+
+    const newSchema = newCmd.args || "";
+    const newArgsPairs = [];
+    if (newSchema) {
+        const schemaItems = newSchema.split('|');
+        schemaItems.forEach((item, index) => {
+            const parts = item.split(':');
+            const name = parts[0].trim();
+            const schemaDefault = parts[2] || "";
+            const val = (index < oldValues.length) ? oldValues[index] : schemaDefault;
+            newArgsPairs.push({ key: name, value: val });
+        });
+    }
+
+    const currentPairing = block.dataset.pairing;
+    const currentGroup = block.dataset.group;
+
+    if (currentPairing && currentGroup && newCmd.pairing) {
+        let partnerBlock = null;
+        if (currentPairing === 'begin') {
+            let curr = block.nextElementSibling;
+            let depth = 0;
+            while (curr) {
+                if (curr.classList.contains('magic-block') && curr.dataset.group === currentGroup) {
+                    if (curr.dataset.pairing === 'begin') depth++;
+                    else if (curr.dataset.pairing === 'end') {
+                        if (depth === 0) { partnerBlock = curr; break; }
+                        depth--;
+                    }
+                }
+                curr = curr.nextElementSibling;
+            }
+        } else if (currentPairing === 'end') {
+            let curr = block.previousElementSibling;
+            let depth = 0;
+            while (curr) {
+                if (curr.classList.contains('magic-block') && curr.dataset.group === currentGroup) {
+                    if (curr.dataset.pairing === 'end') depth++;
+                    else if (curr.dataset.pairing === 'begin') {
+                        if (depth === 0) { partnerBlock = curr; break; }
+                        depth--;
+                    }
+                }
+                curr = curr.previousElementSibling;
+            }
+        }
+
+        let targetBeginCmd = null;
+        let targetEndCmd = null;
+        if (newCmd.pairing === 'begin') {
+            targetBeginCmd = newCmd;
+            targetEndCmd = currentMagicCommands.find(c => c.group === newCmd.group && c.pairing === 'end');
+        } else if (newCmd.pairing === 'end') {
+            targetEndCmd = newCmd;
+            targetBeginCmd = currentMagicCommands.find(c => c.group === newCmd.group && c.pairing === 'begin');
+        }
+
+        const beginArgs = (currentPairing === 'begin') ? newArgsPairs : [];
+        const beginHtml = targetBeginCmd ? createMagicHtml(targetBeginCmd.label, beginArgs, targetBeginCmd.args || "") : "";
+        const endHtml = targetEndCmd ? createMagicHtml(targetEndCmd.label, [], targetEndCmd.args || "") : "";
+
+        if (currentPairing === 'begin') {
+            if (beginHtml) replaceNodeWithHtml(block, beginHtml);
+            if (partnerBlock && endHtml) replaceNodeWithHtml(partnerBlock, endHtml);
+        } else {
+            if (endHtml) replaceNodeWithHtml(block, endHtml);
+            if (partnerBlock && beginHtml) replaceNodeWithHtml(partnerBlock, beginHtml);
+        }
+    } else {
+        const newHtml = createMagicHtml(newCmd.label, newArgsPairs, newSchema);
+        replaceNodeWithHtml(block, newHtml);
+    }
+}
+
+function replaceNodeWithHtml(node, htmlStr) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlStr;
+    const newNode = tempDiv.firstElementChild;
+    if (newNode && node.parentNode) {
+        node.parentNode.replaceChild(newNode, node);
+    }
+}
+
 function createMagicHtml(label, argsPairs = [], schema = "") {
     const cmd = currentMagicCommands.find(c => c.label === label);
     let extraClass = "";
     let icon = "";
     let pairingAttr = "";
     let groupAttr = "";
+    const finalSchema = schema || (cmd && cmd.args) || "";
     if (cmd) {
         if (cmd.pairing) pairingAttr = `data-pairing="${cmd.pairing}"`;
         if (cmd.group) groupAttr = `data-group="${cmd.group}"`;
@@ -226,7 +339,7 @@ function createMagicHtml(label, argsPairs = [], schema = "") {
         ? `${MARKER_START}[[MAGIC:${label}|${serializedArgs}]]${MARKER_END}`
         : `${MARKER_START}[[MAGIC:${label}]]${MARKER_END}`;
     const tocLevelAttr = (cmd && cmd.toc_level) ? `data-toc-level="${cmd.toc_level}"` : "";
-    return `<div class="magic-block${extraClass}" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${schema}" ${pairingAttr} ${groupAttr} ${tocLevelAttr}> ${icon}<span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="delete-btn" title="Remove Command" onclick="window.deleteMagicBlock(event, this);"><i class="fa-solid fa-xmark"></i></button> </div>`;
+    return `<div class="magic-block${extraClass}" contenteditable="false" data-command="${magicString}" data-label="${label}" data-args-schema="${finalSchema}" ${pairingAttr} ${groupAttr} ${tocLevelAttr}> ${icon}<span class="magic-label">${label}</span> <div class="magic-args-container" style="display:inline-flex; gap:4px; margin-left:8px;">${argsHtml}</div> <button class="change-cmd-btn" title="Change Command" onclick="window.toggleMagicDropdown(event, this);"><i class="fa-solid fa-chevron-down"></i></button> <button class="delete-btn" title="Remove Command" onclick="window.deleteMagicBlock(event, this);"><i class="fa-solid fa-xmark"></i></button> </div>`;
 }
 export function updateArgButton(btn, newValue) {
     btn.dataset.fullValue = newValue;
@@ -267,6 +380,7 @@ export function loadContent(text, editor) {
         }
     }).join('');
     editor.innerHTML = html;
+    ensureMagicBlockDropdowns(editor);
 }
 export function clearContent(editor) {
     editor.innerHTML = '<div><br></div>';
@@ -455,6 +569,7 @@ export function getHTMLContent(editor) {
 }
 export function setHTMLContent(html, editor) {
     editor.innerHTML = html;
+    ensureMagicBlockDropdowns(editor);
 }
 let lastSelectionState = { anchor: null, offset: null, editorScroll: 0 };
 let cursorUpdatePending = false;

@@ -32,6 +32,7 @@
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
 % \MAGIC{ image, label='तस्बिर', tab='ढाँचा', args='file:image:तस्बिर छान्नुहोस्|align:select,Center,Left,Right:Center|width:text:0.8', command='\customimage{VAR_file}{VAR_align}{VAR_width}' }
 % \MAGIC{ vishesh_butta, label='विशेष बुट्टा', tab='ढाँचा', args='align:select,Center,Left,Right:Center|id:select,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,65,69,17,18,70,71,88:4|count:number:3|width:text:0.3cm|sep:text:0.2cm', command='\visheshbutta{VAR_align}{VAR_id}{VAR_count}{VAR_width}{VAR_sep}' }
+% \MAGIC{ table_align, label='table_align', tab='ढाँचा', args='align:select,Left,Right:Left', command='\settablealign{VAR_align}' }
 % \MAGIC{ vishesh_toc, label='विशेष विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|ornl:select,65,69,17,18,70,71,88:65|ornr:select,65,17,18,69,70,71,88:65|size:text:1.2cm|y:text:0pt', command='\visheshcontents{VAR_title}{VAR_ornl}{VAR_ornr}{VAR_size}{VAR_y}' }
 
 % \MAGIC{ footnote_begin, label='फुटनोट सुरु', tab='ढाँचा', pairing='begin', group='footnote', command='\footnote{' }
@@ -62,6 +63,10 @@
 % \MAGIC{ vishesh_shlokatwo_end, label='विशेष श्लोक २ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokatwo', command='\end{visheshshlokatwo}' }
 % \MAGIC{ vishesh_shlokathree_begin, label='विशेष श्लोक ३ सुरु', tab='ढाँचा', pairing='begin', group='visheshshlokathree', args='align:select,alternating,left,right,center:center|author:text:(लेखकको नाम)', command='\begin{visheshshlokathree}[VAR_align]{VAR_author}' }
 % \MAGIC{ vishesh_shlokathree_end, label='विशेष श्लोक ३ अन्त्य', tab='ढाँचा', pairing='end', group='visheshshlokathree', command='\end{visheshshlokathree}' }
+% \MAGIC{ vyanucched_begin, label='व्यनुच्छेद सुरु', tab='ढाँचा', pairing='begin', group='vyanucched', args='align:select,left,center,right:right|inner_align:select,left,center,right:center|width:number:1', command='\begin{vyanucched}{VAR_align}{VAR_inner_align}{VAR_width}' }
+% \MAGIC{ vyanucched_end, label='व्यनुच्छेद अन्त्य', tab='ढाँचा', pairing='end', group='vyanucched', command='\end{vyanucched}' }
+
+
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
 
@@ -102,6 +107,7 @@
 % \flushbottom
 
 \usepackage{fontspec}
+\usepackage{varwidth}
 \usepackage{polyglossia}
 \usepackage{geometry}
 \usepackage{fancyhdr}
@@ -457,6 +463,19 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \end{shloka}
 }
 
+\newenvironment{vyanucched}[3]{% #1 = outer align, #2 = inner align, #3 = width multiplier
+  \par
+  \ifthenelse{\equal{#1}{left}}{\raggedright}{}%
+  \ifthenelse{\equal{#1}{center}}{\centering}{}%
+  \ifthenelse{\equal{#1}{right}}{\raggedleft}{}%
+  \begin{varwidth}{#3\linewidth}%
+    \ifthenelse{\equal{#2}{left}}{\raggedright}{}%
+    \ifthenelse{\equal{#2}{center}}{\centering}{}%
+    \ifthenelse{\equal{#2}{right}}{\raggedleft}{}%
+}{%
+  \end{varwidth}\par
+}
+
 % --- Image Macros ---
 % --- Vishesh Butta (Repeated Ornaments) ---
 \newcommand{\visheshbutta}[5]{%
@@ -482,7 +501,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
-    \goodbreak
+    \pagebreak[3]
     \markboth{#1}{}
     \vspace{1.2cm}
     \noindent\makebox[\textwidth][\BLOCK{ if khanda_align == 'Left' }l\BLOCK{ elif khanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if khanda_size == 'Normal' }\normalsize\BLOCK{ elif khanda_size == 'Large' }\large\BLOCK{ elif khanda_size == 'XLarge' }\Large\BLOCK{ elif khanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
@@ -498,9 +517,9 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
             \shade[left color=theme!80!white, right color=white] (0.5\textwidth,-0.4) rectangle (\textwidth, -0.2);
         \BLOCK{ endif }
     \end{tikzpicture}
-    \penalty 10000
+    \penalty 100000
     \vspace{0.8cm}
-    \penalty 10000
+    \penalty 100000
 }
 
 \newcommand{\specialupakhanda}[1]{

@@ -666,9 +666,85 @@ async function init() {
             currentEditingBlock = null;
         }
         const contextMenu = document.getElementById('editorContextMenu');
-        document.addEventListener('click', () => {
+        const magicDropdown = document.getElementById('magicBlockDropdown');
+
+        document.addEventListener('click', (e) => {
             if (contextMenu) contextMenu.classList.add('hidden');
+            if (magicDropdown && !e.target.closest('#magicBlockDropdown') && !e.target.closest('.change-cmd-btn')) {
+                magicDropdown.classList.add('hidden');
+            }
         });
+
+        window.toggleMagicDropdown = function (event, btn) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            if (!magicDropdown) return;
+
+            if (!magicDropdown.classList.contains('hidden') && magicDropdown.dataset.activeBtn === btn) {
+                magicDropdown.classList.add('hidden');
+                delete magicDropdown.dataset.activeBtn;
+                return;
+            }
+
+            const block = btn.closest('.magic-block');
+            if (!block) return;
+
+            const currentTemplate = templateSelect.value;
+            const metadata = availableTemplates[currentTemplate];
+            const allCommands = (metadata && metadata.magic_commands)
+                ? metadata.magic_commands
+                : editor.getMagicCommands();
+
+            const pairing = block.dataset.pairing;
+
+            let filteredCmds = [];
+            if (pairing === 'begin') {
+                filteredCmds = allCommands.filter(c => c.pairing === 'begin');
+            } else if (pairing === 'end') {
+                filteredCmds = allCommands.filter(c => c.pairing === 'end');
+            } else {
+                filteredCmds = allCommands.filter(c => !c.pairing);
+            }
+
+            magicDropdown.innerHTML = '';
+            if (filteredCmds.length === 0) {
+                magicDropdown.innerHTML = '<div style="padding: 8px 12px; font-size:12px; color:var(--fg3);">विकल्पहरू उपलब्ध छैनन्</div>';
+            } else {
+                filteredCmds.forEach(cmd => {
+                    const item = document.createElement('div');
+                    item.className = 'magic-dropdown-item';
+                    if (cmd.label === block.dataset.label) {
+                        item.classList.add('active');
+                    }
+                    item.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> <span>${cmd.label}</span>`;
+                    item.onclick = (ev) => {
+                        ev.stopPropagation();
+                        magicDropdown.classList.add('hidden');
+                        delete magicDropdown.dataset.activeBtn;
+                        editor.replaceMagicBlock(block, cmd, markdownEditor);
+                        isDirty = true;
+                        autoSave();
+                    };
+                    magicDropdown.appendChild(item);
+                });
+            }
+
+            const rect = btn.getBoundingClientRect();
+            magicDropdown.style.left = `${rect.left}px`;
+            magicDropdown.style.top = `${rect.bottom + 4}px`;
+            magicDropdown.classList.remove('hidden');
+            magicDropdown.dataset.activeBtn = btn;
+
+            const menuRect = magicDropdown.getBoundingClientRect();
+            if (menuRect.bottom > window.innerHeight) {
+                magicDropdown.style.top = `${rect.top - menuRect.height - 4}px`;
+            }
+            if (menuRect.right > window.innerWidth) {
+                magicDropdown.style.left = `${window.innerWidth - menuRect.width - 10}px`;
+            }
+        };
         if (markdownEditor && contextMenu) {
             markdownEditor.addEventListener('contextmenu', (e) => {
                 const selection = window.getSelection();
