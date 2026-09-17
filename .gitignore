@@ -1,3 +1,10 @@
 __pycache__
 .venv
 # data
+src/ksaitex/__pycache__/__init__.cpython-313.pyc
+src/ksaitex/api/__pycache__/main.cpython-313.pyc
+src/ksaitex/parsing/__pycache__/markdown.cpython-313.pyc
+src/ksaitex/templating/__pycache__/engine.cpython-313.pyc
+src/ksaitex/templating/latex/base.fdb_latexmk
+src/ksaitex/templating/latex/base.log
+src/ksaitex/compilation/__pycache__/compiler.cpython-313.pyc

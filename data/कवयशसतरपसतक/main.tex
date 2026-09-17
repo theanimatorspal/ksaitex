@@ -11,8 +11,6 @@
 
 
 
-
-
 \documentclass[10pt, a5paper, twoside]{article}
 
 
@@ -387,42 +385,54 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
+    \goodbreak
     \markboth{#1}{}
     \vspace{1.2cm}
     \noindent\makebox[\textwidth][c]{{\huge \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=white, right color=theme!80!white] (0,-0.4) rectangle (0.5\textwidth, -0.2);
             \shade[left color=theme!80!white, right color=white] (0.5\textwidth,-0.4) rectangle (\textwidth, -0.2);
         
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.8cm}
+    \penalty 10000
 }
 
 \newcommand{\specialupakhanda}[1]{
+    \goodbreak
     \vspace{0.8cm}
     \noindent\makebox[\textwidth][c]{{\Large \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=white, right color=theme!60!white] (0,-0.3) rectangle (0.5\textwidth, -0.15);
             \shade[left color=theme!60!white, right color=white] (0.5\textwidth,-0.3) rectangle (\textwidth, -0.15);
         
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.6cm}
+    \penalty 10000
 }
 
 \newcommand{\specialupaupakhanda}[1]{
+    \goodbreak
     \vspace{0.4cm}
     \noindent\makebox[\textwidth][l]{{\large \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         
             \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
         
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.4cm}
     \addcontentsline{toc}{subsubsection}{#1}
+    \penalty 10000
 }
 
 % --- Font Configuration ---
@@ -752,6 +762,8 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 \end{shloka}
 
+\vspacer{-0.5}
+
 \begin{shloka}[center]
 
 \textbf{(६०० तमात् ८०० तमपर्यन्तम्)}
@@ -768,7 +780,7 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 अधुना भामहस्य काव्यालङ्काराभिधान एक एव शास्त्रीयो ग्रन्थ उपलभ्यते । भामहालङ्कार इति नाम्नापि प्रसिद्धो ग्रन्थोऽयम् अलङ्कारशास्त्रस्य सम्पूर्णतत्त्वविवेचनसम्बद्धा प्राचीनतमा उपलब्धिर्मन्यते । अत्र षट् परिच्छेदाः सन्ति । एषु ३९९ सङ्‌ख्यामिता कारिका विद्यन्ते । परन्तु भामहोल्लेखानुसारेण काव्यालङ्कारस्य श्लोकसङ्ख्याः चतुश्शतम् (४००) ज्ञायते ।                                                 (काव्यालङ्कारः, भूमिका, पृ. २) यथा—
 
-\begin{shloka}[center]
+\begin{visheshshlokathree}[center]{(भामहालङ्कारः)}
 
 \textbf{षष्ठ्या शरीरं निर्णीतं षट्षष्ठ्या त्वनलङ्कृतिः ।}
 
@@ -776,9 +788,9 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 \textbf{षष्ठ्या शब्दस्य शुद्धिः स्यादित्येवं वस्तुपञ्चकम् ।}
 
-\textbf{उक्तः षड्भिः परिच्छेदैर् भामहेन क्रमेण वः ।। (भामहालङ्कारः)}
+\textbf{उक्तः षड्भिः परिच्छेदैर् भामहेन क्रमेण वः ।।}
 
-\end{shloka}
+\end{visheshshlokathree}
 
 \customparagraph{\textbf{काव्यलक्षणम्}}
 

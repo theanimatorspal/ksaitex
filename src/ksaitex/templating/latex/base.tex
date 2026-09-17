@@ -27,14 +27,6 @@
 % \MAGIC{ special_mahakhandatwo, label='विशेष महाखण्ड २', tab='ढाँचा', args='title:text:नयाँ विशेष महाखण्ड|subtitle:text:उपशीर्षक', toc_level='1', command='\specialmahakhandatwo{VAR_title}{VAR_subtitle}' }
 
 
-% \MAGIC{ section, label='संख्याहीन शीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', toc_level='2', command='\section*{VAR_title}' }
-% \MAGIC{ subsection, label='संख्याहीन उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', toc_level='3', command='\subsection*{VAR_title}' }
-% \MAGIC{ subsubsection, label='संख्याहीन उप-उपशीर्षक', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपर्षक', toc_level='4', command='\subsubsection*{VAR_title}' }
-
-% \MAGIC{ section_toc, label='संख्याहीन शीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन शीर्षक', toc_level='2', command='\section*{VAR_title}\addcontentsline{toc}{section}{VAR_title}' }
-% \MAGIC{ subsection_toc, label='संख्याहीन उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उपशीर्षक', toc_level='3', command='\subsection*{VAR_title}\addcontentsline{toc}{subsection}{VAR_title}' }
-% \MAGIC{ subsubsection_toc, label='संख्याहीन उप-उपशीर्षक सूचीमा देखाउने', tab='ढाँचा', args='title:text:नयाँ संख्याहीन उप-उपशीर्षक', toc_level='4', command='\subsubsection*{VAR_title}\addcontentsline{toc}{subsubsection}{VAR_title}' }
-
 % \MAGIC{ box_begin, label='बक्स सुरु', tab='ढाँचा', pairing='begin', group='box', args='title:text:शीर्षक', command='\begin{tcolorbox}[title=VAR_title, colback=theme!5!white, colframe=theme!75!black]' }
 % \MAGIC{ box_end, label='बक्स अन्त्य', tab='ढाँचा', pairing='end', group='box', command='\end{tcolorbox}' }
 % \MAGIC{ toc, label='विषय सूची', tab='ढाँचा', args='title:text:विषय सूची|nums:select,devanagari,latin:devanagari', command='\renewcommand{\contentsname}{VAR_title} \ifthenelse{\equal{VAR_nums}{devanagari}}{ \renewcommand{\thepage}{\devanagaridigits{\value{page}}} \renewcommand{\thepart}{\devanagaridigits{\value{part}}} \renewcommand{\thesection}{\devanagaridigits{\value{section}}} \renewcommand{\thesubsection}{\thesection.\devanagaridigits{\value{subsection}}} \renewcommand{\thesubsubsection}{\thesubsection.\devanagaridigits{\value{subsubsection}}} }{ \pagenumbering{arabic} \renewcommand{\thepart}{\arabic{part}} \renewcommand{\thesection}{\arabic{section}} \renewcommand{\thesubsection}{\thesection.\arabic{subsection}} \renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}} } \tableofcontents' }
@@ -490,10 +482,12 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
 
 % --- Special segments with TikZ gradient ---
 \newcommand{\specialkhanda}[1]{
+    \goodbreak
     \markboth{#1}{}
     \vspace{1.2cm}
     \noindent\makebox[\textwidth][\BLOCK{ if khanda_align == 'Left' }l\BLOCK{ elif khanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if khanda_size == 'Normal' }\normalsize\BLOCK{ elif khanda_size == 'Large' }\large\BLOCK{ elif khanda_size == 'XLarge' }\Large\BLOCK{ elif khanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{section}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \BLOCK{ if khanda_align == 'Left' }
             \shade[left color=theme!80!white, right color=white] (0,-0.4) rectangle (\textwidth, -0.2);
@@ -504,13 +498,17 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
             \shade[left color=theme!80!white, right color=white] (0.5\textwidth,-0.4) rectangle (\textwidth, -0.2);
         \BLOCK{ endif }
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.8cm}
+    \penalty 10000
 }
 
 \newcommand{\specialupakhanda}[1]{
+    \goodbreak
     \vspace{0.8cm}
     \noindent\makebox[\textwidth][\BLOCK{ if upakhanda_align == 'Left' }l\BLOCK{ elif upakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upakhanda_size == 'Large' }\large\BLOCK{ elif upakhanda_size == 'XLarge' }\Large\BLOCK{ elif upakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
     \addcontentsline{toc}{subsection}{#1}
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \BLOCK{ if upakhanda_align == 'Left' }
             \shade[left color=theme!60!white, right color=white] (0,-0.3) rectangle (\textwidth, -0.15);
@@ -521,12 +519,16 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
             \shade[left color=theme!60!white, right color=white] (0.5\textwidth,-0.3) rectangle (\textwidth, -0.15);
         \BLOCK{ endif }
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.6cm}
+    \penalty 10000
 }
 
 \newcommand{\specialupaupakhanda}[1]{
+    \goodbreak
     \vspace{0.4cm}
     \noindent\makebox[\textwidth][\BLOCK{ if upaupakhanda_align == 'Left' }l\BLOCK{ elif upaupakhanda_align == 'Right' }r\BLOCK{ else }c\BLOCK{ endif }]{{\BLOCK{ if upaupakhanda_size == 'Normal' }\normalsize\BLOCK{ elif upaupakhanda_size == 'Large' }\large\BLOCK{ elif upaupakhanda_size == 'XLarge' }\Large\BLOCK{ elif upaupakhanda_size == 'Huge' }\huge\BLOCK{ else }\Huge\BLOCK{ endif } \color{theme} \textbf{#1}}} \par \nointerlineskip
+    \penalty 10000
     \noindent\begin{tikzpicture}[remember picture, overlay]
         \BLOCK{ if upaupakhanda_align == 'Left' }
             \shade[left color=theme!40!white, right color=white] (0,-0.2) rectangle (\textwidth, -0.1);
@@ -537,8 +539,10 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
             \shade[left color=theme!40!white, right color=white] (0.5\textwidth,-0.2) rectangle (\textwidth, -0.1);
         \BLOCK{ endif }
     \end{tikzpicture}
+    \penalty 10000
     \vspace{0.4cm}
     \addcontentsline{toc}{subsubsection}{#1}
+    \penalty 10000
 }
 
 % --- Font Configuration ---
