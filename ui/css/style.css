@@ -312,7 +312,7 @@ button:active {
 }
 
 .left-pane {
-    flex: 2;
+    flex: 0 0 60%;
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
@@ -863,7 +863,7 @@ select:focus {
 
 /* Preview Section */
 .preview-section {
-    flex: 3;
+    flex: 0 0 40%;
     display: flex;
     flex-direction: column;
     background-color: var(--bg0);

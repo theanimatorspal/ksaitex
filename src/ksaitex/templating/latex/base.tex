@@ -454,13 +454,25 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \vspace{0.1cm}
 }
 
-% --- Vishesh Shloka Three Environment (with Author Only) ---
-\newenvironment{visheshshlokathree}[2][alternating]{
-    \def\visheshauthor{#2}
-    \begin{shloka}[#1]
-}{
-    \nopagebreak\hfill\mbox{\visheshauthor}
-    \end{shloka}
+% \newenvironment{visheshshlokathree}[2][alternating]{%
+%     \def\visheshauthor{#2}%
+%     \begin{center}%
+%     \begin{tabular}[b]{@{}l@{}l@{}}%
+%         \begin{varwidth}[b]{\textwidth}%
+%             \begin{shloka}[#1]%
+% }{%
+%             \end{shloka}%
+%         \end{varwidth} & \small\visheshauthor
+%     \end{tabular}%
+%     \end{center}%
+% }
+
+\newenvironment{visheshshlokathree}[2][alternating]{%
+    \def\visheshauthor{#2}%
+    \begin{shloka}[#1]%
+}{%
+    \hfill\hfill\hfill\quad\small\visheshauthor\hfill
+    \end{shloka}%
 }
 
 \newenvironment{vyanucched}[3]{% #1 = outer align, #2 = inner align, #3 = width multiplier

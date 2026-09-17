@@ -485,6 +485,13 @@ async function init() {
             renameProjectTitleInput.addEventListener('input', () => renameTitleError.classList.add('hidden'));
         }
         document.body.addEventListener('mousedown', (e) => {
+            const changeBtn = e.target.closest('.change-cmd-btn');
+            if (changeBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                window.toggleMagicDropdown(e, changeBtn);
+                return;
+            }
             const btn = e.target.closest('.magic-arg-btn');
             if (btn) {
                 e.preventDefault();

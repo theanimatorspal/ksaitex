@@ -200,12 +200,12 @@ export function ensureMagicBlockDropdowns(editor) {
     if (!editor) return;
     const blocks = editor.querySelectorAll('.magic-block');
     blocks.forEach(block => {
-        if (!block.querySelector('.change-cmd-btn')) {
-            const deleteBtn = block.querySelector('.delete-btn');
-            const changeBtn = document.createElement('button');
+        let changeBtn = block.querySelector('.change-cmd-btn');
+        const deleteBtn = block.querySelector('.delete-btn');
+        if (!changeBtn) {
+            changeBtn = document.createElement('button');
             changeBtn.className = 'change-cmd-btn';
             changeBtn.title = 'Change Command';
-            changeBtn.onclick = (e) => window.toggleMagicDropdown(e, changeBtn);
             changeBtn.innerHTML = '<i class="fa-solid fa-chevron-down"></i>';
             if (deleteBtn) {
                 block.insertBefore(changeBtn, deleteBtn);
@@ -213,6 +213,7 @@ export function ensureMagicBlockDropdowns(editor) {
                 block.appendChild(changeBtn);
             }
         }
+        changeBtn.setAttribute('onclick', 'window.toggleMagicDropdown(event, this);');
     });
 }
 

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.8.16)  17 SEP 2026 13:13
+This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.8.16)  17 SEP 2026 13:51
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -93,19 +93,27 @@ eX
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 )
 (/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box53
+\sift@deathcycles=\count293
+\@vwid@loff=\dimen151
+\@vwid@roff=\dimen152
+)
+==> First Aid for varwidth.sty applied!
 (/usr/share/texmf-dist/tex/latex/polyglossia/polyglossia.sty
 Package: polyglossia 2025/12/01 v2.9 Modern multilingual typesetting with XeLaT
 eX and LuaLaTeX
 
 (/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count293
+\etb@tempcnta=\count294
 )
 (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
 Lua module: polyglossia 2013/05/11 v1.3 Polyglossia
-\l_xpg_alias_keyvals_int=\count294
+\l_xpg_alias_keyvals_int=\count295
 
 (/usr/share/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf
 File: gloss-latex.ldf polyglossia: module for default language
@@ -124,17 +132,17 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count295
-\Gm@cntv=\count296
-\c@Gm@tempcnt=\count297
-\Gm@bindingoffset=\dimen151
-\Gm@wd@mp=\dimen152
-\Gm@odd@mp=\dimen153
-\Gm@even@mp=\dimen154
-\Gm@layoutwidth=\dimen155
-\Gm@layoutheight=\dimen156
-\Gm@layouthoffset=\dimen157
-\Gm@layoutvoffset=\dimen158
+\Gm@cnth=\count296
+\Gm@cntv=\count297
+\c@Gm@tempcnt=\count298
+\Gm@bindingoffset=\dimen153
+\Gm@wd@mp=\dimen154
+\Gm@odd@mp=\dimen155
+\Gm@even@mp=\dimen156
+\Gm@layoutwidth=\dimen157
+\Gm@layoutheight=\dimen158
+\Gm@layouthoffset=\dimen159
+\Gm@layoutvoffset=\dimen160
 \Gm@dimlist=\toks18
 )
 (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
@@ -164,11 +172,11 @@ Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
 (/usr/share/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks20
-\pgfutil@tempdima=\dimen159
-\pgfutil@tempdimb=\dimen160
+\pgfutil@tempdima=\dimen161
+\pgfutil@tempdimb=\dimen162
 )
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box53
+\pgfutil@abb=\box54
 )
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/pgf.revision.tex)
@@ -194,8 +202,8 @@ Package graphics Info: Driver file: luatex.def on input line 106.
 (/usr/share/texmf-dist/tex/latex/graphics-def/luatex.def
 File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
 ))
-\Gin@req@height=\dimen161
-\Gin@req@width=\dimen162
+\Gin@req@height=\dimen163
+\Gin@req@width=\dimen164
 )
 (/usr/share/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
@@ -209,26 +217,26 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 x
 \pgfkeys@tmptoks=\toks23
 ))
-\pgf@x=\dimen163
-\pgf@y=\dimen164
-\pgf@xa=\dimen165
-\pgf@ya=\dimen166
-\pgf@xb=\dimen167
-\pgf@yb=\dimen168
-\pgf@xc=\dimen169
-\pgf@yc=\dimen170
-\pgf@xd=\dimen171
-\pgf@yd=\dimen172
+\pgf@x=\dimen165
+\pgf@y=\dimen166
+\pgf@xa=\dimen167
+\pgf@ya=\dimen168
+\pgf@xb=\dimen169
+\pgf@yb=\dimen170
+\pgf@xc=\dimen171
+\pgf@yc=\dimen172
+\pgf@xd=\dimen173
+\pgf@yd=\dimen174
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count298
-\c@pgf@countb=\count299
-\c@pgf@countc=\count300
-\c@pgf@countd=\count301
+\c@pgf@counta=\count299
+\c@pgf@countb=\count300
+\c@pgf@countc=\count301
+\c@pgf@countd=\count302
 \t@pgf@toka=\toks24
 \t@pgf@tokb=\toks25
 \t@pgf@tokc=\toks26
-\pgf@sys@id@count=\count302
+\pgf@sys@id@count=\count303
  (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
@@ -242,8 +250,8 @@ File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count303
-\pgfsyssoftpath@bigbuffer@items=\count304
+\pgfsyssoftpath@smallbuffer@items=\count304
+\pgfsyssoftpath@bigbuffer@items=\count305
 )
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
@@ -273,9 +281,9 @@ Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen173
-\pgfmath@count=\count305
-\pgfmath@box=\box54
+\pgfmath@dimen=\dimen175
+\pgfmath@count=\count306
+\pgfmath@box=\box55
 \pgfmath@toks=\toks27
 \pgfmath@stack@operand=\toks28
 \pgfmath@stack@operation=\toks29
@@ -292,52 +300,52 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
 .code.tex) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count306
+\c@pgfmathroundto@lastzeros=\count307
 ))
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen174
-\pgf@picmaxx=\dimen175
-\pgf@picminy=\dimen176
-\pgf@picmaxy=\dimen177
-\pgf@pathminx=\dimen178
-\pgf@pathmaxx=\dimen179
-\pgf@pathminy=\dimen180
-\pgf@pathmaxy=\dimen181
-\pgf@xx=\dimen182
-\pgf@xy=\dimen183
-\pgf@yx=\dimen184
-\pgf@yy=\dimen185
-\pgf@zx=\dimen186
-\pgf@zy=\dimen187
+\pgf@picminx=\dimen176
+\pgf@picmaxx=\dimen177
+\pgf@picminy=\dimen178
+\pgf@picmaxy=\dimen179
+\pgf@pathminx=\dimen180
+\pgf@pathmaxx=\dimen181
+\pgf@pathminy=\dimen182
+\pgf@pathmaxy=\dimen183
+\pgf@xx=\dimen184
+\pgf@xy=\dimen185
+\pgf@yx=\dimen186
+\pgf@yy=\dimen187
+\pgf@zx=\dimen188
+\pgf@zy=\dimen189
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen188
-\pgf@path@lasty=\dimen189
+\pgf@path@lastx=\dimen190
+\pgf@path@lasty=\dimen191
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen190
-\pgf@shorten@start@additional=\dimen191
+\pgf@shorten@end@additional=\dimen192
+\pgf@shorten@start@additional=\dimen193
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfpic=\box55
-\pgf@hbox=\box56
-\pgf@layerbox@main=\box57
-\pgf@picture@serial@count=\count307
+\pgfpic=\box56
+\pgf@hbox=\box57
+\pgf@layerbox@main=\box58
+\pgf@picture@serial@count=\count308
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen192
+\pgflinewidth=\dimen194
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.t
 ex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen193
-\pgf@pt@y=\dimen194
-\pgf@pt@temp=\dimen195
+\pgf@pt@x=\dimen195
+\pgf@pt@y=\dimen196
+\pgf@pt@temp=\dimen197
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
@@ -349,20 +357,20 @@ x
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen196
+\pgfarrowsep=\dimen198
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen197
-\pgf@sys@shading@range@num=\count308
-\pgf@shadingcount=\count309
+\pgf@max=\dimen199
+\pgf@sys@shading@range@num=\count309
+\pgf@shadingcount=\count310
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfexternal@startupbox=\box58
+\pgfexternal@startupbox=\box59
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
@@ -377,15 +385,15 @@ File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodeparttextbox=\box59
+\pgfnodeparttextbox=\box60
 )
 (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen198
-\pgf@nodesepend=\dimen199
+\pgf@nodesepstart=\dimen256
+\pgf@nodesepend=\dimen257
 )
 (/usr/share/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
@@ -397,8 +405,8 @@ Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
 (/usr/share/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen256
-\pgffor@skip=\dimen257
+\pgffor@iter=\dimen258
+\pgffor@skip=\dimen259
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 ))
@@ -408,32 +416,32 @@ Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.te
 x
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count310
-\pgfplotmarksize=\dimen258
+\pgf@plot@mark@count=\count311
+\pgfplotmarksize=\dimen260
 )
-\tikz@lastx=\dimen259
-\tikz@lasty=\dimen260
-\tikz@lastxsaved=\dimen261
-\tikz@lastysaved=\dimen262
-\tikz@lastmovetox=\dimen263
-\tikz@lastmovetoy=\dimen264
-\tikzleveldistance=\dimen265
-\tikzsiblingdistance=\dimen266
-\tikz@figbox=\box60
-\tikz@figbox@bg=\box61
-\tikz@tempbox=\box62
-\tikz@tempbox@bg=\box63
-\tikztreelevel=\count311
-\tikznumberofchildren=\count312
-\tikznumberofcurrentchild=\count313
-\tikz@fig@count=\count314
+\tikz@lastx=\dimen261
+\tikz@lasty=\dimen262
+\tikz@lastxsaved=\dimen263
+\tikz@lastysaved=\dimen264
+\tikz@lastmovetox=\dimen265
+\tikz@lastmovetoy=\dimen266
+\tikzleveldistance=\dimen267
+\tikzsiblingdistance=\dimen268
+\tikz@figbox=\box61
+\tikz@figbox@bg=\box62
+\tikz@tempbox=\box63
+\tikz@tempbox@bg=\box64
+\tikztreelevel=\count312
+\tikznumberofchildren=\count313
+\tikznumberofcurrentchild=\count314
+\tikz@fig@count=\count315
  (/usr/share/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count315
-\pgfmatrixcurrentcolumn=\count316
-\pgf@matrix@numberofcolumns=\count317
+\pgfmatrixcurrentrow=\count316
+\pgfmatrixcurrentcolumn=\count317
+\pgf@matrix@numberofcolumns=\count318
 )
-\tikz@expandcount=\count318
+\tikz@expandcount=\count319
 
 (/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
 topaths.code.tex
@@ -452,19 +460,19 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
 \@envbody=\toks34
 )
-\tcb@titlebox=\box64
-\tcb@upperbox=\box65
-\tcb@lowerbox=\box66
-\tcb@phantombox=\box67
-\c@tcbbreakpart=\count319
-\c@tcblayer=\count320
-\c@tcolorbox@number=\count321
-\l__tcobox_tmpa_box=\box68
-\l__tcobox_tmpa_dim=\dimen267
-\tcb@temp=\box69
+\tcb@titlebox=\box65
+\tcb@upperbox=\box66
+\tcb@lowerbox=\box67
+\tcb@phantombox=\box68
+\c@tcbbreakpart=\count320
+\c@tcblayer=\count321
+\c@tcolorbox@number=\count322
+\l__tcobox_tmpa_box=\box69
+\l__tcobox_tmpa_dim=\dimen269
 \tcb@temp=\box70
 \tcb@temp=\box71
 \tcb@temp=\box72
+\tcb@temp=\box73
 )
 (/usr/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
@@ -483,17 +491,17 @@ File: pgflibraryfadings.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
 \MT@toks=\toks35
-\MT@tempbox=\box73
-\MT@count=\count322
+\MT@tempbox=\box74
+\MT@count=\count323
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1084.
 LaTeX Info: Redefining \leftprotrusion on input line 1085.
 \MT@prot@toks=\toks36
 LaTeX Info: Redefining \rightprotrusion on input line 1104.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen268
+\MT@outer@kern=\dimen270
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count323
+\MT@listname@count=\count324
 
 (/usr/share/texmf-dist/tex/latex/microtype/microtype-luatex.def
 File: microtype-luatex.def 2026/03/01 v3.2d Definitions specific to luatex (RS)
@@ -513,11 +521,11 @@ LaTeX Info: Redefining \microtypesetup on input line 3065.
 )
 (/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count324
+\c@float@type=\count325
 \float@exts=\toks37
-\float@box=\box74
+\float@box=\box75
 \@float@everytoks=\toks38
-\@floatcapt=\box75
+\@floatcapt=\box76
 )
 (/usr/share/texmf-dist/tex/latex/pgfornament/pgfornament.sty
 (/usr/share/texmf-dist/tex/latex/pgfopts/pgfopts.sty
@@ -558,8 +566,8 @@ Package tocloft Info: The document has section divisions on input line 51.
 \cftbeforefigskip=\skip89
 \cftfigindent=\skip90
 \cftfignumwidth=\skip91
-\c@lofdepth=\count325
-\c@lotdepth=\count326
+\c@lofdepth=\count326
+\c@lotdepth=\count327
 \cftbeforelottitleskip=\skip92
 \cftafterlottitleskip=\skip93
 \cftbeforetabskip=\skip94
@@ -574,20 +582,20 @@ Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
 
 (/usr/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen269
-\ar@mcellbox=\box76
-\extrarowheight=\dimen270
+\col@sep=\dimen271
+\ar@mcellbox=\box77
+\extrarowheight=\dimen272
 \NC@list=\toks41
 \extratabsurround=\skip97
 \backup@length=\skip98
-\ar@cellbox=\box77
+\ar@cellbox=\box78
 )
-\TX@col@width=\dimen271
-\TX@old@table=\dimen272
-\TX@old@col=\dimen273
-\TX@target=\dimen274
-\TX@delta=\dimen275
-\TX@cols=\count327
+\TX@col@width=\dimen273
+\TX@old@table=\dimen274
+\TX@old@col=\dimen275
+\TX@target=\dimen276
+\TX@delta=\dimen277
+\TX@cols=\count328
 \TX@ftn=\toks42
 )
 (/usr/share/texmf-dist/tex/latex/ltablex/ltablex.sty
@@ -599,38 +607,38 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTright=\skip100
 \LTpre=\skip101
 \LTpost=\skip102
-\LTchunksize=\count328
-\LTcapwidth=\dimen276
-\LT@head=\box78
-\LT@firsthead=\box79
-\LT@foot=\box80
-\LT@lastfoot=\box81
-\LT@gbox=\box82
-\LT@cols=\count329
-\LT@rows=\count330
-\c@LT@tables=\count331
-\c@LT@chunks=\count332
+\LTchunksize=\count329
+\LTcapwidth=\dimen278
+\LT@head=\box79
+\LT@firsthead=\box80
+\LT@foot=\box81
+\LT@lastfoot=\box82
+\LT@gbox=\box83
+\LT@cols=\count330
+\LT@rows=\count331
+\c@LT@tables=\count332
+\c@LT@chunks=\count333
 \LT@p@ftn=\toks43
 )))
 (/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen277
-\lightrulewidth=\dimen278
-\cmidrulewidth=\dimen279
-\belowrulesep=\dimen280
-\belowbottomsep=\dimen281
-\aboverulesep=\dimen282
-\abovetopsep=\dimen283
-\cmidrulesep=\dimen284
-\cmidrulekern=\dimen285
-\defaultaddspace=\dimen286
-\@cmidla=\count333
-\@cmidlb=\count334
-\@aboverulesep=\dimen287
-\@belowrulesep=\dimen288
-\@thisruleclass=\count335
-\@lastruleclass=\count336
-\@thisrulewidth=\dimen289
+\heavyrulewidth=\dimen279
+\lightrulewidth=\dimen280
+\cmidrulewidth=\dimen281
+\belowrulesep=\dimen282
+\belowbottomsep=\dimen283
+\aboverulesep=\dimen284
+\abovetopsep=\dimen285
+\cmidrulesep=\dimen286
+\cmidrulekern=\dimen287
+\defaultaddspace=\dimen288
+\@cmidla=\count334
+\@cmidlb=\count335
+\@aboverulesep=\dimen289
+\@belowrulesep=\dimen290
+\@thisruleclass=\count336
+\@lastruleclass=\count337
+\@thisrulewidth=\dimen291
 )
 (/usr/share/texmf-dist/tex/lualatex/luacode/luacode.sty
 Package: luacode 2012/01/23 v1.2a lua-in-tex helpers (mpg)
@@ -643,7 +651,7 @@ Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX
 
 (/usr/share/texmf-dist/tex/luatex/ctablestack/ctablestack.sty
 Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
-\@catcodetablestackcnt=\count337
+\@catcodetablestackcnt=\count338
 )
 \CatcodeTableOther=\catcodetable14
 \CatcodeTableExpl=\catcodetable15
@@ -652,7 +660,7 @@ Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 \luacode@table@soft=\catcodetable16
 )
 Inserting `Fix Devanagari Breaks' in `pre_linebreak_filter'.
-\c@shlokaline=\count338
+\c@shlokaline=\count339
 luaotfload | cache : Lookup cache loaded from /home/ksai/.texlive/texmf-var/luat
 ex-cache/generic/names/luaotfload-lookup-cache.luc.
 
@@ -698,22 +706,22 @@ cp;"
  (./main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 442.
-LaTeX Font Info:    ... okay on input line 442.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 458.
+LaTeX Font Info:    ... okay on input line 458.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -721,65 +729,65 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 442.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 442.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 442.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 442.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 442.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 442.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 442.
-LaTeX Font Info:    Redeclaring math accent \check on input line 442.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 442.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 442.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 442.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 442.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 442.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 458.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 458.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 458.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 458.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 458.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 458.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 458.
+LaTeX Font Info:    Redeclaring math accent \check on input line 458.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 458.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 458.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 458.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 458.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 458.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 442.
+(Font)              `operators' in the math version `normal' on input line 458.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> TU/TiroDevanagariSanskrit(0)/m/n on inp
-ut line 442.
+ut line 458.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 442.
+(Font)              `operators' in the math version `bold' on input line 458.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/TiroDevanagariSanskrit(0)/m/n on in
-put line 442.
+put line 458.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/TiroDevanagariSanskrit(0)/m/n --> TU/TiroDevanagariS
-anskrit(0)/m/n on input line 442.
+anskrit(0)/m/n on input line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/TiroDevanagariSanskrit(0)/m/it on i
-nput line 442.
+nput line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/cmr/bx/n --> TU/TiroDevanagariSanskrit(0)/b/n on in
-put line 442.
+put line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 442.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 442.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 458.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/TiroDevanagariSanskrit(0)/m/n --> TU/TiroDevanagariS
-anskrit(0)/b/n on input line 442.
+anskrit(0)/b/n on input line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/TiroDevanagariSanskrit(0)/b/it on 
-input line 442.
+input line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 442.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 458.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 442.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 458.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -817,16 +825,16 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count339
-\scratchdimen=\dimen290
-\scratchbox=\box83
-\nofMPsegments=\count340
-\nofMParguments=\count341
+\scratchcounter=\count340
+\scratchdimen=\dimen292
+\scratchbox=\box84
+\nofMPsegments=\count341
+\nofMParguments=\count342
 \everyMPshowfont=\toks45
-\MPscratchCnt=\count342
-\MPscratchDim=\dimen291
-\MPnumerator=\count343
-\makeMPintoPDFobject=\count344
+\MPscratchCnt=\count343
+\MPscratchDim=\dimen293
+\MPnumerator=\count344
+\makeMPintoPDFobject=\count345
 \everyMPtoPDFconversion=\toks46
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -837,13 +845,16 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 442.
-Package microtype Info: Applying patch `item' on input line 442.
-Package microtype Info: Applying patch `toc' on input line 442.
-Package microtype Info: Applying patch `eqnum' on input line 442.
-Package microtype Info: Applying patch `footnote' on input line 442.
-Package microtype Info: Applying patch `verbatim' on input line 442.
-LaTeX Info: Redefining \microtypesetup on input line 442.
+Package microtype Info: Patching varwidth to enable character protrusion.
+\MT@vwid@leftmargin=\dimen294
+\MT@vwid@rightmargin=\dimen295
+LaTeX Info: Redefining \microtypecontext on input line 458.
+Package microtype Info: Applying patch `item' on input line 458.
+Package microtype Info: Applying patch `toc' on input line 458.
+Package microtype Info: Applying patch `eqnum' on input line 458.
+Package microtype Info: Applying patch `footnote' on input line 458.
+Package microtype Info: Applying patch `verbatim' on input line 458.
+LaTeX Info: Redefining \microtypesetup on input line 458.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1070,7 +1081,7 @@ Package microtype Warning: Unknown slot number of character
 (microtype)                `microtype.cfg/425(protrusion)'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--452
+Underfull \hbox (badness 10000) in paragraph at lines 464--468
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 नेपालसंस्कृत
 विश्वविद्यालयेन शास्त्रिस्
 तरीयपाठ्यक्रमः २०७८ तमाद् वै
@@ -1078,7 +1089,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--452
+Underfull \hbox (badness 10000) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 षष्ठपत्रे ‘वै
 दिकसाहित्याध्ययनम्’ इति शीर
 ्षके वैदिकसाहित्यस्य सामान्
@@ -1086,7 +1097,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 2050) in paragraph at lines 448--452
+Underfull \hbox (badness 2050) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वेदोपनिषद्ब्
 राह्मणग्रन्थतः काञ्चन मुख्य
 विषयानुधृत्य पाठ्यवस्तु निर
@@ -1094,7 +1105,7 @@ Underfull \hbox (badness 2050) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 448--452
+Underfull \hbox (badness 1533) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पाठ्यवस्तुनो 
 मूलग्रन्था बृहत्तरा विद्यन्
 ते । अतच्छात्रैस्तानि सर्वाण
@@ -1102,7 +1113,7 @@ Underfull \hbox (badness 1533) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 448--452
+Underfull \hbox (badness 3396) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्राप्य पठनाय 
 काठिन्यमनुभूयते । तस्मात् सर
 ्वान् ग्रन्थांशानेकत्रैव सङ
@@ -1110,7 +1121,7 @@ Underfull \hbox (badness 3396) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 1983) in paragraph at lines 448--452
+Underfull \hbox (badness 1983) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सम्पादनमावश्
 यकमिति अनुभूयमानमासीत् । तत्
 प्रसङ्गे विद्यापीठे समागतैः 
@@ -1118,7 +1129,7 @@ Underfull \hbox (badness 1983) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 448--452
+Underfull \hbox (badness 10000) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 कुलसचिवपदमलङ
 ्‌कुर्वद्भिर्माधवप्रसादाधि
 कारीवर्यैः, शिक्षाध्यक्षैः क
@@ -1126,7 +1137,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 5533) in paragraph at lines 448--452
+Underfull \hbox (badness 5533) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 जातः। प्रकृतप
 ुस्तकरचनार्थं नेपालसंस्कृत
 विश्वविद्यालयस्य साहित्यवि
@@ -1134,7 +1145,7 @@ Underfull \hbox (badness 5533) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 1661) in paragraph at lines 448--452
+Underfull \hbox (badness 1661) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 समासीनेन प्रा
 प्तविद्यावारिधिकेन प्राध्य
 ापकपदमलङ्‌कुर्वाणेन नुरापत
@@ -1142,7 +1153,7 @@ Underfull \hbox (badness 1661) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 5607) in paragraph at lines 448--452
+Underfull \hbox (badness 5607) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 एवमेव संस्कृत
 हिन्दीनेपालीभाषासु प्रकाशि
 ताः सम्बद्धग्रन्था अपि सहायक
@@ -1150,7 +1161,7 @@ Underfull \hbox (badness 5607) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 2626) in paragraph at lines 448--452
+Underfull \hbox (badness 2626) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सादरं कार्तज्
 ञ्यं निवेदयामि । सन्दर्भेऽस्
 मिन् पुस्तकलेखनप्रेरकेभ्यस
@@ -1158,7 +1169,7 @@ Underfull \hbox (badness 2626) in paragraph at lines 448--452
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 448--452
+Underfull \hbox (badness 1931) in paragraph at lines 464--468
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वैदिकवाङ्‌मय
 स्य पूर्णाध्ययनाभावेन क्वचि
 द् अल्पत्वम् अस्पष्टत्वं वा 
@@ -1204,7 +1215,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 [4] [1
 
 ]
-Underfull \hbox (badness 1635) in paragraph at lines 483--484
+Underfull \hbox (badness 1635) in paragraph at lines 499--500
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 संस्कृतवाङ्‌
 मये वेदशब्दो न केवलं ग्रन्थव
 िशेषं बोधयत्यपितु कञ्चन गभीर
@@ -1212,7 +1223,7 @@ Underfull \hbox (badness 1635) in paragraph at lines 483--484
  []
 
 
-Underfull \hbox (badness 4096) in paragraph at lines 493--494
+Underfull \hbox (badness 4096) in paragraph at lines 509--510
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सम्बन्धः । साय
 णाचार्यस्य ऋग्वेदभाष्यभूमि
 काया वाक्यमाधाररूपेण गृहीतु
@@ -1220,7 +1231,7 @@ Underfull \hbox (badness 4096) in paragraph at lines 493--494
  []
 
 
-Underfull \hbox (badness 7151) in paragraph at lines 493--494
+Underfull \hbox (badness 7151) in paragraph at lines 509--510
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 तत्र ‘इष्टप्र
 ाप्त्यनिष्टपरिहारयोरलौकिकम
 ुपायं यो ग्रन्थो वेदयति स वेद
@@ -1230,7 +1241,7 @@ Underfull \hbox (badness 7151) in paragraph at lines 493--494
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [2]
-Underfull \hbox (badness 2269) in paragraph at lines 509--510
+Underfull \hbox (badness 2269) in paragraph at lines 525--526
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 गणेषु चत्वारः 
 प्रमुखा ऋत्विजो निर्धारिता व
 िद्यन्ते । तत्र होतृगणे होता, 
@@ -1242,7 +1253,7 @@ Underfull \hbox (badness 2269) in paragraph at lines 509--510
 [3] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [4]
-Underfull \hbox (badness 1490) in paragraph at lines 525--526
+Underfull \hbox (badness 1490) in paragraph at lines 541--542
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ऋत्विक् यज्ञस
 ्य प्रमुखाध्यक्षो भवति । एष ऋ
 त्विग् ‘यज्ञकार्ये त्रुटयो म
@@ -1250,7 +1261,7 @@ Underfull \hbox (badness 1490) in paragraph at lines 525--526
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 527--528
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 सामान्यतया य
 ज्ञसम्पादनपरासु चतुसृषु संह
 ितासु ऋग्वेदसंहितायां स्तुत
@@ -1262,7 +1273,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 527--528
 [5] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [6]
-Underfull \hbox (badness 2951) in paragraph at lines 573--574
+Underfull \hbox (badness 2951) in paragraph at lines 589--590
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 उपदिश्यते इति 
 निरुक्तम् । निरुक्तशब्दस्य स
 ामान्यार्थो भवति- निर्वचनं व
@@ -1270,7 +1281,7 @@ Underfull \hbox (badness 2951) in paragraph at lines 573--574
  []
 
 
-Underfull \hbox (badness 3557) in paragraph at lines 577--578
+Underfull \hbox (badness 3557) in paragraph at lines 593--594
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ‘कल्पः’ वेदस
 ्य हस्तौ मन्यते । यथा हस्तौ शर
 ीरं विविधकर्मसु प्रेरयतः, तथ
@@ -1278,7 +1289,7 @@ Underfull \hbox (badness 3557) in paragraph at lines 577--578
  []
 
 
-Underfull \hbox (badness 4403) in paragraph at lines 581--582
+Underfull \hbox (badness 4403) in paragraph at lines 597--598
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 चक्षुः’ इति । 
 यज्ञयागादीनां सम्यग् रूपेण स
 म्पादनाय समयविशेषस्य ज्ञानम
@@ -1288,7 +1299,7 @@ Underfull \hbox (badness 4403) in paragraph at lines 581--582
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [7]
-Underfull \hbox (badness 2990) in paragraph at lines 591--592
+Underfull \hbox (badness 2990) in paragraph at lines 607--608
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पौरस्त्यसाहि
 त्यं वैदिकलौकिकयोर्द्वयोर्
 भागयोर्विभक्तमस्ति । द्वयोर
@@ -1298,14 +1309,14 @@ Underfull \hbox (badness 2990) in paragraph at lines 591--592
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 593--594
+Underfull \hbox (badness 10000) in paragraph at lines 609--610
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ऋग्वेदस्य सं
 वादसूक्तानि काव्यमयत्वादत्
 यन्तमेव हृद्यानि । तेषु
  []
 
 
-Underfull \hbox (badness 2903) in paragraph at lines 593--594
+Underfull \hbox (badness 2903) in paragraph at lines 609--610
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुरुरवोर्वशी
 संवादयमयमीसंवादप्रभृतयः प्
 रसिद्धाः सन्ति । अत्र सामाजि
@@ -1313,7 +1324,7 @@ Underfull \hbox (badness 2903) in paragraph at lines 593--594
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 593--594
+Underfull \hbox (badness 10000) in paragraph at lines 609--610
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 दार्शनिकविषय
 सम्बद्धानि । विद्वद्भिरेतान
 ्येव सूक्तान्यङ्गीकृत्य रसम
@@ -1321,7 +1332,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 593--594
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 595--596
+Underfull \hbox (badness 2134) in paragraph at lines 611--612
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रायशः तेषां 
 सर्वेषां बीजम् ऋग्वेदसूक्ते
 षु लभ्यते । तस्मात् काव्यरचन
@@ -1334,14 +1345,14 @@ Underfull \hbox (badness 2134) in paragraph at lines 595--596
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 605--606
+Underfull \hbox (badness 10000) in paragraph at lines 621--622
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ऋग्वेदसंहिता
 या दशमे मण्डले एकनवत्युत्तरश
 तसङ्ख्यकानि सूक्तानि सन्ति ।
  []
 
 
-Underfull \hbox (badness 5050) in paragraph at lines 605--606
+Underfull \hbox (badness 5050) in paragraph at lines 621--622
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सूक्तेऽस्मिन
 ् सृष्ट्यारम्भात् प्राग् जगत
 ः कीदृशं स्वरूपमासीदिति चिन्
@@ -1356,14 +1367,14 @@ Underfull \hbox (badness 5050) in paragraph at lines 605--606
 [10] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [11]
-Underfull \hbox (badness 1178) in paragraph at lines 656--657
+Underfull \hbox (badness 1178) in paragraph at lines 672--673
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तर्हि= तदानीम
 ्, मृत्युः= मरणधर्मविशेषः, न= न
 ैव, आसीत्= स्थितः । अमृतम्=
  []
 
 
-Underfull \hbox (badness 2269) in paragraph at lines 660--661
+Underfull \hbox (badness 2269) in paragraph at lines 676--677
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 क्रियाहीनः स्
 वधया (स्वस्मिन् धीयते इति स्व
 धा माया तया सह) स्वकीयया मायया
@@ -1378,7 +1389,7 @@ Underfull \hbox (badness 2269) in paragraph at lines 660--661
 [14] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 778--779
+Underfull \hbox (badness 10000) in paragraph at lines 794--795
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 इयं= दृश्यमान
 ा विसृष्टिः= चराचरविशिष्टा व
 िचित्रा सृष्टिः यतः=
@@ -1387,7 +1398,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 778--779
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 790--791
+Underfull \hbox (badness 10000) in paragraph at lines 806--807
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 सूक्तेऽस्मिन
 ् सप्त ऋचः सन्ति । प्रथमायामृ
 चि विद्यमानं नासदित्यंशमादा
@@ -1395,7 +1406,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 790--791
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 790--791
+Underfull \hbox (badness 1014) in paragraph at lines 806--807
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 तस्य हृदि सिसृ
 क्षा जागृता। तस्यैवैतत्फलं य
 दधुनेदं विविधापन्नं जगत् विद
@@ -1410,7 +1421,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 790--791
 [18] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian4.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian4.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian4.pgf)
-Underfull \hbox (badness 1270) in paragraph at lines 840--841
+Underfull \hbox (badness 1270) in paragraph at lines 856--857
 \TU/TiroDevanagariSanskrit(0)/b/n/10.95 ज्योतिः= \TU/TiroDevanaga
 riSanskrit(0)/m/n/10.95 प्रकाशपुञ्जः, \TU/TiroDevanagar
 iSanskrit(0)/b/n/10.95 आगात्\TU/TiroDevanagariSanskrit(0)/m/n/10.95 = 
@@ -1423,7 +1434,7 @@ m/n/10.95 = महनीयः, \TU/TiroDevanagariSanskrit(0)/b/n/10.95 प्
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [19]
-Underfull \hbox (badness 1478) in paragraph at lines 868--869
+Underfull \hbox (badness 1478) in paragraph at lines 884--885
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 उषायै कृष्णवर
 ्णयुता रात्रिः स्थानं दत्तवत
 ी । सूर्येण सह समानसम्बन्धयु
@@ -1435,7 +1446,7 @@ Underfull \hbox (badness 1478) in paragraph at lines 868--869
 [20] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [21]
-Underfull \hbox (badness 3623) in paragraph at lines 914--915
+Underfull \hbox (badness 3623) in paragraph at lines 930--931
 []\TU/TiroDevanagariSanskrit(0)/b/n/10.95 भास्वती\TU/TiroDevanaga
 riSanskrit(0)/m/n/10.95 = विशिष्टप्रकाशनयुत
 ा \TU/TiroDevanagariSanskrit(0)/b/n/10.95 सूनृतानाम्\TU/T
@@ -1459,7 +1470,7 @@ rit(0)/b/n/10.95 नेत्री\TU/TiroDevanagariSanskrit(0)/m/n/10.95 =
 [27] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [28]
-Underfull \hbox (badness 2393) in paragraph at lines 1132--1133
+Underfull \hbox (badness 2393) in paragraph at lines 1148--1149
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 देवी उषाः \TU/TiroDev
 anagariSanskrit(0)/b/n/10.95 पूरा= \TU/TiroDevanagariSanskrit(0)/m/n/10
 .95 पूर्वस्मिन् काले \TU/TiroDevanagariSanskrit(0
@@ -1472,7 +1483,7 @@ DevanagariSanskrit(0)/m/n/10.95 = व्यौच्छत्, अन्धक
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 1180--1181
+Underfull \hbox (badness 10000) in paragraph at lines 1196--1197
 []\TU/TiroDevanagariSanskrit(0)/b/n/10.95 पोष्या\TU/TiroDevanagariS
 anskrit(0)/m/n/10.95 = यावज्जीवं पोषणसमर्थ
 ानि \TU/TiroDevanagariSanskrit(0)/b/n/10.95 वार्याणि\TU/T
@@ -1495,7 +1506,7 @@ anskrit(0)/m/n/10.95 =
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [35]
-Underfull \hbox (badness 3895) in paragraph at lines 1324--1325
+Underfull \hbox (badness 3895) in paragraph at lines 1340--1341
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रारम्भिकस्
 वरूपं प्राप्यते । ऋग्वेदे यम
 यमीसंवादः, सोमसूर्यासंवादः, 
@@ -1525,7 +1536,7 @@ Underfull \hbox (badness 3895) in paragraph at lines 1324--1325
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.1556 ... गरिरहेका छौ ।[^
+l.1572 ... गरिरहेका छौ ।[^
                                                   1]
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1533,7 +1544,7 @@ you left one out. Proceed, with fingers crossed.
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.1557 
+l.1573 
        
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -1545,7 +1556,7 @@ you left one out. Proceed, with fingers crossed.
 [45] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [46]
-Underfull \hbox (badness 4353) in paragraph at lines 1660--1661
+Underfull \hbox (badness 4353) in paragraph at lines 1676--1677
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 {पुरूरवसः कथन
 म्-} अन्तरिक्षप्राम्= स्वतेजस
 ान्तरिक्षस्य पूरयित्रीं तथा 
@@ -1558,7 +1569,7 @@ Underfull \hbox (badness 4353) in paragraph at lines 1660--1661
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [48]
-Underfull \hbox (badness 1043) in paragraph at lines 1706--1707
+Underfull \hbox (badness 1043) in paragraph at lines 1722--1723
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पृथ्वीसूक्तम
 िदमथर्ववेदस्य शौनकीयसंहिता
 या द्वादशकाण्डान्तर्गतं प्र
@@ -1570,7 +1581,7 @@ Underfull \hbox (badness 1043) in paragraph at lines 1706--1707
 [49] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [50]
-Underfull \hbox (badness 3354) in paragraph at lines 1748--1749
+Underfull \hbox (badness 3354) in paragraph at lines 1764--1765
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ‌ओषधीः= आमयनाश
 िनीर्हरितक्यादिनीः सत्त्वव
 िवर्धिनीर्गोधूमधान्यादिनीश
@@ -1578,7 +1589,7 @@ Underfull \hbox (badness 3354) in paragraph at lines 1748--1749
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1752--1753
+Underfull \hbox (badness 10000) in paragraph at lines 1768--1769
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 देवैर्मुनिभि
 श्च पृथिव्यां सांसारिकेषु कर
 ्मबन्धनेषु निबद्धानां साधार
@@ -1586,7 +1597,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1752--1753
  []
 
 
-Underfull \hbox (badness 1668) in paragraph at lines 1752--1753
+Underfull \hbox (badness 1668) in paragraph at lines 1768--1769
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 कृते बाधारहित
 ानि विविधानि पुण्यानि स्थाना
 नि स्थापितानि सन्ति। या अनेक
@@ -1596,7 +1607,7 @@ Underfull \hbox (badness 1668) in paragraph at lines 1752--1753
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [51]
-Underfull \hbox (badness 2073) in paragraph at lines 1772--1773
+Underfull \hbox (badness 2073) in paragraph at lines 1788--1789
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 तत्प्रभावेण य
 स्याम्= भूम्याम् कृष्टयः= मनु
 ष्याः अन्नम्= गोधूमधान्यादिक
@@ -1610,14 +1621,14 @@ Underfull \hbox (badness 2073) in paragraph at lines 1772--1773
 [53] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [54]
-Underfull \hbox (badness 10000) in paragraph at lines 1868--1869
+Underfull \hbox (badness 10000) in paragraph at lines 1884--1885
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 विश्वदानीम्= 
 सर्वस्याभिमतस्य दात्रीम्, भू
 मिम्= भूमगुणवतीम् (एकस्य
  []
 
 
-Underfull \hbox (badness 5622) in paragraph at lines 1868--1869
+Underfull \hbox (badness 5622) in paragraph at lines 1884--1885
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 बीजस्यानन्तफ
 लदातृत्वात्) यां पृथ्वीम्= भू
 मिम्, अस्वप्नाः= स्वापो निद्र
@@ -1625,7 +1636,7 @@ Underfull \hbox (badness 5622) in paragraph at lines 1868--1869
  []
 
 
-Underfull \hbox (badness 1917) in paragraph at lines 1868--1869
+Underfull \hbox (badness 1917) in paragraph at lines 1884--1885
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सा= पृथ्वी नोऽ
 स्मभ्यम्, प्रियम्= अभीप्सितम
 ्, मधुु= मधुरं फलम्, दुहाम्= दोग
@@ -1635,7 +1646,7 @@ Underfull \hbox (badness 1917) in paragraph at lines 1868--1869
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [55]
-Underfull \hbox (badness 2503) in paragraph at lines 1894--1895
+Underfull \hbox (badness 2503) in paragraph at lines 1910--1911
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 हिरण्याक्षाद
 यः, मायाभिः= प्रकृष्टज्ञानैः, 
 अन्वचरन्= भूम्याः सविधे सलिल 
@@ -1643,7 +1654,7 @@ Underfull \hbox (badness 2503) in paragraph at lines 1894--1895
  []
 
 
-Underfull \hbox (badness 2653) in paragraph at lines 1918--1919
+Underfull \hbox (badness 2653) in paragraph at lines 1934--1935
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 यस्याम्= पृथि
 व्याम् परिचराः= स्रोतस्यः (नि
 र्झरिण्यः) आपः= वारीणि समानीः=
@@ -1654,7 +1665,7 @@ Underfull \hbox (badness 2653) in paragraph at lines 1918--1919
 [56] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [57]
-Underfull \hbox (badness 2680) in paragraph at lines 1970--1971
+Underfull \hbox (badness 2680) in paragraph at lines 1986--1987
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वा हिमवन्तः= ह
 िमयुताः शीतलाः सन्तु । ते= तव 
 अरण्यम्= सिंहव्याघ्रचौरादिभ
@@ -1664,7 +1675,7 @@ Underfull \hbox (badness 2680) in paragraph at lines 1970--1971
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [58]
-Underfull \hbox (badness 1286) in paragraph at lines 1996--1997
+Underfull \hbox (badness 1286) in paragraph at lines 2012--2013
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अभयदातृत्वेन 
 पुराणेषु स्मृतत्त्वाच्चेति 
 । तथा ते= तव पृथिव्या याः ऊर्ज
@@ -1672,7 +1683,7 @@ Underfull \hbox (badness 1286) in paragraph at lines 1996--1997
  []
 
 
-Underfull \hbox (badness 5260) in paragraph at lines 1996--1997
+Underfull \hbox (badness 5260) in paragraph at lines 2012--2013
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्राणदातॄणि (‘
 ऊर्ज बलप्राणनयोः’ आध्यात्मि
 कधिदैविकाधिभौतिकाख्यतापत्र
@@ -1684,7 +1695,7 @@ Underfull \hbox (badness 5260) in paragraph at lines 1996--1997
 [59] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [60]
-Underfull \hbox (badness 1527) in paragraph at lines 2046--2047
+Underfull \hbox (badness 1527) in paragraph at lines 2062--2063
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सर्वत उपक्षिण
 ोति । यश्च जनः नः= अस्मान् वधे
 न= शारीरिकव्यापारेण अभिदासात
@@ -1694,7 +1705,7 @@ Underfull \hbox (badness 1527) in paragraph at lines 2046--2047
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [61]
-Underfull \hbox (badness 10000) in paragraph at lines 2076--2077
+Underfull \hbox (badness 10000) in paragraph at lines 2092--2093
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे पृथिवि ! त्
 वयि समुद्भूता मरणशीलाः प्राण
 िनस्त्वत्प्रदेशेषु सञ्चरन्
@@ -1702,7 +1713,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2076--2077
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 2076--2077
+Underfull \hbox (badness 4673) in paragraph at lines 2092--2093
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 त्वं द्विपदयु
 ताञ्चतुष्पदयुतान् प्राणिनो 
 धारयसि पोषयसि वा । एवमेव दृग्
@@ -1710,7 +1721,7 @@ Underfull \hbox (badness 4673) in paragraph at lines 2076--2077
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 2076--2077
+Underfull \hbox (badness 2418) in paragraph at lines 2092--2093
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ब्राह्मण-क्षत
 ्रिय-वैश्य-शूद्र-निषादाख्याः,
 गन्धर्व-पित्र-सुर-देव-रक्षां
@@ -1720,7 +1731,7 @@ Underfull \hbox (badness 2418) in paragraph at lines 2076--2077
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [62]
-Underfull \hbox (badness 1454) in paragraph at lines 2120--2121
+Underfull \hbox (badness 1454) in paragraph at lines 2136--2137
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 (वयम्) विश्वहा= 
 सर्वेषु अहसु, सर्वदा इत्यर्थ
 ः । विश्वस्वम्= सर्वेषामपि प्
@@ -1730,7 +1741,7 @@ Underfull \hbox (badness 1454) in paragraph at lines 2120--2121
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [63]
-Underfull \hbox (badness 1371) in paragraph at lines 2146--2147
+Underfull \hbox (badness 1371) in paragraph at lines 2162--2163
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 जातासि । ते= तव 
 वेगः= गमनसामर्थ्यं महान् अस्
 ति । (यावद्धि सूर्यः एकस्मिन् 
@@ -1740,7 +1751,7 @@ Underfull \hbox (badness 1371) in paragraph at lines 2146--2147
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [64]
-Underfull \hbox (badness 3312) in paragraph at lines 2170--2171
+Underfull \hbox (badness 3312) in paragraph at lines 2186--2187
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 फलपाकान्ता, इत
 ्युक्तेः फलपाकान्तासु धान्य
 गोधूमाद्योषधीषु च) अग्निः= वह
@@ -1752,7 +1763,7 @@ Underfull \hbox (badness 3312) in paragraph at lines 2170--2171
 [65] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 2220--2221
+Underfull \hbox (badness 10000) in paragraph at lines 2236--2237
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अग्निवासाः= अ
 ग्निरिव वासः स्थितिर्यस्याः 
 सा (यथा ह्यग्निरङ्गीकृते पदा
@@ -1760,7 +1771,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2220--2221
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 2246--2247
+Underfull \hbox (badness 1062) in paragraph at lines 2262--2263
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 मनुष्याः= मनन
 ेन कार्यकारिणः पुरुषाः, भूम्
 याम्= पृथिव्यामधिकरणे, अरङ्‍
@@ -1770,7 +1781,7 @@ Underfull \hbox (badness 1062) in paragraph at lines 2246--2247
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [67]
-Underfull \hbox (badness 2088) in paragraph at lines 2250--2251
+Underfull \hbox (badness 2088) in paragraph at lines 2266--2267
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 सद्विचारयुता
 ः पुरुषाः पृथिव्यां स्थिताः 
 सन्तः सुसंस्कृतं हव्यं देवेभ
@@ -1778,7 +1789,7 @@ Underfull \hbox (badness 2088) in paragraph at lines 2250--2251
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2250--2251
+Underfull \hbox (badness 10000) in paragraph at lines 2266--2267
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 तथा भूम्यामेव 
 स्थिता मनुष्याः पितृप्रदेयभ
 ागेन मनुष्य-पशु-पक्ष्यादिप्र
@@ -1786,7 +1797,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2250--2251
  []
 
 
-Underfull \hbox (badness 1852) in paragraph at lines 2250--2251
+Underfull \hbox (badness 1852) in paragraph at lines 2266--2267
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पितृ-नर-पशु-पक
 ्ष्यादिकान् आजीवयन्ति। तादृ
 शी भूमिरस्माकं प्राणान् आयुश
@@ -1796,7 +1807,7 @@ Underfull \hbox (badness 1852) in paragraph at lines 2250--2251
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [68]
-Underfull \hbox (badness 1014) in paragraph at lines 2298--2299
+Underfull \hbox (badness 1014) in paragraph at lines 2314--2315
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे पृथिवि ! यः 
 पूर्ववर्णितः, ते= तव विशेषगुण
 ो गन्धः, पुष्करम्= कमलपुष्पम्,
@@ -1805,7 +1816,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 2298--2299
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [69]
-Underfull \hbox (badness 6188) in paragraph at lines 2330--2331
+Underfull \hbox (badness 6188) in paragraph at lines 2346--2347
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे पृथिवि ! यस
 ्ते गन्धरूपो विशेषगुणः स्त्र
 ीपुरुषेष्वस्ति, तेन पुरुषव्य
@@ -1813,7 +1824,7 @@ Underfull \hbox (badness 6188) in paragraph at lines 2330--2331
  []
 
 
-Underfull \hbox (badness 3536) in paragraph at lines 2330--2331
+Underfull \hbox (badness 3536) in paragraph at lines 2346--2347
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 स्त्रीणां भोग
 ्यत्वमभिलाषश्च भवति । यो गन्
 धोऽश्वेषु वीरपुरुषेषु च विद्
@@ -1827,7 +1838,7 @@ Underfull \hbox (badness 3536) in paragraph at lines 2330--2331
 [71] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [72]
-Underfull \hbox (badness 4621) in paragraph at lines 2426--2427
+Underfull \hbox (badness 4621) in paragraph at lines 2442--2443
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वयं तव परितः अ
 वतिष्ठेम । कीदृशीं विमृग्वरी
 मित्युच्यते- सर्वबीजानां सहन
@@ -1837,7 +1848,7 @@ Underfull \hbox (badness 4621) in paragraph at lines 2426--2427
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [73]
-Underfull \hbox (badness 1521) in paragraph at lines 2446--2447
+Underfull \hbox (badness 1521) in paragraph at lines 2462--2463
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे पृथिवि ! नः= 
 अस्माकम्, तन्वे= वपुरर्थे शरी
 रसन्धारणाय, शुद्धाः= निर्दुष
@@ -1847,14 +1858,14 @@ Underfull \hbox (badness 1521) in paragraph at lines 2446--2447
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [74]
-Underfull \hbox (badness 6110) in paragraph at lines 2496--2497
+Underfull \hbox (badness 6110) in paragraph at lines 2512--2513
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे भूमे ! नः= अस
 ्मान् स्तोतॄन्, पश्चात्= पश्च
 प्रदेशात्, मा नुदिष्ठाः= मा
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2496--2497
+Underfull \hbox (badness 10000) in paragraph at lines 2512--2513
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रेरयेः ‘अस्
 मान् मा अपसारय इत्यर्थः’ (पश्
 चादित्यादिदिग्वाचिनः शब्दा
@@ -1862,7 +1873,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2496--2497
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2496--2497
+Underfull \hbox (badness 10000) in paragraph at lines 2512--2513
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सामर्थ्यात्त
 त्तदिगवस्थितदेशपरतयोन्नेया
 ः, दिशां विभुत्वात्ततो नोदना
@@ -1870,7 +1881,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2496--2497
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 2496--2497
+Underfull \hbox (badness 1142) in paragraph at lines 2512--2513
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पाश्चात्त्यप
 ्रदेशेभ्यो मा प्रेरयेः । (देश
 तः प्रेरणं हि ततोऽपसारणं तन्
@@ -1886,7 +1897,7 @@ Underfull \hbox (badness 1142) in paragraph at lines 2496--2497
 [77] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [78]
-Underfull \hbox (badness 4120) in paragraph at lines 2598--2599
+Underfull \hbox (badness 4120) in paragraph at lines 2614--2615
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 हे भूमे ! ग्री
 ष्मः (ज्येष्ठाषाढौ) वर्षाः (श्
 रावणभाद्रौ) शरद् (आश्विनकार्
@@ -1894,7 +1905,7 @@ Underfull \hbox (badness 4120) in paragraph at lines 2598--2599
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 2620--2621
+Underfull \hbox (badness 2253) in paragraph at lines 2636--2637
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 हूयमानत्वाज्
 जलेऽग्निवासः इष्ट एव । अग्नि
 जन्यत्वादपां कारणगुणानामनु
@@ -1902,7 +1913,7 @@ Underfull \hbox (badness 2253) in paragraph at lines 2620--2621
  []
 
 
-Underfull \hbox (badness 2020) in paragraph at lines 2620--2621
+Underfull \hbox (badness 2020) in paragraph at lines 2636--2637
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 तेभ्योऽग्निभ
 ्यो देवपीयून्= देवविद्वेषिणः, 
 दस्यून्= उपहिंसयितॄणि भूतानि, 
@@ -1916,7 +1927,7 @@ Underfull \hbox (badness 2020) in paragraph at lines 2620--2621
 [80] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [81]
-Underfull \hbox (badness 3884) in paragraph at lines 2696--2697
+Underfull \hbox (badness 3884) in paragraph at lines 2712--2713
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अभिलषामः, तत् 
 आदिशतु= प्रयच्छतु । तदर्थं भग
 ो= देवः अनुप्रयुङ्‌क्ताम्= भू
@@ -1924,7 +1935,7 @@ Underfull \hbox (badness 3884) in paragraph at lines 2696--2697
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2696--2697
+Underfull \hbox (badness 10000) in paragraph at lines 2712--2713
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 धनप्रदानेऽस्
 मदानुकूल्येनोद्योगं कुर्या
 त् । पुरोगवः= इन्द्रश्च एतु= आ
@@ -1934,7 +1945,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2696--2697
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [82]
-Underfull \hbox (badness 1708) in paragraph at lines 2722--2723
+Underfull \hbox (badness 1708) in paragraph at lines 2738--2739
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 युद्धायेत्या
 क्रन्दः, रणसूचको दुन्दुभिः= व
 ाद्यविशेषः, वदति= उद्घोष्यते 
@@ -1944,7 +1955,7 @@ Underfull \hbox (badness 1708) in paragraph at lines 2722--2723
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [83]
-Underfull \hbox (badness 10000) in paragraph at lines 2750--2751
+Underfull \hbox (badness 10000) in paragraph at lines 2766--2767
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 यस्यां पृथव्
 यां व्रीहियवादीनि अन्नानि सञ
 ्जायन्ते । यस्मादन्नात् पञ्च 
@@ -1952,14 +1963,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 2750--2751
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2770--2771
+Underfull \hbox (badness 10000) in paragraph at lines 2786--2787
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 यस्याः= पृथिव
 ्याः देवकृताः= देवैः स्वविशे
 षकार्येण कृताः= निर्मिताः,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2770--2771
+Underfull \hbox (badness 10000) in paragraph at lines 2786--2787
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुरः= काशीमथुर
 ायोध्याकाञ्च्यादीनि नगराणि 
 सन्ति । यस्याश्च क्षेत्रे= पु
@@ -1967,7 +1978,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2770--2771
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 2770--2771
+Underfull \hbox (badness 1400) in paragraph at lines 2786--2787
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुण्यक्षेत्र
 त्वेनाभिमते भूभागे (पापानि) व
 िकुर्वते= नष्टानि भवन्ति । तद
@@ -1979,14 +1990,14 @@ Underfull \hbox (badness 1400) in paragraph at lines 2770--2771
 [84] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [85]
-Underfull \hbox (badness 1005) in paragraph at lines 2818--2819
+Underfull \hbox (badness 1005) in paragraph at lines 2834--2835
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 विवाचसम्= विव
 िधभाषाभाषिणम्, नानाधर्माणम्= 
 नैकविधमर्यादावन्तम्, बहुधा=
  []
 
 
-Underfull \hbox (badness 1888) in paragraph at lines 2822--2823
+Underfull \hbox (badness 1888) in paragraph at lines 2838--2839
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 विविधभाषायुत
 ान्, विविधधर्मयुतान् च जनान् 
 यथास्थानं धारयन्ती पृथिवी यथ
@@ -2006,7 +2017,7 @@ Underfull \hbox (badness 1888) in paragraph at lines 2822--2823
 [90] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [91]
-Underfull \hbox (badness 1142) in paragraph at lines 2972--2973
+Underfull \hbox (badness 1142) in paragraph at lines 2988--2989
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 उड्‍डीयन्ते । 
 यत्र रजांसि नयन्, वृक्षान् पा
 तयन् अन्तरिक्षगतो वायुः प्रच
@@ -2018,7 +2029,7 @@ Underfull \hbox (badness 1142) in paragraph at lines 2972--2973
 [92] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [93]
-Underfull \hbox (badness 1655) in paragraph at lines 3042--3043
+Underfull \hbox (badness 1655) in paragraph at lines 3058--3059
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सर्वदेशीयस्य
 ापि विरोधिनो जनस्याभिभविता, 
 आशामाशाम्= प्रतिदिशम्, (विद्य
@@ -2028,7 +2039,7 @@ Underfull \hbox (badness 1655) in paragraph at lines 3042--3043
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [94]
-Underfull \hbox (badness 6691) in paragraph at lines 3090--3091
+Underfull \hbox (badness 6691) in paragraph at lines 3106--3107
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 जननिवासस्थान
 ानि, यच्च अरण्यम्= वनम्, याः सभ
 ाः= शास्त्रीयचर्चास्थलानि, य
@@ -2036,7 +2047,7 @@ Underfull \hbox (badness 6691) in paragraph at lines 3090--3091
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3090--3091
+Underfull \hbox (badness 10000) in paragraph at lines 3106--3107
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 समानगमनविधाय
 िन्यः सामाजिकविचारपर्षदादय
 श्च सन्ति, तेषु= सर्वेष्वपि ते=
@@ -2045,7 +2056,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3090--3091
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [95]
-Underfull \hbox (badness 1348) in paragraph at lines 3094--3095
+Underfull \hbox (badness 1348) in paragraph at lines 3110--3111
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 समायोजिताः सभ
 ाः, ये परस्परश्रेष्ठतायाः पर
 ीक्षणे सञ्जाताः सङ्‍ग्रामाः, 
@@ -2053,7 +2064,7 @@ Underfull \hbox (badness 1348) in paragraph at lines 3094--3095
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 3114--3115
+Underfull \hbox (badness 1448) in paragraph at lines 3130--3131
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अश्वः= घोटकः, र
 जः= धूलिम् यथा धुनुते तथा विदु
 धुवे, अर्थाद् विशेषेण कम्पया
@@ -2061,7 +2072,7 @@ Underfull \hbox (badness 1448) in paragraph at lines 3114--3115
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 3118--3119
+Underfull \hbox (badness 1400) in paragraph at lines 3134--3135
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रगतिदायिनी, 
 भुवनरक्षिका, वनस्पतीः गोधूमा
 दीन् च धारयित्री पृथिवी यस्य 
@@ -2073,7 +2084,7 @@ Underfull \hbox (badness 1400) in paragraph at lines 3118--3119
 [96] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [97]
-Underfull \hbox (badness 4765) in paragraph at lines 3186--3187
+Underfull \hbox (badness 4765) in paragraph at lines 3202--3203
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अन्तरर्णवे‍= 
 समुद्रमध्ये रजसि= जले प्रविष
 ्टाम्= अन्तर्हिताम्, याम्= पृथ
@@ -2081,7 +2092,7 @@ Underfull \hbox (badness 4765) in paragraph at lines 3186--3187
  []
 
 
-Underfull \hbox (badness 1122) in paragraph at lines 3186--3187
+Underfull \hbox (badness 1122) in paragraph at lines 3202--3203
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 विश्वकर्मा= ना
 नाविधक्रियाकुशलो विष्णुर्द
 ेवः, हविषा= कर्मणा अन्वैच्छत्= 
@@ -2089,7 +2100,7 @@ Underfull \hbox (badness 1122) in paragraph at lines 3186--3187
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 3186--3187
+Underfull \hbox (badness 1728) in paragraph at lines 3202--3203
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 समुद्दधारेति 
 भावः । तथा यत् भुजिष्यम्= भोगस
 ाधनम्, पात्रम्= स्नेहात्मकम्, 
@@ -2097,7 +2108,7 @@ Underfull \hbox (badness 1728) in paragraph at lines 3186--3187
  []
 
 
-Underfull \hbox (badness 6348) in paragraph at lines 3186--3187
+Underfull \hbox (badness 6348) in paragraph at lines 3202--3203
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 समानदेशिकत्व
 ादेकभूमिकमातृमद्भ्यः कृते क
 ार्यकाले आविर्भवत्येव । सर्व
@@ -2109,7 +2120,7 @@ Underfull \hbox (badness 6348) in paragraph at lines 3186--3187
 [98] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [99]
-Underfull \hbox (badness 1609) in paragraph at lines 3234--3235
+Underfull \hbox (badness 1609) in paragraph at lines 3250--3251
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 लोहपात्रे स्थ
 ापिता इत्यर्थः। अस्मभ्यम्= स
 ्तोतृभ्यः सन्तु= जायन्ताम् । 
@@ -2119,7 +2130,7 @@ Underfull \hbox (badness 1609) in paragraph at lines 3234--3235
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [100]
-Underfull \hbox (badness 3803) in paragraph at lines 3268--3269
+Underfull \hbox (badness 3803) in paragraph at lines 3284--3285
 []\TU/TiroDevanagariSanskrit(0)/m/it/10.95 प्रस्तुत अथर
 ्ववेदीय पृथिवीसूक्तको शब्दा
 र्थ, संस्कृत भावार्थ र नेपाली 
@@ -2135,7 +2146,7 @@ Underfull \hbox (badness 3803) in paragraph at lines 3268--3269
 [104
 
 ] [105]
-Underfull \hbox (badness 3078) in paragraph at lines 3344--3345
+Underfull \hbox (badness 3078) in paragraph at lines 3360--3361
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ततो नवीनदन्तो
 त्पत्तेरनन्तरम्, ततः क्षत्रि
 यसंस्कारानन्तरं पुत्रं यजाम
@@ -2145,7 +2156,7 @@ Underfull \hbox (badness 3078) in paragraph at lines 3344--3345
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [106]
-Underfull \hbox (badness 1466) in paragraph at lines 3348--3349
+Underfull \hbox (badness 1466) in paragraph at lines 3364--3365
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 विद्यन्ते । लो
 के मध्यमपुत्रस्य महत्त्वहीन
 त्वबोधार्थं शुनःशेपस्याख्य
@@ -2162,7 +2173,7 @@ Underfull \hbox (badness 1466) in paragraph at lines 3348--3349
 [112] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [113] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [114] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-Underfull \hbox (badness 7379) in paragraph at lines 3618--3619
+Underfull \hbox (badness 7379) in paragraph at lines 3634--3635
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुत्रनिमित्त
 लाभप्रतिपादिका नारदोक्ता दश 
 गाथा उदाहृत्य पुत्रजन्मोपाय
@@ -2173,7 +2184,7 @@ Underfull \hbox (badness 7379) in paragraph at lines 3618--3619
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [115] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [116]
-Underfull \hbox (badness 1028) in paragraph at lines 3678--3679
+Underfull \hbox (badness 1028) in paragraph at lines 3694--3695
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 दशदिनाशौचापग
 मे शुद्धत्वाद् यथा यागयोग्यत
 ्वम्, तथा दन्तोत्पन्नत्वादवय
@@ -2183,7 +2194,7 @@ Underfull \hbox (badness 1028) in paragraph at lines 3678--3679
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [117]
-Underfull \hbox (badness 4739) in paragraph at lines 3694--3695
+Underfull \hbox (badness 4739) in paragraph at lines 3710--3711
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अज्ञत वै= जाता 
 एव । पद्यन्ते= पतन्ति । प्रथमो
 त्पन्नानां दन्तानामस्थायित
@@ -2197,7 +2208,7 @@ Underfull \hbox (badness 4739) in paragraph at lines 3694--3695
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [120] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [121]
-Underfull \hbox (badness 1360) in paragraph at lines 3836--3837
+Underfull \hbox (badness 1360) in paragraph at lines 3852--3853
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 भगः= सौभाग्यम
 ्, आसीनस्य= उपविष्टस्य आस्ते= 
 तथैव तिष्ठति, न तु वर्धते ।
@@ -2206,7 +2217,7 @@ Underfull \hbox (badness 1360) in paragraph at lines 3836--3837
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [122]
-Underfull \hbox (badness 5533) in paragraph at lines 3858--3859
+Underfull \hbox (badness 5533) in paragraph at lines 3874--3875
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुरुषस्य चतस
 ्रोऽवस्था भवन्ति- निद्रा, तत्
 परित्यागः, उत्थानम्, सञ्चरणञ
@@ -2220,14 +2231,14 @@ Underfull \hbox (badness 5533) in paragraph at lines 3858--3859
 [125] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [126]
-Underfull \hbox (badness 7522) in paragraph at lines 3974--3975
+Underfull \hbox (badness 7522) in paragraph at lines 3990--3991
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 उपाकृताय= मेध
 ्यरूपेण सुसंस्कृताय, नियुक्त
 ाय= यूपे स्थापिताय, आप्रीताय=
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 3974--3975
+Underfull \hbox (badness 1436) in paragraph at lines 3990--3991
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 आप्रीसंज्ञित
 ाभिरेकादशभिः प्रयाज-याज्याभ
 िर्यद् यजनं तद् आप्रीकरणम्, प
@@ -2237,7 +2248,7 @@ Underfull \hbox (badness 1436) in paragraph at lines 3974--3975
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [127]
-Underfull \hbox (badness 3895) in paragraph at lines 3990--3991
+Underfull \hbox (badness 3895) in paragraph at lines 4006--4007
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ‘अन्यत्र पर्य
 ग्निकृतं पुरुषमारण्यांश्चो
 त्सृजन्त्यहिंसायै’ इति श्रु
@@ -2248,7 +2259,7 @@ Underfull \hbox (badness 3895) in paragraph at lines 3990--3991
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [128]
-Underfull \hbox (badness 2057) in paragraph at lines 4024--4025
+Underfull \hbox (badness 2057) in paragraph at lines 4040--4041
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रसवानाम्= स
 र्वेषु कार्येषु प्रेरणारूपा
 नामनुज्ञानात् सविता ईशे‍= स्
@@ -2256,14 +2267,14 @@ Underfull \hbox (badness 2057) in paragraph at lines 4024--4025
  []
 
 
-Underfull \hbox (badness 5862) in paragraph at lines 4044--4045
+Underfull \hbox (badness 5862) in paragraph at lines 4060--4061
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 सविता शुनःशे
 पमुवाच- हे शुनःशेप ! वरुणार्थं 
 त्वं यूपे बद्धोऽसि । अतो
  []
 
 
-Underfull \hbox (badness 5847) in paragraph at lines 4044--4045
+Underfull \hbox (badness 5847) in paragraph at lines 4060--4061
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वरुणमुपास्स्
 वेति । सवित्रोक्तः स पूर्वस्
 मात् सवितृविषयात् तृचाद् उत्
@@ -2273,7 +2284,7 @@ Underfull \hbox (badness 5847) in paragraph at lines 4044--4045
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [129]
-Underfull \hbox (badness 1383) in paragraph at lines 4080--4081
+Underfull \hbox (badness 1383) in paragraph at lines 4096--4097
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 (यद्यपि वरुणप
 ाशेन बद्धत्वाद् वरुण एव शुनः
 शेपमुत्स्रष्टुं समर्थः। तथा
@@ -2283,7 +2294,7 @@ Underfull \hbox (badness 1383) in paragraph at lines 4080--4081
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [130]
-Underfull \hbox (badness 2088) in paragraph at lines 4108--4109
+Underfull \hbox (badness 2088) in paragraph at lines 4124--4125
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 --’ इत्यनेन सप्
 तर्चेन सूक्तेन उत्तरस्मिन्न
 पि ‘आ व इन्द्रम्--’ इत्यादिके 
@@ -2291,7 +2302,7 @@ Underfull \hbox (badness 2088) in paragraph at lines 4108--4109
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4114--4115
+Underfull \hbox (badness 10000) in paragraph at lines 4130--4131
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पूर्वमप्यनुग
 ्रहेण चरैवेत्येवमिन्द्रो रो
 हितं प्रत्युपदिदेश । तस्योपद
@@ -2304,7 +2315,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4114--4115
 [132] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [133]
-Underfull \hbox (badness 1028) in paragraph at lines 4198--4199
+Underfull \hbox (badness 1028) in paragraph at lines 4214--4215
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 स्वाहाकारसहि
 ताभिः सोमं जुहवाञ्चकार । अथ= ह
 ोमानन्तरमेव कर्तव्यमवभृथमभ
@@ -2316,7 +2327,7 @@ Underfull \hbox (badness 1028) in paragraph at lines 4198--4199
 [134] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [135] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [136]
-Underfull \hbox (badness 1163) in paragraph at lines 4288--4289
+Underfull \hbox (badness 1163) in paragraph at lines 4304--4305
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुत्रोऽजीगर्
 तो भीम एव= भयहेतुरेव सञ्शासेन 
 हस्तगतखड्‌गेन स विशिशासिषुर
@@ -2327,7 +2338,7 @@ Underfull \hbox (badness 1163) in paragraph at lines 4288--4289
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [137] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [138]
-Underfull \hbox (badness 5622) in paragraph at lines 4352--4353
+Underfull \hbox (badness 5622) in paragraph at lines 4368--4369
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्राप्तेषु त्
 वदीयपुत्रेषु सर्वोऽपि मां ब्
 रूयात्, ज्येष्ठभ्रातृत्वेन व
@@ -2337,7 +2348,7 @@ Underfull \hbox (badness 5622) in paragraph at lines 4352--4353
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [139] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian88.pgf)
-Underfull \hbox (badness 10000) in paragraph at lines 4394--4395
+Underfull \hbox (badness 10000) in paragraph at lines 4410--4411
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तत्= तेष्वेकश
 तसङ्‌ख्याकेषु पुत्रेषु मध्य
 े ये ज्यायांसः= मधुच्छन्दसो ज
@@ -2345,7 +2356,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4394--4395
  []
 
 
-Underfull \hbox (badness 7238) in paragraph at lines 4394--4395
+Underfull \hbox (badness 7238) in paragraph at lines 4410--4411
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 नाङ्‌गीकृतवन
 ्तः । तान्= पञ्चादशसङ्‌ख्यका
 न् ज्येष्ठाननुलक्ष्य विश्वा
@@ -2355,7 +2366,7 @@ Underfull \hbox (badness 7238) in paragraph at lines 4394--4395
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [140]
-Underfull \hbox (badness 2951) in paragraph at lines 4414--4415
+Underfull \hbox (badness 2951) in paragraph at lines 4430--4431
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 “हे शुनःशेप ! अ
 स्माकं पिता विश्वामित्रो यत्
 कार्यं त्वदीयज्येष्ठपुत्रत
@@ -2363,7 +2374,7 @@ Underfull \hbox (badness 2951) in paragraph at lines 4414--4415
  []
 
 
-Underfull \hbox (badness 4713) in paragraph at lines 4414--4415
+Underfull \hbox (badness 4713) in paragraph at lines 4430--4431
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सम्यग्जानात्
 यङ्‌गीकरोति तस्मिन् कार्ये व
 यं तिष्ठामहे= तत्कार्यमङ्‌गी
@@ -2371,7 +2382,7 @@ Underfull \hbox (badness 4713) in paragraph at lines 4414--4415
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 4414--4415
+Underfull \hbox (badness 1466) in paragraph at lines 4430--4431
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 त्वा= शुनःशेपन
 ामानं त्वाम्, पुरस्कुर्महे= प
 ुरस्कृत्य ज्येष्ठं कृत्वा वर
@@ -2379,7 +2390,7 @@ Underfull \hbox (badness 1466) in paragraph at lines 4414--4415
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4428--4429
+Underfull \hbox (badness 10000) in paragraph at lines 4444--4445
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अथ= मधुच्छन्द
 ःसहितानां पञ्चाशत्कनिष्ठपु
 त्राणां शुनःशेपविषयज्येष्ठ
@@ -2387,7 +2398,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4428--4429
  []
 
 
-Underfull \hbox (badness 2856) in paragraph at lines 4428--4429
+Underfull \hbox (badness 2856) in paragraph at lines 4444--4445
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 कारानन्तरम्, व
 िश्वामित्रः प्रतीतः= तेषु प्
 रत्ययं प्राप्तः, मदनुकूला इत
@@ -2397,7 +2408,7 @@ Underfull \hbox (badness 2856) in paragraph at lines 4428--4429
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [141]
-Underfull \hbox (badness 4048) in paragraph at lines 4446--4447
+Underfull \hbox (badness 4048) in paragraph at lines 4462--4463
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 कृतवन्तः । ते 
 वै= तादृशा यूयं पुत्राः, पशुमन
 ्तः= बहुविधपशुधनयुताः, वीरमन
@@ -2407,7 +2418,7 @@ Underfull \hbox (badness 4048) in paragraph at lines 4446--4447
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [142]
-Underfull \hbox (badness 1072) in paragraph at lines 4500--4501
+Underfull \hbox (badness 1072) in paragraph at lines 4516--4517
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ये साकम्= देवर
 ातेन सार्धम्, सरातयः= रातिर्ध
 नसम्पत्तिस्तया युक्ताः सन्त
@@ -2417,14 +2428,14 @@ Underfull \hbox (badness 1072) in paragraph at lines 4500--4501
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [143]
-Underfull \hbox (badness 10000) in paragraph at lines 4518--4519
+Underfull \hbox (badness 10000) in paragraph at lines 4534--4535
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अधियत= स्मृति
 कारैर्महर्षिभिः स्मर्यते । क
 थमिति तदुच्यते- अयं देवरातो
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4518--4519
+Underfull \hbox (badness 10000) in paragraph at lines 4534--4535
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 द्व्यामुष्या
 यणत्वादुभयोरजीगर्तविश्वामि
 त्रयोः सम्बन्धिनी ये रिक्थे= 
@@ -2435,7 +2446,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4518--4519
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [144] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [145]
-Underfull \hbox (badness 10000) in paragraph at lines 4584--4585
+Underfull \hbox (badness 10000) in paragraph at lines 4600--4601
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 होत्रा प्रयु
 क्ताया एकैकस्या ऋचोऽन्तेऽध्
 वर्योरोमित्यतादृशः प्रतिगर
@@ -2443,7 +2454,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4584--4585
  []
 
 
-Underfull \hbox (badness 4205) in paragraph at lines 4616--4617
+Underfull \hbox (badness 4205) in paragraph at lines 4632--4633
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 योऽयमाख्याता 
 होता विद्यते, तस्मै क्रत्वर्
 थदक्षिणामन्तरेणोपाख्यानप्र
@@ -2453,7 +2464,7 @@ Underfull \hbox (badness 4205) in paragraph at lines 4616--4617
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [146]
-Underfull \hbox (badness 10000) in paragraph at lines 4632--4633
+Underfull \hbox (badness 10000) in paragraph at lines 4648--4649
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ये पुत्रकामा
 ः सन्ति, ते ह= प्रसिद्धमेतदुपा
 ख्यानम् आख्यापयेरन्=
@@ -2463,7 +2474,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4632--4633
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [147]
-Underfull \hbox (badness 10000) in paragraph at lines 4650--4651
+Underfull \hbox (badness 10000) in paragraph at lines 4666--4667
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 चतुर्दशकाण्ड
 ात्मकस्य शतपथब्राह्मणस्य मा
 ध्यन्दिनशाखाया एकादशकाण्डस
@@ -2471,7 +2482,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4650--4651
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4656--4657
+Underfull \hbox (badness 10000) in paragraph at lines 4672--4673
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ब्राह्मणग्रन
 ्थेषु शतपथब्राह्मणस्य वैशिष
 ्ट्यं सातिशयं विद्यते । शुक्
@@ -2479,7 +2490,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4656--4657
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 4656--4657
+Underfull \hbox (badness 6300) in paragraph at lines 4672--4673
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ब्राह्मणग्रन
 ्थस्य नाम शतपथब्राह्मणमस्ति 
 । शतपथब्राह्मणनाम्ना द्वे ब्
@@ -2487,7 +2498,7 @@ Underfull \hbox (badness 6300) in paragraph at lines 4656--4657
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 4658--4659
+Underfull \hbox (badness 1205) in paragraph at lines 4674--4675
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्राचीनतमं मन
 ्यते । अयं ग्रन्थः प्रायशः सम
 ग्रयज्ञयागानां साङ्गोपाङ्ग
@@ -2495,7 +2506,7 @@ Underfull \hbox (badness 1205) in paragraph at lines 4658--4659
  []
 
 
-Underfull \hbox (badness 1052) in paragraph at lines 4658--4659
+Underfull \hbox (badness 1052) in paragraph at lines 4674--4675
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 यत्र तत्र वर्ण
 िता आख्यायिका यज्ञविधिनियमा
 दिशुष्कवर्णनेष्वपि सरसतामा
@@ -2514,7 +2525,7 @@ Underfull \hbox (badness 1052) in paragraph at lines 4658--4659
 [155] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [156] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [157]
-Underfull \hbox (badness 1163) in paragraph at lines 4864--4865
+Underfull \hbox (badness 1163) in paragraph at lines 4880--4881
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 आगमनप्रयोजनं 
 जानानास्ते गन्धर्वाः ऊचुः- च
 ातुष्प्राश्यम्= चतुर्भिर्ऋग
@@ -2522,7 +2533,7 @@ Underfull \hbox (badness 1163) in paragraph at lines 4864--4865
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4864--4865
+Underfull \hbox (badness 10000) in paragraph at lines 4880--4881
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 मूलादारभ्यान
 ्तपर्यन्तम् आज्येनाक्त्वा स
 मिद्वतिभिः=समित्पदयुक्ताभि
@@ -2530,7 +2541,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4864--4865
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 4880--4881
+Underfull \hbox (badness 5548) in paragraph at lines 4896--4897
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ते=गन्धर्वाः 
 पुनर्विचार्य ऊचुः- यदेतत्= अश
 ्वत्थसमिदाधानेनाग्नेः पुनः 
@@ -2540,7 +2551,7 @@ Underfull \hbox (badness 5548) in paragraph at lines 4880--4881
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [158]
-Underfull \hbox (badness 5091) in paragraph at lines 4896--4897
+Underfull \hbox (badness 5091) in paragraph at lines 4912--4913
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ते= गन्धर्वाः 
 पुनरप्यूचुः- अधरारण्युत्तरा
 रण्योः वृक्षद्वयजत्वम् । एतत
@@ -2548,7 +2559,7 @@ Underfull \hbox (badness 5091) in paragraph at lines 4896--4897
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4910--4911
+Underfull \hbox (badness 10000) in paragraph at lines 4926--4927
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 इत्थं गन्धर्
 वैरुपदिष्टे सति पुरूरवाः आश्
 वत्थीमेवोत्तरारणिं चक्रे= कृ
@@ -2556,7 +2567,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4910--4911
  []
 
 
-Underfull \hbox (badness 2818) in paragraph at lines 4910--4911
+Underfull \hbox (badness 2818) in paragraph at lines 4926--4927
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 आश्वत्थीमेवा
 धरारणिं च चक्रे= कृतवान् । ततस
 ्ताभ्यां मन्थनात् सः= तादृशो
@@ -2566,7 +2577,7 @@ Underfull \hbox (badness 2818) in paragraph at lines 4910--4911
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [159] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf)
-Underfull \hbox (badness 1102) in paragraph at lines 4932--4933
+Underfull \hbox (badness 1102) in paragraph at lines 4948--4949
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ज्ञानं लभ्यते 
 । नैकासु उपनिषत्सु बृहदारण्य
 कोपनिषदः स्वरूपं दीर्घकायात
@@ -2579,7 +2590,7 @@ Underfull \hbox (badness 1102) in paragraph at lines 4932--4933
 [161] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [162] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [163]
-Underfull \hbox (badness 10000) in paragraph at lines 5006--5007
+Underfull \hbox (badness 10000) in paragraph at lines 5022--5023
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 स होवाच= अमृतत
 ्त्वसाधनं वैराग्यमुपदिदिक्
 षुर्याज्ञवल्क्यो जायापतिपु
@@ -2591,7 +2602,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5006--5007
 [164] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [165] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [166]
-Underfull \hbox (badness 1199) in paragraph at lines 5094--5095
+Underfull \hbox (badness 1199) in paragraph at lines 5110--5111
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तथा सः= द्विती
 यो दृष्टान्तो यथा- शङ्‍खस्य= व
 ाद्यविशेषस्य घ्मायमानस्य= शब
@@ -2601,7 +2612,7 @@ Underfull \hbox (badness 1199) in paragraph at lines 5094--5095
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [167]
-Underfull \hbox (badness 2359) in paragraph at lines 5110--5111
+Underfull \hbox (badness 2359) in paragraph at lines 5126--5127
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सामान्यबहुत्
 वख्यापनार्थम्- अनेके हि विलक
 ्षणाचेतनाचेतनरूपाः सामान्य
@@ -2609,7 +2620,7 @@ Underfull \hbox (badness 2359) in paragraph at lines 5110--5111
  []
 
 
-Underfull \hbox (badness 4303) in paragraph at lines 5110--5111
+Underfull \hbox (badness 4303) in paragraph at lines 5126--5127
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पारम्पर्यगत्
 या यथैकस्मिन्महासामान्येऽन
 ्तर्भावः प्रज्ञाघने; कथं नाम 
@@ -2617,7 +2628,7 @@ Underfull \hbox (badness 4303) in paragraph at lines 5110--5111
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5110--5111
+Underfull \hbox (badness 10000) in paragraph at lines 5126--5127
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 दुन्दुभिशङ्‍
 खवीणाशब्दसामान्यविशेषाणां 
 यथा शब्दत्वेऽन्तर्भावः, एवं 
@@ -2627,7 +2638,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5110--5111
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [168]
-Underfull \hbox (badness 1424) in paragraph at lines 5140--5141
+Underfull \hbox (badness 1424) in paragraph at lines 5156--5157
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 मन्त्रजातम्, \TU/
 TiroDevanagariSanskrit(0)/b/n/10.95 इतिहासः\TU/TiroDevanagariSans
 krit(0)/m/n/10.95 - उर्वशीपुरूरवसोः संवा
@@ -2636,7 +2647,7 @@ krit(0)/m/n/10.95 - उर्वशीपुरूरवसोः संवा
  []
 
 
-Underfull \hbox (badness 1173) in paragraph at lines 5140--5141
+Underfull \hbox (badness 1173) in paragraph at lines 5156--5157
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वेदे यथा- ‘आत्
 मेत्येवोपासीत’ (१।४।७) इत्या
 दीनि, \TU/TiroDevanagariSanskrit(0)/b/n/10.95 अनुव्याख
@@ -2648,7 +2659,7 @@ Underfull \hbox (badness 1173) in paragraph at lines 5140--5141
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [169] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [170]
-Underfull \hbox (badness 1748) in paragraph at lines 5170--5171
+Underfull \hbox (badness 1748) in paragraph at lines 5186--5187
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तथा तदपि स्पर
 ्शसामान्यमात्रं त्वक्छब्दव
 ाच्यं मनःसङ्‍कल्पे मनोविषयस
@@ -2668,7 +2679,7 @@ Underfull \hbox (badness 1748) in paragraph at lines 5170--5171
 [178] [179
 
 ]
-Underfull \hbox (badness 3724) in paragraph at lines 5356--5357
+Underfull \hbox (badness 3724) in paragraph at lines 5372--5373
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अपरं प्रस्था
 नं श्रीमद्भगवद्गीता विद्यते 
 । यत्र उपनिषदि वर्णितानामध्य
@@ -2676,7 +2687,7 @@ Underfull \hbox (badness 3724) in paragraph at lines 5356--5357
  []
 
 
-Underfull \hbox (badness 2418) in paragraph at lines 5356--5357
+Underfull \hbox (badness 2418) in paragraph at lines 5372--5373
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सारभूतोऽर्थः 
 सन्निहितोऽस्ति । गीयते आत्मव
 िद्योपदेशात्मिका ब्रह्मतत्
@@ -2684,7 +2695,7 @@ Underfull \hbox (badness 2418) in paragraph at lines 5356--5357
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 5356--5357
+Underfull \hbox (badness 1577) in paragraph at lines 5372--5373
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 यत्र सा गीता (श
 ब्दकल्पद्रुमः) । गीतेति नाम्
 ना ‘रामगीता’ ‘गणेशगीता’ इत्य
@@ -2692,7 +2703,7 @@ Underfull \hbox (badness 1577) in paragraph at lines 5356--5357
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 5360--5361
+Underfull \hbox (badness 1418) in paragraph at lines 5376--5377
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 भासमानानामुप
 निषद्वाक्यानां समन्वयप्रदर
 ्शनपुरःसरं पर्यवसानं प्रदर्
@@ -2700,7 +2711,7 @@ Underfull \hbox (badness 1418) in paragraph at lines 5360--5361
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 5362--5363
+Underfull \hbox (badness 1297) in paragraph at lines 5378--5379
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 संस्कृतवाङ्‌
 मये प्रस्थानत्रयी एव वैदिकधर
 ्मदर्शनाधारभूता मन्यते तथाप
@@ -2710,7 +2721,7 @@ Underfull \hbox (badness 1297) in paragraph at lines 5362--5363
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [180]
-Underfull \hbox (badness 10000) in paragraph at lines 5384--5385
+Underfull \hbox (badness 10000) in paragraph at lines 5400--5401
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ईशावास्योपनि
 षद् शुक्लयजुर्वेदान्तर्गता 
 मन्त्रोपनिषद् । शुक्लयजुर्व
@@ -2720,7 +2731,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5384--5385
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [181]
-Underfull \hbox (badness 10000) in paragraph at lines 5396--5397
+Underfull \hbox (badness 10000) in paragraph at lines 5412--5413
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 यो नरः केवलं स
 ्वार्थपूर्णं कार्यं करोति सो
 ऽत्र किञ्चित् सुखमनुभवति, पर
@@ -2728,7 +2739,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5396--5397
  []
 
 
-Underfull \hbox (badness 2828) in paragraph at lines 5408--5409
+Underfull \hbox (badness 2828) in paragraph at lines 5424--5425
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 एवं प्रकारेण
 ास्यामुपनिषदि चराचरजगति व्य
 ापकस्य नियामकस्य ईशस्य वर्णन
@@ -2736,7 +2747,7 @@ Underfull \hbox (badness 2828) in paragraph at lines 5408--5409
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 5428--5429
+Underfull \hbox (badness 4673) in paragraph at lines 5444--5445
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 (प्रलयकाले) पू
 र्णात्= पूर्णब्रह्मणः पूर्णम
 ेव= पूर्णरूपेणैव उदच्यते= जगद
@@ -2744,7 +2755,7 @@ Underfull \hbox (badness 4673) in paragraph at lines 5428--5429
  []
 
 
-Underfull \hbox (badness 4254) in paragraph at lines 5428--5429
+Underfull \hbox (badness 4254) in paragraph at lines 5444--5445
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पूर्णस्य= पूर्
 णब्रह्मणः पूर्णम्= पूर्णत्वम
 ्, सर्वव्यापकत्वम्, आदाय= गृही
@@ -2754,7 +2765,7 @@ Underfull \hbox (badness 4254) in paragraph at lines 5428--5429
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [182]
-Underfull \hbox (badness 5954) in paragraph at lines 5446--5447
+Underfull \hbox (badness 5954) in paragraph at lines 5462--5463
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अस्तित्वयुता
 ः सन्ति । अतो यस्य वस्तुनो जीव
 नयापनार्थम् उपयोगः क्रियते त
@@ -2767,7 +2778,7 @@ Underfull \hbox (badness 5954) in paragraph at lines 5446--5447
 [184] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [185] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [186]
-Underfull \hbox (badness 10000) in paragraph at lines 5580--5581
+Underfull \hbox (badness 10000) in paragraph at lines 5596--5597
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 स्थूलपाञ्चभौ
 तिकपदार्थरहितम्, शुद्धम्= दि
 व्यसच्चिदानन्दस्वरूपम्, अपा
@@ -2775,7 +2786,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5580--5581
  []
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 5580--5581
+Underfull \hbox (badness 2951) in paragraph at lines 5596--5597
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 व्यदधात्= चक्र
 े, यथानुरूपं व्यभजदित्यर्थः 
 । अर्थात् आदिकालादेव परमेश्व
@@ -2791,7 +2802,7 @@ Underfull \hbox (badness 2951) in paragraph at lines 5580--5581
 [191] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [192]
-Underfull \hbox (badness 2529) in paragraph at lines 5786--5787
+Underfull \hbox (badness 2529) in paragraph at lines 5802--5803
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 विद्यते। परब्
 रह्म एव देवादीन् स्वकीयेषु क
 ार्येषु संयोजयति । लोके जना च
@@ -2801,7 +2812,7 @@ Underfull \hbox (badness 2529) in paragraph at lines 5786--5787
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [193]
-Underfull \hbox (badness 1838) in paragraph at lines 5810--5811
+Underfull \hbox (badness 1838) in paragraph at lines 5826--5827
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 बलम्, एवं पञ्च
 कर्मेन्द्रियाणि चेति सर्वाण
 ि इन्द्रियाणि चाप्यायन्तु= प
@@ -2814,7 +2825,7 @@ Underfull \hbox (badness 1838) in paragraph at lines 5810--5811
 [195] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [196] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [197]
-Underfull \hbox (badness 2556) in paragraph at lines 5956--5957
+Underfull \hbox (badness 2556) in paragraph at lines 5972--5973
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 जुन तत्त्व प्
 राणवायुद्वारा श्वासप्रश्वा
 सरूप चेष्टायुक्त हुँदैन तर ज
@@ -2825,7 +2836,7 @@ Underfull \hbox (badness 2556) in paragraph at lines 5956--5957
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [198]
-Underfull \hbox (badness 3482) in paragraph at lines 5982--5983
+Underfull \hbox (badness 3482) in paragraph at lines 5998--5999
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ‘स्वकीयमात्म
 तत्त्वम्, इन्द्रादिदेवात्मक
 मात्मतत्त्वञ्च एकमेवेति यदा 
@@ -2838,7 +2849,7 @@ Underfull \hbox (badness 3482) in paragraph at lines 5982--5983
 [200] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [201]
-Underfull \hbox (badness 6316) in paragraph at lines 6096--6097
+Underfull \hbox (badness 6316) in paragraph at lines 6112--6113
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तत्= ब्रह्म, ए
 षाम्= इन्द्रादिदेवानाम्, विज
 ज्ञौ= अस्माकमेव विजयः, वयमेव
@@ -2848,7 +2859,7 @@ Underfull \hbox (badness 6316) in paragraph at lines 6096--6097
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [202] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [203]
-Underfull \hbox (badness 3872) in paragraph at lines 6152--6153
+Underfull \hbox (badness 3872) in paragraph at lines 6168--6169
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 तस्मै= अग्नये 
 एतत्= इदं दृश्यमानम्, दह= भस्म
 सात् कुरु, इत्युक्त्वा तृणम्=
@@ -2863,7 +2874,7 @@ Underfull \hbox (badness 3872) in paragraph at lines 6152--6153
 [207] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [208] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [209]
-Underfull \hbox (badness 2903) in paragraph at lines 6384--6385
+Underfull \hbox (badness 2903) in paragraph at lines 6400--6401
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 इति= एतादृशाः, 
 प्रतिष्ठाः= ब्रह्मविद्याप्र
 ाप्तये साधनानि सन्तीत्यर्थः 
@@ -2882,7 +2893,7 @@ Underfull \hbox (badness 2903) in paragraph at lines 6384--6385
 [213] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [214] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [215]
-Underfull \hbox (badness 3271) in paragraph at lines 6632--6633
+Underfull \hbox (badness 3271) in paragraph at lines 6648--6649
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 ८. वाचिकाहार्
 याङ्गिकसात्त्विकभेदेन चतुः
 प्रकारकाभिनयालङ्काराङ्गरचन
@@ -2892,7 +2903,7 @@ Underfull \hbox (badness 3271) in paragraph at lines 6632--6633
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [216]
-Underfull \hbox (badness 3815) in paragraph at lines 6650--6651
+Underfull \hbox (badness 3815) in paragraph at lines 6666--6667
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 नृत्तशास्त्र
 म्, गीतम्, शब्दशास्त्रम्, अलङ्
 कारः, महाकाव्यम्, प्रहेलिका, द
@@ -2900,7 +2911,7 @@ Underfull \hbox (badness 3815) in paragraph at lines 6650--6651
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 6682--6683
+Underfull \hbox (badness 4673) in paragraph at lines 6698--6699
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 एवं प्रकारेण 
 मार्कण्डेयो मुनी राजानं वज्र
 ं गीतशास्त्रमुपदिशति । प्रसङ
@@ -2908,7 +2919,7 @@ Underfull \hbox (badness 4673) in paragraph at lines 6682--6683
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 6682--6683
+Underfull \hbox (badness 5161) in paragraph at lines 6698--6699
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 काव्यशास्त्र
 ीयविषयाः समागताः सन्ति । तत्
 र गद्यपद्ययोश्चर्चाक्रमे छन
@@ -2916,7 +2927,7 @@ Underfull \hbox (badness 5161) in paragraph at lines 6682--6683
  []
 
 
-Underfull \hbox (badness 2042) in paragraph at lines 6686--6687
+Underfull \hbox (badness 2042) in paragraph at lines 6702--6703
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 चतुर्दशाध्या
 येऽनुप्रासयमकादीनां शब्दाल
 ङ्काराणाम्, रूपकादीनामर्थाल
@@ -2926,7 +2937,7 @@ Underfull \hbox (badness 2042) in paragraph at lines 6686--6687
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [217]
-Underfull \hbox (badness 10000) in paragraph at lines 6688--6689
+Underfull \hbox (badness 10000) in paragraph at lines 6704--6705
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 विष्णुधर्मोत
 ्तरपुराणकार उपमया परिचित आसी
 त् । तेन पूर्वाचार्यैः स्पष्
@@ -2936,7 +2947,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6688--6689
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [218]
-Underfull \hbox (badness 5260) in paragraph at lines 6712--6713
+Underfull \hbox (badness 5260) in paragraph at lines 6728--6729
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 राजसभामारभ्य 
 ग्रामीणजनपर्यन्तं मनसो परिष
 ्कारार्थं प्रहेलिकायाः प्रय
@@ -2944,7 +2955,7 @@ Underfull \hbox (badness 5260) in paragraph at lines 6712--6713
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6712--6713
+Underfull \hbox (badness 10000) in paragraph at lines 6728--6729
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 विद्यते यत्- “
 कदाचिदक्षरच्युतक-मात्राच्य
 ुतकबिन्दुमतीगूढचतुर्थपादप्
@@ -2952,7 +2963,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6712--6713
  []
 
 
-Underfull \hbox (badness 5878) in paragraph at lines 6712--6713
+Underfull \hbox (badness 5878) in paragraph at lines 6728--6729
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 दिवसमेवमारब्
 धविविधक्रिडापरिहासचतुरैः स
 ुहृद्भिरूपेतो निशामनैषीत्” (
@@ -2960,7 +2971,7 @@ Underfull \hbox (badness 5878) in paragraph at lines 6712--6713
  []
 
 
-Underfull \hbox (badness 1629) in paragraph at lines 6726--6727
+Underfull \hbox (badness 1629) in paragraph at lines 6742--6743
 []\TU/TiroDevanagariSanskrit(0)/b/n/10.95 ‘मन्त्रब्राह
 ्मणयोर्वेदनामधेयम्’ इत्युक
 ्तेः \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सब्राह्म
@@ -2969,14 +2980,14 @@ Underfull \hbox (badness 1629) in paragraph at lines 6726--6727
  []
 
 
-Underfull \hbox (badness 3058) in paragraph at lines 6730--6731
+Underfull \hbox (badness 3058) in paragraph at lines 6746--6747
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 नाट्यशास्त्र
 े दश रूपकाणि अष्टादश उपरूपका
 णि च वर्णितानि सन्ति । परमत्र
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 6730--6731
+Underfull \hbox (badness 1142) in paragraph at lines 6746--6747
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 आवश्यकतत्त्व
 ादिसहिता विस्तृता चर्चा विहि
 ता, परमन्येषां रूपकभेदानां त
@@ -2986,7 +2997,7 @@ Underfull \hbox (badness 1142) in paragraph at lines 6730--6731
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [219]
-Underfull \hbox (badness 3895) in paragraph at lines 6744--6745
+Underfull \hbox (badness 3895) in paragraph at lines 6760--6761
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 द्वादशरूपकान
 ां स्वरूपवर्णनानन्तरं पुराण
 कारस्ते सर्वे भेदाः कलाकौशलस
@@ -2997,7 +3008,7 @@ Underfull \hbox (badness 3895) in paragraph at lines 6744--6745
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [220] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [221]
-Underfull \hbox (badness 10000) in paragraph at lines 6810--6811
+Underfull \hbox (badness 10000) in paragraph at lines 6826--6827
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 पञ्चविंशतितम
 े अध्याये उपाङ्गानां (नेत्रक
 टाक्षादीनाम्) द्वात्रिंशत्प
@@ -3005,7 +3016,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6810--6811
  []
 
 
-Underfull \hbox (badness 7777) in paragraph at lines 6810--6811
+Underfull \hbox (badness 7777) in paragraph at lines 6826--6827
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वर्णनमस्ति। श
 ृङ्गार-वीर-करुणादि-रसान् तथा 
 अन्य-स्थायिभावान् प्रकटयितु
@@ -3013,7 +3024,7 @@ Underfull \hbox (badness 7777) in paragraph at lines 6810--6811
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6822--6823
+Underfull \hbox (badness 10000) in paragraph at lines 6838--6839
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न् अभिनयस्य मुख्यसाधनत्वेन ह
 स्तानां विविधा मुद्राः (यथा-
@@ -3022,7 +3033,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6822--6823
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [222]
-Underfull \hbox (badness 1803) in paragraph at lines 6846--6847
+Underfull \hbox (badness 1803) in paragraph at lines 6862--6863
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अभिनयस्य आङ्
 गिकाख्यस्तृतीयप्रकारोऽत्र 
 वर्णितो विद्यते । अत्र आङ्गि
@@ -3030,7 +3041,7 @@ Underfull \hbox (badness 1803) in paragraph at lines 6846--6847
  []
 
 
-Underfull \hbox (badness 6141) in paragraph at lines 6846--6847
+Underfull \hbox (badness 6141) in paragraph at lines 6862--6863
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सामान्याभिनय
 ोऽयं नाट्यकलाया आधारभूतो मन्
 यते, अतोऽस्मिन् प्रयत्नो विध
@@ -3040,7 +3051,7 @@ Underfull \hbox (badness 6141) in paragraph at lines 6846--6847
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [223]
-Underfull \hbox (badness 1931) in paragraph at lines 6878--6879
+Underfull \hbox (badness 1931) in paragraph at lines 6894--6895
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 ९, सञ्चारिभावा
 ः ३३ सात्त्विकभावाः ८= ४९) । तत
 ्र प्रमुखभावानां स्वरूपम्, त
@@ -3048,7 +3059,7 @@ Underfull \hbox (badness 1931) in paragraph at lines 6878--6879
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6900--6903
+Underfull \hbox (badness 10000) in paragraph at lines 6916--6919
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सप्तदशालङ्का
 राणां सङ्क्षिप्तनिरूपणम्, पु
 रुषार्थचतुष्टयसाधकरूपेण शा
@@ -3056,7 +3067,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6900--6903
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6900--6903
+Underfull \hbox (badness 10000) in paragraph at lines 6916--6919
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 महाकाव्यानां 
 तार्किकं लक्षणम्, एवञ्च सामा
 जिकमनोरञ्जनाय अश्लीलतावर्ज
@@ -3064,7 +3075,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6900--6903
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 6900--6903
+Underfull \hbox (badness 3108) in paragraph at lines 6916--6919
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 यत् सूक्ष्मं व
 ैज्ञानिकञ्च वर्णनं विहितं तद
 ् नाट्यकलाया उत्कर्षं प्रकटी
@@ -3076,7 +3087,7 @@ Underfull \hbox (badness 3108) in paragraph at lines 6900--6903
 [224] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian84.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [225]
-Underfull \hbox (badness 10000) in paragraph at lines 6930--6931
+Underfull \hbox (badness 10000) in paragraph at lines 6946--6947
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 संस्कृतवाङ्म
 यस्य पौराणिकसाहित्यं महत्ता
 धायकं विद्यते । साहित्यिकरचन
@@ -3084,7 +3095,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6930--6931
  []
 
 
-Underfull \hbox (badness 3199) in paragraph at lines 6930--6931
+Underfull \hbox (badness 3199) in paragraph at lines 6946--6947
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 महर्षिव्यासप
 ्रणीतानि पुराणानि उपजीव्यग्
 रन्थरूपेण स्वीक्रियन्ते । तत
@@ -3094,7 +3105,7 @@ Underfull \hbox (badness 3199) in paragraph at lines 6930--6931
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [226]
-Underfull \hbox (badness 1424) in paragraph at lines 6954--6955
+Underfull \hbox (badness 1424) in paragraph at lines 6970--6971
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 शास्त्रमिति 
 सिद्धान्तप्रधानं मन्यते । सि
 द्धान्तनिर्माणे सर्वविषयबो
@@ -3102,7 +3113,7 @@ Underfull \hbox (badness 1424) in paragraph at lines 6954--6955
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 6982--6983
+Underfull \hbox (badness 1466) in paragraph at lines 6998--6999
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 काव्ये संस्क
 ृतभाषा प्राकृतभाषा च प्रयुज्
 यते । देवराजाब्राह्मणविदूषक
@@ -3112,7 +3123,7 @@ Underfull \hbox (badness 1466) in paragraph at lines 6982--6983
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [227]
-Underfull \hbox (badness 10000) in paragraph at lines 7016--7017
+Underfull \hbox (badness 10000) in paragraph at lines 7032--7033
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 यत्र स्रष्टु
 र्वंशप्रशस्तिवर्णनम्, कन्या
 हरणसङ्ग्रामविप्रलम्भादिविप
@@ -3120,7 +3131,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7016--7017
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7016--7017
+Underfull \hbox (badness 10000) in paragraph at lines 7032--7033
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 वैदर्भ्यादिर
 ीतीनां नागरिकादिवृत्तीनाञ्
 च संयोजनम्, उच्छ्वासपरिच्छेद
@@ -3130,7 +3141,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7016--7017
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [228]
-Underfull \hbox (badness 4229) in paragraph at lines 7058--7059
+Underfull \hbox (badness 4229) in paragraph at lines 7074--7075
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 परिष्कृतया स
 ंस्कृतभाषया आरब्धं महाकाव्य
 मनेकैः सर्गैः सुबद्धं भवति । 
@@ -3138,7 +3149,7 @@ Underfull \hbox (badness 4229) in paragraph at lines 7058--7059
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7058--7059
+Underfull \hbox (badness 10000) in paragraph at lines 7074--7075
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 युद्धवर्णनञ्
 च भवति । शक्वरी-अतिजगती-अतिशक
 ्वरी-त्रिष्टुभ्-पुष्पिताग्र
@@ -3146,7 +3157,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7058--7059
  []
 
 
-Underfull \hbox (badness 3907) in paragraph at lines 7058--7059
+Underfull \hbox (badness 3907) in paragraph at lines 7074--7075
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अपरत्र मात्रा
 वृत्तेन युक्तं भवति । प्रागत
 िरिच्य पश्चसर्ग उत्कृष्टो भव
@@ -3156,7 +3167,7 @@ Underfull \hbox (badness 3907) in paragraph at lines 7058--7059
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [229]
-Underfull \hbox (badness 6526) in paragraph at lines 7066--7067
+Underfull \hbox (badness 6526) in paragraph at lines 7082--7083
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अग्निपुराणे 
 अभिनेयकाव्यवर्णनप्रसङ्गे प
 ्रथमतो रूपकस्य भेदा वर्णिताः 
@@ -3164,7 +3175,7 @@ Underfull \hbox (badness 6526) in paragraph at lines 7066--7067
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 7066--7067
+Underfull \hbox (badness 1590) in paragraph at lines 7082--7083
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 नाट्यशास्त्र
 ीयेतिहासे रूपकस्य दश, उपरूपक
 स्य अष्टादश भेदा लभ्यन्ते, पर
@@ -3172,7 +3183,7 @@ Underfull \hbox (badness 1590) in paragraph at lines 7066--7067
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 7066--7067
+Underfull \hbox (badness 2894) in paragraph at lines 7082--7083
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 नाटिका, सट्टकम
 ्, शिल्पकः, कर्णा, दुर्मल्लिका, 
 प्रस्थानम्, भाणिका, भाणी, गोष्
@@ -3183,14 +3194,14 @@ Underfull \hbox (badness 2894) in paragraph at lines 7066--7067
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [230] (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf) (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [231]
-Underfull \hbox (badness 5302) in paragraph at lines 7134--7135
+Underfull \hbox (badness 5302) in paragraph at lines 7150--7151
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 (गौडी), वैदर्भी, 
 लाटजा (लाटी) इति चत्वारो भेदा 
 भवन्ति । तासु उपचारयुता
  []
 
 
-Underfull \hbox (badness 1509) in paragraph at lines 7134--7135
+Underfull \hbox (badness 1509) in paragraph at lines 7150--7151
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 कोमलपदावलीभि
 र्लघुसमासैश्च संरचिता पाञ्च
 ाली, क्षीणसन्दर्भयुता दीर्घस
@@ -3198,7 +3209,7 @@ Underfull \hbox (badness 1509) in paragraph at lines 7134--7135
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7134--7135
+Underfull \hbox (badness 10000) in paragraph at lines 7150--7151
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 नात्यल्पैर्न
 ाप्यधिकैर्लाक्षणिकतत्त्वैर
 ्युता नातिकोमलशब्दार्थसहित
@@ -3206,7 +3217,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7134--7135
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 7138--7139
+Underfull \hbox (badness 5161) in paragraph at lines 7154--7155
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न् नृत्त्यादौ समावश्यकं अङ्ग
 कर्मनिरूपणं विद्यते । नायकना
@@ -3216,7 +3227,7 @@ Underfull \hbox (badness 5161) in paragraph at lines 7138--7139
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [232]
-Underfull \hbox (badness 2980) in paragraph at lines 7166--7167
+Underfull \hbox (badness 2980) in paragraph at lines 7182--7183
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अग्निपुराणका
 रेण काव्यशास्त्रप्रतिपादित
 लक्षणानुकूलमलङ्कारलक्षणं व
@@ -3224,14 +3235,14 @@ Underfull \hbox (badness 2980) in paragraph at lines 7166--7167
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7180--7181
+Underfull \hbox (badness 10000) in paragraph at lines 7196--7197
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न् शब्दालङ्कारभेदानां सस्वर
 ूपं निरूपणं विद्यते । तेषु
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 7186--7187
+Underfull \hbox (badness 1253) in paragraph at lines 7202--7203
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अनेकधावृत्तव
 र्णविन्यासैर्विहिता चित्रा
 दिवस्तूनां शिल्पकल्पना एव बन
@@ -3241,14 +3252,14 @@ Underfull \hbox (badness 1253) in paragraph at lines 7186--7187
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [233]
-Underfull \hbox (badness 10000) in paragraph at lines 7190--7191
+Underfull \hbox (badness 10000) in paragraph at lines 7206--7207
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न्नर्थालङ्कारा विवेचिता विद
 ्यन्ते । तेषु प्रथमतः
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7212--7213
+Underfull \hbox (badness 10000) in paragraph at lines 7228--7229
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न् शब्दार्थसौन्दर्यप्रदायक
 ाः शब्दार्थालङ्कारा (उभयालङ्
@@ -3256,7 +3267,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7212--7213
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7212--7213
+Underfull \hbox (badness 10000) in paragraph at lines 7228--7229
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 विद्यन्ते। अत
 ्र प्रथमतः प्रशस्तिकान्त्या
 दिषडलङ्कारविवेचनम्, तदनन्तर
@@ -3264,7 +3275,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7212--7213
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7214--7215
+Underfull \hbox (badness 10000) in paragraph at lines 7230--7231
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अलङ्कारवर्गी
 करणेऽप्यस्य मते नावीन्यं प्र
 तिभाति । काव्यशास्त्रपरम्पर
@@ -3272,7 +3283,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7214--7215
  []
 
 
-Underfull \hbox (badness 4492) in paragraph at lines 7214--7215
+Underfull \hbox (badness 4492) in paragraph at lines 7230--7231
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रायशः शब्दा
 लङ्कारः, अर्थालङ्कारश्चेति प
 ्रामुख्येन प्रकारद्वयं प्रा
@@ -3280,7 +3291,7 @@ Underfull \hbox (badness 4492) in paragraph at lines 7214--7215
  []
 
 
-Underfull \hbox (badness 7308) in paragraph at lines 7214--7215
+Underfull \hbox (badness 7308) in paragraph at lines 7230--7231
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 सभेदं शब्दार्
 थालङ्कारान् निरूपयति । काव्य
 शास्त्रकारैरर्थालङ्कारे पर
@@ -3288,7 +3299,7 @@ Underfull \hbox (badness 7308) in paragraph at lines 7214--7215
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 7214--7215
+Underfull \hbox (badness 1931) in paragraph at lines 7230--7231
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 आक्षेपः, समासो
 क्तिः, अपह्नुतिः, पर्यायोक्त
 िश्चेत्यलङ्कारान् शब्दार्थ
@@ -3298,7 +3309,7 @@ Underfull \hbox (badness 1931) in paragraph at lines 7214--7215
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian21.pgf)
 (/usr/share/texmf-dist/tex/generic/pgfornament/vectorian/vectorian23.pgf)
 [234]
-Underfull \hbox (badness 1776) in paragraph at lines 7238--7239
+Underfull \hbox (badness 1776) in paragraph at lines 7254--7255
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 गुणस्य स्वरू
 पम्, तस्य वर्णीकरणञ्च नवीनमा
 भाति। अलङ्‌कृतमपि निर्गुणं क
@@ -3306,7 +3317,7 @@ Underfull \hbox (badness 1776) in paragraph at lines 7238--7239
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 7242--7243
+Underfull \hbox (badness 6001) in paragraph at lines 7258--7259
 []\TU/TiroDevanagariSanskrit(0)/m/n/10.95 अध्यायेऽस्मि
 न् काव्यदोषविवेचनं विद्यते । 
 अत्र दोषाणां भेदोपभेदान् विव
@@ -3314,7 +3325,7 @@ Underfull \hbox (badness 6001) in paragraph at lines 7242--7243
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 7248--7250
+Underfull \hbox (badness 1028) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 प्रथमक्रमे ‘अ
 ग्निपुराणम्’ समायाति । अत्र 
 प्रायशः काव्यशास्त्रीयतत्त
@@ -3322,7 +3333,7 @@ Underfull \hbox (badness 1028) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 7248--7250
+Underfull \hbox (badness 4792) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पश्चादस्य रचन
 ा जातेति मन्यन्ते चेत् केचित
 ्तु काव्यशास्त्रस्य प्रारम्
@@ -3330,7 +3341,7 @@ Underfull \hbox (badness 4792) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 1014) in paragraph at lines 7248--7250
+Underfull \hbox (badness 1014) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 काव्यशास्त्र
 ीयखण्डः पश्चात् प्रक्षिप्त इ
 त्यपि वदन्ति । पुराणस्य रचना
@@ -3338,7 +3349,7 @@ Underfull \hbox (badness 1014) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7248--7250
+Underfull \hbox (badness 10000) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 पुराणमिदम् अन
 ्यपुराणेभ्योऽर्वाचीनं प्रत
 िभाति । महर्षिव्यासप्रणीतस्
@@ -3346,7 +3357,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 3189) in paragraph at lines 7248--7250
+Underfull \hbox (badness 3189) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 काव्यशास्त्र
 ीयविभागे (३३७-३४७ अध्यायेषु) न
 िरूपिता विषयाः पौरस्त्यकाव्
@@ -3354,7 +3365,7 @@ Underfull \hbox (badness 3189) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 7248--7250
+Underfull \hbox (badness 5504) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 अर्थालङ्कारर
 हिता विधवेव सरस्वती इति कथयन
 ् अलङ्कारसम्प्रदायस्य पक्षप
@@ -3362,7 +3373,7 @@ Underfull \hbox (badness 5504) in paragraph at lines 7248--7250
  []
 
 
-Underfull \hbox (badness 4859) in paragraph at lines 7248--7250
+Underfull \hbox (badness 4859) in paragraph at lines 7264--7266
 \TU/TiroDevanagariSanskrit(0)/m/n/10.95 उत्तरवर्त्ति
 समये सञ्जातानां लक्षणग्रन्थ
 ानाम् उपजीव्यभूतः, साहित्यशा
@@ -3382,14 +3393,14 @@ L3 programming layer <2026-01-19>
 )
 
 Here is how much of LuaTeX's memory you used:
- 24545 strings out of 476076
- 100000,953878 words of node,token memory allocated
+ 24597 strings out of 476076
+ 125236,953878 words of node,token memory allocated
  1187 words of node memory still in use:
    20 hlist, 1 vlist, 9 rule, 1 local_par, 5 glue, 3 kern, 1 penalty, 1 glyph, 5
 6 attribute, 87 glue_spec, 56 attribute_list, 2 write, 16 pdf_literal, 18 pdf_co
 lorstack nodes
-   avail lists: 1:1,2:1733,3:1941,4:60,5:243,6:68,7:5803,8:3,9:439,10:21,11:30
- 43904 multiletter control sequences out of 65536+600000
+   avail lists: 1:2,2:1733,3:1941,4:60,5:243,6:68,7:5803,8:3,9:439,10:21,11:30
+ 43951 multiletter control sequences out of 65536+600000
  45 fonts using 8694463 bytes
  116i,18n,114p,8770b,1384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </home/ksai/dev/ksaitex/fonts/TiroDevanagariSanskrit-Italic.ttf></home/ksai/dev/
