@@ -1,3 +1,4 @@
+import re
 from markdown_it import MarkdownIt
 from markdown_it.token import Token
 from markdown_it.renderer import RendererProtocol
@@ -97,11 +98,42 @@ class LatexRenderer:
                         result += m_part
                         continue
                     
-                    # Process non-magic text for bold patches
-                    parts = re.split(r'(\*\*\'.*?\'\*\*)', m_part)
+                    # Process non-magic text for custom styles
+                    parts = re.split(
+                        r'('
+                        r'_\*\*\*(?=[^\s_*]).+?(?<=[^\s_*])\*\*\*_{1,2}|'  # _***TEXT***__ or _***TEXT***_
+                        r'_\*\*(?=[^\s_*]).+?(?<=[^\s_*])\*\*_|'          # _**TEXT**_
+                        r'_\*(?=[^\s_*]).+?(?<=[^\s_*])\*_|'              # _*TEXT*_
+                        r'\*\*\*(?=[^\s*]).+?(?<=[^\s*])\*\*\*|'          # ***TEXT***
+                        r'\*\*\'[^\n]*?\'\*\*|'                           # **'TEXT'**
+                        r'(?<!_)_(?=[^\s_]).+?(?<=[^\s_])_(?!_)'          # _TEXT_
+                        r')',
+                        m_part
+                    )
                     for part in parts:
-                        is_bold_patch = part.startswith("**'") and part.endswith("'**")
-                        if is_bold_patch:
+                        if not part:
+                            continue
+                        if part.startswith("_***") and (part.endswith("***__") or part.endswith("***_")):
+                            segment_content = part[4:-5] if part.endswith("***__") else part[4:-4]
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\underline{{\\textbf{{\\textit{{{processed_segment}}}}}}}"
+                        elif part.startswith("_**") and part.endswith("**_"):
+                            segment_content = part[3:-3]
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\underline{{\\textbf{{{processed_segment}}}}}"
+                        elif part.startswith("_*") and part.endswith("*_"):
+                            segment_content = part[2:-2]
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\underline{{\\textit{{{processed_segment}}}}}"
+                        elif part.startswith("***") and part.endswith("***"):
+                            segment_content = part[3:-3]
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\textbf{{\\textit{{{processed_segment}}}}}"
+                        elif len(part) >= 3 and part.startswith("_") and part.endswith("_") and not part.startswith("__"):
+                            segment_content = part[1:-1]
+                            processed_segment = self._process_text_chars(segment_content)
+                            result += f"\\underline{{{processed_segment}}}"
+                        elif part.startswith("**'") and part.endswith("'**"):
                             segment_content = part[2:-2] # Strip **
                             processed_segment = self._process_text_chars(segment_content)
                             result += f"\\textbf{{{processed_segment}}}"
@@ -116,7 +148,10 @@ class LatexRenderer:
             elif token.type == "strong_close":
                 result += "}"
             elif token.type == "em_open":
-                result += "\\textit{"
+                if token.markup == "_":
+                    result += "\\underline{"
+                else:
+                    result += "\\textit{"
             elif token.type == "em_close":
                 result += "}"
             elif token.type == "code_inline":
@@ -158,6 +193,8 @@ class LatexRenderer:
     def old_render_inline(self, tokens: List[Token]) -> str:
         pass
 def parse(text: str) -> Tuple[str, Dict[int, int]]:
+    # Normalize trailing double underscore on bold-italic-underlined if present
+    text = re.sub(r'(_\*\*\*(?=[^\s_*]).+?(?<=[^\s_*])\*\*\*)__', r'\1_', text)
     md = MarkdownIt().enable("table").disable("code")
     tokens = md.parse(text)
     renderer = LatexRenderer(md)

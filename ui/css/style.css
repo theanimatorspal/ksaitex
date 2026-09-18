@@ -33,6 +33,7 @@
     --font-mono: "JetBrains Mono", "Courier New", monospace;
 
     --header-height: 48px;
+    font-size: 120%;
 }
 
 /* Reset & Base Styles */
@@ -345,7 +346,7 @@ button:active {
     color: #3c3836;
     padding: 24px;
     font-family: var(--font-ui);
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 2.2;
     /* Taller, sexier cursor */
     outline: none;
@@ -541,7 +542,7 @@ button:active {
     font-weight: 400 !important;
     /* Removed bold */
     /* Exception: Command label should be readable */
-    font-size: 13px;
+    /* font-size: 20px; */
     letter-spacing: 0.05em;
     cursor: default;
     /* Arrow cursor */
@@ -1410,15 +1411,15 @@ select.dynamic-arg-input {
 }
 
 /* Indentation Levels */
-.toc-level-1 { padding-left: 16px; font-weight: 600; color: var(--orange); margin-top: 8px; }
-.toc-level-2 { padding-left: 28px; font-weight: 500; }
-.toc-level-3 { padding-left: 40px; }
-.toc-level-4 { padding-left: 52px; font-size: 12px; }
-.toc-level-5 { padding-left: 64px; font-size: 11px; font-style: italic; }
+.toc-level-1 { padding-left: 16px; font-weight: 600; color: var(--orange); margin-top: 8px; font-size: 20px }
+.toc-level-2 { padding-left: 28px; font-weight: 500; font-size: 19px }
+.toc-level-3 { padding-left: 40px; font-size: 18px }
+.toc-level-4 { padding-left: 52px; font-size: 17px; }
+.toc-level-5 { padding-left: 64px; font-size: 16px; font-style: italic; }
 
 .toc-empty {
     padding: 20px;
     text-align: center;
     color: var(--fg3);
-    font-size: 12px;
+    font-size: 20px;
 }

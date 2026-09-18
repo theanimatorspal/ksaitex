@@ -66,6 +66,9 @@
 % \MAGIC{ vyanucched_begin, label='व्यनुच्छेद सुरु', tab='ढाँचा', pairing='begin', group='vyanucched', args='align:select,left,center,right:right|inner_align:select,left,center,right:center|width:number:1', command='\begin{vyanucched}{VAR_align}{VAR_inner_align}{VAR_width}' }
 % \MAGIC{ vyanucched_end, label='व्यनुच्छेद अन्त्य', tab='ढाँचा', pairing='end', group='vyanucched', command='\end{vyanucched}' }
 
+% \MAGIC{ itishree_begin, label='इतिश्री सुरु', tab='ढाँचा', pairing='begin', group='itishree', args='align:select,alternating,left,right,center:center|ornament:select,88,87,84,75,71,63,1:84', command='\begin{itishree}[VAR_align]{VAR_ornament}' }
+% \MAGIC{ itishree_end, label='इतिश्री अन्त्य', tab='ढाँचा', pairing='end', group='itishree', command='\end{itishree}' }
+
 
 % \MAGIC{ sloppy_begin, label='स्लोपी सुरु', tab='ढाँचा', pairing='begin', group='sloppy', command='{\sloppy' }
 % \MAGIC{ sloppy_end, label='स्लोपी अन्त्य', tab='ढाँचा', pairing='end', group='sloppy', command='\par}' }
@@ -453,6 +456,10 @@ luatexbase.add_to_callback("pre_linebreak_filter", fix_devanagari_punctuation_br
     \end{center}
     \vspace{0.1cm}
 }
+
+\newenvironment{itishree}[2][center]%
+  {\begin{visheshshlokatwo}[#1]{#2}}%
+  {\end{visheshshlokatwo}}
 
 % \newenvironment{visheshshlokathree}[2][alternating]{%
 %     \def\visheshauthor{#2}%
