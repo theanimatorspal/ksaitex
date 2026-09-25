@@ -1,0 +1,18 @@
+I wanna make a vim based editor (using html css and js only), so basically I want like this.
+
+default mode should be vim normal mode,
+
+and then when I say enter i then it will start typing and I can type, but if I press enter and change paragraph, it will be a new html element, so in vim mode I can go up and down per paragraph.
+
+Similarly for example I can do like :box, then it will enter a box (frame), and using vim I should be able to navigate to its title and its other things as well, Basically it should be like Live Latex editor but should simultaneously be html as well, also there should be support for undo and redo with u and shift R as well, and that should be block level. So for each do command you should make undo command as well.
+
+So the following commands should be supported.
+h, j, k, l, (and arrows, also), gg, G, v, V (these should autoscroll as well), i, o, O, dd, p, yy, :box, :box1 (box with title), :math (display style math), :itemize, :enumerate, :align, :table <rows> <columns> (these commands will have multiple block inside them so I should be able to navigate them as well, using hjkl and arrows)
+don't use inline css in javascript, never use them, use css classes instead.  Also implement h1, h2, h3, h4 header levels by command :h1, :h2 like this. Hope you get it.
+also implement the navigation and addition like yyp and things like that inside the blocks like itemize, so if I am inside itemize the o, O should create an item inside of it and like I should press enter to go inside it and do the things and then I should be able to press escape to get out of it.
+Also I should be able to like write math like $\frac{1}{2}$ as well in each block. Also bold, italic and underline should work in each block natively.
+Use Tiro Devanagari Sanskrit for everything. the internal representation of everything should be latex, so I should be able to export into .tex without fail.
+With normal paragraph selected should turn into header by doing :h1, :h2, but it should also turn normal by doing :p and boxed by doing :box, or :box1 (title should be empty here and the body should be the para).
+
+Try to make it with minimal css (no coloring styling, just the core functionality), it should be full white mode paper type, nothing else, and minimal javascript as well, **no comments in the code**. html should also be minimal. Everything should be minimal with only the core functionality but make classes in javascript so that it is modular, that is all. 
+Think step by step and make it. You are the best my boy.
