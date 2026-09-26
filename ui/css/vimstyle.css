@@ -52,7 +52,10 @@ body {
     background-color: #ffffff !important;
 }
 
-
+.tpl-block-wrapper {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100px; 
+}
 
 .block-editor-input {
     width: 100%;
@@ -216,4 +219,22 @@ body {
     background: #0f172a !important;
     color: #ffffff !important;
     border: none !important;
+}
+
+@keyframes slideFromRight {
+    0% { transform: translateX(40px); opacity: 0.4; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideFromLeft {
+    0% { transform: translateX(-40px); opacity: 0.4; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.page-anim-next {
+    animation: slideFromRight 0.22s ease-out;
+}
+
+.page-anim-prev {
+    animation: slideFromLeft 0.22s ease-out;
 }

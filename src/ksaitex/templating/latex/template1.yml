@@ -1,37 +1,37 @@
 templates:
   p:
     primitive: paragraph
-    css: ".tpl-p { margin: 6px 0; line-height: 1.5; color: #cdd6f4; }"
+    css: ".tpl-p { margin: 6px 0; line-height: 1.5; color: #000000; }"
     html: '<div class="tpl-p">{content}</div>'
     latex: "{content}"
 
   h1:
     primitive: paragraph
-    css: ".tpl-h1 { font-size: 2em; font-weight: bold; margin: 12px 0 6px 0; color: #89b4fa; }"
+    css: ".tpl-h1 { font-size: 2em; font-weight: bold; margin: 12px 0 6px 0; color: #000000; }"
     html: '<h1 class="tpl-h1">{content}</h1>'
     latex: "\\section{{{content}}}"
 
   h2:
     primitive: paragraph
-    css: ".tpl-h2 { font-size: 1.6em; font-weight: bold; margin: 10px 0 5px 0; color: #89b4fa; }"
+    css: ".tpl-h2 { font-size: 1.6em; font-weight: bold; margin: 10px 0 5px 0; color: #000000; }"
     html: '<h2 class="tpl-h2">{content}</h2>'
     latex: "\\subsection{{{content}}}"
 
   h3:
     primitive: paragraph
-    css: ".tpl-h3 { font-size: 1.3em; font-weight: bold; margin: 8px 0 4px 0; color: #89b4fa; }"
+    css: ".tpl-h3 { font-size: 1.3em; font-weight: bold; margin: 8px 0 4px 0; color: #000000; }"
     html: '<h3 class="tpl-h3">{content}</h3>'
     latex: "\\subsubsection{{{content}}}"
 
   h4:
     primitive: paragraph
-    css: ".tpl-h4 { font-size: 1.1em; font-weight: bold; margin: 6px 0 3px 0; color: #89b4fa; }"
+    css: ".tpl-h4 { font-size: 1.1em; font-weight: bold; margin: 6px 0 3px 0; color: #000000; }"
     html: '<h4 class="tpl-h4">{content}</h4>'
     latex: "\\paragraph{{{content}}}"
 
   h5:
     primitive: paragraph
-    css: ".tpl-h5 { font-size: 0.95em; font-weight: bold; margin: 4px 0 2px 0; color: #89b4fa; }"
+    css: ".tpl-h5 { font-size: 0.95em; font-weight: bold; margin: 4px 0 2px 0; color: #000000; }"
     html: '<h5 class="tpl-h5">{content}</h5>'
     latex: "\\subparagraph{{{content}}}"
 
@@ -70,13 +70,15 @@ templates:
     itemLatex: "  \\item {item}"
 
   description:
-    primitive: list
-    css: ".tpl-description { margin: 6px 0; } .tpl-description-item { margin: 4px 0; } .tpl-description-term { font-weight: bold; color: #f9e2af; margin-right: 8px; }"
-    html: '<dl class="tpl-description">{items}</dl>'
-    itemHtml: '<div class="tpl-description-item"><dt class="tpl-description-term">{item_0}</dt><dd>{item_1}</dd></div>'
-    itemSplit: ":"
-    latex: "\\begin{description}\n{items}\n\\end{description}"
-    itemLatex: "  \\item[{item_0}] {item_1}"
+    primitive: grid
+    cols: 2
+    css: ".tpl-description { width: 100%; border-collapse: collapse; margin: 6px 0; border: none; } .tpl-description td { border: none; padding: 4px 12px 4px 0; vertical-align: top; } .tpl-description td:first-child { font-weight: bold; color: #000000; width: 30%; } .tpl-description td:last-child { color: #000000; }"
+    html: '<table class="tpl-description">{rows}</table>'
+    rowHtml: '<tr>{cols}</tr>'
+    cellHtml: '<td>{cell}</td>'
+    latex: "\\begin{description}\n{rows}\n\\end{description}"
+    rowLatex: "  \\item[{cols}"
+    colSeparator: "] "
 
   align:
     primitive: list
@@ -90,7 +92,7 @@ templates:
     primitive: list
     maxItems: 2
     defaultItems: ["Title", "Box content goes here..."]
-    css: ".tpl-box { border: 1px solid #45475a; border-radius: 6px; margin: 10px 0; overflow: hidden; background: #1e1e2e; } .tpl-box-title { background: #313244; color: #cdd6f4; padding: 8px 12px; font-weight: bold; border-bottom: 1px solid #45475a; } .tpl-box-content { padding: 12px; color: #cdd6f4; }"
+    css: ".tpl-box { border: 1px solid #45475a; border-radius: 6px; margin: 10px 0; overflow: hidden; background: #ffffff; } .tpl-box-title { background: #ffffff; color: #000000; padding: 8px 12px; font-weight: bold; border-bottom: 1px solid #000000; } .tpl-box-content { padding: 12px; color: #000000; }"
     html: '<div class="tpl-box"><div class="tpl-box-title">{item_0}</div><div class="tpl-box-content">{item_1}</div></div>'
     latex: "\\begin{tcolorbox}[title={item_0}]\n{item_1}\n\\end{tcolorbox}"
 

@@ -56,7 +56,7 @@ class BlockNode {
     getFirstSubTarget() { return 'main'; }
     getLastSubTarget() { return 'main'; }
     getValue() { return ''; }
-    setValue() {}
+    setValue() { }
     getTextContent() { return ''; }
     toLatex() { return ''; }
     clone() { return new BlockNode(this.type, this.templateKey); }
@@ -291,6 +291,37 @@ class DocumentModel {
         this.navLevel = 'ROOT';
     }
 
+    PAGE_SIZE = 15;
+
+    getCurrentPage() {
+        return Math.floor(this.activeIndex / this.PAGE_SIZE);
+    }
+
+    getTotalPages() {
+        return Math.ceil(this.blocks.length / this.PAGE_SIZE) || 1;
+    }
+
+    nextPage() {
+        const currentPage = this.getCurrentPage();
+        const totalPages = this.getTotalPages();
+        if (currentPage < totalPages - 1) {
+            const targetIndex = (currentPage + 1) * this.PAGE_SIZE;
+            this.setActiveBlock(targetIndex);
+            return true;
+        }
+        return false;
+    }
+
+    prevPage() {
+        const currentPage = this.getCurrentPage();
+        if (currentPage > 0) {
+            const targetIndex = (currentPage - 1) * this.PAGE_SIZE;
+            this.setActiveBlock(targetIndex);
+            return true;
+        }
+        return false;
+    }
+
     getActiveBlock() { return this.blocks[this.activeIndex]; }
 
     setActiveBlock(index, subTarget = null) {
@@ -396,6 +427,22 @@ class DocumentModel {
         this.navLevel = 'ROOT';
         this.activeSubTarget = this.getActiveBlock().getFirstSubTarget();
     }
+
+    jumpToPageTop() {
+        const currentPage = this.getCurrentPage();
+        this.activeIndex = currentPage * this.PAGE_SIZE;
+        this.navLevel = 'ROOT';
+        this.activeSubTarget = this.getActiveBlock().getFirstSubTarget();
+    }
+
+    jumpToPageBottom() {
+        const currentPage = this.getCurrentPage();
+        const pageEnd = Math.min((currentPage + 1) * this.PAGE_SIZE - 1, this.blocks.length - 1);
+        this.activeIndex = pageEnd;
+        this.navLevel = 'ROOT';
+        this.activeSubTarget = this.getActiveBlock().getFirstSubTarget();
+    }
+
 
     cloneState() {
         return {
@@ -778,7 +825,7 @@ class VimEngine {
 
         if (key === 'g') {
             if (this.keyBuffer === 'g') {
-                this.doc.jumpToTop();
+                this.doc.jumpToPageTop();
                 this.keyBuffer = '';
                 this.render();
             } else {
@@ -788,7 +835,7 @@ class VimEngine {
         }
 
         if (key === 'G') {
-            this.doc.jumpToBottom();
+            this.doc.jumpToPageBottom();
             this.keyBuffer = '';
             this.render();
             return;
@@ -874,15 +921,52 @@ class VimEngine {
             return;
         }
 
+
+        if (key === '>' || key === 'L') {
+            e.preventDefault();
+            if (this.doc.nextPage()) {
+                this.triggerPageAnimation('next');
+            }
+            return;
+        }
+
+        if (key === '<' || key === 'H') {
+            e.preventDefault();
+            if (this.doc.prevPage()) {
+                this.triggerPageAnimation('prev');
+            }
+            return;
+        }
+
         this.keyBuffer = '';
+    }
+
+    triggerPageAnimation(direction) {
+        if (!this.paperContainer) return;
+
+        const animClass = direction === 'next' ? 'page-anim-next' : 'page-anim-prev';
+
+        this.paperContainer.classList.remove('page-anim-next', 'page-anim-prev');
+        void this.paperContainer.offsetWidth; 
+
+        this.paperContainer.classList.add(animClass);
+        this.render();
+
+        setTimeout(() => {
+            this.paperContainer.classList.remove(animClass);
+        }, 220);
     }
 
     render() {
         if (!this.paperContainer) return;
 
         this.paperContainer.innerHTML = '';
+
+        const currentPage = this.doc.getCurrentPage();
+        const totalPages = this.doc.getTotalPages();
+
         if (this.statusInfo) {
-            this.statusInfo.textContent = `Block ${this.doc.activeIndex + 1}/${this.doc.blocks.length}${this.doc.navLevel === 'NESTED' ? ' [NESTED]' : ''}`;
+            this.statusInfo.textContent = `Page ${currentPage + 1}/${totalPages} | Block ${this.doc.activeIndex + 1}/${this.doc.blocks.length}${this.doc.navLevel === 'NESTED' ? ' [NESTED]' : ''}`;
         }
 
         let vMin = -1, vMax = -1;
@@ -893,18 +977,24 @@ class VimEngine {
 
         let activeTargetElement = null;
 
-        this.doc.blocks.forEach((block, index) => {
-            const isActiveBlock = index === this.doc.activeIndex;
+        // Slice blocks to render ONLY 15 blocks for the active page
+        const startIdx = currentPage * this.doc.PAGE_SIZE;
+        const endIdx = Math.min(startIdx + this.doc.PAGE_SIZE, this.doc.blocks.length);
+        const visibleBlocks = this.doc.blocks.slice(startIdx, endIdx);
+
+        visibleBlocks.forEach((block, localIndex) => {
+            const globalIndex = startIdx + localIndex;
+            const isActiveBlock = globalIndex === this.doc.activeIndex;
             const blockDiv = document.createElement('div');
             blockDiv.className = 'block-node' + (isActiveBlock && this.doc.navLevel === 'ROOT' ? ' block-active-root' : '');
 
-            if (index >= vMin && index <= vMax) {
+            if (globalIndex >= vMin && globalIndex <= vMax) {
                 blockDiv.classList.add(this.visualType === 'LINE' ? 'block-visual-line-selected' : 'block-visual-selected');
             }
 
             blockDiv.addEventListener('click', () => {
                 if (this.mode !== 'INSERT') {
-                    this.doc.setActiveBlock(index);
+                    this.doc.setActiveBlock(globalIndex);
                     this.render();
                 }
             });
@@ -931,7 +1021,7 @@ class VimEngine {
         }
 
         if (activeTargetElement) {
-            activeTargetElement.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            activeTargetElement.scrollIntoView({ block: 'nearest', behavior: 'auto' });
             if (this.mode === 'INSERT' && activeTargetElement.tagName === 'TEXTAREA') {
                 activeTargetElement.focus();
             }
@@ -941,6 +1031,7 @@ class VimEngine {
     renderBlockPrimitive(block, isActiveBlock) {
         const wrapper = document.createElement('div');
         const tplDef = this.templateRegistry ? this.templateRegistry.get(block.templateKey) : null;
+        const templateClass = block.templateKey ? `tpl-${block.templateKey}` : '';
 
         if (block.type === 'paragraph') {
             if (isActiveBlock && this.mode === 'INSERT') {
@@ -961,7 +1052,7 @@ class VimEngine {
                 wrapper.appendChild(textarea);
             } else {
                 const div = document.createElement('div');
-                div.className = 'tpl-math';
+                div.className = templateClass || 'tpl-math';
                 div.innerHTML = `\\[${block.content || 'e^{i\\pi} + 1 = 0'}\\]`;
                 if (isActiveBlock && this.doc.navLevel === 'NESTED') div.classList.add('sub-target-active');
                 wrapper.appendChild(div);
@@ -1031,7 +1122,7 @@ class VimEngine {
             }
         } else if (block.type === 'grid') {
             const table = document.createElement('table');
-            table.className = 'tpl-table';
+            table.className = templateClass || 'tpl-table';
 
             for (let r = 0; r < block.rows; r++) {
                 const tr = document.createElement('tr');
