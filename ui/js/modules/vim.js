@@ -1,3 +1,40 @@
+class TemplateRegistry {
+    constructor() {
+        this.templates = new Map();
+        this.styleTag = document.createElement('style');
+        this.styleTag.id = 'dynamic-template-styles';
+        document.head.appendChild(this.styleTag);
+        console.log(this.templates);
+    }
+
+    async loadTemplates() {
+        try {
+            const res = await fetch('/api/yamltemplates');
+            const data = await res.json();
+            let accumulatedCSS = '';
+
+            Object.entries(data).forEach(([key, tpl]) => {
+                this.templates.set(key, tpl);
+                if (tpl.css) {
+                    accumulatedCSS += tpl.css + '\n';
+                }
+            });
+
+            this.styleTag.textContent = accumulatedCSS;
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    get(name) {
+        return this.templates.get(name);
+    }
+
+    has(name) {
+        return this.templates.has(name);
+    }
+}
+
 class FormatUtils {
     static htmlToLatex(str) {
         if (!str) return '';
@@ -10,6 +47,7 @@ class FormatUtils {
         return result;
     }
 }
+
 
 class BlockNode {
     constructor(type) {
@@ -46,6 +84,9 @@ class BlockNode {
     setValue(subTarget, value) { }
     getTextContent() {
         return '';
+    }
+    getTextContentAsList() {
+        return [];
     }
     toLatex() {
         return '';
@@ -290,6 +331,9 @@ class ItemizeBlock extends BlockNode {
     getTextContent() {
         return this.items.join(' ');
     }
+    getTextContentAsList() {
+        return this.items || [];
+    }
     insertItemAfter(idx, val = '') {
         const insertIdx = idx + 1;
         this.items.splice(insertIdx, 0, val);
@@ -348,6 +392,9 @@ class EnumerateBlock extends BlockNode {
     }
     getTextContent() {
         return this.items.join(' ');
+    }
+    getTextContentAsList() {
+        return this.items || [];
     }
     insertItemAfter(idx, val = '') {
         const insertIdx = idx + 1;
@@ -475,6 +522,102 @@ class TableBlock extends BlockNode {
     clone() {
         const clonedGrid = this.grid.map(r => [...r]);
         return new TableBlock(this.rows, this.cols, clonedGrid);
+    }
+}
+
+class TemplateBlock extends BlockNode {
+    constructor(templateDef, passedArgs = [], rawContent = '') {
+        super('template');
+        this.templateDef = templateDef;
+        this.content = rawContent;
+        this.argValues = {};
+
+        const argsList = templateDef.args || [];
+        argsList.forEach((argDef, idx) => {
+            const passed = passedArgs[idx];
+            this.argValues[argDef.name] = passed !== undefined ? passed : argDef.default;
+            this.argValues[`${argDef.name}_css`] = passed !== undefined ? passed : (argDef.cssDefault || argDef.default);
+        });
+    }
+
+    getSubTargets() {
+        if (this.templateDef.subTargets && Array.isArray(this.templateDef.subTargets)) {
+            return this.templateDef.subTargets;
+        }
+        const args = (this.templateDef.args || []).map(a => a.name);
+        return [...args, 'content'];
+    }
+
+    isContainer() {
+        return this.getSubTargets().length > 1;
+    }
+
+    getFirstSubTarget() {
+        const subs = this.getSubTargets();
+        return subs[0] || 'content';
+    }
+
+    getLastSubTarget() {
+        const subs = this.getSubTargets();
+        return subs[subs.length - 1] || 'content';
+    }
+
+    navigateNextSub(currentSub) {
+        const subs = this.getSubTargets();
+        const idx = subs.indexOf(currentSub);
+        return (idx >= 0 && idx < subs.length - 1) ? subs[idx + 1] : null;
+    }
+
+    navigatePrevSub(currentSub) {
+        const subs = this.getSubTargets();
+        const idx = subs.indexOf(currentSub);
+        return (idx > 0) ? subs[idx - 1] : null;
+    }
+
+    getValue(subTarget) {
+        if (subTarget === 'content' || subTarget === 'main') {
+            return this.content;
+        }
+        return this.argValues[subTarget] !== undefined ? this.argValues[subTarget] : '';
+    }
+
+    setValue(subTarget, value) {
+        if (subTarget === 'content' || subTarget === 'main') {
+            this.content = value;
+        } else {
+            this.argValues[subTarget] = value;
+        }
+    }
+
+    getTextContent() {
+        return this.content;
+    }
+
+    renderHTML() {
+        let outputHTML = this.templateDef.html || '';
+
+        Object.entries(this.argValues).forEach(([key, val]) => {
+            outputHTML = outputHTML.replaceAll(`{${key}}`, val);
+        });
+
+        return outputHTML.replaceAll('{content}', this.content || '<span class="empty-placeholder">Empty Template Block</span>');
+    }
+
+    toLatex() {
+        let outputLaTeX = this.templateDef.latex || '';
+
+        Object.entries(this.argValues).forEach(([key, val]) => {
+            if (!key.endsWith('_css')) {
+                outputLaTeX = outputLaTeX.replaceAll(`{${key}}`, val);
+            }
+        });
+
+        return outputLaTeX.replaceAll('{content}', FormatUtils.htmlToLatex(this.content));
+    }
+
+    clone() {
+        const rawArgs = this.templateDef.args ? this.templateDef.args.map(a => this.argValues[a.name]) : [];
+        return new TemplateBlock(this.templateDef, rawArgs, this.content);
     }
 }
 
@@ -678,9 +821,10 @@ ${bodyTex}
 }
 
 class VimEngine {
-    constructor() {
+    constructor(templateRegistry = null) {
         this.doc = new DocumentModel();
         this.history = new HistoryManager();
+        this.templateRegistry = templateRegistry;
         this.mode = 'NORMAL';
         this.keyBuffer = '';
         this.clipboard = null;
@@ -810,7 +954,18 @@ class VimEngine {
             return;
         }
 
+        const parts = cmdStr.trim().split(/\s+/);
+        const cmdName = parts[0];
+        const cmdArgs = parts.slice(1);
+
         this.history.pushState(this.doc);
+
+        if (this.templateRegistry && this.templateRegistry.has(cmdName)) {
+            const templateDef = this.templateRegistry.get(cmdName);
+            this.transformToTemplateBlock(templateDef, cmdArgs);
+            this.setMode('NORMAL');
+            return;
+        }
 
         if (cmdStr === 'w' || cmdStr === 'export') {
             this.openExportModal();
@@ -856,29 +1011,51 @@ class VimEngine {
 
     transformActiveBlock(targetType, extra = null) {
         const activeBlock = this.doc.getActiveBlock();
-        const text = activeBlock ? activeBlock.getTextContent() : '';
+        if (!activeBlock) return;
+
+        let rawText = activeBlock.getTextContent();
+        if (targetType === 'itemize' || targetType === 'enumerate') {
+            if (typeof activeBlock.getTextContentAsList === 'function') {
+                const extracted = activeBlock.getTextContentAsList();
+                if (Array.isArray(extracted)) {
+                    rawText = extracted.join('\n');
+                } else {
+                    rawText = String(extracted || '');
+                }
+            } else if (activeBlock.items && Array.isArray(activeBlock.items)) {
+                rawText = activeBlock.items.join('\n');
+            } else if (activeBlock.text) {
+                rawText = activeBlock.text;
+            }
+        }
+
+        rawText = rawText.trim();
+
+        let items = rawText ? rawText.split('\n').filter(line => line.trim().length > 0) : [rawText];
+        if (items.length === 0) items = [rawText];
+
         let newBlock = null;
 
         if (targetType === 'paragraph') {
-            newBlock = new ParagraphBlock(text);
+            newBlock = new ParagraphBlock(rawText);
         } else if (targetType === 'header') {
-            newBlock = new HeaderBlock(extra || 1, text);
+            newBlock = new HeaderBlock(extra || 1, rawText);
         } else if (targetType === 'box') {
-            newBlock = new BoxBlock(text);
+            newBlock = new BoxBlock(rawText);
         } else if (targetType === 'box1') {
-            newBlock = new Box1Block('', text);
+            newBlock = new Box1Block('Title', rawText);
         } else if (targetType === 'right') {
-            newBlock = new RightBlock(text);
+            newBlock = new RightBlock(rawText);
         } else if (targetType === 'center') {
-            newBlock = new CenterBlock(text);
+            newBlock = new CenterBlock(rawText);
         } else if (targetType === 'math') {
-            newBlock = new MathBlock(text || 'x^2 + y^2 = z^2');
+            newBlock = new MathBlock(rawText || 'x^2 + y^2 = z^2');
         } else if (targetType === 'align') {
-            newBlock = new AlignBlock(text || 'a &= b + c \\\\\n&= d');
+            newBlock = new AlignBlock(rawText || 'a &= b + c \\\\\n&= d');
         } else if (targetType === 'itemize') {
-            newBlock = new ItemizeBlock(text ? [text] : ['First item']);
+            newBlock = new ItemizeBlock(items);
         } else if (targetType === 'enumerate') {
-            newBlock = new EnumerateBlock(text ? [text] : ['First item']);
+            newBlock = new EnumerateBlock(items);
         } else if (targetType === 'table') {
             const r = (extra && extra.r) || 2;
             const c = (extra && extra.c) || 2;
@@ -887,9 +1064,27 @@ class VimEngine {
 
         if (newBlock) {
             this.doc.blocks[this.doc.activeIndex] = newBlock;
-            this.doc.activeSubTarget = newBlock.getFirstSubTarget();
+            this.doc.activeSubTarget = typeof newBlock.getFirstSubTarget === 'function' ? newBlock.getFirstSubTarget() : null;
             this.doc.navLevel = 'ROOT';
+            if (typeof this.renderDocument === 'function') {
+                this.renderDocument();
+            } else if (typeof this.render === 'function') {
+                this.render();
+            }
         }
+    }
+
+    transformToTemplateBlock(templateDef, cmdArgs) {
+        const activeBlock = this.doc.getActiveBlock();
+        if (!activeBlock) return;
+
+        const rawText = activeBlock.getTextContent();
+        const newBlock = new TemplateBlock(templateDef, cmdArgs, rawText);
+
+        this.doc.blocks[this.doc.activeIndex] = newBlock;
+        this.doc.activeSubTarget = newBlock.getFirstSubTarget();
+        this.doc.navLevel = 'ROOT';
+        this.render();
     }
 
     handleNormalKeyDown(e) {
@@ -1209,6 +1404,51 @@ class VimEngine {
     renderBlockContent(block, isActiveBlock) {
         const wrapper = document.createElement('div');
 
+        if (block instanceof TemplateBlock) {
+            let rawHtml = block.templateDef.html || '<div>{content}</div>';
+            const subs = block.getSubTargets();
+
+            subs.forEach(subKey => {
+                rawHtml = rawHtml.replaceAll(`{${subKey}}`, `<span data-template-slot="${subKey}"></span>`);
+            });
+
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = rawHtml;
+
+            subs.forEach(subKey => {
+                const slotEls = tempContainer.querySelectorAll(`[data-template-slot="${subKey}"]`);
+
+                slotEls.forEach(slotEl => {
+                    const isSubActive = isActiveBlock &&
+                        this.doc.navLevel === 'NESTED' &&
+                        this.doc.activeSubTarget === subKey;
+
+                    if (isSubActive && this.mode === 'INSERT') {
+                        const input = this.createInput(block, subKey);
+                        input.classList.add('sub-target-active');
+                        slotEl.replaceWith(input);
+                    } else {
+                        const val = block.getValue(subKey);
+                        const slotSpan = document.createElement('span');
+                        slotSpan.className = `template-slot template-slot-${subKey}`;
+                        slotSpan.innerHTML = val || `<span class="empty-placeholder">${subKey}</span>`;
+
+                        if (isSubActive) {
+                            slotSpan.classList.add('sub-target-active');
+                        }
+                        slotEl.replaceWith(slotSpan);
+                    }
+                });
+            });
+
+            while (tempContainer.firstChild) {
+                wrapper.appendChild(tempContainer.firstChild);
+            }
+
+            return wrapper;
+        }
+
+
         if (block.type === 'paragraph') {
             if (isActiveBlock && this.mode === 'INSERT') {
                 const textarea = this.createInput(block, 'main');
@@ -1419,6 +1659,8 @@ class VimEngine {
     }
 }
 
-window.onload = function () {
-    new VimEngine();
+window.onload = async function () {
+    const templateRegistry = new TemplateRegistry();
+    await templateRegistry.loadTemplates()
+    new VimEngine(templateRegistry);
 };

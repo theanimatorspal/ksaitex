@@ -1,0 +1,26 @@
+theorem:
+  baseType: box1
+  subTargets:
+    - title
+    - content
+  args:
+    - name: title
+      default: "Pythagorean Theorem"
+  css: |
+    .tpl-theorem {
+      background-color: #f8fafc;
+      border-left: 4px solid #3182ce;
+      padding: 12px 16px;
+      margin: 16px 0;
+    }
+  html: |
+    <div class="tpl-theorem">
+      <div class="tpl-theorem-header">
+        <span class="tpl-title">{title}</span>
+      </div>
+      <div class="tpl-theorem-body">{content}</div>
+    </div>
+  latex: |
+    \begin{theorem}[{title}]
+    {content}
+    \end{theorem}

@@ -6,6 +6,8 @@ from pathlib import Path
 from ksaitex.parsing.markdown import parse
 from ksaitex.templating.engine import render_latex
 from ksaitex.compilation.compiler import compile_latex
+import yaml
+import os
 app = FastAPI()
 from fastapi import Request
 
@@ -296,6 +298,34 @@ async def upload_image(project_id: str = Form(...), file: UploadFile = File(...)
         shutil.copyfileobj(file.file, buffer)
         
     return {"path": f"images/{file.filename}"}
+
+@app.get("/api/yamltemplates")
+async def get_yamltemplates():
+    templates = {}
+    template_dir = "src/ksaitex/templating/latex/"
+
+    if os.path.exists(template_dir):
+        for filename in os.listdir(template_dir):
+            if filename.endswith((".yaml", ".yml")):
+                path = os.path.join(template_dir, filename)
+                with open(path, "r", encoding="utf-8") as f:
+                    data = yaml.safe_load(f)
+                    if not data:
+                        continue
+
+                    if isinstance(data, dict):
+                        for cmd_key, tpl in data.items():
+                            if isinstance(tpl, dict):
+                                cmd_name = tpl.get("command", cmd_key)
+                                tpl["command"] = cmd_name
+                                templates[cmd_name] = tpl
+                    elif isinstance(data, list):
+                        for tpl in data:
+                            if isinstance(tpl, dict) and "command" in tpl:
+                                templates[tpl["command"]] = tpl
+    return templates
+
+
 
 UI_DIR = Path("ui")
 if UI_DIR.exists():

@@ -25,8 +25,8 @@ body {
     border-radius: 2px;
 }
 .block-node {
-    margin-bottom: 14px;
-    padding: 8px 12px;
+    margin-bottom: 1px;
+    padding: 1px 1px;
     border: 1px solid transparent;
     border-left: 3px solid transparent;
     border-radius: 2px;
@@ -47,10 +47,13 @@ body {
     border-left-color: #0f172a;
 }
 .sub-target-active {
-    outline: 2px solid #2563eb !important;
-    outline-offset: 2px;
+    outline: 1px solid #2563eb !important;
+    outline-offset: 0px;
     background-color: #ffffff !important;
 }
+
+
+
 .block-editor-input {
     width: 100%;
     font-family: 'Tiro Devanagari Sanskrit', serif;
@@ -90,7 +93,7 @@ body {
 }
 .paragraph-text {
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.3;
 }
 .text-left {
     text-align: left;
@@ -159,6 +162,9 @@ body {
     padding: 8px 12px;
     min-width: 60px;
 }
+
+
+
 #status-bar {
     position: fixed;
     bottom: 0;
@@ -167,7 +173,7 @@ body {
     height: 38px;
     background: #ffffff;
     border-top: 1px solid #e2e8f0;
-    color: #0f172a;
+    color: #ffffff;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.82rem;
     display: flex;
@@ -190,11 +196,11 @@ body {
     letter-spacing: 0.05em;
     font-size: 0.75rem;
 }
-.mode-badge-normal { background: #0f172a; color: #ffffff; }
-.mode-badge-insert { background: #16a34a; color: #ffffff; }
-.mode-badge-visual { background: #ca8a04; color: #ffffff; }
-.mode-badge-visline { background: #ea580c; color: #ffffff; }
-.mode-badge-command { background: #2563eb; color: #ffffff; }
+.mode-badge-normal { background: #ffffff; color: #000000; border-style: groove; }
+.mode-badge-insert { background: #ffffff; color: #000000; border-style: groove; }
+.mode-badge-visual { background: #ffffff; color: #000000; border-style: groove; }
+.mode-badge-visline { background: #ffffff; color: #000000; border-style: groove; }
+.mode-badge-command { background: #ffffff; color: #000000; border-style: groove; }
 .command-input-container {
     display: flex;
     align-items: center;
@@ -228,7 +234,7 @@ body {
     font-size: 0.8rem;
     background: #ffffff;
     color: #0f172a;
-    border: 1px solid #cbd5e1;
+    border: groove;
     padding: 4px 10px;
     border-radius: 2px;
     cursor: pointer;
