@@ -1,26 +1,107 @@
-theorem:
-  baseType: box1
-  subTargets:
-    - title
-    - content
-  args:
-    - name: title
-      default: "Pythagorean Theorem"
-  css: |
-    .tpl-theorem {
-      background-color: #f8fafc;
-      border-left: 4px solid #3182ce;
-      padding: 12px 16px;
-      margin: 16px 0;
-    }
-  html: |
-    <div class="tpl-theorem">
-      <div class="tpl-theorem-header">
-        <span class="tpl-title">{title}</span>
-      </div>
-      <div class="tpl-theorem-body">{content}</div>
-    </div>
-  latex: |
-    \begin{theorem}[{title}]
-    {content}
-    \end{theorem}
+templates:
+  p:
+    primitive: paragraph
+    css: ".tpl-p { margin: 6px 0; line-height: 1.5; color: #cdd6f4; }"
+    html: '<div class="tpl-p">{content}</div>'
+    latex: "{content}"
+
+  h1:
+    primitive: paragraph
+    css: ".tpl-h1 { font-size: 2em; font-weight: bold; margin: 12px 0 6px 0; color: #89b4fa; }"
+    html: '<h1 class="tpl-h1">{content}</h1>'
+    latex: "\\section{{{content}}}"
+
+  h2:
+    primitive: paragraph
+    css: ".tpl-h2 { font-size: 1.6em; font-weight: bold; margin: 10px 0 5px 0; color: #89b4fa; }"
+    html: '<h2 class="tpl-h2">{content}</h2>'
+    latex: "\\subsection{{{content}}}"
+
+  h3:
+    primitive: paragraph
+    css: ".tpl-h3 { font-size: 1.3em; font-weight: bold; margin: 8px 0 4px 0; color: #89b4fa; }"
+    html: '<h3 class="tpl-h3">{content}</h3>'
+    latex: "\\subsubsection{{{content}}}"
+
+  h4:
+    primitive: paragraph
+    css: ".tpl-h4 { font-size: 1.1em; font-weight: bold; margin: 6px 0 3px 0; color: #89b4fa; }"
+    html: '<h4 class="tpl-h4">{content}</h4>'
+    latex: "\\paragraph{{{content}}}"
+
+  h5:
+    primitive: paragraph
+    css: ".tpl-h5 { font-size: 0.95em; font-weight: bold; margin: 4px 0 2px 0; color: #89b4fa; }"
+    html: '<h5 class="tpl-h5">{content}</h5>'
+    latex: "\\subparagraph{{{content}}}"
+
+  center:
+    primitive: paragraph
+    css: ".tpl-center { text-align: center; margin: 6px 0; }"
+    html: '<div class="tpl-center">{content}</div>'
+    latex: "\\begin{center}\n{content}\n\\end{center}"
+
+  right:
+    primitive: paragraph
+    css: ".tpl-right { text-align: right; margin: 6px 0; }"
+    html: '<div class="tpl-right">{content}</div>'
+    latex: "\\begin{flushright}\n{content}\n\\end{flushright}"
+
+  math:
+    primitive: math
+    css: ".tpl-math { display: block; text-align: center; margin: 10px 0; padding: 6px; background: #181825; border-radius: 4px; }"
+    html: '\\[{content}\\]'
+    latex: "\\[\n{content}\n\\]"
+
+  itemize:
+    primitive: list
+    css: ".tpl-itemize { margin: 6px 0; padding-left: 24px; list-style-type: disc; } .tpl-itemize li { margin: 3px 0; }"
+    html: '<ul class="tpl-itemize">{items}</ul>'
+    itemHtml: '<li>{item}</li>'
+    latex: "\\begin{itemize}\n{items}\n\\end{itemize}"
+    itemLatex: "  \\item {item}"
+
+  enumerate:
+    primitive: list
+    css: ".tpl-enumerate { margin: 6px 0; padding-left: 24px; list-style-type: decimal; } .tpl-enumerate li { margin: 3px 0; }"
+    html: '<ol class="tpl-enumerate">{items}</ol>'
+    itemHtml: '<li>{item}</li>'
+    latex: "\\begin{enumerate}\n{items}\n\\end{enumerate}"
+    itemLatex: "  \\item {item}"
+
+  description:
+    primitive: list
+    css: ".tpl-description { margin: 6px 0; } .tpl-description-item { margin: 4px 0; } .tpl-description-term { font-weight: bold; color: #f9e2af; margin-right: 8px; }"
+    html: '<dl class="tpl-description">{items}</dl>'
+    itemHtml: '<div class="tpl-description-item"><dt class="tpl-description-term">{item_0}</dt><dd>{item_1}</dd></div>'
+    itemSplit: ":"
+    latex: "\\begin{description}\n{items}\n\\end{description}"
+    itemLatex: "  \\item[{item_0}] {item_1}"
+
+  align:
+    primitive: list
+    css: ".tpl-align { text-align: center; margin: 10px 0; padding: 6px; background: #181825; border-radius: 4px; }"
+    html: '<div class="tpl-align">\\[\\begin{aligned}{items}\\end{aligned}\\]</div>'
+    itemHtml: '{item} \\\\'
+    latex: "\\begin{align*}\n{items}\n\\end{align*}"
+    itemLatex: "{item} \\\\"
+
+  box1:
+    primitive: list
+    maxItems: 2
+    defaultItems: ["Title", "Box content goes here..."]
+    css: ".tpl-box { border: 1px solid #45475a; border-radius: 6px; margin: 10px 0; overflow: hidden; background: #1e1e2e; } .tpl-box-title { background: #313244; color: #cdd6f4; padding: 8px 12px; font-weight: bold; border-bottom: 1px solid #45475a; } .tpl-box-content { padding: 12px; color: #cdd6f4; }"
+    html: '<div class="tpl-box"><div class="tpl-box-title">{item_0}</div><div class="tpl-box-content">{item_1}</div></div>'
+    latex: "\\begin{tcolorbox}[title={item_0}]\n{item_1}\n\\end{tcolorbox}"
+
+  table:
+    primitive: grid
+    css: ".tpl-table { width: 100%; border-collapse: collapse; margin: 10px 0; } .tpl-table td { border: 1px solid #45475a; padding: 8px 12px; }"
+    html: '<table class="tpl-table">{rows}</table>'
+    rowHtml: '<tr>{cols}</tr>'
+    cellHtml: '<td>{cell}</td>'
+    latex: "\\begin{tabular}{{{col_spec}}}\n\\hline\n{rows}\n\\end{tabular}"
+    rowLatex: "{cols} \\\\ \\hline"
+    colSeparator: " & "
+    colSpecPrefix: "|"
+    colSpecUnit: "c|"
