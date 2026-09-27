@@ -325,7 +325,22 @@ async def get_yamltemplates():
                                 templates[tpl["command"]] = tpl
     return templates
 
-
+@app.get("/api/primitivetemplates")
+async def get_primitivetemplates():
+    template_file = "src/ksaitex/templating/latex/primitives.yml"
+    try:
+        with open(template_file, "r") as f:
+            data = yaml.safe_load(f) or {}
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="YAML file not found")
+    templates = {
+        key: {
+            "points": item.get("points"),
+            "transform": item.get("transform")
+        }
+        for key, item in data.items()
+    }
+    return templates
 
 UI_DIR = Path("ui")
 if UI_DIR.exists():

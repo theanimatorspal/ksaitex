@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
 }
+
 body {
     background-color: #f8fafc;
     color: #0f172a;
@@ -13,6 +14,7 @@ body {
     align-items: center;
     padding-bottom: 60px;
 }
+
 #paper-container {
     width: 100%;
     max-width: 860px;
@@ -24,6 +26,7 @@ body {
     border: 1px solid #e2e8f0;
     border-radius: 2px;
 }
+
 .block-node {
     margin-bottom: 1px;
     padding: 1px 1px;
@@ -33,19 +36,23 @@ body {
     transition: border-color 0.12s ease, background-color 0.12s ease;
     position: relative;
 }
+
 .block-active-root {
     border-left-color: #0f172a;
     background-color: #f8fafc;
     border-color: #e2e8f0;
 }
+
 .block-visual-selected {
     background-color: #f1f5f9;
     border-color: #cbd5e1;
 }
+
 .block-visual-line-selected {
     background-color: #e2e8f0;
     border-left-color: #0f172a;
 }
+
 .sub-target-active {
     outline: 1px solid #2563eb !important;
     outline-offset: 0px;
@@ -53,8 +60,8 @@ body {
 }
 
 .tpl-block-wrapper {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 100px; 
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100px;
 }
 
 .block-editor-input {
@@ -88,12 +95,14 @@ body {
     padding: 0 16px;
     z-index: 1000;
 }
+
 .status-left {
     display: flex;
     align-items: center;
     gap: 12px;
     flex-grow: 1;
 }
+
 .mode-badge {
     font-weight: 600;
     padding: 3px 8px;
@@ -102,22 +111,50 @@ body {
     letter-spacing: 0.05em;
     font-size: 0.75rem;
 }
-.mode-badge-normal { background: #ffffff; color: #000000; border-style: groove; }
-.mode-badge-insert { background: #ffffff; color: #000000; border-style: groove; }
-.mode-badge-visual { background: #ffffff; color: #000000; border-style: groove; }
-.mode-badge-visline { background: #ffffff; color: #000000; border-style: groove; }
-.mode-badge-command { background: #ffffff; color: #000000; border-style: groove; }
+
+.mode-badge-normal {
+    background: #ffffff;
+    color: #000000;
+    border-style: groove;
+}
+
+.mode-badge-insert {
+    background: #ffffff;
+    color: #000000;
+    border-style: groove;
+}
+
+.mode-badge-visual {
+    background: #ffffff;
+    color: #000000;
+    border-style: groove;
+}
+
+.mode-badge-visline {
+    background: #ffffff;
+    color: #000000;
+    border-style: groove;
+}
+
+.mode-badge-command {
+    background: #ffffff;
+    color: #000000;
+    border-style: groove;
+}
+
 .command-input-container {
     display: flex;
     align-items: center;
     flex-grow: 1;
     margin-left: 8px;
 }
+
 .command-prefix-text {
     margin-right: 4px;
     display: none;
     font-weight: 600;
 }
+
 #command-input {
     background: transparent;
     border: none;
@@ -127,14 +164,17 @@ body {
     outline: none;
     width: 100%;
 }
+
 .status-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
+
 #status-info {
     color: #64748b;
 }
+
 #export-btn {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
@@ -145,18 +185,24 @@ body {
     border-radius: 2px;
     cursor: pointer;
 }
+
 #export-btn:hover {
     background: #f1f5f9;
 }
+
 #modal-overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.35);
     z-index: 2000;
     align-items: center;
     justify-content: center;
 }
+
 .modal-content {
     background: #ffffff;
     width: 90%;
@@ -165,9 +211,10 @@ body {
     border-radius: 2px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     border: 1px solid #cbd5e1;
 }
+
 .modal-header {
     padding: 14px 18px;
     border-bottom: 1px solid #e2e8f0;
@@ -177,17 +224,20 @@ body {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 600;
 }
+
 .modal-close-btn {
     border: none;
     background: none;
     cursor: pointer;
     font-size: 1.2rem;
 }
+
 .modal-body {
     padding: 16px;
     flex-grow: 1;
     overflow-y: auto;
 }
+
 #latex-output {
     width: 100%;
     height: 350px;
@@ -199,6 +249,7 @@ body {
     resize: none;
     outline: none;
 }
+
 .modal-footer {
     padding: 12px 16px;
     border-top: 1px solid #e2e8f0;
@@ -206,6 +257,7 @@ body {
     justify-content: flex-end;
     gap: 12px;
 }
+
 .modal-footer button {
     font-family: 'JetBrains Mono', monospace;
     padding: 6px 14px;
@@ -215,6 +267,7 @@ body {
     background: #ffffff;
     font-size: 0.85rem;
 }
+
 .btn-primary {
     background: #0f172a !important;
     color: #ffffff !important;
@@ -222,13 +275,27 @@ body {
 }
 
 @keyframes slideFromRight {
-    0% { transform: translateX(40px); opacity: 0.4; }
-    100% { transform: translateX(0); opacity: 1; }
+    0% {
+        transform: translateX(40px);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideFromLeft {
-    0% { transform: translateX(-40px); opacity: 0.4; }
-    100% { transform: translateX(0); opacity: 1; }
+    0% {
+        transform: translateX(-40px);
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .page-anim-next {
@@ -237,4 +304,71 @@ body {
 
 .page-anim-prev {
     animation: slideFromLeft 0.22s ease-out;
+}
+
+#cad-main {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 24px);
+    width: 100vw;
+}
+
+#cad-viewport {
+    flex: 1;
+    height: 100%;
+}
+
+#cad-sidebar {
+    width: 220px;
+    border-left: 1px solid #ccc;
+    background: #fafafa;
+    padding: 4px;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+#cad-sidebar.active {
+    background: #f5f5f5;
+    border-left: 2px solid #000;
+}
+
+.item {
+    padding: 4px 6px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item.selected {
+    background: #0066ff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.item.visual {
+    background: #cce0ff;
+    color: #000;
+}
+
+#cad-bar {
+    height: 24px;
+    line-height: 24px;
+    padding: 0 8px;
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+#cmd-input {
+    display: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
 }

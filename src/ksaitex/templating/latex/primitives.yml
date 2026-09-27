@@ -1,0 +1,19 @@
+rect:
+  command: rect
+  points: 2
+  transform: bbox
+
+circle:
+  command: circle
+  points: 2
+  transform: radius
+
+arrow:
+  command: arrow
+  points: 2
+  transform: line
+
+tri:
+  command: tri
+  points: 3
+  transform: points_list
