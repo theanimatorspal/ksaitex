@@ -3,7 +3,6 @@ class TemplateRegistry {
         this.templates = new Map();
         this.styleTag = document.createElement('style');
         this.styleTag.id = 'yaml-dynamic-templates-css';
-        this.primitiveTemplates = new Map()
         document.head.appendChild(this.styleTag);
     }
 
@@ -14,8 +13,6 @@ class TemplateRegistry {
             const configMap = data.templates || data;
             let accumulatedCSS = '';
 
-            console.log(configMap)
-
             Object.entries(configMap).forEach(([key, tplDef]) => {
                 this.templates.set(key, tplDef);
                 if (tplDef.css) accumulatedCSS += tplDef.css + '\n';
@@ -25,21 +22,7 @@ class TemplateRegistry {
         } catch (err) {
             console.error(err);
         }
-        try {
-            const res = await fetch('/api/primitivetemplates');
-            const data = await res.json();
-            const configMap = data.templates || data;
-            console.log(configMap)
-            Object.entries(configMap).forEach(([key, tplDef]) => {
-                this.primitiveTemplates.set(key, tplDef);
-            });
-
-        } catch (err) {
-            console.error(err);
-        }
     }
-
-    getPrimitiveTemplates() { return this.primitiveTemplates; }
 
     get(name) { return this.templates.get(name); }
     has(name) { return this.templates.has(name); }
@@ -300,902 +283,6 @@ class GridBlock extends BlockNode {
     }
 }
 
-class PictureBlock extends BlockNode {
-    constructor(svg = '', templateKey = 'picture') {
-        super('picture', templateKey);
-        this.svg = svg;
-    }
-
-    getValue() { return this.svg; }
-    setValue(_, value) { this.svg = value; }
-    getTextContent() { return this.svg; }
-
-    toLatex(tplDef) {
-        if (!this.svg) return '';
-        if (tplDef && tplDef.latex) {
-            return tplDef.latex
-                .replaceAll('{svg}', this.svg)
-                .replaceAll('{content}', FormatUtils.htmlToLatex(this.svg));
-        }
-        return `\\begin{figure}[htbp]\n\\centering\n${this.svg}\n\\end{figure}`;
-    }
-
-    clone() { return new PictureBlock(this.svg, this.templateKey); }
-}
-
-class VectorEngine {
-    constructor(templateRegistry = null, onExport = null) {
-        this.onExport = onExport;
-        this.templateRegistry = templateRegistry;
-        this.viewport = document.getElementById('cad-viewport');
-        this.sidebar = document.getElementById('cad-sidebar');
-        this.status = document.getElementById('cad-status');
-        this.cmdInput = document.getElementById('cmd-input') || document.getElementById('command-input');
-        this.width = 1200;
-        this.height = 800;
-        this.gridSize = 40;
-        this.zoomLevel = 1;
-        this.maxZoom = 4;
-        this.cursor = { x: 0, y: 0 };
-        this.elements = [];
-        this.history = [];
-        this.clipboard = [];
-        this.selected = -1;
-        this.inVisual = false;
-        this.visualStart = -1;
-        this.pendingKey = '';
-        this.mode = 'NORMAL';
-        this.panel = 'VIEWPORT';
-        this.creation = null;
-        this.transformState = null;
-        this.rotateState = null;
-        this.scaleState = null;
-        this.replaceIndex = -1;
-        this.lastEnter = 0;
-        this.snapCursor();
-
-        window.addEventListener('keydown', e => this.handleKey(e));
-        if (this.cmdInput) {
-            this.cmdInput.addEventListener('keydown', e => this.handleCmdKey(e));
-        }
-        this.render();
-    }
-
-    saveState() {
-        this.history.push(JSON.stringify(this.elements));
-        if (this.history.length > 50) this.history.shift();
-    }
-
-    undo() {
-        if (this.history.length > 0) {
-            this.elements = JSON.parse(this.history.pop());
-            if (this.selected >= this.elements.length) this.selected = this.elements.length - 1;
-            this.inVisual = false;
-            this.render();
-        }
-    }
-
-    getVisualRange() {
-        if (this.selected < 0) return [];
-        if (!this.inVisual || this.visualStart < 0) return [this.selected, this.selected];
-        return [Math.min(this.visualStart, this.selected), Math.max(this.visualStart, this.selected)];
-    }
-
-    isSelected(i) {
-        const r = this.getVisualRange();
-        if (r.length === 0) return false;
-        return i >= r[0] && i <= r[1];
-    }
-
-    getStep() { return this.gridSize / Math.pow(2, this.zoomLevel - 1); }
-
-    snapCursor() {
-        const s = this.getStep();
-        this.cursor.x = Math.round(this.cursor.x / s) * s;
-        this.cursor.y = Math.round(this.cursor.y / s) * s;
-    }
-
-    zoomIn() {
-        if (this.zoomLevel < this.maxZoom) {
-            this.zoomLevel++;
-            this.snapCursor();
-        }
-    }
-
-    zoomOut() {
-        if (this.zoomLevel > 1) {
-            this.zoomLevel--;
-            this.snapCursor();
-        }
-    }
-
-    getViewBox() {
-        const factor = Math.pow(2, this.zoomLevel - 1);
-        const w = this.width / factor;
-        const h = this.height / factor;
-        const x = this.cursor.x - w / 2;
-        const y = this.cursor.y - h / 2;
-        return { x, y, w, h, factor };
-    }
-
-    moveCursor(dx, dy) {
-        const s = this.getStep();
-        this.cursor.x = Math.round((this.cursor.x + dx * s) / s) * s;
-        this.cursor.y = Math.round((this.cursor.y + dy * s) / s) * s;
-    }
-
-    getCenter(el) {
-        if (!el) return { x: 0, y: 0 };
-        if (el.type === 'rect') {
-            return { x: el.attrs.x + el.attrs.width / 2, y: el.attrs.y + el.attrs.height / 2 };
-        } else if (el.type === 'circle') {
-            return { x: el.attrs.cx, y: el.attrs.cy };
-        } else if (el.type === 'arrow') {
-            const m = el.attrs.d ? el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/) : null;
-            if (m) return { x: (parseFloat(m[1]) + parseFloat(m[3])) / 2, y: (parseFloat(m[2]) + parseFloat(m[4])) / 2 };
-        } else if (el.type === 'polygon' || el.type === 'tri' || (el.attrs && el.attrs.points)) {
-            const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-            const sx = pts.reduce((a, b) => a + b[0], 0) / pts.length;
-            const sy = pts.reduce((a, b) => a + b[1], 0) / pts.length;
-            return { x: sx, y: sy };
-        }
-        return { x: 0, y: 0 };
-    }
-
-    rotatePoint(p, origin, angleRad) {
-        const cos = Math.cos(angleRad), sin = Math.sin(angleRad);
-        const dx = p.x - origin.x, dy = p.y - origin.y;
-        return {
-            x: Math.round((origin.x + dx * cos - dy * sin) * 100) / 100,
-            y: Math.round((origin.y + dx * sin + dy * cos) * 100) / 100
-        };
-    }
-
-    scalePoint(p, origin, factor) {
-        const dx = p.x - origin.x, dy = p.y - origin.y;
-        return {
-            x: Math.round((origin.x + dx * factor) * 100) / 100,
-            y: Math.round((origin.y + dy * factor) * 100) / 100
-        };
-    }
-
-    applyTransform(el, dx, dy) {
-        if (!el) return;
-        if (el.type === 'rect') {
-            el.attrs.x += dx; el.attrs.y += dy;
-        } else if (el.type === 'circle') {
-            el.attrs.cx += dx; el.attrs.cy += dy;
-        } else if (el.type === 'arrow') {
-            const m = el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/);
-            if (m) {
-                const x1 = parseFloat(m[1]) + dx, y1 = parseFloat(m[2]) + dy;
-                const x2 = parseFloat(m[3]) + dx, y2 = parseFloat(m[4]) + dy;
-                el.attrs.d = `M ${x1} ${y1} L ${x2} ${y2}`;
-            }
-        } else if (el.attrs && el.attrs.points) {
-            const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-            el.attrs.points = pts.map(([px, py]) => `${px + dx},${py + dy}`).join(' ');
-        }
-    }
-
-    applyRotate(el, origin, angleRad) {
-        if (!el) return;
-        if (el.type === 'rect') {
-            const x = el.attrs.x, y = el.attrs.y, w = el.attrs.width, h = el.attrs.height;
-            const pts = [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-            const rotPts = pts.map(p => this.rotatePoint(p, origin, angleRad));
-            el.type = 'polygon';
-            delete el.attrs.x; delete el.attrs.y; delete el.attrs.width; delete el.attrs.height;
-            el.attrs.points = rotPts.map(p => `${p.x},${p.y}`).join(' ');
-        } else if (el.type === 'circle') {
-            const c = this.rotatePoint({ x: el.attrs.cx, y: el.attrs.cy }, origin, angleRad);
-            el.attrs.cx = c.x; el.attrs.cy = c.y;
-        } else if (el.type === 'arrow') {
-            const m = el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/);
-            if (m) {
-                const p1 = this.rotatePoint({ x: parseFloat(m[1]), y: parseFloat(m[2]) }, origin, angleRad);
-                const p2 = this.rotatePoint({ x: parseFloat(m[3]), y: parseFloat(m[4]) }, origin, angleRad);
-                el.attrs.d = `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`;
-            }
-        } else if (el.attrs && el.attrs.points) {
-            const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-            const rotPts = pts.map(([px, py]) => this.rotatePoint({ x: px, y: py }, origin, angleRad));
-            el.attrs.points = rotPts.map(p => `${p.x},${p.y}`).join(' ');
-        }
-    }
-
-    applyScale(el, origin, factor) {
-        if (!el || factor === 0) return;
-        if (el.type === 'rect') {
-            const x = el.attrs.x, y = el.attrs.y, w = el.attrs.width, h = el.attrs.height;
-            const pts = [{ x, y }, { x: x + w, y }, { x: x + w, y: y + h }, { x, y: y + h }];
-            const scPts = pts.map(p => this.scalePoint(p, origin, factor));
-            const minX = Math.min(...scPts.map(p => p.x)), minY = Math.min(...scPts.map(p => p.y));
-            const maxX = Math.max(...scPts.map(p => p.x)), maxY = Math.max(...scPts.map(p => p.y));
-            el.attrs = { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
-        } else if (el.type === 'circle') {
-            const c = this.scalePoint({ x: el.attrs.cx, y: el.attrs.cy }, origin, factor);
-            el.attrs.cx = c.x; el.attrs.cy = c.y;
-            el.attrs.r = Math.round(Math.abs(el.attrs.r * factor) * 100) / 100;
-        } else if (el.type === 'arrow') {
-            const m = el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/);
-            if (m) {
-                const p1 = this.scalePoint({ x: parseFloat(m[1]), y: parseFloat(m[2]) }, origin, factor);
-                const p2 = this.scalePoint({ x: parseFloat(m[3]), y: parseFloat(m[4]) }, origin, factor);
-                el.attrs.d = `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}`;
-            }
-        } else if (el.attrs && el.attrs.points) {
-            const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-            const scPts = pts.map(([px, py]) => this.scalePoint({ x: px, y: py }, origin, factor));
-            el.attrs.points = scPts.map(p => `${p.x},${p.y}`).join(' ');
-        }
-    }
-
-    commitPoint() {
-        if (!this.creation) return;
-        this.creation.points.push({ x: this.cursor.x, y: this.cursor.y });
-        if (this.creation.points.length === this.creation.total) {
-            this.buildElement();
-            this.creation = null;
-            this.mode = 'NORMAL';
-        }
-    }
-
-    commitTransformPoint() {
-        if (!this.transformState) return;
-        const target = { x: this.cursor.x, y: this.cursor.y };
-        const dx = target.x - this.transformState.origin.x;
-        const dy = target.y - this.transformState.origin.y;
-        this.saveState();
-        this.applyTransform(this.elements[this.transformState.index], dx, dy);
-        this.transformState = null;
-        this.mode = 'NORMAL';
-    }
-
-    commitRotatePoint() {
-        if (!this.rotateState) return;
-        if (this.rotateState.stage === 1) {
-            this.rotateState.origin = { x: this.cursor.x, y: this.cursor.y };
-            this.rotateState.stage = 2;
-        } else if (this.rotateState.stage === 2) {
-            const origin = this.rotateState.origin;
-            const angleRad = Math.atan2(this.cursor.y - origin.y, this.cursor.x - origin.x);
-            this.saveState();
-            this.applyRotate(this.elements[this.rotateState.index], origin, angleRad);
-            this.rotateState = null;
-            this.mode = 'NORMAL';
-        }
-    }
-
-    commitScalePoint() {
-        if (!this.scaleState) return;
-        if (this.scaleState.stage === 1) {
-            this.scaleState.origin = { x: this.cursor.x, y: this.cursor.y };
-            this.scaleState.stage = 2;
-        } else if (this.scaleState.stage === 2) {
-            const origin = this.scaleState.origin;
-            const dist = Math.hypot(this.cursor.x - origin.x, this.cursor.y - origin.y);
-            let factor = dist / this.gridSize;
-            if (factor === 0) factor = 1;
-            this.saveState();
-            this.applyScale(this.elements[this.scaleState.index], origin, factor);
-            this.scaleState = null;
-            this.mode = 'NORMAL';
-        }
-    }
-
-    buildElement() {
-        const { type, stroke, fill, points, config } = this.creation;
-        const el = { type, stroke, fill, attrs: {} };
-        if (config.transform === 'bbox') {
-            const [p1, p2] = points;
-            el.attrs = { x: Math.min(p1.x, p2.x), y: Math.min(p1.y, p2.y), width: Math.abs(p1.x - p2.x), height: Math.abs(p1.y - p2.y) };
-        } else if (config.transform === 'radius') {
-            const [c, e] = points;
-            el.attrs = { cx: c.x, cy: c.y, r: Math.round(Math.hypot(e.x - c.x, e.y - c.y)) };
-        } else if (config.transform === 'line') {
-            const [p1, p2] = points;
-            el.attrs = { d: `M ${p1.x} ${p1.y} L ${p2.x} ${p2.y}` };
-        } else if (config.transform === 'points_list') {
-            el.attrs = { points: points.map(p => `${p.x},${p.y}`).join(' ') };
-        }
-        this.saveState();
-        if (this.replaceIndex >= 0 && this.replaceIndex < this.elements.length) {
-            this.elements[this.replaceIndex] = el;
-            this.selected = this.replaceIndex;
-            this.replaceIndex = -1;
-        } else {
-            this.elements.push(el);
-            this.selected = this.elements.length - 1;
-        }
-    }
-
-    exportSVG() {
-        if (this.elements.length === 0) {
-            if (this.status) this.status.textContent = "No elements to export!";
-            return;
-        }
-        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-        this.elements.forEach(el => {
-            if (el.type === 'rect') {
-                minX = Math.min(minX, el.attrs.x); minY = Math.min(minY, el.attrs.y);
-                maxX = Math.max(maxX, el.attrs.x + el.attrs.width); maxY = Math.max(maxY, el.attrs.y + el.attrs.height);
-            } else if (el.type === 'circle') {
-                minX = Math.min(minX, el.attrs.cx - el.attrs.r); minY = Math.min(minY, el.attrs.cy - el.attrs.r);
-                maxX = Math.max(maxX, el.attrs.cx + el.attrs.r); maxY = Math.max(maxY, el.attrs.cy + el.attrs.r);
-            } else if (el.type === 'arrow') {
-                const m = el.attrs.d ? el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/) : null;
-                if (m) {
-                    minX = Math.min(minX, parseFloat(m[1]), parseFloat(m[3]));
-                    minY = Math.min(minY, parseFloat(m[2]), parseFloat(m[4]));
-                    maxX = Math.max(maxX, parseFloat(m[1]), parseFloat(m[3]));
-                    maxY = Math.max(maxY, parseFloat(m[2]), parseFloat(m[4]));
-                }
-            } else if (el.attrs && el.attrs.points) {
-                const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-                pts.forEach(([px, py]) => {
-                    minX = Math.min(minX, px); minY = Math.min(minY, py);
-                    maxX = Math.max(maxX, px); maxY = Math.max(maxY, py);
-                });
-            }
-        });
-
-        const pad = 20;
-        minX -= pad; minY -= pad; maxX += pad; maxY += pad;
-        const w = maxX - minX, h = maxY - minY;
-
-        let hasArrow = this.elements.some(e => e.type === 'arrow');
-        let defs = hasArrow ? `<defs>\n    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">\n      <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"/>\n    </marker>\n  </defs>` : '';
-
-        let body = '';
-        this.elements.forEach(el => {
-            let tag = el.type === 'rect' ? 'rect' : el.type === 'circle' ? 'circle' : el.type === 'arrow' ? 'path' : 'polygon';
-            let a = { ...el.attrs, fill: el.fill, stroke: el.stroke, "stroke-width": 2 };
-            if (el.type === 'arrow') a["marker-end"] = "url(#arrow)";
-            let attrStr = Object.entries(a).map(([k, v]) => `${k}="${v}"`).join(' ');
-            body += `  <${tag} ${attrStr}/>\n`;
-        });
-
-        const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${minX} ${minY} ${w} ${h}">\n${defs}\n${body}</svg>`;
-
-        if (typeof this.onExport === 'function') {
-            this.onExport(svgContent);
-        }
-
-        const blob = new Blob([svgContent], { type: 'image/svg+xml' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'drawing.svg';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
-
-    execCommand(str) {
-        const parts = str.trim().split(/\s+/);
-        if (!parts[0]) return;
-        let cmd = parts[0].replace(/^:/, '');
-        let arg1 = parts[1] || '#000';
-        let arg2 = parts[2] || 'none';
-
-        if (cmd === 'svg' || cmd === 'export') {
-            this.exportSVG();
-            this.mode = 'NORMAL';
-            return;
-        }
-
-        if (cmd === 'transform') {
-            if (this.elements.length === 0) return;
-            if (this.selected < 0 || this.selected >= this.elements.length) this.selected = this.elements.length - 1;
-            const el = this.elements[this.selected];
-            const c = this.getCenter(el);
-            this.cursor = { x: c.x, y: c.y };
-            this.snapCursor();
-            this.transformState = { index: this.selected, origin: { x: this.cursor.x, y: this.cursor.y } };
-            this.mode = 'TRANSFORM';
-            this.panel = 'VIEWPORT';
-            return;
-        }
-
-        if (cmd === 'rotate') {
-            if (this.elements.length === 0) return;
-            if (this.selected < 0 || this.selected >= this.elements.length) this.selected = this.elements.length - 1;
-            const el = this.elements[this.selected];
-            const c = this.getCenter(el);
-            this.cursor = { x: c.x, y: c.y };
-            this.snapCursor();
-            this.rotateState = { index: this.selected, stage: 1, origin: null };
-            this.mode = 'ROTATE';
-            this.panel = 'VIEWPORT';
-            return;
-        }
-
-        if (cmd === 'scale') {
-            if (this.elements.length === 0) return;
-            if (this.selected < 0 || this.selected >= this.elements.length) this.selected = this.elements.length - 1;
-            const el = this.elements[this.selected];
-            const c = this.getCenter(el);
-            this.cursor = { x: c.x, y: c.y };
-            this.snapCursor();
-            this.scaleState = { index: this.selected, stage: 1, origin: null };
-            this.mode = 'SCALE';
-            this.panel = 'VIEWPORT';
-            return;
-        }
-
-        const schema = this.templateRegistry.getPrimitiveTemplates();
-        console.log(schema)
-        if(this.selected>=0&&this.selected<this.elements.length&&!schema.has(cmd)){
-            this.saveState();
-            this.elements[this.selected].stroke=cmd;
-            if(parts[1])this.elements[this.selected].fill=parts[1];
-            return;
-        }
-
-        if(schema.has(cmd)){
-            if(this.selected>=0&&this.selected<this.elements.length){
-                this.replaceIndex=this.selected;
-            }else{
-                this.replaceIndex=-1;
-            }
-            this.creation={type:cmd,config:schema.get(cmd),stroke:arg1,fill:arg2,total:schema.get(cmd).points,points:[]};
-            this.mode='INSERT';
-            this.panel='VIEWPORT';
-        }
-
-    }
-
-    yank() {
-        const r = this.getVisualRange();
-        if (r.length === 0) return;
-        this.clipboard = JSON.parse(JSON.stringify(this.elements.slice(r[0], r[1] + 1)));
-        this.inVisual = false;
-        this.pendingKey = '';
-        this.render();
-    }
-
-    deleteSelected() {
-        const r = this.getVisualRange();
-        if (r.length === 0) return;
-        this.saveState();
-        const count = r[1] - r[0] + 1;
-        this.clipboard = JSON.parse(JSON.stringify(this.elements.slice(r[0], r[1] + 1)));
-        this.elements.splice(r[0], count);
-        this.inVisual = false;
-        this.pendingKey = '';
-        this.selected = Math.min(r[0], this.elements.length - 1);
-        this.render();
-    }
-
-    paste(after = true) {
-        if (this.clipboard.length === 0) return;
-        this.saveState();
-        const copies = JSON.parse(JSON.stringify(this.clipboard));
-        let idx = this.selected < 0 ? this.elements.length - 1 : this.selected;
-        let insertAt = after ? idx + 1 : Math.max(0, idx);
-        this.elements.splice(insertAt, 0, ...copies);
-        this.selected = insertAt + copies.length - 1;
-        this.inVisual = false;
-        this.render();
-    }
-
-    handleCmdKey(e) {
-        e.stopPropagation();
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            const val = this.cmdInput.value;
-            this.cmdInput.value = '';
-            this.cmdInput.style.display = 'none';
-            this.cmdInput.blur();
-            if (this.status) this.status.style.display = 'inline';
-            this.execCommand(val);
-            this.render();
-        } else if (e.key === 'Escape') {
-            e.preventDefault();
-            this.cmdInput.value = '';
-            this.cmdInput.style.display = 'none';
-            this.cmdInput.blur();
-            if (this.status) this.status.style.display = 'inline';
-            this.mode = 'NORMAL';
-            this.render();
-        }
-    }
-
-    handleKey(e) {
-        if (this.cmdInput && document.activeElement === this.cmdInput) return;
-
-        const k = e.key;
-        if (k === ':') {
-            if (!this.cmdInput) return;
-            e.preventDefault();
-            this.mode = 'COMMAND';
-            if (this.status) this.status.style.display = 'none';
-            this.cmdInput.style.display = 'inline';
-            this.cmdInput.value = ':';
-            this.cmdInput.focus();
-            return;
-        }
-
-        if (k === 'H') { this.panel = 'VIEWPORT'; this.selected = -1; this.inVisual = false; this.render(); return; }
-        if (k === 'L') { this.panel = 'SIDEBAR'; if (this.selected < 0 && this.elements.length > 0) this.selected = 0; this.render(); return; }
-
-        if (this.mode === 'TRANSFORM') {
-            if (k === 'h') { this.moveCursor(-1, 0); this.render(); return; }
-            if (k === 'l') { this.moveCursor(1, 0); this.render(); return; }
-            if (k === 'k') { this.moveCursor(0, -1); this.render(); return; }
-            if (k === 'j') { this.moveCursor(0, 1); this.render(); return; }
-            if (k === ' ' || k === 'Space' || k === 'Enter') {
-                e.preventDefault();
-                this.commitTransformPoint();
-                this.render();
-                return;
-            }
-            if (k === 'Escape') {
-                e.preventDefault();
-                this.transformState = null;
-                this.mode = 'NORMAL';
-                this.render();
-                return;
-            }
-            return;
-        }
-
-        if (this.mode === 'ROTATE') {
-            if (k === 'h') { this.moveCursor(-1, 0); this.render(); return; }
-            if (k === 'l') { this.moveCursor(1, 0); this.render(); return; }
-            if (k === 'k') { this.moveCursor(0, -1); this.render(); return; }
-            if (k === 'j') { this.moveCursor(0, 1); this.render(); return; }
-            if (k === ' ' || k === 'Space' || k === 'Enter') {
-                e.preventDefault();
-                this.commitRotatePoint();
-                this.render();
-                return;
-            }
-            if (k === 'Escape') {
-                e.preventDefault();
-                this.rotateState = null;
-                this.mode = 'NORMAL';
-                this.render();
-                return;
-            }
-            return;
-        }
-
-        if (this.mode === 'SCALE') {
-            if (k === 'h') { this.moveCursor(-1, 0); this.render(); return; }
-            if (k === 'l') { this.moveCursor(1, 0); this.render(); return; }
-            if (k === 'k') { this.moveCursor(0, -1); this.render(); return; }
-            if (k === 'j') { this.moveCursor(0, 1); this.render(); return; }
-            if (k === ' ' || k === 'Space' || k === 'Enter') {
-                e.preventDefault();
-                this.commitScalePoint();
-                this.render();
-                return;
-            }
-            if (k === 'Escape') {
-                e.preventDefault();
-                this.scaleState = null;
-                this.mode = 'NORMAL';
-                this.render();
-                return;
-            }
-            return;
-        }
-
-        if (this.mode === 'INSERT') {
-            if (k === 'h') { this.moveCursor(-1, 0); this.render(); return; }
-            if (k === 'l') { this.moveCursor(1, 0); this.render(); return; }
-            if (k === 'k') { this.moveCursor(0, -1); this.render(); return; }
-            if (k === 'j') { this.moveCursor(0, 1); this.render(); return; }
-            if (k === ' ' || k === 'Space' || k === 'Enter') {
-                e.preventDefault();
-                this.commitPoint();
-                this.render();
-                return;
-            }
-            if (k === 'Escape') {
-                e.preventDefault();
-                this.creation = null;
-                this.replaceIndex = -1;
-                this.mode = 'NORMAL';
-                this.render();
-                return;
-            }
-            return;
-        }
-
-        if (this.panel === 'SIDEBAR') {
-            if (k === 'G') {
-                if (this.elements.length > 0) this.selected = this.elements.length - 1;
-                this.pendingKey = '';
-                this.render();
-                return;
-            }
-            if (k === 'g') {
-                if (this.pendingKey === 'g') {
-                    if (this.elements.length > 0) this.selected = 0;
-                    this.pendingKey = '';
-                } else {
-                    this.pendingKey = 'g';
-                }
-                this.render();
-                return;
-            }
-            if (k === 'j' && this.elements.length > 0) {
-                if (this.selected < 0) this.selected = 0;
-                else this.selected = Math.min(this.elements.length - 1, this.selected + 1);
-                this.pendingKey = '';
-                this.render();
-                return;
-            }
-            if (k === 'k' && this.elements.length > 0) {
-                if (this.selected < 0) this.selected = this.elements.length - 1;
-                else this.selected = Math.max(0, this.selected - 1);
-                this.pendingKey = '';
-                this.render();
-                return;
-            }
-            if (k === 'v') {
-                this.inVisual = !this.inVisual;
-                if (this.inVisual) this.visualStart = this.selected >= 0 ? this.selected : 0;
-                this.pendingKey = '';
-                this.render();
-                return;
-            }
-            if (k === 'd') {
-                if (this.inVisual) { this.deleteSelected(); return; }
-                if (this.pendingKey === 'd') { this.deleteSelected(); }
-                else { this.pendingKey = 'd'; }
-                return;
-            }
-            if (k === 'y') {
-                if (this.inVisual) { this.yank(); return; }
-                if (this.pendingKey === 'y') { this.yank(); }
-                else { this.pendingKey = 'y'; }
-                return;
-            }
-            if (k === 'p') { this.paste(true); return; }
-            if (k === 'P') { this.paste(false); return; }
-            if (k === 'x') { this.deleteSelected(); return; }
-            if (k === 'u') { this.undo(); return; }
-            if (k === 'Escape') {
-                if (this.inVisual) this.inVisual = false;
-                else this.selected = -1;
-                this.pendingKey = '';
-                this.render();
-                return;
-            }
-        }
-
-        if (k === 'u') { this.undo(); return; }
-        if (k === '0') { this.cursor = { x: 0, y: 0 }; this.snapCursor(); this.render(); return; }
-        if (k === 'h') { this.moveCursor(-1, 0); this.render(); return; }
-        if (k === 'l') { this.moveCursor(1, 0); this.render(); return; }
-        if (k === 'k') { this.moveCursor(0, -1); this.render(); return; }
-        if (k === 'j') { this.moveCursor(0, 1); this.render(); return; }
-        if (k === 'Enter') {
-            e.preventDefault();
-            const now = Date.now();
-            if (this.lastEnter && (now - this.lastEnter) < 300) {
-                this.zoomIn();
-                this.lastEnter = 0;
-                this.render();
-                return;
-            }
-            this.lastEnter = now;
-        }
-        if (k === 'Escape') {
-            e.preventDefault();
-            if (this.mode !== 'NORMAL') {
-                this.mode = 'NORMAL';
-            } else if (this.zoomLevel > 1) {
-                this.zoomOut();
-            } else if (window.vimEngine) {
-                window.vimEngine.closeVectorEditor();
-                return;
-            }
-            this.render();
-        }
-    }
-
-    renderSidebar() {
-        if (!this.sidebar) return;
-        this.sidebar.className = this.panel === 'SIDEBAR' ? 'active' : '';
-        this.sidebar.style.display = 'block'; 
-        this.sidebar.innerHTML = '';
-        const r = this.getVisualRange();
-        this.elements.forEach((el, i) => {
-            const div = document.createElement('div');
-            let isSel = i === this.selected;
-            let isVis = this.inVisual && r.length > 0 && i >= r[0] && i <= r[1];
-            div.className = `item ${isSel ? 'selected' : isVis ? 'visual' : ''}`;
-            div.textContent = `[${i}] ${el.type} (${el.stroke})`;
-            div.onclick = () => { this.selected = i; this.panel = 'SIDEBAR'; this.render(); };
-            this.sidebar.appendChild(div);
-        });
-    }
-
-    getTransformedGhostSVG(el, dx, dy, factor) {
-        let clone = JSON.parse(JSON.stringify(el));
-        this.applyTransform(clone, dx, dy);
-        let tag = clone.type === 'rect' ? 'rect' : clone.type === 'circle' ? 'circle' : clone.type === 'arrow' ? 'path' : 'polygon';
-        let a = { ...clone.attrs, fill: "rgba(0,102,255,0.15)", stroke: "#0066ff", "stroke-width": 1.5 / factor, "stroke-dasharray": 4 / factor };
-        let attrStr = Object.entries(a).map(([k, v]) => `${k}="${v}"`).join(' ');
-        return `<${tag} ${attrStr}/>`;
-    }
-
-    getRotatedGhostSVG(el, origin, angleRad, factor) {
-        let clone = JSON.parse(JSON.stringify(el));
-        this.applyRotate(clone, origin, angleRad);
-        let tag = clone.type === 'rect' ? 'rect' : clone.type === 'circle' ? 'circle' : clone.type === 'arrow' ? 'path' : 'polygon';
-        let a = { ...clone.attrs, fill: "rgba(0,102,255,0.15)", stroke: "#0066ff", "stroke-width": 1.5 / factor, "stroke-dasharray": 4 / factor };
-        let attrStr = Object.entries(a).map(([k, v]) => `${k}="${v}"`).join(' ');
-        return `<${tag} ${attrStr}/>`;
-    }
-
-    getScaledGhostSVG(el, origin, scaleFactor, factor) {
-        let clone = JSON.parse(JSON.stringify(el));
-        this.applyScale(clone, origin, scaleFactor);
-        let tag = clone.type === 'rect' ? 'rect' : clone.type === 'circle' ? 'circle' : clone.type === 'arrow' ? 'path' : 'polygon';
-        let a = { ...clone.attrs, fill: "rgba(0,102,255,0.15)", stroke: "#0066ff", "stroke-width": 1.5 / factor, "stroke-dasharray": 4 / factor };
-        let attrStr = Object.entries(a).map(([k, v]) => `${k}="${v}"`).join(' ');
-        return `<${tag} ${attrStr}/>`;
-    }
-
-    getHighlightSVG(el, factor) {
-        let hl = "";
-        const sw = 2 / factor;
-        const handleR = 4 / factor;
-        if (el.type === 'rect') {
-            const { x, y, width, height } = el.attrs;
-            hl += `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="rgba(0,102,255,0.08)" stroke="#0066ff" stroke-width="${sw}" stroke-dasharray="${4 / factor}"/>`;
-            [[x, y], [x + width, y], [x, y + height], [x + width, y + height]].forEach(([px, py]) => {
-                hl += `<rect x="${px - handleR / 2}" y="${py - handleR / 2}" width="${handleR}" height="${handleR}" fill="#0066ff"/>`;
-            });
-        } else if (el.type === 'circle') {
-            const { cx, cy, r } = el.attrs;
-            hl += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="rgba(0,102,255,0.08)" stroke="#0066ff" stroke-width="${sw}" stroke-dasharray="${4 / factor}"/>`;
-            [[cx, cy], [cx - r, cy], [cx + r, cy], [cx, cy - r], [cx, cy + r]].forEach(([px, py]) => {
-                hl += `<circle cx="${px}" cy="${py}" r="${handleR / 1.5}" fill="#0066ff"/>`;
-            });
-        } else if (el.type === 'arrow') {
-            const m = el.attrs.d ? el.attrs.d.match(/M\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)\s+L\s+(-?\d+\.?\d*)\s+(-?\d+\.?\d*)/) : null;
-            if (m) {
-                const [, x1, y1, x2, y2] = [...m].map(Number);
-                hl += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#0066ff" stroke-width="${sw * 1.5}" stroke-dasharray="${4 / factor}"/>`;
-                [[x1, y1], [x2, y2]].forEach(([px, py]) => {
-                    hl += `<circle cx="${px}" cy="${py}" r="${handleR}" fill="#0066ff"/>`;
-                });
-            }
-        } else if (el.type === 'polygon' || el.type === 'tri' || (el.attrs && el.attrs.points)) {
-            const pts = el.attrs.points.split(' ').map(p => p.split(',').map(Number));
-            hl += `<polygon points="${el.attrs.points}" fill="rgba(0,102,255,0.08)" stroke="#0066ff" stroke-width="${sw}" stroke-dasharray="${4 / factor}"/>`;
-            pts.forEach(([px, py]) => {
-                hl += `<circle cx="${px}" cy="${py}" r="${handleR}" fill="#0066ff"/>`;
-            });
-        }
-        return hl;
-    }
-
-    render() {
-        const vb = this.getViewBox();
-        const step = this.getStep();
-        let statusMsg = `MODE: ${this.mode} | FOCUS: ${this.panel} | Zoom: ${this.zoomLevel}x | Pos: (${this.cursor.x}, ${this.cursor.y})`;
-
-        if (this.creation) statusMsg += ` | Drawing ${this.creation.type} (${this.creation.points.length}/${this.creation.total})`;
-        if (this.transformState) {
-            const dx = this.cursor.x - this.transformState.origin.x;
-            const dy = this.cursor.y - this.transformState.origin.y;
-            statusMsg += ` | TRANSFORM: Move cursor & press Space/Enter | Delta: (${dx}, ${dy})`;
-        }
-        if (this.rotateState) {
-            if (this.rotateState.stage === 1) {
-                statusMsg += ` | ROTATE (Step 1/2): Set Origin Point (Space/Enter)`;
-            } else {
-                const o = this.rotateState.origin;
-                const rad = Math.atan2(this.cursor.y - o.y, this.cursor.x - o.x);
-                const deg = (rad * 180 / Math.PI).toFixed(1);
-                statusMsg += ` | ROTATE (Step 2/2): Set Target Point | Angle: ${deg}°`;
-            }
-        }
-        if (this.scaleState) {
-            if (this.scaleState.stage === 1) {
-                statusMsg += ` | SCALE (Step 1/2): Set Origin Point (Space/Enter)`;
-            } else {
-                const o = this.scaleState.origin;
-                const dist = Math.hypot(this.cursor.x - o.x, this.cursor.y - o.y);
-                const fac = (dist / this.gridSize).toFixed(2);
-                statusMsg += ` | SCALE (Step 2/2): Set Distance Point | Factor: ${fac}x`;
-            }
-        }
-
-        if (this.status) this.status.textContent = statusMsg;
-
-        let inner = `<defs>
-            <pattern id="g" width="${step}" height="${step}" patternUnits="userSpaceOnUse" x="0" y="0">
-                <path d="M ${step} 0 L 0 0 0 ${step}" fill="none" stroke="#eee" stroke-width="${1 / vb.factor}"/>
-            </pattern>
-            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"/>
-            </marker>
-        </defs>
-        <rect x="${vb.x}" y="${vb.y}" width="${vb.w}" height="${vb.h}" fill="url(#g)"/>
-        <line x1="-10000" y1="0" x2="10000" y2="0" stroke="#ddd" stroke-width="${1 / vb.factor}"/>
-        <line x1="0" y1="-10000" x2="0" y2="10000" stroke="#ddd" stroke-width="${1 / vb.factor}"/>`;
-
-        this.elements.forEach((el, i) => {
-            let tag = el.type === 'rect' ? 'rect' : el.type === 'circle' ? 'circle' : el.type === 'arrow' ? 'path' : 'polygon';
-            let a = { ...el.attrs, fill: el.fill, stroke: el.stroke, "stroke-width": 1.5 / vb.factor };
-            if (el.type === 'arrow') a["marker-end"] = "url(#arrow)";
-            let attrStr = Object.entries(a).map(([k, v]) => `${k}="${v}"`).join(' ');
-            inner += `<${tag} ${attrStr}/>`;
-            if (this.isSelected(i)) {
-                inner += this.getHighlightSVG(el, vb.factor);
-            }
-        });
-
-        if (this.transformState) {
-            const o = this.transformState.origin;
-            const dx = this.cursor.x - o.x;
-            const dy = this.cursor.y - o.y;
-            const el = this.elements[this.transformState.index];
-
-            if (el) inner += this.getTransformedGhostSVG(el, dx, dy, vb.factor);
-            inner += `<circle cx="${o.x}" cy="${o.y}" r="${5 / vb.factor}" fill="#f00"/>`;
-            inner += `<circle cx="${this.cursor.x}" cy="${this.cursor.y}" r="${5 / vb.factor}" fill="#0066ff"/>`;
-            inner += `<line x1="${o.x}" y1="${o.y}" x2="${this.cursor.x}" y2="${this.cursor.y}" stroke="#0066ff" stroke-width="${1.5 / vb.factor}" stroke-dasharray="${4 / vb.factor}"/>`;
-        }
-
-        if (this.rotateState) {
-            const el = this.elements[this.rotateState.index];
-            if (this.rotateState.stage === 1) {
-                inner += `<circle cx="${this.cursor.x}" cy="${this.cursor.y}" r="${5 / vb.factor}" fill="#f00"/>`;
-            } else if (this.rotateState.stage === 2) {
-                const o = this.rotateState.origin;
-                const rad = Math.atan2(this.cursor.y - o.y, this.cursor.x - o.x);
-                if (el) inner += this.getRotatedGhostSVG(el, o, rad, vb.factor);
-                inner += `<circle cx="${o.x}" cy="${o.y}" r="${5 / vb.factor}" fill="#f00"/>`;
-                inner += `<circle cx="${this.cursor.x}" cy="${this.cursor.y}" r="${5 / vb.factor}" fill="#0066ff"/>`;
-                inner += `<line x1="${o.x}" y1="${o.y}" x2="${this.cursor.x}" y2="${this.cursor.y}" stroke="#0066ff" stroke-width="${1.5 / vb.factor}" stroke-dasharray="${4 / vb.factor}"/>`;
-            }
-        }
-
-        if (this.scaleState) {
-            const el = this.elements[this.scaleState.index];
-            if (this.scaleState.stage === 1) {
-                inner += `<circle cx="${this.cursor.x}" cy="${this.cursor.y}" r="${5 / vb.factor}" fill="#f00"/>`;
-            } else if (this.scaleState.stage === 2) {
-                const o = this.scaleState.origin;
-                const dist = Math.hypot(this.cursor.x - o.x, this.cursor.y - o.y);
-                const fac = dist / this.gridSize;
-                if (el) inner += this.getScaledGhostSVG(el, o, fac, vb.factor);
-                inner += `<circle cx="${o.x}" cy="${o.y}" r="${5 / vb.factor}" fill="#f00"/>`;
-                inner += `<circle cx="${this.cursor.x}" cy="${this.cursor.y}" r="${5 / vb.factor}" fill="#0066ff"/>`;
-                inner += `<line x1="${o.x}" y1="${o.y}" x2="${this.cursor.x}" y2="${this.cursor.y}" stroke="#0066ff" stroke-width="${1.5 / vb.factor}" stroke-dasharray="${4 / vb.factor}"/>`;
-            }
-        }
-
-        if (this.creation) {
-            this.creation.points.forEach(p => {
-                inner += `<circle cx="${p.x}" cy="${p.y}" r="${4 / vb.factor}" fill="#f00"/>`;
-            });
-            if (this.creation.points.length > 0) {
-                const l = this.creation.points[this.creation.points.length - 1];
-                inner += `<line x1="${l.x}" y1="${l.y}" x2="${this.cursor.x}" y2="${this.cursor.y}" stroke="#f00" stroke-width="${1 / vb.factor}" stroke-dasharray="${3 / vb.factor}"/>`;
-            }
-        }
-
-        const c = this.cursor, sz = 8 / vb.factor;
-        inner += `<g><line x1="${c.x - sz}" y1="${c.y}" x2="${c.x + sz}" y2="${c.y}" stroke="#f00" stroke-width="${1.5 / vb.factor}"/><line x1="${c.x}" y1="${c.y - sz}" x2="${c.x}" y2="${c.y + sz}" stroke="#f00" stroke-width="${1.5 / vb.factor}"/></g>`;
-        if (this.viewport) {
-            this.viewport.innerHTML = `<svg viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" style="width:100%;height:100%;">${inner}</svg>`;
-        }
-        this.renderSidebar();
-    }
-}
-
 class DocumentModel {
     constructor() {
         this.blocks = [new ParagraphBlock('Welcome!', 'p')];
@@ -1204,7 +291,7 @@ class DocumentModel {
         this.navLevel = 'ROOT';
     }
 
-    PAGE_SIZE = 20;
+    PAGE_SIZE = 15;
 
     getCurrentPage() {
         return Math.floor(this.activeIndex / this.PAGE_SIZE);
@@ -1356,6 +443,7 @@ class DocumentModel {
         this.activeSubTarget = this.getActiveBlock().getFirstSubTarget();
     }
 
+
     cloneState() {
         return {
             blocks: this.blocks.map(b => b.clone()),
@@ -1410,7 +498,7 @@ class LatexExporter {
             const tplDef = registry ? registry.get(b.templateKey) : null;
             return b.toLatex(tplDef);
         }).join('\n\n');
-        return `\\documentclass{article}\n\\usepackage{amsmath, amssymb, tcolorbox, enumitem, graphicx}\n\n\\begin{document}\n\n${bodyTex}\n\n\\end{document}`;
+        return `\\documentclass{article}\n\\usepackage{amsmath, amssymb, tcolorbox, enumitem}\n\n\\begin{document}\n\n${bodyTex}\n\n\\end{document}`;
     }
 }
 
@@ -1439,46 +527,6 @@ class VimEngine {
         this.downloadTexBtn = document.getElementById('download-tex-btn');
 
         this.initEventListeners();
-        this.render();
-    }
-
-    openVectorEditor() {
-        if (!this.vectorEngine) return;
-        const vectorContainer = document.getElementById('vector-container');
-        const paperContainer = document.getElementById('paper-container');
-        if (vectorContainer) vectorContainer.style.display = 'flex';
-        if (paperContainer) paperContainer.style.display = 'none';
-
-        this.vectorEngine.viewport = document.getElementById('cad-viewport');
-        this.vectorEngine.sidebar = document.getElementById('cad-sidebar');
-        this.vectorEngine.status = document.getElementById('cad-status');
-        this.vectorEngine.cmdInput = document.getElementById('cmd-input');
-        this.vectorEngine.render();
-    }
-
-    closeVectorEditor() {
-        const vectorContainer = document.getElementById('vector-container');
-        const paperContainer = document.getElementById('paper-container');
-        if (vectorContainer) vectorContainer.style.display = 'none';
-        if (paperContainer) paperContainer.style.display = 'block';
-        this.render();
-    }
-
-    importSVGToActivePictureBlock(svgContent) {
-        let activeBlock = this.doc.getActiveBlock();
-        if (!activeBlock || activeBlock.type !== 'picture') {
-            if (activeBlock && activeBlock.type === 'paragraph' && !activeBlock.getValue().trim()) {
-                activeBlock = new PictureBlock(svgContent, 'picture');
-                this.doc.blocks[this.doc.activeIndex] = activeBlock;
-            } else {
-                activeBlock = new PictureBlock(svgContent, 'picture');
-                this.doc.insertBlockBelow(activeBlock);
-            }
-        } else {
-            this.history.pushState(this.doc);
-            activeBlock.setValue('main', svgContent);
-        }
-        this.closeVectorEditor();
         this.render();
     }
 
@@ -1550,11 +598,6 @@ class VimEngine {
     }
 
     handleGlobalKeyDown(e) {
-        const vectorContainer = document.getElementById('vector-container');
-        if (vectorContainer && vectorContainer.style.display !== 'none') {
-            return;
-        }
-
         if (this.modalOverlay && this.modalOverlay.style.display === 'flex') {
             if (e.key === 'Escape') this.closeExportModal();
             return;
@@ -1605,18 +648,6 @@ class VimEngine {
             return;
         }
 
-        if (cmdName === 'picture') {
-            this.history.pushState(this.doc);
-            const activeBlock = this.doc.getActiveBlock();
-            const rawText = activeBlock ? activeBlock.getTextContent().trim() : '';
-            const newBlock = new PictureBlock(rawText, cmdName);
-            this.doc.blocks[this.doc.activeIndex] = newBlock;
-            this.doc.activeSubTarget = newBlock.getFirstSubTarget();
-            this.doc.navLevel = 'ROOT';
-            this.setMode('NORMAL');
-            return;
-        }
-
         if (this.templateRegistry && this.templateRegistry.has(cmdName)) {
             this.history.pushState(this.doc);
             this.transformActiveBlockTo(cmdName, cmdArgs);
@@ -1649,8 +680,6 @@ class VimEngine {
             const r = parseInt(args[0], 10) || 2;
             const c = parseInt(args[1], 10) || 2;
             newBlock = new GridBlock(r, c, null, templateKey);
-        } else if (primitive === 'picture') {
-            newBlock = new PictureBlock(rawText, templateKey);
         }
 
         if (newBlock) {
@@ -1685,10 +714,6 @@ class VimEngine {
 
         if (key === 'Enter') {
             e.preventDefault();
-            if (this.doc.getActiveBlock()?.type === 'picture') {
-                this.openVectorEditor();
-                return;
-            }
             if (this.doc.navLevel === 'ROOT') {
                 if (this.doc.getActiveBlock().isContainer()) {
                     this.doc.enterNested();
@@ -1896,6 +921,7 @@ class VimEngine {
             return;
         }
 
+
         if (key === '>' || key === 'L') {
             e.preventDefault();
             if (this.doc.nextPage()) {
@@ -1921,7 +947,7 @@ class VimEngine {
         const animClass = direction === 'next' ? 'page-anim-next' : 'page-anim-prev';
 
         this.paperContainer.classList.remove('page-anim-next', 'page-anim-prev');
-        void this.paperContainer.offsetWidth;
+        void this.paperContainer.offsetWidth; 
 
         this.paperContainer.classList.add(animClass);
         this.render();
@@ -1951,6 +977,7 @@ class VimEngine {
 
         let activeTargetElement = null;
 
+        // Slice blocks to render ONLY 15 blocks for the active page
         const startIdx = currentPage * this.doc.PAGE_SIZE;
         const endIdx = Math.min(startIdx + this.doc.PAGE_SIZE, this.doc.blocks.length);
         const visibleBlocks = this.doc.blocks.slice(startIdx, endIdx);
@@ -2119,24 +1146,6 @@ class VimEngine {
                 table.appendChild(tr);
             }
             wrapper.appendChild(table);
-        } else if (block.type === 'picture') {
-            if (isActiveBlock && this.mode === 'INSERT') {
-                const textarea = this.createInput(block, 'main');
-                textarea.classList.add('sub-target-active');
-                textarea.placeholder = '<svg>...</svg> or export drawing from Vector Engine';
-                wrapper.appendChild(textarea);
-            } else {
-                const div = document.createElement('div');
-                div.className = templateClass || 'tpl-picture';
-                if (block.svg && block.svg.trim()) {
-                    const rawHtml = tplDef ? tplDef.html.replaceAll('{content}', block.svg).replaceAll('{svg}', block.svg) : block.svg;
-                    div.innerHTML = rawHtml;
-                } else {
-                    div.innerHTML = '<div class="picture-placeholder" style="border: 1px dashed #ccc; padding: 15px; text-align: center; color: #888;">[ Empty Picture Block - Edit SVG text or export from VectorEngine ]</div>';
-                }
-                if (isActiveBlock && this.doc.navLevel === 'NESTED') div.classList.add('sub-target-active');
-                wrapper.appendChild(div);
-            }
         }
 
         return wrapper;
@@ -2176,13 +1185,5 @@ class VimEngine {
 window.onload = async function () {
     const templateRegistry = new TemplateRegistry();
     await templateRegistry.loadTemplates();
-    const vimEngine = new VimEngine(templateRegistry);
-    window.vimEngine = vimEngine;
-
-    if (document.getElementById('cad-viewport')) {
-        const vectorEngine = new VectorEngine(templateRegistry, (svgContent) => {
-            vimEngine.importSVGToActivePictureBlock(svgContent);
-        });
-        vimEngine.vectorEngine = vectorEngine;
-    }
+    new VimEngine(templateRegistry);
 };
